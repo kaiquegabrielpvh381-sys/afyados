@@ -366,20 +366,66 @@ async function send(){
   if(busy) return;
   const inp=document.getElementById('inputBox');
   const text=inp.value.trim(); if(!text) return;
-  // Backend protege a chave — não precisa de API Key do usuário
+  
   if(!curId){
     curId='c'+Date.now();
     const title=text.length>42?text.substring(0,42)+'…':text;
     convs[curId]={title,messages:[],model};
     document.getElementById('topTitle').textContent=title;
   }
+  
   inp.value=''; inp.style.height='auto';
   renderMsg('user',text);
   convs[curId].messages.push({role:'user',content:text});
   save(); renderHist();
+  
   busy=true; document.getElementById('sendBtn').disabled=true; addTyping();
   const hist=convs[curId].messages.map(m=>({role:m.role==='bot'?'assistant':m.role,content:m.content}));
+
   try{
+    const BACKEND = 'https://afyados-backend.onrender.com';
+    const r = await fetch(BACKEND + '/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: hist })
+    });
+
+    if (!r.ok) throw new Error('Erro na conexão com o servidor.');
+
+    rmTyping();
+    
+    // Início do sistema de Streaming (Leitura palavra por palavra)
+    const reader = r.body.getReader();
+    const decoder = new TextDecoder();
+    let reply = "";
+
+    // Renderiza a bolha vazia da IA Afyados
+    renderMsg('bot', ''); 
+    const allMsgs = document.querySelectorAll('.msg-row.bot .msg-text');
+    const lastMsgBubble = allMsgs[allMsgs.length - 1];
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const chunk = decoder.decode(value);
+      reply += chunk;
+      
+      // Atualiza o texto na tela em tempo real com formatação Markdown
+      lastMsgBubble.innerHTML = md(reply); 
+      document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    }
+
+    convs[curId].messages.push({role:'bot',content:reply}); 
+    save();
+
+  } catch (err) {
+    rmTyping();
+    renderMsg('bot', '❌ Erro: ' + err.message);
+  }
+  
+  busy=false; document.getElementById('sendBtn').disabled=false;
+}
     let reply='';
     const BACKEND = 'https://afyados-backend.onrender.com';
     const r=await fetch(BACKEND+'/chat',{
