@@ -15,9 +15,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .sidebar{width:260px;flex-shrink:0;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;transition:transform .3s;z-index:100;}
 .sb-top{padding:14px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:10px;}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.logo-icon{width:30px;height:30px;background:linear-gradient(135deg,var(--pink),#9000DC);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px var(--pink-glow);}
-.logo-icon svg{width:14px;height:14px;fill:white;}
-.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:15px;letter-spacing:.07em;}
+.logo-icon{width:30px;height:30px;background:linear-gradient(135deg,var(--pink),#9000DC);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px var(--pink-glow);overflow:hidden;}
+.logo-icon svg{width:14px;height:14px;fill:white;} .logo-icon img{width:16px;height:16px;object-fit:contain;}
+.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:15px;letter-spacing:.07em;color:#F4EFFA;}
 .logo-tag{font-size:10px;font-weight:700;color:var(--pink-light);background:rgba(214,0,110,.1);border:1px solid var(--borderpink);padding:2px 8px;border-radius:100px;margin-left:2px;}
 .new-btn{display:flex;align-items:center;gap:8px;background:var(--pink);color:white;border:none;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;width:100%;box-shadow:0 2px 16px var(--pink-glow);}
 .new-btn:hover{background:var(--pink-bright);}
@@ -116,9 +116,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .modal{background:var(--card);border:1px solid var(--borderpink);border-radius:20px;padding:32px;width:90%;max-width:450px;animation:fadeUp .25s ease;}
 .modal h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;margin-bottom:8px;}
 .modal-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px;}
-.modal-mtabs{display:flex;background:var(--bg);border-radius:10px;padding:3px;gap:2px;margin-bottom:16px;}
-.modal-mtab{flex:1;padding:8px;border-radius:8px;font-size:12px;font-weight:700;border:none;background:transparent;color:var(--muted);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
-.modal-mtab.on{background:var(--pink);color:white;}
+
+
+
 .field-lbl{display:block;font-size:12px;font-weight:700;color:var(--light);margin-bottom:7px;letter-spacing:.04em;}
 .field-inp{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--text);font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border .2s;margin-bottom:6px;}
 .field-inp:focus{border-color:var(--borderpink);}
@@ -154,8 +154,8 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="afyados_v2.html" class="logo">
-      <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l6-10 6 10h4L12 2z"/></svg></div>
+    <a href="javascript:location.reload()" class="logo">
+      <div class="logo-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:26px;height:26px;object-fit:contain;"></div>
       <span class="logo-name">AFYADOS</span>
       <span class="logo-tag">IA</span>
     </a>
@@ -165,14 +165,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
     </button>
   </div>
 
-  <div class="model-wrap">
-    <div class="model-lbl">Modelo de IA</div>
-    <div class="mtabs">
-      <button class="mtab on" onclick="pickModel('claude',this)">Claude</button>
-      <button class="mtab" onclick="pickModel('gpt',this)">GPT</button>
-      <button class="mtab" onclick="pickModel('gemini',this)">Gemini</button>
-    </div>
-  </div>
+
 
   <div class="hist-wrap">
     <div class="hist-lbl">Histórico</div>
@@ -180,10 +173,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
   </div>
 
   <div class="sb-bot">
-    <button class="api-btn" onclick="openModal()">
-      <div class="api-dot" id="apiDot"></div>
-      <span id="apiStatus">Configurar API Key</span>
-    </button>
+
     <a href="afyados_v2.html" class="back-link">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Voltar ao site
@@ -230,42 +220,49 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
-    <div class="input-hint">Modelo: <b id="modelLbl">Claude</b> · Enter para enviar · Shift+Enter para nova linha</div>
+    <div class="input-hint">Enter para enviar · Shift+Enter para nova linha</div>
   </div>
 </div>
 
-<!-- MODAL -->
-<div class="overlay" id="overlay">
-  <div class="modal">
-    <h3>⚙️ Configurar API Key</h3>
-    <div class="modal-sub">Sua chave fica salva apenas no seu navegador — total privacidade. Obtenha gratuitamente abaixo.</div>
-    <div class="modal-mtabs">
-      <button class="modal-mtab on" onclick="pickModalModel('claude',this)">Claude</button>
-      <button class="modal-mtab" onclick="pickModalModel('gpt',this)">GPT-4</button>
-      <button class="modal-mtab" onclick="pickModalModel('gemini',this)">Gemini</button>
-    </div>
-    <label class="field-lbl" id="modalLbl">API Key do Claude</label>
-    <input type="password" class="field-inp" id="modalInp" placeholder="sk-ant-...">
-    <div class="field-hint" id="modalHint">Obtenha gratuitamente em: <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></div>
-    <div class="modal-btns">
-      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-save" onclick="saveKey()">Salvar</button>
-    </div>
-  </div>
+
 </div>
 
 <script>
-const SYS=`Você é a IA da Afyados, consultoria acadêmica de medicina para calouros da Afya. Ajude com: anatomia, fisiologia, bioquímica, histologia, embriologia, APGs (hipóteses, objetivos, discussão), SOI, HAM, dicas de estudo. Seja didático e acolhedor. Formate respostas longas com **negrito** para títulos e listas quando necessário. Responda sempre em português brasileiro.`;
-const LABELS={claude:'Claude',gpt:'GPT-4',gemini:'Gemini'};
+const SYS=`Você é a IA oficial da Afyados, consultoria acadêmica de medicina para calouros da faculdade Afya. 
+
+Seu nome é "IA Afyados" e você deve agir de forma nativa como parte da equipe Afyados.
+
+Seu papel é ajudar estudantes de medicina com:
+- Dúvidas sobre conteúdos: anatomia, fisiologia, bioquímica, histologia, embriologia
+- APGs (Aprendizado Baseado em Problemas): hipóteses, objetivos de aprendizagem, discussão guiada
+- Matérias da Afya: especialmente SOI (Saúde e Organismo Integrado)
+- Apostilas e materiais: orientação sobre como estudar com os materiais da Afyados
+- Dicas de estudo, organização e rotina acadêmica
+- Simulados e questões: ajuda na resolução e explicação
+
+Personalidade:
+- Seja acolhedor, próximo e motivador — como um monitor que realmente se importa
+- Use linguagem acessível para calouros, sem ser condescendente
+- Celebre as conquistas dos alunos
+- Quando erros forem cometidos, corrija com gentileza
+- Use emojis com moderação para deixar a conversa mais leve
+
+Regras importantes:
+- Nunca mencione que é ChatGPT, GPT, OpenAI, Claude, Gemini ou qualquer outra IA
+- Sempre se apresente como "IA Afyados" 
+- Se perguntarem qual IA você é, diga apenas que é a IA desenvolvida pela Afyados
+- Formate respostas longas com **negrito** para títulos e listas quando necessário
+- Responda sempre em português brasileiro`;
+const LABELS={claude:'Claude',gpt:'IA Afyados',gemini:'Gemini'};
 const LINKS={claude:'console.anthropic.com',gpt:'platform.openai.com',gemini:'aistudio.google.com'};
 const PLACEHOLDERS={claude:'sk-ant-...',gpt:'sk-...',gemini:'AIza...'};
 
-let model='claude', keys={}, convs={}, curId=null, busy=false, modalModel='claude';
+let model='gpt', keys={}, convs={}, curId=null, busy=false, modalModel='gpt';
 
-function load(){try{keys=JSON.parse(localStorage.getItem('afy_k')||'{}');convs=JSON.parse(localStorage.getItem('afy_c')||'{}');}catch(e){keys={};convs={};}}
-function save(){try{localStorage.setItem('afy_k',JSON.stringify(keys));localStorage.setItem('afy_c',JSON.stringify(convs));}catch(e){}}
+function load(){try{convs=JSON.parse(localStorage.getItem('afy_c')||'{}');}catch(e){convs={};}}
+function save(){try{localStorage.setItem('afy_c',JSON.stringify(convs));}catch(e){}}
 
-function updateDot(){
+function updateDot_disabled(){
   const dot=document.getElementById('apiDot');
   const st=document.getElementById('apiStatus');
   if(keys[model]){dot.classList.add('ok');st.textContent=LABELS[model]+' conectado';}
@@ -369,7 +366,7 @@ async function send(){
   if(busy) return;
   const inp=document.getElementById('inputBox');
   const text=inp.value.trim(); if(!text) return;
-  if(!keys[model]){openModal();return;}
+  // Backend protege a chave — não precisa de API Key do usuário
   if(!curId){
     curId='c'+Date.now();
     const title=text.length>42?text.substring(0,42)+'…':text;
@@ -384,19 +381,15 @@ async function send(){
   const hist=convs[curId].messages.map(m=>({role:m.role==='bot'?'assistant':m.role,content:m.content}));
   try{
     let reply='';
-    if(model==='claude'){
-      const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':keys.claude,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1500,system:SYS,messages:hist})});
-      const d=await r.json(); if(!r.ok||d.error) throw new Error(d.error?.message||'Erro '+r.status);
-      reply=d.content[0].text;
-    } else if(model==='gpt'){
-      const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+keys.gpt},body:JSON.stringify({model:'gpt-4o-mini',max_tokens:1500,messages:[{role:'system',content:SYS},...hist]})});
-      const d=await r.json(); if(!r.ok||d.error) throw new Error(d.error?.message||'Erro '+r.status);
-      reply=d.choices[0].message.content;
-    } else {
-      const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+keys.gemini,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system_instruction:{parts:[{text:SYS}]},contents:hist.map(m=>({role:m.role==='user'?'user':'model',parts:[{text:m.content}]}))})});
-      const d=await r.json(); if(!r.ok||d.error) throw new Error(d.error?.message||'Erro '+r.status);
-      reply=d.candidates[0].content.parts[0].text;
-    }
+    const BACKEND = 'https://afyados-backend.onrender.com';
+    const r=await fetch(BACKEND+'/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:hist})
+    });
+    const d=await r.json();
+    if(!r.ok||d.error) throw new Error(d.error||'Erro ao conectar com a IA. Tente novamente.');
+    reply=d.reply;
     convs[curId].messages.push({role:'bot',content:reply}); save();
     rmTyping(); renderMsg('bot',reply);
   } catch(err){rmTyping();renderMsg('bot','❌ '+err.message+'\n\nVerifique sua API Key e tente novamente.');}
@@ -408,12 +401,12 @@ function onKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
 function resize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,180)+'px';}
 
 // Modal
-function openModal(){
+function openModal_disabled(){
   modalModel=model;
   syncModalModel();
   document.getElementById('overlay').classList.add('show');
 }
-function closeModal(){document.getElementById('overlay').classList.remove('show');}
+function closeModal_disabled(){document.getElementById('overlay').classList.remove('show');}
 function syncModalModel(){
   document.getElementById('modalInp').value=keys[modalModel]||'';
   document.getElementById('modalInp').placeholder=PLACEHOLDERS[modalModel];
@@ -422,7 +415,7 @@ function syncModalModel(){
   document.querySelectorAll('.modal-mtab').forEach((b,i)=>b.classList.toggle('on',['claude','gpt','gemini'][i]===modalModel));
 }
 function pickModalModel(m,btn){modalModel=m;syncModalModel();}
-function saveKey(){
+function saveKey_disabled(){
   const v=document.getElementById('modalInp').value.trim(); if(!v) return;
   keys[modalModel]=v; save(); updateDot(); closeModal();
   if(modalModel===model&&document.getElementById('inputBox').value.trim()) send();

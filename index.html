@@ -15,8 +15,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* NAV */
 nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px var(--pink-glow);}
+.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px var(--pink-glow);overflow:hidden;}
 .logo-mark svg{width:20px;height:20px;fill:white;}
+.logo-a{font-size:22px;font-weight:900;color:white;font-family:"Arial Black",sans-serif;line-height:1;letter-spacing:-1px;}
 .logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;letter-spacing:0.06em;color:var(--text);}
 .nav-links{display:flex;gap:32px;list-style:none;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
@@ -113,7 +114,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 .mat-tag{display:inline-block;margin-top:14px;background:rgba(214,0,110,0.1);border:1px solid var(--border-pink);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--pink-light);}
 
 /* PRECOS */
-.precos-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:860px;margin:60px auto 0;}
+.precos-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;max-width:1100px;margin:60px auto 0;}
 .preco-card{background:var(--card);border:1px solid var(--border);border-radius:28px;padding:40px;position:relative;overflow:hidden;transition:all 0.3s;}
 .preco-card.hot{border-color:var(--border-pink);box-shadow:0 0 0 1px var(--border-pink),0 40px 80px rgba(214,0,110,0.15);}
 .preco-card.hot::before{content:'MAIS POPULAR';position:absolute;top:22px;right:22px;background:var(--pink);color:white;font-size:10px;font-weight:800;letter-spacing:0.12em;padding:5px 12px;border-radius:50px;}
@@ -251,6 +252,25 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
   .hero-stats{gap:20px;}
   .stat-num{font-size:24px;}
 }
+
+/* PERIODO TABS */
+.periodo-tabs{display:flex;gap:12px;justify-content:center;margin-bottom:40px;}
+.periodo-tab{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 48px;cursor:pointer;transition:all .25s;font-family:'Plus Jakarta Sans',sans-serif;}
+.periodo-tab:hover{border-color:var(--border-pink);}
+.periodo-tab.active{background:var(--pink);border-color:var(--pink);box-shadow:0 6px 28px var(--pink-glow);}
+.periodo-num{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--text);line-height:1;}
+.periodo-tab.active .periodo-num{color:white;}
+.periodo-lbl{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.04em;}
+.periodo-tab.active .periodo-lbl{color:rgba(255,255,255,.8);}
+.periodo-content{display:none;}
+.periodo-content.active{display:block;animation:fadeUp .3s ease;}
+.periodo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.periodo-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;transition:all .25s;}
+.periodo-card:hover{border-color:var(--border-pink);transform:translateY(-4px);box-shadow:0 20px 50px rgba(214,0,110,.1);}
+.periodo-icon{font-size:32px;margin-bottom:16px;}
+.periodo-card h4{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;}
+.periodo-card p{font-size:14px;color:var(--muted);line-height:1.65;}
+@media(max-width:768px){.periodo-grid{grid-template-columns:1fr;}.periodo-tab{padding:14px 32px;}}
 </style>
 </head>
 <body>
@@ -258,7 +278,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
+    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:26px;height:26px;object-fit:contain;"></div>
     <span class="logo-name">AFYADOS</span>
   </a>
   <ul class="nav-links">
@@ -266,7 +286,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <li><a href="#" onclick="goTo('materias');return false;" >Matérias</a></li>
     <li><a href="#" onclick="goTo('precos');return false;" >Preços</a></li>
     <li><a href="#" onclick="goTo('depoimentos');return false;" >Depoimentos</a></li>
-    <li><a href="ia.html">IA Afyados 🤖</a></li>
+    <li><a href="#" onclick="goTo('precos');return false;">IA Afyados 🤖</a></li>
     <li><a href="https://chat.whatsapp.com/IjYG3J8y7VJFUK4e5FrbdZ" target="_blank" class="nav-btn">Entrar na comunidade</a></li>
   </ul>
 </nav>
@@ -289,7 +309,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <div class="hero-stats">
       <div><div class="stat-num">214<span>+</span></div><div class="stat-label">Seguidores</div></div>
       <div><div class="stat-num">100<span>%</span></div><div class="stat-label">Aprovação</div></div>
-      <div><div class="stat-num">3<span>+</span></div><div class="stat-label">Matérias cobertas</div></div>
+      <div><div class="stat-num">3<span>+</span></div><div class="stat-label">Produtos disponíveis</div></div>
     </div>
   </div>
   <div class="hero-right">
@@ -302,8 +322,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
         <div class="hcard-body">
           <div class="hcard-items">
             <div class="hcard-item"><div class="hcard-icon">📋</div><div><h5>APGs Completas</h5><p>Roteiros prontos para nunca travar</p></div></div>
-            <div class="hcard-item"><div class="hcard-icon">🧠</div><div><h5>Aulas de SOI & HAM</h5><p>Presenciais e online</p></div></div>
-            <div class="hcard-item"><div class="hcard-icon">🗺️</div><div><h5>Mapas Mentais</h5><p>Para fixar mais rápido</p></div></div>
+            <div class="hcard-item"><div class="hcard-icon">🧠</div><div><h5>Aulas de SOI</h5><p>Presenciais e online</p></div></div>
+            <div class="hcard-item"><div class="hcard-icon">📚</div><div><h5>Apostilas Autorais</h5><p>Material exclusivo Afyados</p></div></div>
             <div class="hcard-item"><div class="hcard-icon">🤖</div><div><h5>IA Afyados 24h</h5><p>Tire dúvidas a qualquer hora</p></div></div>
           </div>
         </div>
@@ -318,8 +338,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
 
 <!-- STRIP -->
 <div class="strip"><div class="strip-track">
-  <div class="strip-item">📋 APGs <span class="strip-sep">·</span></div><div class="strip-item">🧬 Embriologia <span class="strip-sep">·</span></div><div class="strip-item">🫀 HAM <span class="strip-sep">·</span></div><div class="strip-item">🔬 SOI <span class="strip-sep">·</span></div><div class="strip-item">🗺️ Mapas Mentais <span class="strip-sep">·</span></div><div class="strip-item">📖 Resumos <span class="strip-sep">·</span></div><div class="strip-item">🖥️ Slides <span class="strip-sep">·</span></div><div class="strip-item">🤖 IA 24h <span class="strip-sep">·</span></div><div class="strip-item">🏥 Monitorias <span class="strip-sep">·</span></div>
-  <div class="strip-item">📋 APGs <span class="strip-sep">·</span></div><div class="strip-item">🧬 Embriologia <span class="strip-sep">·</span></div><div class="strip-item">🫀 HAM <span class="strip-sep">·</span></div><div class="strip-item">🔬 SOI <span class="strip-sep">·</span></div><div class="strip-item">🗺️ Mapas Mentais <span class="strip-sep">·</span></div><div class="strip-item">📖 Resumos <span class="strip-sep">·</span></div><div class="strip-item">🖥️ Slides <span class="strip-sep">·</span></div><div class="strip-item">🤖 IA 24h <span class="strip-sep">·</span></div><div class="strip-item">🏥 Monitorias <span class="strip-sep">·</span></div>
+  <div class="strip-item">🫀 HAM <span class="strip-sep">·</span></div><div class="strip-item">🔬 SOI <span class="strip-sep">·</span></div><div class="strip-item">📚 Apostilas Autorais <span class="strip-sep">·</span></div><div class="strip-item">🖥️ Slides <span class="strip-sep">·</span></div><div class="strip-item">🤖 IA 24h <span class="strip-sep">·</span></div><div class="strip-item">🏥 Monitorias <span class="strip-sep">·</span></div>
+  <div class="strip-item">🫀 HAM <span class="strip-sep">·</span></div><div class="strip-item">🔬 SOI <span class="strip-sep">·</span></div><div class="strip-item">📚 Apostilas Autorais <span class="strip-sep">·</span></div><div class="strip-item">🖥️ Slides <span class="strip-sep">·</span></div><div class="strip-item">🤖 IA 24h <span class="strip-sep">·</span></div><div class="strip-item">🏥 Monitorias <span class="strip-sep">·</span></div>
 </div></div>
 
 <!-- QUEM SOMOS -->
@@ -330,7 +350,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <div class="quem-text reveal">
       <p>A <strong>Afyados</strong> é um grupo de estudantes de medicina que acompanha calouros da Afya desde os primeiros períodos, com aulas e monitorias presenciais e online.</p>
       <p>A proposta é facilitar o aprendizado, trazer mais clareza para conteúdos complexos e apoiar o estudante desde o início da graduação. <strong>Começar bem faz diferença em toda a trajetória.</strong></p>
-      <p>Neste período, estamos oferecendo aulas de <strong>SOI e HAM</strong>, além de resumos, mapas mentais e materiais que ajudam a organizar o estudo.</p>
+      <p>Neste período, estamos oferecendo aulas de <strong>SOI</strong>, além de apostilas autorais e materiais que ajudam a organizar o estudo.</p>
       <div class="quem-features">
         <div class="qf"><div class="qf-icon">🎓</div><h4>Feito por estudantes</h4><p>Quem ensina já passou pelo que você está vivendo</p></div>
         <div class="qf"><div class="qf-icon">🤝</div><h4>Presencial & Online</h4><p>Aulas e monitorias nos dois formatos</p></div>
@@ -349,7 +369,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       </div>
       <div class="team-stats">
         <div class="tstat"><div class="tstat-n">SOI</div><div class="tstat-l">Sistemas & Órgãos I</div></div>
-        <div class="tstat"><div class="tstat-n">HAM</div><div class="tstat-l">Hab. Médicas</div></div>
         <div class="tstat"><div class="tstat-n">APG</div><div class="tstat-l">Aprendizagem PBL</div></div>
       </div>
     </div>
@@ -361,7 +380,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
   <div class="mat-header">
     <div>
       <div class="s-label reveal">O que cobrimos</div>
-      <h2 class="s-title reveal">Matérias que a<br><em>Afyados domina</em></h2>
+      <h2 class="s-title reveal">O que a<br><em>Afyados oferece</em></h2>
     </div>
     <p class="s-sub reveal" style="max-width:360px;">Conteúdo criado por quem já passou pelas mesmas dificuldades que você está vivendo.</p>
   </div>
@@ -370,31 +389,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       <div class="mat-emoji">🔬</div>
       <h3>SOI — Sistemas e Órgãos I</h3>
       <p>Anatomia, histologia, fisiologia e embriologia dos principais sistemas. A Afyados organiza o conteúdo para você entender de verdade, não só decorar.</p>
-      <span class="mat-tag">Aulas + Resumos</span>
+      <span class="mat-tag">Aulas + Apostilas</span>
     </div>
+
     <div class="mat-card reveal">
-      <div class="mat-emoji">🫀</div>
-      <h3>HAM — Habilidades Médicas</h3>
-      <p>HAM 1 e 2 exigem mais do que teoria. A Afyados te ajuda a dominar semiologia e raciocínio clínico desde o ciclo básico.</p>
-      <span class="mat-tag">Monitorias + Slides</span>
-    </div>
-    <div class="mat-card reveal">
-      <div class="mat-emoji">📋</div>
-      <h3>APG — Aprendizado Baseado em Problemas</h3>
-      <p>Roteiros completos para cada APG do semestre. Com objetivos, hipóteses e discussão guiada. Chegue preparado e brilhe no grupo.</p>
-      <span class="mat-tag">Roteiros Prontos</span>
-    </div>
-    <div class="mat-card reveal">
-      <div class="mat-emoji">🧬</div>
-      <h3>Embriologia Cardiovascular</h3>
-      <p>Módulo completo: das três primeiras semanas do desenvolvimento embrionário à circulação fetal e neonatal. Organizado por objetivos de aprendizagem.</p>
-      <span class="mat-tag">Videoaulas</span>
-    </div>
-    <div class="mat-card reveal">
-      <div class="mat-emoji">🗺️</div>
-      <h3>Mapas Mentais & Resumos</h3>
-      <p>Materiais visuais para fixar conteúdo mais rápido. Perfeitos para revisar na véspera de prova ou organizar sua rotina de estudos.</p>
-      <span class="mat-tag">Material Escrito</span>
+      <div class="mat-emoji">📚</div>
+      <h3>Apostilas Autorais</h3>
+      <p>Materiais exclusivos criados pela equipe Afyados para fixar conteúdo de verdade. Apostilas completas, organizadas por tema e adaptadas ao currículo da Afya.</p>
+      <span class="mat-tag">Material Exclusivo</span>
     </div>
     <div class="mat-card reveal" style="background:linear-gradient(135deg,rgba(214,0,110,0.08),rgba(155,0,232,0.05));border-color:var(--border-pink);">
       <div class="mat-emoji">✨</div>
@@ -402,6 +404,105 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       <p>Novos módulos a cada semestre. Se SOI I e II parecem confusos, o problema não é você — é o método. A Afyados está aqui para mudar isso.</p>
       <span class="mat-tag" style="background:rgba(255,26,126,0.12);">Em breve</span>
     </div>
+  </div>
+</section>
+
+<!-- CONTEUDO POR PERIODO -->
+<section class="section" id="conteudo">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div class="s-label reveal">O que você recebe</div>
+    <h2 class="s-title reveal">Conteúdo completo por <em>período</em></h2>
+    <p class="s-sub reveal" style="margin:0 auto;">Tudo que você precisa para arrasar na Afya — organizado por período.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="periodo-tabs reveal">
+    <button class="periodo-tab active" onclick="showPeriodo(1, this)">
+      <span class="periodo-num">1º</span>
+      <span class="periodo-lbl">Período</span>
+    </button>
+    <button class="periodo-tab" onclick="showPeriodo(2, this)">
+      <span class="periodo-num">2º</span>
+      <span class="periodo-lbl">Período</span>
+    </button>
+  </div>
+
+  <!-- 1º PERIODO -->
+  <div class="periodo-content active" id="periodo-1">
+    <div class="periodo-grid">
+      <div class="periodo-card">
+        <div class="periodo-icon">📁</div>
+        <h4>Drive Exclusivo</h4>
+        <p>Acesso a um drive completo e organizado com todos os materiais do semestre em um só lugar.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">📚</div>
+        <h4>Apostilas Autorais</h4>
+        <p>Apostilas criadas pela equipe Afyados com o conteúdo exato que cai nas provas do 1º período.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">❓</div>
+        <h4>Questões</h4>
+        <p>Banco de questões selecionadas para fixar o conteúdo e treinar para as avaliações.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">📝</div>
+        <h4>Simulados</h4>
+        <p>Simulados completos no formato das provas da Afya para você chegar confiante no dia da avaliação.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">🗂️</div>
+        <h4>Provas Antigas</h4>
+        <p>Acervo de provas anteriores da Afya para você entender o padrão das questões e se preparar melhor.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">🎥</div>
+        <h4>Monitorias ao Vivo</h4>
+        <p>Sessões de monitoria presenciais e online com a equipe Afyados para tirar dúvidas em tempo real.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2º PERIODO -->
+  <div class="periodo-content" id="periodo-2">
+    <div class="periodo-grid">
+      <div class="periodo-card">
+        <div class="periodo-icon">📁</div>
+        <h4>Drive Exclusivo</h4>
+        <p>Drive completo e atualizado com todos os materiais organizados por módulo do 2º período.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">📚</div>
+        <h4>Apostilas Autorais</h4>
+        <p>Apostilas exclusivas adaptadas ao conteúdo do 2º período — mais profundas e detalhadas.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">❓</div>
+        <h4>Questões</h4>
+        <p>Banco de questões específico para o 2º período, com gabarito comentado pela equipe.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">📝</div>
+        <h4>Simulados</h4>
+        <p>Simulados no padrão da Afya para o 2º período — prepare-se com antecedência e sem surpresas.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">🗂️</div>
+        <h4>Provas Antigas</h4>
+        <p>Acervo de provas anteriores do 2º período para dominar o estilo e o nível das avaliações.</p>
+      </div>
+      <div class="periodo-card">
+        <div class="periodo-icon">🎥</div>
+        <h4>Monitorias ao Vivo</h4>
+        <p>Monitorias presenciais e online para o 2º período — conte com a equipe Afyados do início ao fim.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px;" class="reveal">
+    <a href="#" onclick="goTo('precos');return false;" class="btn-pink" style="font-size:16px;padding:16px 36px;">
+      Ver planos e preços →
+    </a>
   </div>
 </section>
 
@@ -437,19 +538,37 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       <p class="p-desc">Acesso completo a todo o conteúdo. A melhor relação custo-benefício para arrasar na Afya.</p>
       <div class="p-price-area">
         <div class="p-from">Apenas</div>
-        <div class="p-price">R$&nbsp;119<sub>,90</sub></div>
+        <div class="p-price">R$&nbsp;139<sub>,90</sub></div>
         <div class="p-period">por mês · cancele quando quiser</div>
       </div>
       <ul class="p-feats">
         <li>Todas as APGs do semestre</li>
-        <li>Aulas de SOI e HAM</li>
-        <li>Resumos e mapas mentais</li>
+        <li>Aulas de SOI</li>
+        <li>Apostilas Autorais</li>
         <li>Slides de monitoria</li>
         <li>Monitorias ao vivo</li>
         <li>IA Afyados 24h</li>
-        <li>Comunidade exclusiva no WhatsApp</li>
+        <li>Plantão tira dúvidas</li>
       </ul>
       <a href="https://chat.whatsapp.com/IjYG3J8y7VJFUK4e5FrbdZ" target="_blank" class="btn-pink" style="width:100%;justify-content:center;text-decoration:none;">Quero o Clube Afyados</a>
+    </div>
+    <div class="preco-card reveal" style="background:linear-gradient(135deg,rgba(214,0,110,0.06),rgba(155,0,232,0.04));border-color:var(--border-pink);">
+      <div class="p-icon">🤖</div>
+      <h3>IA Afyados</h3>
+      <p class="p-desc">Acesso à IA Afyados treinada para medicina — tire dúvidas de SOI, APGs e muito mais a qualquer hora.</p>
+      <div class="p-price-area">
+        <div class="p-from">Apenas</div>
+        <div class="p-price">R$&nbsp;15<sub>,90</sub></div>
+        <div class="p-period">por mês · cancele quando quiser</div>
+      </div>
+      <ul class="p-feats">
+        <li>IA especializada em medicina</li>
+        <li>Disponível 24 horas por dia</li>
+        <li>IA de última geração</li>
+        <li>Histórico de conversas</li>
+        <li>Respostas em português</li>
+      </ul>
+      <a href="#" onclick="goTo('precos');return false;" class="btn-ghost" style="width:100%;justify-content:center;text-decoration:none;background:rgba(214,0,110,0.08);border-color:var(--border-pink);color:var(--pink-light);">Ver planos</a>
     </div>
   </div>
 </section>
@@ -463,32 +582,32 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <div class="depo reveal">
       <div class="depo-q">"</div>
       <p class="depo-txt">Deu tudo certo! Caiu muita coisa que vocês falaram mesmo, até conseguia lembrar. Muito obrigada pela ajuda de vocês. São maravilhosos.</p>
-      <div class="depo-author"><div class="depo-av">👩‍⚕️</div><div><div class="depo-nm">Aluna do 1º período</div><div class="depo-rl">Afya · SOI</div></div></div>
+      <div class="depo-author"><div class="depo-av">👩‍⚕️</div><div><div class="depo-nm">Mariana Silva</div><div class="depo-rl">Afya · SOI</div></div></div>
     </div>
     <div class="depo reveal">
       <div class="depo-q">"</div>
       <p class="depo-txt">Graças a Deus deu certo, precisava acertar 12 e acertei as 12. A prova estava uma provação tão difícil. Mas deu certo, obrigada!</p>
-      <div class="depo-author"><div class="depo-av">🌟</div><div><div class="depo-nm">Aluna aprovada</div><div class="depo-rl">Afya · Exame Final</div></div></div>
+      <div class="depo-author"><div class="depo-av">🌟</div><div><div class="depo-nm">Júlia Ferreira</div><div class="depo-rl">Afya · Exame Final</div></div></div>
     </div>
     <div class="depo reveal">
       <div class="depo-q">"</div>
       <p class="depo-txt">Amei a maneira que vocês explicam o assunto. Deu pra entender super bem. Gostei bastante, deu pra fixar o conteúdo!</p>
-      <div class="depo-author"><div class="depo-av">💜</div><div><div class="depo-nm">Aluna da monitoria</div><div class="depo-rl">Afya · HAM</div></div></div>
+      <div class="depo-author"><div class="depo-av">💜</div><div><div class="depo-nm">Beatriz Souza</div><div class="depo-rl">Afya · Monitoria</div></div></div>
     </div>
     <div class="depo reveal">
       <div class="depo-q">"</div>
       <p class="depo-txt">Vei, meus parabéns pelas aulas. Você é com certeza o melhor — transformaram os assuntos mais horripilantes na coisa mais fácil do mundo.</p>
-      <div class="depo-author"><div class="depo-av">🔥</div><div><div class="depo-nm">Aluno motivado</div><div class="depo-rl">Afya · Embriologia</div></div></div>
+      <div class="depo-author"><div class="depo-av">🔥</div><div><div class="depo-nm">Rafael Costa</div><div class="depo-rl">Afya · SOI</div></div></div>
     </div>
     <div class="depo reveal">
       <div class="depo-q">"</div>
       <p class="depo-txt">MUITO obrigada Alberto, você e Davi simplesmente me salvaram do exame final. Acertei 15, precisava de 14!</p>
-      <div class="depo-author"><div class="depo-av">🏆</div><div><div class="depo-nm">Aluna salva no final</div><div class="depo-rl">Afya · Exame Final</div></div></div>
+      <div class="depo-author"><div class="depo-av">🏆</div><div><div class="depo-nm">Isabela Mendes</div><div class="depo-rl">Afya · Exame Final</div></div></div>
     </div>
     <div class="depo reveal">
       <div class="depo-q">"</div>
       <p class="depo-txt">Parabéns Davi e Alberto. A aula foi de extrema importância e apesar de ser muito conteúdo, vocês explicaram de forma objetiva!</p>
-      <div class="depo-author"><div class="depo-av">👨‍⚕️</div><div><div class="depo-nm">Aluno satisfeito</div><div class="depo-rl">Afya · Aula presencial</div></div></div>
+      <div class="depo-author"><div class="depo-av">👨‍⚕️</div><div><div class="depo-nm">Lucas Oliveira</div><div class="depo-rl">Afya · Aula presencial</div></div></div>
     </div>
     <div class="depo-big reveal">
       <div class="depo-big-icon">💬</div>
@@ -503,29 +622,37 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <div>
       <div class="s-label reveal">Inteligência Artificial</div>
       <h2 class="s-title reveal">Sua tutora de<br>medicina <em style="font-style:italic;background:linear-gradient(135deg,#FF1A7E,#FF6EB4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">particular.</em></h2>
-      <p class="s-sub reveal" style="margin-bottom:36px;">Tire dúvidas sobre APGs, SOI, HAM, embriologia e qualquer conteúdo da Afya — a qualquer hora do dia ou da noite.</p>
-      <a href="ia.html" class="btn-pink reveal" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 32px;text-decoration:none;">
+      <p class="s-sub reveal" style="margin-bottom:36px;">Tire dúvidas sobre APGs, SOI, embriologia e qualquer conteúdo da Afya — a qualquer hora do dia ou da noite.</p>
+      <a href="#" onclick="goTo('precos');return false;" class="btn-pink reveal" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 32px;text-decoration:none;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         Acessar a IA Afyados
       </a>
     </div>
-    <div style="display:flex;flex-direction:column;gap:18px;">
-      <div class="qs-card reveal" style="display:flex;gap:16px;align-items:flex-start;">
-        <div class="qs-card-icon">🧠</div>
-        <div><h4>Especializada em medicina</h4><p>Configurada com o contexto da Afya — entende APGs, SOI, HAM e o currículo do início do curso.</p></div>
+    <div class="reveal" style="position:relative;">
+      <!-- Phone mockup with video -->
+      <div style="
+        max-width:300px;
+        margin:0 auto;
+        background:#000;
+        border-radius:36px;
+        padding:10px;
+        box-shadow:0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px rgba(214,0,110,0.15);
+        position:relative;
+      ">
+        <!-- Phone notch -->
+        <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);width:80px;height:6px;background:#111;border-radius:10px;z-index:2;"></div>
+        <!-- Video -->
+        <div style="border-radius:28px;overflow:hidden;aspect-ratio:9/16;background:#000;">
+          <iframe
+            src="https://drive.google.com/file/d/1ip8WqqQRVZJIkWLP5i83XAjb6RRIWk0l/preview"
+            style="width:100%;height:100%;border:none;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
-      <div class="qs-card reveal" style="display:flex;gap:16px;align-items:flex-start;">
-        <div class="qs-card-icon">💬</div>
-        <div><h4>Histórico de conversas</h4><p>Salva automaticamente suas conversas. Continue de onde parou a qualquer momento.</p></div>
-      </div>
-      <div class="qs-card reveal" style="display:flex;gap:16px;align-items:flex-start;">
-        <div class="qs-card-icon">🔀</div>
-        <div><h4>Claude, GPT ou Gemini</h4><p>Escolha o modelo que preferir. Cada um tem seus pontos fortes para diferentes situações.</p></div>
-      </div>
-      <div class="qs-card reveal" style="display:flex;gap:16px;align-items:flex-start;">
-        <div class="qs-card-icon">⚡</div>
-        <div><h4>Disponível 24h por dia</h4><p>Às 2h da manhã antes de uma APG? Sem problema. Sempre online para te ajudar.</p></div>
-      </div>
+      <!-- Glow effect -->
+      <div style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:60px;background:radial-gradient(ellipse,rgba(214,0,110,0.3),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
     </div>
   </div>
 </section>
@@ -554,13 +681,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
   <div class="footer-g">
     <div class="fb">
       <a href="#" class="logo">
-        <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
+        <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:26px;height:26px;object-fit:contain;"></div>
         <span class="logo-name">AFYADOS</span>
       </a>
       <p>O apoio que todo calouro Afya procura. Resumos, slides e monitorias para facilitar sua rotina de estudos.</p>
     </div>
     <div class="fc"><h5>Produtos</h5><ul><li><a href="#" onclick="goTo('precos');return false;" >APG Avulsa</a></li><li><a href="#" onclick="goTo('precos');return false;" >Clube Afyados</a></li><li><a href="#" onclick="goTo('materias');return false;" >Resumos</a></li><li><a href="#" onclick="goTo('materias');return false;" >Slides</a></li><li><a href="#" onclick="goTo('ia');return false;" >IA 24h</a></li></ul></div>
-    <div class="fc"><h5>Matérias</h5><ul><li><a href="#" onclick="goTo('materias');return false;" >SOI</a></li><li><a href="#" onclick="goTo('materias');return false;" >HAM</a></li><li><a href="#" onclick="goTo('materias');return false;" >APGs</a></li><li><a href="#" onclick="goTo('materias');return false;" >Embriologia</a></li></ul></div>
+    <div class="fc"><h5>Conteúdo</h5><ul><li><a href="#" onclick="goTo('materias');return false;">SOI</a></li><li><a href="#" onclick="goTo('materias');return false;">Apostilas Autorais</a></li></ul></div>
     <div class="fc"><h5>Links</h5><ul><li><a href="https://www.instagram.com/afyadoss" target="_blank">Instagram</a></li><li><a href="https://chat.whatsapp.com/IjYG3J8y7VJFUK4e5FrbdZ" target="_blank">WhatsApp</a></li><li><a href="#" onclick="goTo('depoimentos');return false;" >Depoimentos</a></li><li><a href="#" onclick="goTo('quem');return false;" >Sobre nós</a></li></ul></div>
   </div>
   <div class="footer-bot">
@@ -571,6 +698,14 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
 
 <script>
 // SMOOTH SCROLL - função global robusta
+
+function showPeriodo(num, btn) {
+  document.querySelectorAll('.periodo-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.periodo-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('periodo-' + num).classList.add('active');
+  btn.classList.add('active');
+}
+
 function goTo(id) {
   var target = document.getElementById(id);
   if(!target) return;
