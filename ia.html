@@ -36,21 +36,34 @@
         .msg-text{max-width:85%;line-height:1.7;font-size:15px;color:var(--text);}
         .user .msg-text{background:var(--pink);padding:12px 18px;border-radius:15px 15px 2px 15px;color:white;}
         
-        /* MARKDOWN STYLING */
+        /* MARKDOWN STYLING Avançado */
+        .msg-text h1{margin:20px 0 15px;color:white;font-size:24px;border-bottom:2px solid var(--pink);}
+        .msg-text h2{margin:18px 0 12px;color:var(--light);font-size:20px;}
         .msg-text h3{margin:15px 0 10px;color:var(--pink-bright);font-size:18px;}
         .msg-text strong{color:white;font-weight:700;}
         .msg-text p{margin-bottom:12px;}
-        .msg-text ul{margin:10px 0 15px 20px;}
+        .msg-text ul{margin:10px 0 15px 20px; list-style-type: disc;}
+        .msg-text ol{margin:10px 0 15px 20px; list-style-type: decimal;}
         .msg-text li{margin-bottom:5px;}
 
+        /* RENDERIZAÇÃO DE MÍDIA NATIVA */
+        .med-img-wrap{margin:20px 0; border:1px solid var(--border); border-radius:15px; overflow:hidden; background:var(--card); box-shadow:0 10px 30px rgba(0,0,0,0.3);}
+        .med-img-title{padding:10px 15px; background:rgba(255,255,255,0.03); border-bottom:1px solid var(--border); font-size:13px; font-weight:700; color:white;}
+        .med-img{width:100%; height:auto; display:block;}
+        .med-img-caption{padding:10px 15px; font-size:12px; color:var(--muted); line-height:1.6;}
+        
+        .med-video-wrap{margin:20px 0; border:1px solid var(--border); border-radius:15px; overflow:hidden; background:var(--card);}
+        .med-video-title{padding:10px 15px; background:rgba(255,255,255,0.03); font-size:13px; font-weight:700;}
+        .med-video-embed{width:100%; aspect-ratio:16/9; border:none;}
+
         /* INPUT AREA */
-        .input-wrap{position:absolute;bottom:30px;left:15%;right:15%;background:var(--card);border:1px solid var(--border);border-radius:15px;display:flex;align-items:center;padding:10px 15px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+        .input-wrap{position:absolute;bottom:30px;left:15%;right:15%;background:var(--card);border:1px solid var(--border);border-radius:15px;display:flex;align-items:center;padding:10px 15px;box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:10;}
         #inputBox{flex:1;background:transparent;border:none;color:white;outline:none;padding:10px;font-size:15px;resize:none;max-height:150px;}
-        .send-btn{background:var(--pink);border:none;width:40px;height:40px;border-radius:10px;color:white;cursor:pointer;transition:0.2s;}
+        .send-btn{background:var(--pink);border:none;width:40px;height:40px;border-radius:10px;color:white;cursor:pointer;transition:0.2s; flex-shrink:0;}
         .send-btn:hover{background:var(--pink-bright);}
 
         @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-        @media(max-width:768px){ #messages{padding:20px 15px 100px;} .input-wrap{left:10px;right:10px;} }
+        @media(max-width:768px){ #messages{padding:20px 15px 100px;} .input-wrap{left:10px;right:10px;} .msg-text{max-width:90%;}}
     </style>
 </head>
 <body>
@@ -58,30 +71,35 @@
 <div class="sidebar">
     <div class="sb-top"><button class="new-btn" onclick="newChat()">+ Nova Conversa</button></div>
     <div class="hist-wrap" id="histList"></div>
-    <div style="padding:20px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); text-align:center;">
-        Sócios: Alberto, Ana Luiza, Davi, Lud
+    <div style="padding:20px; border-top:1px solid var(--border); font-size:11px; color:var(--muted); text-align:center;">
+        Afyados Med 2025<br>Método Ativo: PBL | APG
     </div>
 </div>
 
 <div class="main">
     <div class="topbar">
         <span id="topTitle">IA Afyados</span>
-        <button onclick="clearChat()" style="background:none; border:1px solid var(--border); color:var(--muted); padding:5px 10px; border-radius:5px; cursor:pointer;">Limpar</button>
+        <button onclick="clearChat()" style="background:none; border:1px solid var(--border); color:var(--muted); padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px;">Limpar</button>
     </div>
     <div id="messages">
         <div class="msg-row bot">
             <div class="msg-av">🤖</div>
-            <div class="msg-text">Olá! Sou a <strong>IA Afyados</strong>. Como posso ajudar nos seus estudos de medicina hoje?</div>
+            <div class="msg-text">
+                <h3>Bem-vindo, Doutor(a)!</h3>
+                <p>Sou a **IA Afyados**, sua tutora nativa para o método PBL/APG da Afya.</p>
+                <p>Estou pronta para te ajudar a aprofundar em SOI, HAM, Anatomia ou Fisiologia com mapas mentais, imagens didáticas e vídeos.</p>
+                <p>_O que vamos estudar hoje?_</p>
+            </div>
         </div>
     </div>
     <div class="input-wrap">
-        <textarea id="inputBox" placeholder="Pergunte sobre SOI, APG, Anatomia..." rows="1" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+        <textarea id="inputBox" placeholder="Mande sua dúvida técnica aqui..." rows="1" oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
         <button class="send-btn" onclick="send()">➤</button>
     </div>
 </div>
 
 <script>
-let convs={}, curId=null, busy=false, hist=[];
+let convs={}, curId=null, busy=false;
 
 function load(){ convs=JSON.parse(localStorage.getItem('afy_c')||'{}'); renderHist(); }
 function save(){ localStorage.setItem('afy_c',JSON.stringify(convs)); }
@@ -89,11 +107,61 @@ function save(){ localStorage.setItem('afy_c',JSON.stringify(convs)); }
 function renderHist(){
     const list=document.getElementById('histList');
     const ids=Object.keys(convs).sort((a,b)=>b.localeCompare(a));
-    list.innerHTML = ids.map(id=> `<div class="conv ${id===curId?'active':''}" onclick="loadConv('${id}')">${convs[id].title} <span onclick="event.stopPropagation();delConv('${id}')">✕</span></div>`).join('');
+    if(!ids.length){list.innerHTML='<div class="no-hist">Sem histórico.</div>';return;}
+    list.innerHTML = ids.map(id=> `<div class="conv ${id===curId?'active':''}" onclick="loadConv('${id}')">${esc(convs[id].title)} <span onclick="event.stopPropagation();delConv('${id}')">✕</span></div>`).join('');
 }
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-// FORMATADOR DE TEXTO (Markdown)
-function md(t) {
-    return t.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/^\d\.(.*)$/gm, '<li>$1
+// RENDERIZADOR DE MÍDIA AVANÇADO (Parser de Mídia Nativa)
+function parseMedicos(t) {
+    return t
+        // 1. Títulos progressivos (H1, H2, H3)
+        .replace(/^# (.*)$/gm, '<h1>$1</h1>')
+        .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+        .replace(/^### (.*)$/gm, '<h3>$1</h3>')
+        
+        // 2. Imagens Didáticas Nativa (Estrutura Completa)
+        // Sintaxe esperada: ### TÍTULO\n![Thumbnail](URL)\nLEGENDA\nFonte: FONTE
+        .replace(/### (.*?)\n!\[(.*?)\]\((.*?)\)\n(.*?)\nFonte: (.*?)\n/gs, `
+            <div class="med-img-wrap">
+                <div class="med-img-title">$1</div>
+                <img src="$3" alt="$2" class="med-img">
+                <div class="med-img-caption"><strong>Legenda:</strong> $4<br><strong>Fonte:</strong> $5</div>
+            </div>
+        `)
+        
+        // 3. Vídeos Educacionais Nativo (Estrutura Completa)
+        // Sintaxe esperada: ### Nível 1 - TÍTULO\n![Thumbnail](URL)\nLEGENDA
+        .replace(/### Nível 1 - (.*?)\n!\[(.*?)\]\((.*?)\)\n(.*?)\n/gs, (match, title, alt, thumbUrl, caption) => {
+            // Extrai o ID do vídeo do Youtube do link do thumbnail
+            const videoIdMatch = thumbUrl.match(/\/vi\/([^\/]+)\//);
+            const videoId = videoIdMatch ? videoIdMatch[1] : null;
+            
+            if (videoId) {
+                return `
+                    <div class="med-video-wrap">
+                        <div class="med-video-title">🎥 ${title}</div>
+                        <iframe class="med-video-embed" src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+                        <div class="med-img-caption"><strong>Descrição:</strong> ${caption}</div>
+                    </div>
+                `;
+            } else {
+                return match; // Retorna o texto original se não conseguir extrair o ID
+            }
+        })
+
+        // 4. Formatação de Texto Padrão (Negrito, Itálico, Listas)
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^\s*\d+\.\s+(.*)$/gm, '<li>$1</li>')
+        .replace(/^\s*[-*]\s+(.*)$/gm, '<li>$1</li>')
+        
+        // 5. Encapsula listas em <ul> e <ol>
+        .replace(/(<li>.*<\/li>)+/gs, match => `<ul>${match}</ul>`)
+        
+        // 6. Trata quebras de linha para evitar palavras grudadas
+        .split('\n').map(l => {
+            const trimmed = l.trim();
+            if (!trimmed) return ''; // Linha vazia
+            if (trimmed.startsWith('<h') || trimmed.startsWith('<div') || trimmed.startsWith('<ul') || trimmed.startsWith('<li')) return trimmed; // Já é HTML
+            return `<p>${trimmed}</p>`; // É
