@@ -90,9 +90,6 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 .msg-text td{padding:7px 12px;border:1px solid rgba(255,255,255,.08);}
 .msg-text a{color:#D6006E;text-decoration:none;}
 .msg-text a:hover{text-decoration:underline;}
-.msg-text figure{margin:12px 0;}
-.msg-text figure img{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);display:block;}
-.msg-text figcaption{font-size:12px;color:#8e8ea0;margin-top:5px;font-style:italic;}
 .typing-dots{display:flex;gap:4px;padding:6px 0;align-items:center;}
 .typing-dots span{width:7px;height:7px;background:#6e6e80;border-radius:50%;animation:bounce 1.2s infinite;}
 .typing-dots span:nth-child(2){animation-delay:.2s;}
@@ -127,7 +124,7 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 <body>
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="index.html" class="logo-row">
+    <a href="index.html" class="logo-row" onclick="location.reload();return false;">
       <div class="logo-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:18px;height:18px;object-fit:contain;"></div>
       <span class="logo-name">Afyados</span>
       <span class="logo-tag">IA</span>
@@ -143,7 +140,7 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
     <div id="histList"><div class="no-hist">Suas conversas aparecerão aqui.</div></div>
   </div>
   <div class="sb-bot">
-    <a href="index.html" class="back-link">
+    <a href="https://afyadoss.com.br" class="back-link">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Voltar ao site
     </a>
@@ -188,7 +185,8 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
   </div>
 </div>
 <script>
-var SYS = "Você é a IA oficial da Afyados, consultoria acadêmica de medicina para calouros da faculdade Afya.\n\nSeu nome é IA Afyados e você deve agir de forma nativa como parte da equipe Afyados. Nunca mencione que é Claude, ChatGPT, GPT, OpenAI, Gemini ou qualquer outra IA. Se perguntarem, diga apenas que é a IA desenvolvida pela Afyados. Responda sempre em português brasileiro.\n\nSeu papel: Atue como um professor médico extremamente experiente, dominando os requisitos da graduação em Medicina da AFYA (PADRÃO AFYA - PBL/APG). Priorize o que mais é cobrado em provas e tutoria de APG. Use linguagem clínica. Evite explicações históricas ou acadêmicas excessivas.\n\nEstrutura obrigatória da resposta:\n1. ORIENTAÇÃO INICIAL: Localização geral no organismo e contexto funcional.\n2. ORGANIZAÇÃO MACROESTRUTURAL: Divisões principais e hierarquia estrutural.\n3. FUNCIONAMENTO DINÂMICO: Fluxo sequência fisiológica, conexões, inputs/outputs.\n4. APROFUNDAMENTO PROGRESSIVO: Do geral para o específico.\n5. RESUMO INTEGRATIVO (OBRIGATÓRIO): Pontos-chave cobrados em provas e APG, síntese clínica.\n6. REFERÊNCIAS (OBRIGATÓRIO): Fontes utilizadas com capítulos quando livros.\n\nPreceitos: Ser como um mapa conceitual didático. Encadeamento lógico e cronológico. Foco na pergunta sem divagações. Adaptar-se automaticamente ao nível do aluno.\n\nFontes prioritárias: Moore, Netter, Guyton, Robbins, Junqueira, Silverthorn, Tortora, Langman, Snell, Abbas, Porto, StatPearls (NCBI), MedlinePlus.\n\nUse **negrito** para termos-chave. Use emojis com moderação para organizar seções. Quando relevante, inclua links em markdown: [texto](url). Formate tabelas em markdown quando útil para comparações.";
+var SYS = "Você é a IA oficial da Afyados, consultoria acadêmica de medicina para calouros da faculdade Afya.\n\nSeu nome é IA Afyados. Nunca mencione Claude, ChatGPT, GPT, OpenAI ou Gemini. Se perguntarem, diga apenas que é a IA desenvolvida pela Afyados. Responda sempre em português brasileiro.\n\nSeu papel: Professor médico experiente, dominando os requisitos da graduação em Medicina da AFYA (PBL/APG). Priorize o que mais cai em provas.\n\nEstrutura obrigatória:\n1. ORIENTAÇÃO INICIAL\n2. ORGANIZAÇÃO MACROESTRUTURAL\n3. FUNCIONAMENTO DINÂMICO\n4. APROFUNDAMENTO PROGRESSIVO\n5. RESUMO INTEGRATIVO (pontos-chave de provas)\n6. REFERÊNCIAS\n\nFontes: Moore, Netter, Guyton, Robbins, Junqueira, Silverthorn, Tortora, Langman.\nUse **negrito** para termos-chave. Formate tabelas em markdown quando útil.";
+
 var BACKEND = "https://afyados-backend.onrender.com";
 var convs = {}, curId = null, busy = false;
 
@@ -206,9 +204,7 @@ function md(raw){
   });
   s = s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
   s = s.replace(/`([^`\n]+)`/g,"<code>$1</code>");
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_,alt,url){
-    return "<figure><img src=\""+url+"\" alt=\""+alt+"\" style=\"max-width:100%;border-radius:10px;\" onerror=\"this.parentElement.style.display=\'none\'\"><figcaption>"+alt+"</figcaption></figure>";
-  });
+  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_,alt,url){ return "<figure><img src=\""+url+"\" alt=\""+alt+"\" style=\"max-width:100%;border-radius:10px;\" onerror=\"this.parentElement.style.display='none'\"><figcaption>"+alt+"</figcaption></figure>"; });
   s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
   s = s.replace(/(?<![="'(])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank">$1</a>');
   s = s.replace(/^#### (.+)$/gm,"<h4>$1</h4>");
@@ -224,8 +220,7 @@ function md(raw){
   s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, function(m){ return "<ul>"+m+"</ul>"; });
   s = s.replace(/^\d+\. (.+)$/gm,"<li>$1</li>");
   s = s.split("\n\n").map(function(p){
-    p = p.trim();
-    if(!p) return "";
+    p = p.trim(); if(!p) return "";
     if(/^<(h[1-4]|ul|ol|pre|blockquote|hr|figure)/.test(p)) return p;
     return "<p>"+p.replace(/\n/g,"<br>")+"</p>";
   }).join("\n");
@@ -239,7 +234,7 @@ function renderHist(){
   if(!ids.length){ list.innerHTML = '<div class="no-hist">Suas conversas aparecerão aqui.</div>'; return; }
   list.innerHTML = ids.map(function(id){
     var c = convs[id];
-    return '<div class="conv ' + (id===curId?"active":"") + '" onclick="loadConv(\''+id+'\')"><span class="conv-title">'+esc(c.title)+'</span><button class="conv-del" onclick="event.stopPropagation();delConv(\''+id+'\')">✕</button></div>';
+    return '<div class="conv '+(id===curId?"active":"")+'" onclick="loadConv(\''+id+'\')"><span class="conv-title">'+esc(c.title)+'</span><button class="conv-del" onclick="event.stopPropagation();delConv(\''+id+'\')">✕</button></div>';
   }).join("");
 }
 
@@ -247,8 +242,7 @@ function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/
 
 function loadConv(id){
   var c = convs[id]; if(!c) return;
-  curId = id;
-  showMessages();
+  curId = id; showMessages();
   var msgs = document.getElementById("messages");
   msgs.innerHTML = "";
   c.messages.forEach(function(m){ renderMsg(m.role, m.content); });
@@ -317,48 +311,6 @@ function addTyping(){
 }
 function rmTyping(){ var t = document.getElementById("typRow"); if(t) t.remove(); }
 
-function callBackend(hist, onChunk, onDone, onError){
-  var controller = new AbortController();
-  var warnTimer = setTimeout(function(){
-    if(document.getElementById("typRow")) showStatus("⏳ Servidor acordando, aguarde alguns segundos...", "warn");
-  }, 6000);
-  var timeout = setTimeout(function(){ controller.abort(); }, 90000);
-  fetch(BACKEND + "/chat", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({messages: hist}),
-    signal: controller.signal
-  }).then(function(r){
-    clearTimeout(warnTimer); clearTimeout(timeout);
-    if(!r.ok){
-      return r.text().then(function(t){
-        var msg = "Erro no servidor (" + r.status + ").";
-        try{ msg = JSON.parse(t).error || msg; }catch(e){}
-        onError(msg);
-      });
-    }
-    var reader = r.body.getReader();
-    var decoder = new TextDecoder("utf-8");
-    var full = "";
-    function read(){
-      reader.read().then(function(result){
-        if(result.done){
-          if(!full.trim()) onError("Resposta vazia. Tente novamente.");
-          else onDone(full);
-          return;
-        }
-        full += decoder.decode(result.value, {stream: true});
-        onChunk(full);
-        read();
-      }).catch(function(e){ onError(e.message); });
-    }
-    read();
-  }).catch(function(e){
-    clearTimeout(warnTimer); clearTimeout(timeout);
-    onError(e.name === "AbortError" ? "Servidor demorou demais. Tente novamente em instantes." : (e.message || "Erro de conexão."));
-  });
-}
-
 function send(){
   if(busy) return;
   var inp = document.getElementById("inputBox");
@@ -374,38 +326,94 @@ function send(){
   convs[curId].messages.push({role:"user", content:text});
   save(); renderHist();
   busy = true; document.getElementById("sendBtn").disabled = true; addTyping();
+
   var hist = convs[curId].messages.map(function(m){
     return {role: m.role==="bot" ? "assistant" : m.role, content: m.content};
   });
-  rmTyping();
-  var botRow = renderMsg("bot", "");
-  var bubble = botRow.querySelector(".msg-text");
-  bubble.classList.add("stream-cursor");
-  bubble.innerHTML = "";
-  callBackend(hist,
-    function(full){
-      bubble.innerHTML = md(full);
-      document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-    },
-    function(full){
-      bubble.classList.remove("stream-cursor");
-      bubble.innerHTML = md(full);
-      convs[curId].messages.push({role:"bot", content:full});
-      save(); busy = false;
-      document.getElementById("sendBtn").disabled = false;
-      hideStatus();
-    },
-    function(err){
-      bubble.classList.remove("stream-cursor");
-      bubble.innerHTML = "";
-      botRow.remove();
-      showStatus("❌ " + err);
-      busy = false;
-      document.getElementById("sendBtn").disabled = false;
+
+  var controller = new AbortController();
+  var warnTimer = setTimeout(function(){
+    if(document.getElementById("typRow")) showStatus("⏳ Servidor acordando, aguarde alguns segundos...", "warn");
+  }, 6000);
+  var timeout = setTimeout(function(){ controller.abort(); }, 90000);
+
+  fetch(BACKEND + "/chat", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({messages: hist}),
+    signal: controller.signal
+  }).then(function(r){
+    clearTimeout(warnTimer); clearTimeout(timeout);
+    rmTyping(); hideStatus();
+
+    if(!r.ok){
+      return r.text().then(function(t){
+        var msg = "Erro no servidor (" + r.status + ").";
+        try{ msg = JSON.parse(t).error || msg; }catch(e){}
+        showStatus("❌ " + msg);
+        busy = false; document.getElementById("sendBtn").disabled = false;
+      });
     }
-  );
+
+    // Check if streaming (text/event-stream) or JSON
+    var ct = r.headers.get("content-type") || "";
+
+    if(ct.includes("text/event-stream")){
+      // STREAMING mode
+      var botRow = renderMsg("bot", "");
+      var bubble = botRow.querySelector(".msg-text");
+      bubble.classList.add("stream-cursor");
+      bubble.innerHTML = "";
+      var full = "";
+      var reader = r.body.getReader();
+      var decoder = new TextDecoder("utf-8");
+
+      function read(){
+        reader.read().then(function(result){
+          if(result.done){
+            bubble.classList.remove("stream-cursor");
+            bubble.innerHTML = md(full);
+            if(full.trim()){
+              convs[curId].messages.push({role:"bot", content:full});
+              save();
+            }
+            busy = false; document.getElementById("sendBtn").disabled = false;
+            return;
+          }
+          var chunk = decoder.decode(result.value, {stream:true});
+          var lines = chunk.split("\n").filter(function(l){ return l.startsWith("data: "); });
+          lines.forEach(function(line){
+            var data = line.replace("data: ","").trim();
+            if(data === "[DONE]") return;
+            try{
+              var parsed = JSON.parse(data);
+              if(parsed.text){ full += parsed.text; bubble.innerHTML = md(full); document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight; }
+            }catch(e){}
+          });
+          read();
+        }).catch(function(e){ showStatus("❌ " + e.message); busy = false; document.getElementById("sendBtn").disabled = false; });
+      }
+      read();
+
+    } else {
+      // JSON mode (fallback)
+      r.json().then(function(d){
+        if(d.error){ showStatus("❌ " + d.error); busy = false; document.getElementById("sendBtn").disabled = false; return; }
+        var reply = d.reply || "";
+        renderMsg("bot", reply);
+        convs[curId].messages.push({role:"bot", content:reply});
+        save(); busy = false; document.getElementById("sendBtn").disabled = false;
+      });
+    }
+
+  }).catch(function(e){
+    clearTimeout(warnTimer); clearTimeout(timeout); rmTyping();
+    showStatus("❌ " + (e.name === "AbortError" ? "Servidor demorou demais. Tente novamente." : (e.message || "Erro de conexão.")));
+    busy = false; document.getElementById("sendBtn").disabled = false;
+  });
 }
 
+// Keep alive - ping every 9 minutes
 (function keepAlive(){
   function ping(){ try{ fetch(BACKEND + "/"); }catch(e){} }
   ping();
