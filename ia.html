@@ -97,7 +97,7 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 .typing-dots span{width:7px;height:7px;background:#6e6e80;border-radius:50%;animation:bounce 1.2s infinite;}
 .typing-dots span:nth-child(2){animation-delay:.2s;}
 .typing-dots span:nth-child(3){animation-delay:.4s;}
-.stream-cursor::after{content:"\u258B";animation:blink .7s infinite;color:#D6006E;font-size:12px;margin-left:1px;}
+.stream-cursor::after{content:"▋";animation:blink .7s infinite;color:#D6006E;font-size:12px;margin-left:1px;}
 .input-area{padding:12px 16px 16px;flex-shrink:0;}
 .status-bar{max-width:680px;margin:0 auto 8px;padding:8px 14px;background:rgba(255,100,100,.08);border:1px solid rgba(255,100,100,.2);border-radius:10px;font-size:13px;color:#ff9999;display:none;}
 .status-bar.show{display:block;}
@@ -312,7 +312,7 @@ function addTyping(){
   row.innerHTML = '<div class="msg-inner"><div class="msg-av">A</div><div class="msg-content"><div class="msg-name">IA Afyados</div><div class="msg-text"><div class="typing-dots"><span></span><span></span><span></span></div></div></div></div>';
   msgs.appendChild(row); msgs.scrollTop = msgs.scrollHeight;
   setTimeout(function(){
-    if(document.getElementById("typRow")) showStatus("\u23F3 Servidor iniciando, aguarde...", "warn");
+    if(document.getElementById("typRow")) showStatus("⏳ Servidor iniciando, aguarde...", "warn");
   }, 8000);
 }
 function rmTyping(){ var t = document.getElementById("typRow"); if(t) t.remove(); }
@@ -320,7 +320,7 @@ function rmTyping(){ var t = document.getElementById("typRow"); if(t) t.remove()
 function callBackend(hist, onChunk, onDone, onError){
   var controller = new AbortController();
   var warnTimer = setTimeout(function(){
-    if(document.getElementById("typRow")) showStatus("\u23F3 Servidor acordando, aguarde alguns segundos...", "warn");
+    if(document.getElementById("typRow")) showStatus("⏳ Servidor acordando, aguarde alguns segundos...", "warn");
   }, 6000);
   var timeout = setTimeout(function(){ controller.abort(); }, 90000);
   fetch(BACKEND + "/chat", {
@@ -366,7 +366,7 @@ function send(){
   hideStatus();
   if(!curId){
     curId = "c" + Date.now();
-    var title = text.length > 50 ? text.substring(0,50) + "\u2026" : text;
+    var title = text.length > 50 ? text.substring(0,50) + "…" : text;
     convs[curId] = {title: title, messages: []};
   }
   inp.value = ""; inp.style.height = "auto";
@@ -399,7 +399,7 @@ function send(){
       bubble.classList.remove("stream-cursor");
       bubble.innerHTML = "";
       botRow.remove();
-      showStatus("\u274C " + err);
+      showStatus("❌ " + err);
       busy = false;
       document.getElementById("sendBtn").disabled = false;
     }
