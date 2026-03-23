@@ -79,11 +79,30 @@
 <script>
 let convs={}, curId=null, busy=false;
 
+// FORMATADOR DE TEXTO (Versão Blindada)
 function md(t) {
-    return t.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">')
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/^### (.*)$/gm, '<h3>$1</h3>')
-            .split('\n').map(l => l.trim() ? `<p>${l}</p>` : '').join('');
+    return t
+        // 1. Imagens: Detecta ![]() e transforma em imagem real
+        .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" style="max-width:100%; border-radius:12px; margin: 15px 0; border: 1px solid var(--border);">')
+        
+        // 2. Títulos: Aceita de 1 a 4 hashtags (#, ##, ###, ####) e transforma em Rosa
+        .replace(/^(#{1,4})\s+(.*)$/gm, '<h3>$2</h3>')
+        
+        // 3. Negrito: Transforma **texto** em negrito branco
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        
+        // 4. Listas: Organiza os tópicos
+        .replace(/^\s*[-*]\s+(.*)$/gm, '<li>$1</li>')
+        .replace(/^\s*\d+\.\s+(.*)$/gm, '<li>$1</li>')
+        
+        // 5. Parágrafos: Garante que o texto não fique grudado
+        .split('\n').map(l => {
+            const trimmed = l.trim();
+            if (!trimmed) return '';
+            if (trimmed.startsWith('<h') || trimmed.startsWith('<li') || trimmed.startsWith('<img')) return trimmed;
+            return `<p>${trimmed}</p>`;
+        }).join('');
+}
 }
 
 async function send() {
