@@ -440,8 +440,8 @@ async function callBackendStream(hist, onChunk, onDone, onError){
       const hint = typRow.querySelector('.msg-text');
       if(hint) hint.innerHTML += '<br><span style="font-size:11px;color:var(--muted);display:block;margin-top:6px;">⏳ Servidor acordando, aguarde alguns segundos...</span>';
     }
-  }, 6000);
-  const timeout = setTimeout(()=>controller.abort(), 30000);
+  }, 8000);
+  const timeout = setTimeout(()=>controller.abort(), 90000); // 90s para respostas longas
   try {
     const r = await fetch(BACKEND+'/chat', {
       method:'POST',
@@ -471,7 +471,7 @@ async function callBackendStream(hist, onChunk, onDone, onError){
   } catch(e){
     clearTimeout(warnTimer); clearTimeout(timeout);
     if(e.name==='AbortError')
-      onError('Servidor demorou demais. Aguarde alguns segundos e tente novamente.');
+      onError('Servidor está iniciando. Aguarde 30 segundos e tente enviar novamente.');
     else
       onError(e.message || 'Erro desconhecido.');
   }
