@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APGs 1º Período | Afyados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.25);--bg:#0C0810;--bg2:#110C16;--card:#1C1425;--border:rgba(255,255,255,0.07);--border-pink:rgba(214,0,110,0.3);--text:#F5F0FA;--muted:#9186A0;--light:#DDD5E8;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;line-height:1.6;}
+nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px var(--pink-glow);overflow:hidden;}
+.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;letter-spacing:0.06em;color:var(--text);}
+.nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 16px;border:1px solid var(--border);border-radius:50px;transition:all .2s;}
+.nav-back:hover{color:var(--pink-light);border-color:var(--border-pink);}
+.hero{padding:140px 56px 80px;text-align:center;position:relative;overflow:hidden;}
+.hero-mesh{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(214,0,110,0.12) 0%,transparent 70%);}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 10%,transparent 100%);}
+.hero-inner{position:relative;z-index:1;}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;background:rgba(214,0,110,0.08);border:1px solid var(--border-pink);padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;color:var(--pink-light);margin-bottom:24px;}
+.tag-dot{width:6px;height:6px;background:var(--pink-bright);border-radius:50%;box-shadow:0 0 8px var(--pink-bright);animation:blink 2s infinite;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:900;line-height:1.05;margin-bottom:16px;}
+.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--pink-bright),var(--pink-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:var(--muted);max-width:540px;margin:0 auto 40px;font-weight:300;line-height:1.75;}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:48px;}
+.hstat{text-align:center;}
+.hstat-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--pink-bright);}
+.hstat-l{font-size:12px;color:var(--muted);margin-top:4px;}
+.aviso{max-width:760px;margin:0 auto 64px;background:rgba(214,0,110,0.06);border:1px solid var(--border-pink);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--light);}
+.aviso-icon{font-size:22px;flex-shrink:0;}
+.apgs-section{padding:0 56px 100px;}
+.apgs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;}
+.apg-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all .3s;animation:fadeUp .5s ease both;}
+.apg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pink),#9B00E8);opacity:0;transition:opacity .3s;}
+.apg-card:hover{border-color:var(--border-pink);transform:translateY(-6px);box-shadow:0 28px 64px rgba(214,0,110,0.13);}
+.apg-card:hover::before{opacity:1;}
+.apg-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.apg-badge{background:rgba(214,0,110,0.12);border:1px solid var(--border-pink);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:800;color:var(--pink-light);letter-spacing:.06em;}
+.apg-emoji{font-size:28px;}
+.apg-titulo{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;margin-bottom:16px;color:var(--text);}
+.apg-obj-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.apg-obj{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px;flex:1;}
+.apg-obj li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--light);line-height:1.55;}
+.apg-obj li::before{content:'→';color:var(--pink);font-weight:700;flex-shrink:0;margin-top:1px;}
+.apg-btn{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--pink);color:white;padding:13px 20px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px var(--pink-glow);margin-top:auto;}
+.apg-btn:hover{background:var(--pink-bright);transform:translateY(-1px);}
+.cta-bottom{padding:0 56px 100px;}
+.cta-box{max-width:760px;margin:0 auto;background:linear-gradient(135deg,rgba(214,0,110,0.1),rgba(155,0,232,0.07));border:1px solid var(--border-pink);border-radius:28px;padding:56px 48px;text-align:center;position:relative;overflow:hidden;}
+.cta-box h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;margin-bottom:12px;}
+.cta-box h2 em{font-style:italic;color:var(--pink-bright);}
+.cta-box p{font-size:15px;color:var(--muted);margin-bottom:28px;line-height:1.7;}
+.cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.btn-pink{display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:white;padding:14px 30px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;box-shadow:0 6px 28px var(--pink-glow);}
+.btn-pink:hover{background:var(--pink-bright);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--light);padding:14px 28px;border-radius:50px;font-size:15px;font-weight:500;text-decoration:none;border:1px solid var(--border);transition:all .25s;}
+.btn-ghost:hover{border-color:var(--border-pink);color:var(--pink-light);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.apg-card:nth-child(1){animation-delay:.05s}.apg-card:nth-child(2){animation-delay:.1s}.apg-card:nth-child(3){animation-delay:.15s}.apg-card:nth-child(4){animation-delay:.2s}.apg-card:nth-child(5){animation-delay:.25s}.apg-card:nth-child(6){animation-delay:.3s}.apg-card:nth-child(7){animation-delay:.35s}.apg-card:nth-child(8){animation-delay:.4s}
+@media(max-width:1100px){.apgs-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){nav{padding:0 20px;}.hero{padding:110px 24px 60px;}.hero-stats{gap:24px;}.apgs-section,.cta-bottom{padding-left:24px;padding-right:24px;}.apgs-grid{grid-template-columns:1fr;}.cta-box{padding:36px 24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:26px;height:26px;object-fit:contain;"></div>
+    <span class="logo-name">AFYADOS</span>
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Voltar ao site
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="tag-dot"></span>1º Período · Afya</div>
+    <h1>APGs do <em>1º Período</em></h1>
+    <p class="hero-sub">Roteiros completos elaborados pela equipe Afyados — com objetivos de aprendizagem, hipóteses, discussão guiada e referências bibliográficas.</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">APGs disponíveis</div></div>
+      <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Padrão Afya</div></div>
+      <div class="hstat"><div class="hstat-n">Kiwify</div><div class="hstat-l">Entrega imediata</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="apgs-section" style="padding-bottom:0;">
+  <div class="aviso">
+    <div class="aviso-icon">💡</div>
+    <div>Os valores variam de acordo com cada APG. Após o pagamento, o acesso ao roteiro completo é liberado imediatamente via Kiwify.</div>
+  </div>
+</div>
+
+<section class="apgs-section">
+  <div class="apgs-grid">
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 01</div><div class="apg-emoji">🧬</div></div><h3 class="apg-titulo">Células</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer a célula eucarionte animal</li><li>Entender a estrutura do DNA e cromossomos</li><li>Descrever a síntese proteica e a organização estrutural das proteínas</li><li>Estudar a estrutura e organização da membrana plasmática</li></ul><a href="https://pay.kiwify.com.br/Z15MOht" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 01</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 02</div><div class="apg-emoji">🫀</div></div><h3 class="apg-titulo">Coração</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Detalhar a anatomia do coração, destacando a circulação sistêmica, coronária e inervação</li><li>Estudar a histologia cardíaca</li></ul><a href="https://pay.kiwify.com.br/0Ppa1kO" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 02</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 03</div><div class="apg-emoji">🧪</div></div><h3 class="apg-titulo">Embriologia Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer as semanas do desenvolvimento embrionário</li><li>Estudar a embriogênese do coração</li><li>Diferenciar circulação fetal e neonatal</li><li>Conhecer as principais malformações cardíacas congênitas</li></ul><a href="https://pay.kiwify.com.br/qrVHoKY" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 03</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 04</div><div class="apg-emoji">⚡</div></div><h3 class="apg-titulo">Fisiologia Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Entender o potencial de ação cardíaco</li><li>Discutir o sistema de condução elétrica do coração</li><li>Compreender o acoplamento excitação-contração do músculo cardíaco</li><li>Rever a histologia cardíaca</li></ul><a href="https://pay.kiwify.com.br/sGUaiKa" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 04</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 05</div><div class="apg-emoji">📈</div></div><h3 class="apg-titulo">ECG e Frequência Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer as fases do ciclo cardíaco correlacionando com o ECG</li><li>Explicar a Frequência Cardíaca e Débito Cardíaco</li><li>Discutir os ajustes do coração ao exercício físico</li></ul><a href="https://pay.kiwify.com.br/uaK6OFu" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 05</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 06</div><div class="apg-emoji">🦵</div></div><h3 class="apg-titulo">Membros Inferiores</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer a histologia dos vasos sanguíneos</li><li>Discutir a fisiologia dos vasos destacando pressão, fluxo e resistência vascular</li><li>Descrever a anatomia dos vasos dos membros inferiores</li><li>Abordar a saúde do trabalhador e EPI</li></ul><a href="https://pay.kiwify.com.br/RaJzqTj" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 06</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 07</div><div class="apg-emoji">💪</div></div><h3 class="apg-titulo">Membros Superiores</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Estudar a anatomia dos vasos dos membros superiores</li><li>Conhecer os sinais vitais</li><li>Entender os mecanismos fisiológicos da pressão arterial</li></ul><a href="https://pay.kiwify.com.br/ev99vpO" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 07</a></div>
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 08</div><div class="apg-emoji">🔵</div></div><h3 class="apg-titulo">Sistema Linfático</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Estudar a anatomia e histologia do sistema linfático</li><li>Explicar o processo de formação da linfa e sua circulação</li></ul><a href="https://pay.kiwify.com.br/L1GHP26" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 08</a></div>
+  </div>
+</section>
+
+<div class="cta-bottom">
+  <div class="cta-box">
+    <h2>Quer <em>tudo incluso?</em></h2>
+    <p>No Clube Afyados você tem acesso a todas as APGs do semestre, aulas de SOI, apostilas autorais, monitorias ao vivo e a IA Afyados 24h.</p>
+    <div class="cta-btns">
+      <a href="https://pay.kiwify.com.br/bdZ9MHN" target="_blank" class="btn-pink">Quero o Clube Afyados</a>
+      <a href="index.html" class="btn-ghost">Ver todos os planos →</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
