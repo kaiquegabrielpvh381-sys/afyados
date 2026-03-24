@@ -16,7 +16,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 .logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;letter-spacing:0.06em;color:var(--text);}
 .nav-links{display:flex;gap:32px;list-style:none;}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
-.nav-btn{background:var(--pink)!important;color:white!important;padding:9px 20px;border-radius:50px;font-weight:700!important;box-shadow:0 4px 18px var(--pink-glow);transition:all 0.2s!important;white-space:nowrap;}
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:60px;padding:110px 56px 80px;position:relative;overflow:hidden;}
 .hero-left{position:relative;z-index:1;}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(44px,5.5vw,78px);font-weight:900;line-height:1.02;margin-bottom:24px;}
@@ -33,4 +32,68 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 .preco-card.hot{border-color:var(--border-pink);box-shadow:0 0 0 1px var(--border-pink),0 40px 80px rgba(214,0,110,0.15);}
 .p-price{font-family:'Playfair Display',serif;font-size:50px;font-weight:900;}
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56px 40px;}
-@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.hero{grid-template-columns:1fr;}.precos-wrap{grid-template-columns:1
+@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.hero{grid-template-columns:1fr;}.precos-wrap{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">🤖</div>
+    <span class="logo-name">AFYADOS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="goTo('precos');return false;">IA Afyados 🤖</a></li>
+    <li><a href="https://chat.whatsapp.com/IjYG3J8y7VJFUK4e5FrbdZ" target="_blank" style="background:var(--pink); color:white; padding:8px 16px; border-radius:50px; text-decoration:none; font-weight:700;">Comunidade</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <h1>Medicina<br>começa<br><em>mais fácil.</em></h1>
+    <div class="hero-actions">
+      <button onclick="goTo('precos')" class="btn-pink">Ver planos</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hcard-header"><div style="color:white;font-weight:900;">Clube Afyados</div></div>
+      <div class="hcard-body">
+        <div class="hcard-item" onclick="goTo('precos')">
+          <div style="font-size:20px;">🤖</div>
+          <div><h5>IA Afyados 24h</h5><p>Tire dúvidas a qualquer hora</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="precos">
+  <h2 style="text-align:center;font-family:'Playfair Display';font-size:40px;margin-bottom:40px;">Escolha seu plano</h2>
+  <div class="precos-wrap">
+    <div class="preco-card"><h3>APG Avulsa</h3><div class="p-price">R$ 35</div></div>
+    <div class="preco-card hot"><h3>Clube Afyados</h3><div class="p-price">R$ 129</div></div>
+    
+    <div class="preco-card" style="border: 2px solid var(--pink);">
+      <h3>IA Afyados</h3>
+      <div class="p-price" style="font-size:40px;">R$ 15,90</div>
+      <p style="font-size:14px; color:var(--muted); margin: 15px 0;">Sua monitoria particular 24h por dia.</p>
+      <a href="ia_18.html" class="btn-pink" style="width:100%; justify-content:center; text-decoration:none; display:flex;">Acessar IA Afyados</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" onclick="goTo('precos');return false;" style="color:var(--muted);text-decoration:none;">IA Afyados 24h</a>
+</footer>
+
+<script>
+function goTo(id) {
+  var target = document.getElementById(id);
+  if(!target) return;
+  var top = target.getBoundingClientRect().top + window.scrollY - 82;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
