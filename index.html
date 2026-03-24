@@ -626,7 +626,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <div class="reveal" style="position:relative;">
       <!-- Phone mockup with video -->
       <div style="
-        max-width:300px;
+        max-width:min(280px, 75vw);
+        width:100%;
         margin:0 auto;
         background:#000;
         border-radius:36px;
@@ -635,7 +636,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
         position:relative;
       ">
         <!-- Phone notch -->
-        <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);width:80px;height:6px;background:#111;border-radius:10px;z-index:2;"></div>
+        <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);width:60px;height:5px;background:#111;border-radius:10px;z-index:2;"></div>
         <!-- Video -->
         <div style="border-radius:28px;overflow:hidden;aspect-ratio:9/16;background:#000;">
           <iframe
