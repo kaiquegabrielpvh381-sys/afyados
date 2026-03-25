@@ -496,7 +496,7 @@ const QS = [
          "I – Simpática; II – Noradrenalina; III – Aumento.",
          "I – Simpática; II – Acetilcolina; III – Aumento."],g:2},
   {n:10,tema:"Bomba Na+/K+ ATPase",
-   context:"Cerca de um terço do suprimento celular de ATP é gasto na bomba de Na+/K+ ATPase e a inibição da bomba despolariza a membrana celular.",
+   context:"Nas células animais, o potencial de membrana desempenha um papel vital em inúmeros processos fisiológicos, tais como a sinalização elétrica em células excitáveis, contração muscular, função cerebral, percepção sensorial, secreção de neurotransmissores, geração pós-sináptica de potenciais de ação, sinalização celular, secreção hormonal, entre outros. Cerca de um terço do suprimento celular de ATP é gasto na bomba de Na+/K+ ATPase e a inibição da bomba de Na+/K+ ATPase despolariza a membrana celular.",
    text:"Analise as asserções:\n\nAumento da concentração extracelular de K+ (hipercalemia) e/ou aumento da concentração intracelular de Na+ estimulam a bomba de Na+/K+ ATPase.\n\nPORQUE\n\nA função da bomba de Na+/K+ ATPase é manter a eletroneutralidade nos meios intra e extracelular.\n\nAssinale a opção CORRETA:",
    opts:["A primeira asserção é verdadeira e a segunda é falsa.",
          "As duas são verdadeiras, mas a segunda não justifica a primeira.",
@@ -561,7 +561,7 @@ function renderQ(){
   document.getElementById('qCounterNum').textContent=q.n;
   const ctx=document.getElementById('qContext');
   if(q.context){ctx.style.display='block';ctx.textContent=q.context;}else{ctx.style.display='none';}
-  document.getElementById('qText').textContent=q.text;
+  document.getElementById('qText').innerHTML=q.text.replace(/\n/g,'<br>');
   const img=document.getElementById('qImg');
   if(q.img){img.src='data:image/png;base64,'+IMG_B64;img.style.display='block';}else{img.style.display='none';}
   const wrap=document.getElementById('qOpts'); wrap.innerHTML='';
