@@ -269,7 +269,7 @@ var QS = [
    opts:["III e IV, apenas.","II e IV, apenas.","I e II, apenas.","I, III e IV, apenas."],
    g:1},
   {n:5,tema:"Fisiologia Muscular",tipo:"disc",
-   context:"A imagem a seguir evidencia os eventos do potencial de ação muscular na junção neuromuscular:\n\n[[IMG_Q5]]\n\nFonte: TORTORA, 2019.\nCom base nessa imagem, e na progressão do mecanismo da excitação muscular, explique os processos e os componentes envolvidos, tendo como base as etapas 1, 2, 3, 4, e 5.",
+   context:"A imagem a seguir evidencia os eventos do potencial de ação muscular na junção neuromuscular:\n\n[[IMG_Q5]]\n\nFonte: TORTORA, 2019.\nCom base nessa imagem, e na progressão do mecanismo da excitação muscular, explique os processos e os components envolvidos, tendo como base as etapas 1, 2, 3, 4, e 5.",
    text:"Escreva sua resposta para as etapas do processo:",
    resposta:"O processo envolve a chegada do impulso nervoso ao terminal axônico, entrada de cálcio, liberação de acetilcolina, ligação aos receptores na fibra muscular, despolarização e geração do potencial de ação, culminando na contração muscular pelo deslizamento dos filamentos."},
   {n:6,tema:"Via Auditiva",tipo:"mc",
@@ -342,7 +342,7 @@ function renderQ(){
        ---------------------------------------------------- */
     ctxHtml = ctxHtml.replace('[[IMG_Q2]]', '<img src="image_6db46e.jpg" alt="Arco Reflexo Espinal" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
     ctxHtml = ctxHtml.replace('[[IMG_Q5]]', '<img src="image_6dacea.jpg" alt="Junção Neuromuscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
-    ctxHtml = ctxHtml.replace('[[IMG_Q6]]', '<img src="image_6da944.jpg" alt="Via Auditiva" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
+    ctxHtml = ctxHtml.replace('[[IMG_Q6]]', '<img src="image_6da67d.png" alt="Órgão de Corti" style="max-width:100%; border-radius:8px; display:block; margin:16px auto 8px; border:1px solid rgba(255,255,255,0.1);"><img src="image_6da944.jpg" alt="Via Auditiva" style="max-width:100%; border-radius:8px; display:block; margin:8px auto 16px; border:1px solid rgba(255,255,255,0.1);">');
     
     ctx.innerHTML=ctxHtml;
   } else {
@@ -529,10 +529,10 @@ function buildReport(correct,wrong){
     +'<div class="report-section"><h4>Insights</h4><div class="insight-grid">'
       +'<div class="insight-box"><div class="ib-label">Ponto mais fraco</div><div class="ib-val">'+worstTema+'</div><div class="ib-sub">Mais erros nesse tema</div></div>'
       +'<div class="insight-box"><div class="ib-label">MC acertadas</div><div class="ib-val">'+correct+'/'+mcCount+'</div><div class="ib-sub">'+msg+'</div></div>'
-      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class="ib-val" style="color:#F09595;">'+wrong+'</div><div class="ib-sub">Múltipla escolha</div></div>'
-      +'<div class="insight-box"><div class="ib-label">Discursivas</div><div class="ib-val" style="color:#D4A8FF;">'+Object.keys(discAnswered).length+'</div><div class="ib-sub">Questões abertas</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class=\"ib-val\" style=\"color:#F09595;\">'+wrong+'</div><div class=\"ib-sub\">Múltipla escolha</div></div>'
+      +'<div class=\"insight-box\"><div class=\"ib-label\">Discursivas</div><div class=\"ib-val\" style=\"color:#D4A8FF;\">'+Object.keys(discAnswered).length+'</div><div class=\"ib-sub\">Questões abertas</div></div>'
     +'</div></div>'
-    +'<div class="report-section"><h4>Revisão por questão</h4><div class="q-review-list">'+wrongListHtml+'</div></div>';
+    +'<div class=\"report-section\"><h4>Revisão por questão</h4><div class=\"q-review-list\">'+wrongListHtml+'</div></div>';
 }
 
 function goToQ(i){
