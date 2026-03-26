@@ -24,7 +24,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .btn-reset{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .15s;}
 .btn-reset:hover{color:var(--pink-light);}
 .q-pills{display:flex;gap:5px;flex-wrap:wrap;}
-.qp{width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif;}
+.qp{width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;}
 .qp:hover{border-color:var(--green-b);color:#5DCAA5;}
 .qp.current{background:var(--pink);border-color:var(--pink);color:#fff;}
 .qp.correct{background:rgba(29,158,117,0.15);border-color:rgba(29,158,117,0.5);color:#5DCAA5;}
@@ -41,7 +41,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
 .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
 .q-opts{display:flex;flex-direction:column;gap:9px;}
-.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
+.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;width:100%;line-height:1.6;}
 .q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
 .q-opt.selected{background:rgba(214,0,110,0.08);border-color:rgba(214,0,110,0.45);color:#F4EFFA;}
 .q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
@@ -71,17 +71,19 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .ai-box-header span{font-size:11px;font-weight:700;color:#D4A8FF;letter-spacing:.06em;text-transform:uppercase;}
 .ai-content{padding:18px;font-size:14px;line-height:1.9;color:#E8D8FF;white-space:pre-line;}
 .q-nav-bar{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
-.btn-prev{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--light);border:1px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-prev{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--light);border:1px solid var(--border);transition:all .2s;}
 .btn-prev:hover:not([disabled]){background:rgba(255,255,255,0.09);}
 .btn-prev[disabled]{opacity:0.3;cursor:default;}
 .q-counter{font-size:14px;color:var(--muted);}
 .q-counter strong{color:#F4EFFA;font-weight:700;}
 .nav-right{display:flex;align-items:center;gap:10px;}
-.btn-respond{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--green-l);color:#5DCAA5;border:1px solid var(--green-b);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-respond{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--green-l);color:#5DCAA5;border:1px solid var(--green-b);transition:all .2s;}
 .btn-respond:hover:not([disabled]){background:rgba(29,158,117,0.22);}
 .btn-respond[disabled]{opacity:0.35;cursor:default;}
-.btn-next{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--pink);color:#fff;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 16px var(--pink-glow);}
+.btn-next{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--pink);color:#fff;border:none;transition:all .2s;box-shadow:0 4px 16px var(--pink-glow);}
 .btn-next:hover{background:var(--pink-bright);transform:translateY(-1px);}
+
+/* ESTILOS DO RELATÓRIO */
 .result-screen{display:none;animation:fadeUp .35s ease;}
 .result-screen.show{display:block;}
 .res-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:20px;}
@@ -107,9 +109,18 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .tema-bar-fill{height:100%;border-radius:99px;transition:width .8s ease;}
 .tema-bar-fill.green{background:linear-gradient(90deg,#1D9E75,#9FE1CB);}
 .tema-bar-fill.red{background:linear-gradient(90deg,#E24B4A,#F09595);}
+.tema-bar-fill.purple{background:linear-gradient(90deg,#9B00E8,#D4A8FF);}
 .tema-pct{font-size:12px;font-weight:700;min-width:36px;text-align:right;}
 .tema-pct.green{color:#5DCAA5;}
 .tema-pct.red{color:#F09595;}
+.tema-pct.purple{color:#D4A8FF;}
+
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.insight-box{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.insight-box .ib-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.insight-box .ib-val{font-size:15px;font-weight:700;color:#F4EFFA;line-height:1.4;}
+.insight-box .ib-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+
 .q-review-list{display:flex;flex-direction:column;gap:6px;}
 .q-rev-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);cursor:pointer;transition:background .15s;}
 .q-rev-row:hover{background:rgba(255,255,255,0.05);}
@@ -119,7 +130,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .dot-disc{background:#D4A8FF;}
 .q-rev-row span{flex:1;font-size:13px;color:var(--light);}
 .q-rev-row small{font-size:12px;color:var(--muted);}
-.system-cite{display:none;}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:640px){
   nav,.sticky-bar{padding-left:16px;padding-right:16px;}
@@ -128,6 +139,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
   .q-feedback,.ai-box{margin-left:16px;margin-right:16px;}
   .q-text{font-size:15px;}
   .q-opt{font-size:14px;padding:12px 14px;}
+  .insight-grid{grid-template-columns:1fr;}
   .tema-name{min-width:110px;}
 }
 </style>
@@ -209,24 +221,24 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <script>
 var QS = [
-  {n:1,tema:"Nervos Cranianos e Sentidos Especiais",tipo:"mc",
-   context:"(UNIDEP) Os cinco sentidos especiais (visão, audição, equilíbrio, gustação e olfação) contam com receptores localizados na região da cabeça e nervos cranianos que conduzem os impulsos nervosos até o sistema nervoso central.\n\nSobre os nervos cranianos relacionados com os sentidos especiais, avalie as asserções a seguir e a relação proposta entre elas.\n\nI. O nervo olfatório, ou nervo craniano I, é formado por axônios que conduzem impulsos nervosos do epitélio olfatório até o bulbo olfatório. Assim como os nervos cranianos relacionados com os sentidos da visão, equilíbrio e audição, o nervo craniano I é exclusivamente sensitivo. O único sentido especial conduzido por nervos cranianos mistos é a gustação, associada aos nervos facial, glossofaríngeo e vago.\n\nPORQUE\n\nII. Os nervos cranianos II e VIII são exclusivamente sensitivos. A visão é relacionada com o nervo craniano II, o nervo óptico, formado pelos axônios das células ganglionares da retina. A audição e o equilíbrio são relacionados com o nervo craniano VIII, o nervo vestibulococlear, o qual se divide em ramo coclear (audição) e ramo vestibular (equilíbrio).",
-   text:"A respeito dessas asserções, assinale a opção correta.",
-   opts:["A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.","As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.","As asserções I e II são proposições falsas.","As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I."],
+  {n:1,tema:"Classificação dos Nervos Cranianos e Sentidos Especiais",tipo:"mc",
+   context:"(UNIDEP) Os cinco sentidos especiais (visão, audição, equilíbrio, gustação e olfação) contam com receptores localizados na região da cabeça e nervos cranianos que conduzem os impulsos nervosos até o sistema nervoso central.\n\nSobre os nervos cranianos relacionados com os sentidos especiais, avalie as asserções a seguir e a relação proposta entre elas.\n\nI. O nervo olfatório, ou nervo craniano I, é formado por axônios que conduzem impulsos nervosos do epitélio olfatório até o bulbo olfatório. Assim como os nervos cranianos relacionados com os sentidos da visão, equilíbrio e audição, o nervo craniano I é exclusivamente sensitivo. O único sentido especial conduzido por nervos cranianos mistos é a gustação, associada aos nervos facial, glossofaríngeo e vago.\n\nPORQUE\n\nII. Os nervos cranianos II e VIII são exclusivamente sensitivos. A visão é relacionada com o nervo craniano II, o nervo óptico, formado pelos axônios das células ganglionares da retina. Audição e equilíbrio, por sua vez, estão associados com o nervo craniano VIII, o vestibulococlear, o qual possui dois ramos, o ramo coclear, que conduz impulsos para a audição, e o ramo vestibular, que conduz impulsos para o equilíbrio.",
+   text:"A respeito das asserções, assinale a opção correta.",
+   opts:["A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.","A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.","As asserções I e II são proposições falsas.","As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I."],
    g:3},
   {n:2,tema:"Anatomia e Cinesiologia do Joelho",tipo:"disc",
    context:"(UNIGRANRIO CAXIAS) Lesões ligamentares no joelho não apenas incapacitam temporariamente o indivíduo, mas também podem levar a complicações de longo prazo, como instabilidade articular e osteoartrite. O tratamento pode variar de repouso e reabilitação física a intervenções cirúrgicas, dependendo da gravidade da lesão e das necessidades funcionais do indivíduo.",
-   text:"Considerando articulação em questão, responda:\n\na) Que movimentos essa articulação realiza, e que grupamentos musculares estão envolvidos nesses movimentos?\nb) Classifique funcionalmente e estruturalmente essa articulação, e cite pelo menos 2 componentes presentes exclusivamente nesse tipo de articulação.\nc) Que ligamentos podem ser comprometidos em lesões de joelho? Que movimentos esses ligamentos impedem? (cite ao menos um ligamento e sua função)",
+   text:"Considerando a articulação em questão, responda:\n\na) Que movimentos essa articulação realiza, e que grupamentos musculares estão envolvidos nesses movimentos?\nb) Classifique funcionalmente e estruturalmente essa articulação, e cite pelo menos 2 componentes presentes exclusivamente nesse tipo de articulação.\nc) Que ligamentos podem ser comprometidos em lesões de joelho? Que movimentos esses ligamentos impedem? (cite ao menos um ligamento e sua função)",
    resposta:"a) Flexão, extensão e rotação (somente quando em flexão); quadríceps (vastos medial, lateral e intermédio e reto femoral) e posteriores de coxa ou isquiotibiais (bíceps femoral, semitendinoso e semimembranoso).\n\nb) Funcionalmente o joelho é uma diartrose, estruturalmente é uma articulação sinovial do tipo dobradiça (alguns autores a classificam como dobradiça e pivô, devido ao movimento secundário de rotação); componentes exclusivos de uma articulação sinovial são: cápsula articular, cartilagem articular, membrana sinovial, líquido sinovial, meniscos, bursas e ligamentos.\n\nc) Ligamentos cruzados anterior (impede o deslocamento anterior da tíbia em relação ao fêmur, movimento de gaveta anterior) e posterior (impede o deslocamento posterior da tíbia em relação ao fêmur, gaveta posterior), e ligamentos colaterais (impedem movimentos laterais excessivos)."},
   {n:3,tema:"Histologia do Tecido Muscular Esquelético",tipo:"mc",
-   context:"(UNIGRANRIO BARRA) O tecido muscular esquelético é formado por feixes de células muito longas (até 30 cm), cilíndricas, multinucleadas e que contêm muitos filamentos chamados miofibrilas. O diâmetro das fibras musculares estriadas esqueléticas varia de 10 a 100 µm. Nas fibras musculares esqueléticas, os numerosos núcleos se localizam na periferia das fibras, próximos ao sarcolema. Essa localização nuclear característica ajuda a distinguir o músculo esquelético do músculo cardíaco, ambos com estriações transversais, uma vez que, no músculo cardíaco, os núcleos são localizados no centro das células.\n\nJUNQUEIRA, Luiz Carlos U.; CARNEIRO, José. Histologia Básica - Texto e Atlas. Rio de Janeiro: Grupo GEN, 2017.\n\n[[IMG_2024_2_Q3]]\n\nhttps://cesad.ufs.br/ORBI/public/uploadCatalago/10341628032012Histologia_Basica_Aula_7.pdf",
+   context:"(UNIGRANRIO BARRA) O tecido muscular esquelético é formado por feixes de células muito longas (até 30 cm), cilíndricas, multinucleadas e que contêm muitos filamentos chamados miofibrilas. O diâmetro das fibras musculares estriadas esqueléticas varia de 10 a 100 µm. Nas fibras musculares esqueléticas, os numerosos núcleos se localizam na periferia das fibras, próximos ao sarcolema. Essa localização nuclear característica ajuda a distinguir o músculo esquelético do músculo cardíaco, ambos com estriações transversais, uma vez que, no músculo cardíaco, os núcleos são localizados no centro das células.\n\nJUNQUEIRA, Luiz Carlos U.; CARNEIRO, José. Histologia Básica - Texto e Atlas. Rio de Janeiro: Grupo GEN, 2017.\n<br><br><img src=\"imagem_2024_2_q3.jpg\" style=\"max-width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1);\">\nhttps://cesad.ufs.br/ORBI/public/uploadCatalago/10341628032012Histologia_Basica_Aula_7.pdf",
    text:"Ligando o texto à imagem, marca a alternativa correta.",
    opts:["O microscópio eletrônico revela a existência de filamentos finos de miosina e tropomiosina e filamentos grossos de actina, dispostos longitudinalmente nas miofibrilas e organizados em uma distribuição simétrica e paralela.","Ao microscópio de polarização, a faixa escura é anisotrópica e, por isso, recebe o nome de banda A, enquanto a faixa clara, ou banda I, é isotrópica. No centro de cada banda I nota-se uma linha transversal escura, a linha H.","Quando observadas ao microscópio óptico, as fibras musculares esqueléticas mostram estriações longitudinais devido à alternância de faixas claras e escuras ao longo das fibras pela presença de calmodulina e miosina.","Cada fibra muscular contém muitos feixes cilíndricos de filamentos chamados miofibrilas, que medem de 1 a 2 µm de diâmetro, são paralelas ao eixo maior da fibra muscular e consistem em um arranjo repetitivo de sarcômeros."],
    g:3},
   {n:4,tema:"Fisiologia da Sinapse Química (Papel do Cálcio)",tipo:"mc",
    context:"(FASA VIC) O conteúdo corporal de cálcio em homens e mulheres adultos e sadios é de cerca de 1.300g e 1.000 g, respectivamente, dos quais mais de 99% encontram-se nos ossos e nos dentes. O cálcio nos líquidos extracelulares é rigorosamente regulado dentro de limites estreitos, sendo considerado essencial para numerosas funções biológicas, incluindo desde a contração muscular e a sinalização celular até a coagulação sanguínea e remodelagem óssea.\n\nFonte: BRUTON, L L.; HILAL-DANDAN, R. As bases farmacológicas da terapêutica de Goodman e Gilman. 13ª ed. São Paulo, SP: Grupo A, 2018.",
    text:"Assinale a alternativa que descreve corretamente o papel do elemento químico supracitado, dentro da sinalização de células neurais (sinapse química).",
-   opts:["Uma redução na concentração de cálcio dentro do neurônio pós-sináptico serve como um sinal que desencadeia a exocitose das vesículas sinápticas na fenda neural.","Um aumento na concentração de cálcio dentro do neurônio pré-sináptico serve como um sinal que desencadeia a exocitose de vesículas sínápticas.","A fase de hiperpolarização do impulso nervoso abre canais de cálcio independentes de voltagem que estão presentes na membrana dos botões sinápticos.","A fase de despolarização do impulso nervoso fecha canais de cálcio dependentes de voltagem que estão presentes na membrana das vesículas sinápticas."],
+   opts:["Uma redução na concentração de cálcio dentro do neurônio pós-sináptico serve como um sinal que desencadeia a exocitose das vesículas sinápticas na fenda neural.","Um aumento na concentração de cálcio dentro do neurônio pré-sináptico serve como um sinal que desencadeia a exocitose de vesículas sinápticas.","A fase de hiperpolarização do impulso nervoso abre canais de cálcio independentes de voltagem que estão presentes na membrana dos botões sinápticos.","A fase de despolarização do impulso nervoso fecha canais de cálcio dependentes de voltagem que estão presentes na membrana das vesículas sinápticas."],
    g:1},
   {n:5,tema:"Via Visual e Fototransdução",tipo:"disc",
    context:"(UNIGRANRIO CAXIAS) A via visual é um complexo sistema que permite ao ser humano e a outros animais processarem informações visuais captadas do ambiente e interpretá-las no cérebro. Este processo envolve múltiplas estruturas oculares e cerebrais que trabalham de forma integrada.",
@@ -253,12 +265,12 @@ var QS = [
    opts:["Os achados de dilatação dos ventrículos sugerem elevação da pressão por bloqueio do recesso lateral, impedindo o escoamento do líquor.","A dilatação dos ventrículos foi decorrente do estreitamento do forame magno, resultando em acumulo de líquor e consequente elevação da PIC.","Os achados de dilatação dos ventrículos sugerem elevação da pressão por bloqueio da abertura mediana, impedindo o escoamento do líquor.","A dilatação foi decorrente de estenose no aqueduto do mesencéfalo por reduzir a circulação do líquor elevando a pressão nos ventrículos aumentados."],
    g:3},
   {n:10,tema:"Embriologia e Anatomia dos Nervos Espinais",tipo:"mc",
-   context:"(UNIGRANRIO CAXIAS) Os nervos espinais são formados pela junção de raízes sensoriais e motoras, emergindo da medula espinhal. Durante o desenvolvimento, as células da crista neural e da medula espinhal desempenham papéis essenciais na formação dessas estruturas.\n\nConsiderando a embriologia e a anatomia dos nervos espinais, analise as seguintes afirmações e marque a alternativa correta:\n\nI. As raízes ventrais dos nervos espinais derivam da placa basal da medula espinhal e contêm fibras motoras que transmitem impulsos eferentes para os músculos.\nII. As raízes dorsais se formam a partir dos ganglios da raiz dorsal, que derivam da crista neural, e contêm fibras sensoriais aferentes.\nIII. Após a união das raízes dorsal e ventral, o nervo espinal se torna misto, com exceção da cauda equina que só tem fibras sensitivas.\nIV. Os ganglios da raiz dorsal contêm corpos celulares de neurônios motores que enviam axônios para as extremidades.",
-   text:"Qual das opções abaixo está correta?",
+   context:"(UNIGRANRIO CAXIAS) Os nervos espinais são formados pela junção de raízes sensoriais e motoras, emergindo da medula espinhal. Durante o desenvolvimento, as células da crista neural e da medula espinhal desempenham papéis essenciais na formação dessas estruturas.\n\nConsiderando a embriologia e a anatomia dos nervos espinais, analise as seguintes afirmações:\n\nI. As raízes ventrais dos nervos espinais derivam da placa basal da medula espinhal e contêm fibras motoras que transmitem impulsos eferentes para os músculos.\nII. As raízes dorsais se formam a partir dos ganglios da raiz dorsal, que derivam da crista neural, e contêm fibras sensoriais aferentes.\nIII. Após a união das raízes dorsal e ventral, o nervo espinal se torna misto, com exceção da cauda equina que só tem fibras sensitivas.\nIV. Os ganglios da raiz dorsal contêm corpos celulares de neurônios motores que enviam axônios para as extremidades.",
+   text:"Marque a alternativa correta:",
    opts:["I, II e III estão corretas.","I e IV estão corretas.","Apenas a Il está correta.","I e Il estão corretas."],
    g:3},
   {n:11,tema:"Anatomia Comparada da Pelve (Fertilidade)",tipo:"mc",
-   context:"(FMIT) Um casal procura ajuda médica para entender por que têm dificuldade em conceber um filho. Durante a consulta, a médica realiza uma avaliação inicial e solicita exames para investigar possíveis problemas de fertilidade. Entre os exames, uma radiografia pélvica é realizada na mulher para avaliar a estrutura pélvica.\n\n[[IMG_2024_2_Q11]]\n\nFonte: Imagem adaptada de MOORE, 2021.",
+   context:"(FMIT) Um casal procura ajuda médica para entender por que têm dificuldade em conceber um filho. Durante a consulta, a médica realiza uma avaliação inicial e solicita exames para investigar possíveis problemas de fertilidade. Entre os exames, uma radiografia pélvica é realizada na mulher para avaliar a estrutura pélvica.\n<br><br><img src=\"imagem_2024_2_q11.jpg\" style=\"max-width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1);\">\nFonte: Imagem adaptada de MOORE, 2021.",
    text:"Analisando as imagens acima, marque a alternativa correta.",
    opts:["A imagem A representa a pelve citada no caso: pelve maior profunda, ampla e com a incisura isquiática maior com ângulo de quase 90°.","A imagem B representa a pelve do paciente: com abertura superior da pelve larga, arco púbico estreito e incisura isquiática com cerca de 70°.","A imagem B representa a pelve da paciente do caso: com a pelve maior rasa, forame obturado oval e ângulo subpúbico amplo (>80°).","A imagem A representa a pelve citada no caso: compacta, pesada, acetábulo pequeno e com ângulo subpúbico estreito (<70°)."],
    g:2},
@@ -278,7 +290,7 @@ var QS = [
    opts:["As moléculas odoríferas interagem com os receptores na cavidade nasal, enviando sinais diretamente para o cerebelo, que processa a informação olfatória e a encaminha para o córtex frontal para a percepção consciente.","Os receptores olfatórios na cavidade nasal captam moléculas odoríferas, que são então processadas pelo hipocampo antes de serem enviadas ao bulbo olfatório e finalmente ao córtex olfatório para percepção.","Os neurônios no epitélio olfatório da cavidade nasal detectam moléculas odoríferas e enviam sinais através do nervo olfatório para o bulbo olfatório, de onde as informações são transmitidas ao córtex olfatório através do trato olfatório.","As moléculas odoríferas são detectadas pelos neurônios receptores no epitélio olfatório, cujos axônios formam o nervo olfatório que se conecta diretamente ao tálamo, que então relata a informação ao córtex olfatório."],
    g:2},
   {n:15,tema:"Estruturas Prosencefálicas (Líquor e Memória)",tipo:"mc",
-   context:"(UNIGRANRIO CAXIAS) Holoprosencefalia (HPE) é um espectro de anomalias nas quais a perda de estruturas na linha média resulta em malformações do encéfalo e da face. Nos casos graves, os ventrículos laterais se fundem em uma única vesícula telencefálica, há ausência da fissura inter-hemisférica, do septo pelúcido e estruturas como o tálamo e os núcleos basais encontram-se indivisíveis (como é possível observar na imagem B (indivíduo com HPE), ao compará-la com a Imagem A (indivíduo normal). Os olhos também se fundem e há uma única câmara nasal, além de outros defeitos faciais na linha média (HPE alobar). Em casos menos graves, ocorre a divisão do prosencéfalo em dois hemisférios cerebrais, mas o desenvolvimento de estruturas da linha média é incompleto. Em geral, os bulbos e tratos olfatórios e o corpo caloso são hipoplásicos ou ausentes. Algumas vezes, em casos muito moderados, o único indício de que ocorreu algum grau de HPE é a existência de um único dente incisivo central. (Adaptado de: SADLER, T W. Langman Embriologia Médica, 14ª ed. Rio de Janeiro: Grupo GEN, 2021).\n\n[[IMG_2024_2_Q15]]",
+   context:"(UNIGRANRIO CAXIAS) Holoprosencefalia (HPE) é um espectro de anomalias nas quais a perda de estruturas na linha média resulta em malformações do encéfalo e da face. Nos casos graves, os ventrículos laterais se fundem em uma única vesícula telencefálica, há ausência da fissura inter-hemisférica, do septo pelúcido e estruturas como o tálamo e os núcleos basais encontram-se indivisíveis (como é possível observar na imagem B (indivíduo com HPE), ao compará-la com a Imagem A (indivíduo normal). Os olhos também se fundem e há uma única câmara nasal, além de outros defeitos faciais na linha média (HPE alobar). Em casos menos graves, ocorre a divisão do prosencéfalo em dois hemisférios cerebrais, mas o desenvolvimento de estruturas da linha média é incompleto. Em geral, os bulbos e tratos olfatórios e o corpo caloso são hipoplásicos ou ausentes. Algumas vezes, em casos muito moderados, o único indício de que ocorreu algum grau de HPE é a existência de um único dente incisivo central. (Adaptado de: SADLER, T W. Langman Embriologia Médica, 14ª ed. Rio de Janeiro: Grupo GEN, 2021).\n<br><br><img src=\"imagem_2024_2_q15.jpg\" style=\"max-width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1);\">",
    text:"Sobre as estruturas de origem prosencefálica e suas respectivas funções, está correto o que se descreve em:",
    opts:["Os corpos geniculados laterais e mediais compõem as vias ópticas e auditivas, respectivamente e pertencem os núcleos laterais e mediais do tálamo.","O septo pelúcido é formado por duas finas lâminas de tecido nervoso e tem por objetivo a separação dos ventrículos laterais.","Corpo caloso é formado por corpos celulares que permitem a transferência de informações entre os dois hemisférios, permitindo funcionamento harmônico.","Do núcleo mamilar no hipotálamo, emerge o trato mamilo-talâmico que conduz informações ao lobo frontal do cérebro (sistema límbico)."],
    g:1}
@@ -307,14 +319,14 @@ var DEEP = [
   "O conteúdo aborda a biomecânica complexa da articulação femorotibial. O raciocínio clínico separa os grupos musculares: o quadríceps (vastos e reto femoral) estende a perna, e os isquiotibiais (bíceps femoral, semitendinoso e semimembranoso) flexionam-na. Por ser sinovial, a articulação é envolvida por uma cápsula e estabilizada por ligamentos críticos: o cruzado anterior (LCA) impede a anteriorização da tíbia, o cruzado posterior (LCP) impede a posteriorização, e os colaterais limitam movimentos laterais. A correlação clínica destaca que lesões nessas estruturas levam à instabilidade crónica e risco aumentado de osteoartrite.",
   "A questão foca na organização microscópica da fibra muscular estriada. O raciocínio diferencial entre músculo esquelético e cardíaco baseia-se na posição nuclear: periférica no esquelético e central no cardíaco. As miofibrilas são compostas por filamentos finos de actina e grossos de miosina. A alternativa A está errada ao inverter essas espessuras. A alternativa B erra ao situar a linha H no centro da banda I, quando na verdade o centro da banda I contém a linha Z. A alternativa C erra ao citar a calmodulina, que é a proteína reguladora do músculo liso, não do esquelético. A principal pegadinha é a confusão entre as bandas A (anisotrópica/escura) e I (isotrópica/clara) e suas linhas divisórias.",
   "Este tema detalha a transdução de um sinal elétrico num sinal químico. O raciocínio segue a sequência: despolarização -> abertura de canais de Ca²⁺ dependentes de voltagem -> entrada de cálcio a favor do gradiente -> fusão vesicular -> libertação de neurotransmissores na fenda. A alternativa A está incorreta por situar o cálcio no neurónio pós-sináptico. As alternativas C e D erram ao associar a abertura de canais à hiperpolarização ou sugerir que a despolarização fecha os canais. A pegadinha comum em fisiologia é trocar o papel do cálcio (sinalizador de libertação) pelo do sódio (sinalizador de propagação do impulso).",
-  "O conteúdo integra a óptica ocular com a bioquímica neural. O trajeto da via visual inicia-se na retina, segue pelo nervo óptico, cruza parcialmente no quiasma (fibras nasais), passa pelo trato óptico até aos corpos geniculados laterais do tálamo e termina no córtex visual primário via radiações ópticas. O raciocínio da fototransdução é paradoxal: o estímulo luminoso 'desliga' a célula ao fechar canais de sódio e cálcio mantidos abertos pelo GMPc no escuro. A pegadinha frequente é sugerir que a luz despolariza o fotorreceptor, quando na verdade ela o hiperpolariza.",
-  "A questão explora a histofisiologia dinâmica do osso. O raciocínio do reparo segue três fases: reativa (inflamação), reparativa (calo mole e duro) e remodelamento. Na fase reparativa, os osteoblastos depositam colágeno (matriz osteoide) e facilitam a deposição de cristais de hidroxiapatita para mineralização. A alternativa IV é incorreta pois ignora que o osso recém-formado precisa de ser 'lapidado' pelos osteoclastos para restaurar a anatomia original e a funcionalidade. A pegadinha reside em restringir a função do osteoclasto apenas à destruição inicial, esquecendo o seu papel vital na modelagem final.",
-  "Esta questão correlaciona fisiologia molecular com farmacologia clínica. O raciocínio foca no receptor de rianodina como o canal de saída de cálcio no músculo esquelético. Em condições normais, o término do potencial de ação cessa a saída de Ca²⁺ e ativa a recaptação. Na patologia descrita, a falha funcional desse canal mantém o 'interruptor' da contração ligado. As alternativas A e B erram ao focar no sódio ou na repolarização da membrana, que não são a causa direta da rigidez citada. A alternativa D confunde o mecanismo com a inibição da colinesterase, que afetaria a junção neuromuscular e não o canal intracelular de rianodina.",
+  "O conteúdo integra a óptica ocular com a bioquímica neural. O trajeto da via visual inicia-se na retina, segue pelo nervo óptico, cruza parcialmente no quiasma (fibras nasais), passa pelo trato óptico até aos corpos geniculados laterais do tálamo e termina no córtex visual primário via radiações ópticas. O raciocínio da fototransdução é paradoxal: o estímulo luminoso \"desliga\" a célula ao fechar canais de sódio e cálcio mantidos abertos pelo GMPc no escuro. A pegadinha frequente é sugerir que a luz despolariza o fotorreceptor, quando na verdade ela o hiperpolariza.",
+  "A questão explora a histofisiologia dinâmica do osso. O raciocínio do reparo segue três fases: reativa (inflamação), reparativa (calo mole e duro) e remodelamento. Na fase reparativa, os osteoblastos depositam colágeno (matriz osteoide) e facilitam a deposição de cristais de hidroxiapatita para mineralização. A alternativa IV é incorreta pois ignora que o osso recém-formado precisa de ser \"lapidado\" pelos osteoclastos para restaurar a anatomia original e a funcionalidade. A pegadinha reside em restringir a função do osteoclasto apenas à destruição inicial, esquecendo o seu papel vital na modelagem final.",
+  "Esta questão correlaciona fisiologia molecular com farmacologia clínica. O raciocínio foca no receptor de rianodina como o canal de saída de cálcio no músculo esquelético. Em condições normais, o término do potencial de ação cessa a saída de Ca²⁺ e ativa a recaptação. Na patologia descrita, a falha funcional desse canal mantém o \"interruptor\" da contração ligado. As alternativas A e B erram ao focar no sódio ou na repolarização da membrana, que não são a causa direta da rigidez citada. A alternativa D confunde o mecanismo com a inibição da colinesterase, que afetaria a junção neuromuscular e não o canal intracelular de rianodina.",
   "O tema é a organização do tronco encefálico e suas conexões diencefálicas. O raciocínio anatómico identifica o teto do mesencéfalo como local dos colículos, responsáveis por reflexos oculares e de orientação sonora. As outras alternativas erram a localização ou a função: corpos mamilares pertencem ao sistema límbico hipotalâmico (B); olivas estão no bulbo e focam na coordenação motora (C); e o plexo coroide produz líquor nos ventrículos, não sendo uma conexão sensorial primária do mesencéfalo (D). A banca testa a capacidade do aluno de associar núcleos específicos do tálamo com níveis do tronco encefálico.",
-  "A questão aborda a hidrodinâmica cerebral e malformações congênitas. O raciocínio exige conhecer o trajeto do fluxo: ventrículos laterais -> forames interventriculares -> terceiro ventrículo -> aqueduto do mesencéfalo -> quarto ventrículo. Como o quarto ventrículo estava normal, a obstrução deve obrigatoriamente estar acima dele. Alternativas A e C sugerem bloqueios nas aberturas do quarto ventrículo para o espaço subaracnoideo, o que causaria dilatação de todos os ventrículos (hidrocefalia comunicante). A pegadinha reside em discernir qual ventrículo está dilatado para localizar o 'gargalo' da obstrução.",
+  "A questão aborda a hidrodinâmica cerebral e malformações congênitas. O raciocínio exige conhecer o trajeto do fluxo: ventrículos laterais -> forames interventriculares -> terceiro ventrículo -> aqueduto do mesencéfalo -> quarto ventrículo. Como o quarto ventrículo estava normal, a obstrução deve obrigatoriamente estar acima dele. Alternativas A e C sugerem bloqueios nas aberturas do quarto ventrículo para o espaço subaracnoideo, o que causaria dilatação de todos os ventrículos (hidrocefalia comunicante). A pegadinha reside em discernir qual ventrículo está dilatado para localizar o \"gargalo\" da obstrução.",
   "O conteúdo integra o desenvolvimento do tubo neural com a anatomia funcional medular. O raciocínio embriológico separa a placa alar (sensorial/dorsal) da placa basal (motora/ventral). A afirmação III está incorreta porque a cauda equina é um conjunto de raízes de nervos espinais que, como todos os nervos espinais, possuem componentes mistos (sensitivos e motores). A afirmação IV erra ao situar neurónios motores no gânglio da raiz dorsal; estes gânglios abrigam exclusivamente corpos celulares de neurónios sensoriais. A pegadinha é sugerir que certas regiões da medula ou nervos perdem a sua natureza mista.",
   "Esta questão foca no dimorfismo sexual do esqueleto apendicular. O raciocínio clínico para avaliar fertilidade ou adequação ao parto baseia-se nas dimensões do canal pélvico. A pelve feminina (ginecoide) é delgada, leve, com abertura superior oval e arredondada e uma incisura isquiática maior de quase 90°. Em contraste, a pelve masculina (Imagem A) é compacta, pesada, com pelve maior profunda, abertura superior em forma de coração e ângulo subpúbico estreito (<70°). Inverter as características entre os sexos é a pegadinha habitual em exames de anatomia orientada para a clínica.",
-  "O conteúdo aborda os centros de controlo motor extrapiramidal. O raciocínio clínico diferencia lesões cerebelares (tremor de intenção, dismetria, ataxia) de lesões dos núcleos da base (tremores de repouso, rigidez, coreia). As alternativas B, C e D estão incorretas pois invertem total ou parcialmente as funções: o cerebelo corrige erros motores durante a execução (não apenas inicia) e os núcleos da base participam na iniciação e modulação do planeamento motor, não apenas no tônus. A banca testa se o aluno reconhece que o cerebelo é o 'comparador' que garante a precisão do ato motor.",
+  "O conteúdo aborda os centros de controlo motor extrapiramidal. O raciocínio clínico diferencia lesões cerebelares (tremor de intenção, dismetria, ataxia) de lesões dos núcleos da base (tremores de repouso, rigidez, coreia). As alternativas B, C e D estão incorretas pois invertem total ou parcialmente as funções: o cerebelo corrige erros motores durante a execução (não apenas inicia) e os núcleos da base participam na iniciação e modulação do planeamento motor, não apenas no tônus. A banca testa se o aluno reconhece que o cerebelo é o \"comparador\" que garante a precisão do ato motor.",
   "Esta questão trata da neuroanatomia das sensibilidades somáticas. O raciocínio topográfico baseia-se na separação espacial das vias: dor e temperatura viajam pela coluna lateral após cruzarem imediatamente na medula; tato epicrítico e propriocepção consciente viajam pela coluna posterior ipsilateral até ao bulbo. As alternativas A, B e D estão incorretas porque: o trato espinocerebelar dorsal lida com propriocepção inconsciente (A); neurónios de segunda ordem no corno posterior servem a via da dor, logo sua lesão não pouparia a dor (B); e a lesão do fascículo grácil causaria perda de tato, não sua preservação (D). A correlação clínica remete à Síndrome de Brown-Séquard.",
   "O tema é o processamento sensorial do olfacto. O raciocínio exige a sequência anatómica correta: receptores no teto da cavidade nasal -> nervo I (atravessa a lâmina crivosa) -> sinapse no bulbo olfatório -> trato olfatório -> córtex temporal medial. As alternativas incorretas sugerem rotas falsas: o olfacto não passa obrigatoriamente pelo tálamo antes do córtex (distinto dos outros sentidos) (D); o sinal não vai para o cerebelo (A); e o hipocampo participa na memória olfativa, mas não é a primeira estação de processamento (B). A pegadinha é confundir a via do olfacto com a via do paladar ou da audição.",
   "A questão integra embriologia clínica com neuroanatomia descritiva. O raciocínio baseia-se na organização das estruturas que derivam do prosencéfalo (telencéfalo e diencéfalo). A alternativa A está tecnicamente incompleta ou imprecisa ao não especificar que os corpos geniculados pertencem ao metatálamo e possuem funções sensoriais distintas. A alternativa C erra ao dizer que o corpo caloso é formado por corpos celulares; ele é a maior comissura do cérebro, composta por axónios (substância branca). A alternativa D está incorreta porque o trato mamilo-talâmico conduz informação para os núcleos anteriores do tálamo, e não diretamente para o lobo frontal, embora faça parte do circuito límbico. A pegadinha é a confusão entre tipos de fibras (comissurais vs. projeção) e os componentes do sistema límbico."
@@ -356,9 +368,9 @@ function renderQ(){
   if(q.context){ 
     ctx.style.display='block'; 
     var html = q.context.replace(/\n/g,'<br>');
-    html = html.replace('[[IMG_2024_2_Q3]]', '<img src="img_2024_2_q3.jpg" alt="Tecido Muscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
-    html = html.replace('[[IMG_2024_2_Q11]]', '<img src="img_2024_2_q11.jpg" alt="Anatomia da Pelve" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
-    html = html.replace('[[IMG_2024_2_Q15]]', '<img src="img_2024_2_q15.jpg" alt="Holoprosencefalia" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
+    html = html.replace('[[IMG_2024_2_Q3]]', '<img src="imagem_2024_2_q3.jpg" alt="Tecido Muscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
+    html = html.replace('[[IMG_2024_2_Q11]]', '<img src="imagem_2024_2_q11.jpg" alt="Anatomia da Pelve" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
+    html = html.replace('[[IMG_2024_2_Q15]]', '<img src="imagem_2024_2_q15.jpg" alt="Holoprosencefalia" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
     ctx.innerHTML=html;
   }
   else { ctx.style.display='none'; }
@@ -431,16 +443,27 @@ function showResult(){
   var rs=document.getElementById('resultScreen'); rs.classList.add('show');
   var mcQs=QS.filter(function(q){return q.tipo==='mc';});
   var correct=mcQs.filter(function(q){return answered[QS.indexOf(q)]===q.g;}).length;
+  var wrong=mcQs.filter(function(q){
+    var idx=QS.indexOf(q);
+    return answered[idx]!==undefined&&answered[idx]!==q.g;
+  }).length;
   var pct=Math.round((correct/mcQs.length)*100);
-  document.getElementById('resRing').textContent=pct+'%';
-  document.getElementById('resSub').textContent='Você acertou '+correct+' de '+mcQs.length+' questões.';
+  
+  var ring=document.getElementById('resRing');
+  ring.textContent=pct+'%';
+  ring.className='res-ring '+(pct>=70?'great':pct>=50?'ok':'bad');
+  
+  document.getElementById('resTitle').textContent=pct>=70?'Parabéns!':pct>=50?'Quase lá!':'Continue praticando!';
+  document.getElementById('resSub').textContent='Você acertou '+correct+' de '+mcQs.length+' questões de múltipla escolha ('+pct+'%)';
   document.getElementById('resOk').textContent=correct;
-  document.getElementById('resErr').textContent=mcQs.length-correct;
+  document.getElementById('resErr').textContent=wrong;
   document.getElementById('resDisc').textContent=Object.keys(discAnswered).length;
-  buildReport(correct, mcQs.length-correct);
+  
+  buildReport(correct, wrong);
+  rs.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function buildReport(correct,wrong){
+function buildReport(correct, wrong){
   var temaStats={};
   QS.forEach(function(q,i){
     if(!temaStats[q.tema]) temaStats[q.tema]={total:0,correct:0,wrong:0,disc:0};
@@ -449,14 +472,63 @@ function buildReport(correct,wrong){
     else if(answered[i]===q.g){t.correct++;}
     else if(answered[i]!==undefined){t.wrong++;}
   });
+  
+  var sorted=Object.keys(temaStats).sort(function(a,b){return temaStats[b].wrong-temaStats[a].wrong;});
   var barsHtml='';
-  Object.keys(temaStats).forEach(function(tema){
+  sorted.forEach(function(tema){
     var s=temaStats[tema];
-    var pct=s.total>0?Math.round((s.correct/s.total)*100):0;
-    barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span><div class="tema-bar-bg"><div class="tema-bar-fill green" style="width:'+pct+'%"></div></div><span class="tema-pct">'+pct+'%</span></div>';
+    if(s.disc===s.total){
+      barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
+        +'<div class="tema-bar-bg"><div class="tema-bar-fill purple" style="width:100%"></div></div>'
+        +'<span class="tema-pct purple">Disc.</span></div>';
+    } else {
+      var pct=s.total>0?Math.round((s.correct/s.total)*100):0;
+      var good=pct>=50;
+      barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
+        +'<div class="tema-bar-bg"><div class="tema-bar-fill '+(good?'green':'red')+'" style="width:'+pct+'%"></div></div>'
+        +'<span class="tema-pct '+(good?'green':'red')+'">'+pct+'%</span></div>';
+    }
   });
-  document.getElementById('reportContent').innerHTML='<div class="report-section"><h4>Desempenho por tema</h4>'+barsHtml+'</div>';
+  
+  var worstTema=sorted.find(function(t){return temaStats[t].wrong>0;})||sorted[0]||'—';
+  var mcCount=QS.filter(function(q){return q.tipo==='mc';}).length;
+  var pct=mcCount>0?Math.round((correct/mcCount)*100):0;
+  var msg=pct>=70?'Ótimo domínio geral!':pct>=50?'Foque nos pontos fracos.':'Revise antes da prova.';
+  
+  var wrongListHtml='';
+  QS.forEach(function(q,i){
+    if(q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g){
+      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+        +'<div class="rev-dot dot-err"></div>'
+        +'<span>Q'+q.n+' — '+q.tema+'</span>'
+        +'<small>Resp: '+L[answered[i]].toUpperCase()+' · Gabarito: '+L[q.g].toUpperCase()+'</small></div>';
+    }
+    if(q.tipo==='disc'&&discAnswered[i]){
+      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+        +'<div class="rev-dot dot-disc"></div>'
+        +'<span>Q'+q.n+' — '+q.tema+'</span>'
+        +'<small>Discursiva — revisar gabarito</small></div>';
+    }
+  });
+  if(!wrongListHtml) wrongListHtml='<div style="font-size:13px;color:var(--muted);padding:8px 0;">Nenhum erro nas múltipla escolha! 🎉</div>';
+  
+  document.getElementById('reportContent').innerHTML=
+    '<div class="report-section"><h4>Desempenho por tema</h4>'+barsHtml+'</div>'
+    +'<div class="report-section"><h4>Insights</h4><div class="insight-grid">'
+      +'<div class="insight-box"><div class="ib-label">Ponto mais fraco</div><div class="ib-val">'+worstTema+'</div><div class="ib-sub">Mais erros nesse tema</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC acertadas</div><div class="ib-val">'+correct+'/'+mcCount+'</div><div class="ib-sub">'+msg+'</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class=\"ib-val\" style=\"color:#F09595;\">'+wrong+'</div><div class=\"ib-sub\">Múltipla escolha</div></div>'
+      +'<div class=\"insight-box\"><div class=\"ib-label\">Discursivas</div><div class=\"ib-val\" style=\"color:#D4A8FF;\">'+Object.keys(discAnswered).length+'</div><div class=\"ib-sub\">Questões abertas</div></div>'
+    +'</div></div>'
+    +'<div class=\"report-section\"><h4>Revisão por questão</h4><div class=\"q-review-list\">'+wrongListHtml+'</div></div>';
 }
+
+function goToQ(i){
+  document.getElementById('qCard').style.display='block';
+  document.getElementById('resultScreen').classList.remove('show');
+  cur=i; renderQ(); window.scrollTo({top:0,behavior:'smooth'});
+}
+
 function resetAll(){ location.reload(); }
 buildPills(); renderQ();
 </script>
