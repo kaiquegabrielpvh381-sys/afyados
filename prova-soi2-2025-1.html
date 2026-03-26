@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOI II - N1 2025.1 | Afyados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0710;--surface:#120e1c;--card:#17122a;--card-hover:#1e1835;
+  --primary:#c8006a;--primary-light:rgba(200,0,106,0.18);--primary-glow:rgba(200,0,106,0.30);
+  --green:#1a9068;--green-light:rgba(26,144,104,0.18);
+  --red:#c73348;--red-light:rgba(199,51,72,0.18);
+  --purple:#7c3aed;--purple-light:rgba(124,58,237,0.18);
+  --text:#e8e0f5;--text-2:#a899c0;--text-3:#6b5f85;
+  --border:rgba(255,255,255,0.06);--border-2:rgba(255,255,255,0.10);--r:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;line-height:1.6;font-size:14px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:52px;display:flex;align-items:center;padding:0 20px;gap:10px;background:rgba(10,7,16,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo-mark{width:30px;height:30px;border-radius:8px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#fff;flex-shrink:0;}
+.nav-brand{font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text);}
+.nav-back{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:0.75rem;font-weight:500;color:var(--text-2);background:none;border:1px solid var(--border);border-radius:7px;padding:5px 12px;cursor:pointer;font-family:inherit;transition:all .2s;}
+.nav-back:hover{color:var(--text);border-color:var(--border-2);}
+.nav-back svg{width:12px;height:12px;}
+
+/* STICKY */
+.sticky{position:sticky;top:52px;z-index:100;background:rgba(10,7,16,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.sticky-inner{max-width:780px;margin:0 auto;padding:10px 20px;}
+.sticky-top{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;}
+.sticky-title{font-size:0.78rem;font-weight:600;color:var(--text-2);letter-spacing:0.3px;text-align:center;}
+.btn-reset{margin-left:auto;display:flex;align-items:center;gap:4px;font-size:0.72rem;font-weight:500;color:var(--text-3);background:none;border:none;cursor:pointer;font-family:inherit;padding:4px 8px;border-radius:6px;transition:color .2s;white-space:nowrap;}
+.btn-reset:hover{color:var(--primary);}
+.btn-reset svg{width:13px;height:13px;}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;}
+.pill{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;cursor:pointer;border:1.5px solid transparent;transition:all .15s;background:rgba(255,255,255,0.04);color:var(--text-3);}
+.pill:hover{color:var(--text-2);border-color:var(--border-2);}
+.pill.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 14px var(--primary-glow);}
+.pill.ok{background:var(--green);color:#fff;border-color:var(--green);}
+.pill.err{background:var(--red);color:#fff;border-color:var(--red);}
+.pill.disc{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+/* MAIN */
+.main{max-width:780px;margin:0 auto;padding:24px 20px 120px;}
+
+/* Q WRAP */
+.q-wrap{animation:fadeSlide .3s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.q-tag{font-size:0.68rem;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--primary);background:var(--primary-light);padding:3px 9px;border-radius:5px;}
+.q-tag-disc{font-size:0.68rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--purple);background:var(--purple-light);padding:3px 9px;border-radius:5px;}
+.q-theme{font-size:0.72rem;font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.5px;}
+.q-source{font-size:0.68rem;color:var(--text-3);margin-left:auto;font-style:italic;}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;}
+.q-context{font-size:0.84rem;color:var(--text-2);line-height:1.7;margin-bottom:14px;padding:12px 14px;background:rgba(255,255,255,0.025);border-radius:8px;border-left:2px solid var(--primary);}
+.q-assertions{margin-bottom:14px;padding:12px 14px;background:rgba(255,255,255,0.02);border-radius:8px;}
+.q-assertions p{font-size:0.84rem;line-height:1.7;color:var(--text-2);margin-bottom:6px;}
+.q-assertions p:last-child{margin-bottom:0;}
+.porque{font-size:0.7rem!important;font-weight:700;letter-spacing:1.5px;color:var(--primary)!important;margin:4px 0;}
+.q-image{display:block;width:100%;max-width:440px;margin:0 auto 18px;border-radius:10px;border:1px solid var(--border-2);}
+.q-text{font-size:0.92rem;line-height:1.65;color:var(--text);margin-bottom:20px;font-weight:500;}
+
+/* OPTIONS */
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opt{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border-radius:9px;border:1.5px solid var(--border);background:rgba(255,255,255,0.018);cursor:pointer;transition:all .15s;}
+.opt:hover:not(.done){border-color:rgba(200,0,106,0.4);background:var(--primary-light);}
+.opt.sel{border-color:var(--primary);background:var(--primary-light);}
+.opt.hit{border-color:var(--green);background:var(--green-light);}
+.opt.miss{border-color:var(--red);background:var(--red-light);}
+.opt.done{cursor:default;}
+.opt-ltr{width:24px;height:24px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;background:rgba(255,255,255,0.05);color:var(--text-3);transition:all .15s;margin-top:1px;}
+.opt.sel .opt-ltr{background:var(--primary);color:#fff;}
+.opt.hit .opt-ltr{background:var(--green);color:#fff;}
+.opt.miss .opt-ltr{background:var(--red);color:#fff;}
+.opt-txt{font-size:0.845rem;line-height:1.5;color:var(--text);flex:1;}
+.opt-icon{margin-left:auto;font-size:0.9rem;flex-shrink:0;padding-top:2px;}
+
+/* TEXTAREA */
+textarea.disc{width:100%;min-height:120px;resize:vertical;background:rgba(255,255,255,0.025);border:1.5px solid var(--border-2);border-radius:9px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.845rem;line-height:1.6;padding:12px 14px;outline:none;transition:border-color .2s;}
+textarea.disc:focus{border-color:var(--purple);}
+textarea.disc:disabled{opacity:0.7;cursor:default;}
+
+/* FEEDBACK */
+.feedback{margin-top:16px;border-radius:10px;padding:14px 16px;animation:fadeSlide .25s ease;}
+.fb-ok{background:var(--green-light);border:1px solid rgba(26,144,104,.28);}
+.fb-err{background:var(--red-light);border:1px solid rgba(199,51,72,.28);}
+.fb-disc{background:var(--purple-light);border:1px solid rgba(124,58,237,.28);}
+.fb-label{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.fb-ok .fb-label{color:var(--green);}
+.fb-err .fb-label{color:var(--red);}
+.fb-disc .fb-label{color:var(--purple);}
+.fb-text{font-size:0.835rem;line-height:1.65;color:var(--text-2);}
+.deep-divider{height:1px;background:var(--border);margin:12px 0;}
+.btn-deep{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:7px;background:rgba(200,0,106,0.08);border:1px solid rgba(200,0,106,0.3);color:var(--primary);font-size:0.76rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;}
+.btn-deep:hover{background:var(--primary);color:#fff;}
+.deep-content{display:none;margin-top:10px;padding:14px 16px;border-radius:9px;background:rgba(200,0,106,0.05);border:1px solid var(--border);font-size:0.825rem;line-height:1.72;color:var(--text-2);}
+.deep-content.open{display:block;animation:fadeSlide .2s ease;}
+
+/* BOTTOM BAR */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:150;background:rgba(10,7,16,0.97);backdrop-filter:blur(16px);border-top:1px solid var(--border);}
+.bottom-inner{max-width:780px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:10px;}
+.bottom-counter{font-size:0.76rem;color:var(--text-3);text-align:center;white-space:nowrap;}
+.bottom-counter strong{color:var(--text-2);}
+.btn-nav{display:flex;align-items:center;gap:5px;padding:9px 18px;border-radius:9px;border:1.5px solid var(--border-2);background:transparent;color:var(--text-2);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap;}
+.btn-nav:hover:not(:disabled){border-color:var(--primary);color:var(--primary);}
+.btn-nav:disabled{opacity:0.25;cursor:default;}
+.btn-answer{padding:9px 28px;border-radius:9px;background:var(--primary);border:none;color:#fff;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 2px 18px var(--primary-glow);white-space:nowrap;}
+.btn-answer:hover:not(:disabled){filter:brightness(1.12);transform:translateY(-1px);}
+.btn-answer:disabled{background:rgba(255,255,255,0.06);color:var(--text-3);cursor:default;box-shadow:none;transform:none;filter:none;}
+
+/* RESULTS */
+.results{display:none;}
+.results.on{display:block;animation:fadeSlide .4s ease;}
+.res-hero{text-align:center;padding:32px 20px 24px;}
+.res-circle{width:90px;height:90px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;border:3px solid var(--primary);background:var(--primary-light);}
+.res-pct{font-size:1.4rem;font-weight:700;color:var(--primary);line-height:1;}
+.res-pct-lbl{font-size:0.6rem;color:var(--text-3);}
+.res-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.res-sub{font-size:0.82rem;color:var(--text-2);}
+.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;}
+.res-stat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;text-align:center;}
+.res-stat-n{font-size:1.6rem;font-weight:700;line-height:1;}
+.res-stat-n.ok{color:var(--green);}
+.res-stat-n.err{color:var(--red);}
+.res-stat-n.dc{color:var(--purple);}
+.res-stat-lbl{font-size:0.65rem;color:var(--text-3);margin-top:3px;text-transform:uppercase;letter-spacing:0.5px;}
+.res-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden;}
+.res-section-head{padding:14px 18px 0;font-size:0.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-3);}
+.res-section-body{padding:10px 18px 16px;}
+.theme-row{margin-bottom:10px;}
+.theme-row:last-child{margin-bottom:0;}
+.theme-top{display:flex;justify-content:space-between;margin-bottom:4px;}
+.theme-name{font-size:0.78rem;color:var(--text-2);}
+.theme-pct{font-size:0.72rem;color:var(--text-3);}
+.theme-bar-bg{height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;}
+.theme-bar{height:100%;border-radius:3px;background:var(--purple);transition:width 1s cubic-bezier(.25,.8,.25,1);}
+.insights-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.insight-card{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:9px;padding:12px 14px;}
+.insight-lbl{font-size:0.62rem;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+.insight-val{font-size:0.82rem;font-weight:600;color:var(--text);}
+.insight-sub{font-size:0.72rem;color:var(--text-3);margin-top:2px;}
+.review-empty{font-size:0.82rem;color:var(--text-3);padding:4px 0;}
+.review-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:opacity .15s;}
+.review-item:last-child{border-bottom:none;}
+.review-item:hover{opacity:.75;}
+.review-num{width:26px;height:26px;border-radius:6px;flex-shrink:0;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;}
+.review-text{font-size:0.8rem;color:var(--text-2);line-height:1.35;}
+.review-text strong{color:var(--text);display:block;font-size:0.78rem;}
+.btn-retry{width:100%;padding:13px;border-radius:10px;background:var(--primary);border:none;color:#fff;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;box-shadow:0 2px 20px var(--primary-glow);margin-top:16px;}
+.btn-retry:hover{filter:brightness(1.1);transform:translateY(-1px);}
+@media(max-width:600px){.main{padding:16px 14px 110px;}.q-card{padding:18px 16px;}.sticky-inner,.bottom-inner{padding-left:14px;padding-right:14px;}.btn-nav{padding:9px 12px;}.btn-answer{padding:9px 20px;}.insights-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo-mark">A</div>
+  <span class="nav-brand">Afyados</span>
+  <button class="nav-back" onclick="history.back()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Voltar
+  </button>
+</nav>
+
+<div class="sticky">
+  <div class="sticky-inner">
+    <div class="sticky-top">
+      <span class="sticky-title">N1 SOI II &middot; 2025.1 &mdash; PROVA E GABARITO</span>
+      <button class="btn-reset" onclick="resetQuiz()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        Resetar lista
+      </button>
+    </div>
+    <div class="pills" id="pills"></div>
+  </div>
+</div>
+
+<div class="main">
+  <div id="quizWrap"></div>
+  <div class="results" id="results"></div>
+</div>
+
+<div class="bottom-bar" id="bottomBar">
+  <div class="bottom-inner">
+    <button class="btn-nav" id="btnPrev" onclick="prev()">&#8592; Anterior</button>
+    <span class="bottom-counter">Questão <strong id="ctrQ">1</strong> de <strong>15</strong></span>
+    <div id="btnZone" style="display:flex;gap:8px;align-items:center;"></div>
+  </div>
+</div>
+
+<script>
+const Q = [
+  {
+    num: 1, type: 'mc', source: 'UNISL Porto Velho',
+    theme: 'Anatomia do Joelho',
+    context: 'A articulação do joelho é classificada como sinovial do tipo dobradiça modificada e apresenta estruturas osteomioarticulares que garantem sua estabilidade e funcionalidade. Os ligamentos, os músculos e as superfícies articulares desempenham papéis fundamentais no controle do movimento e na proteção contra forças externas.',
+    assertions: [
+      'I. O joelho é formado pelos ossos fêmur, tíbia e patela, sendo estabilizado por estruturas ligamentares, como os ligamentos cruzados e colaterais, que controlam os movimentos excessivos e protegem contra os deslocamentos anormais.',
+      'II. A patela é um osso sesamoide que melhora a eficiência do músculo quadríceps femoral, aumentando o braço de alavanca do tendão patelar durante a extensão do joelho.',
+      'III. O ligamento cruzado posterior (LCP) impede a translação posterior da tíbia em relação ao fêmur e é mais resistente que o ligamento cruzado anterior (LCA), desempenhando um papel fundamental na estabilização da articulação.',
+      'IV. Os meniscos são estruturas que atuam na dissipação de forças compressivas, distribuição de carga e produção da lubrificação da articulação do joelho, o que leva à redução significativa do atrito entre as diversas superfícies articulares.'
+    ],
+    text: 'Acerca das características estruturais e funcionais do joelho, avalie as asserções acima. É correto o que se afirma em:',
+    opts: ['II e IV, apenas.', 'I e III, apenas.', 'I, II, III e IV, apenas.', 'I, II e III, apenas.'],
+    g: 3,
+    exp: 'Apenas I, II e III são corretas. A asserção IV é incorreta porque os meniscos têm função mecânica (amortecimento e distribuição de carga), mas a lubrificação é produzida pela membrana sinovial — não pelos meniscos.',
+    deep: 'O ponto central desta questão é a distinção entre as funções dos meniscos e da membrana sinovial. Os meniscos são fibrocartilagens com função exclusivamente mecânica: aumentam a congruência articular, distribuem a carga compressiva e absorvem impactos. Já o líquido sinovial, responsável pela lubrificação, é um ultrafiltrado plasmático produzido pelas células sinoviócitos da membrana sinovial. As asserções I (composição óssea e papel dos ligamentos), II (patela como polia biológica que aumenta o braço de alavanca do quadríceps) e III (LCP é de fato mais resistente que o LCA e impede o deslocamento posterior da tíbia) são todas corretas. A banca explora um detalhe histofisiológico: atribuir função glandular/secretora a uma estrutura que possui apenas função mecânica — clássica pegadinha de prova.'
+  },
+  {
+    num: 2, type: 'mc', source: 'ITPAC Porto Nacional',
+    theme: 'Nervos Cranianos',
+    context: 'Um paciente de 60 anos apresenta-se na clínica com queixa de perda progressiva do olfato (anosmia) e dificuldade em perceber sabores. Além disso, o paciente relata zumbido constante e perda de equilíbrio ao caminhar. Durante o exame neurológico, foram constatadas alterações nos movimentos oculares e na visão periférica.',
+    assertions: [
+      'I. Os sintomas de anosmia, zumbido e dificuldade de equilíbrio no paciente indicam um comprometimento dos nervos olfatório (I) e vestibulococlear (VIII).',
+      'PORQUE',
+      'II. O nervo olfatório (I) é responsável pela percepção dos odores, enquanto o nervo vestibulococlear (VIII) é responsável pelas funções auditivas e pelo equilíbrio.'
+    ],
+    text: 'Considerando esse contexto, avalie as asserções acima e a relação proposta entre elas. Assinale a opção correta:',
+    opts: [
+      'Ambas as asserções estão corretas, mas a asserção II não justifica a asserção I.',
+      'Ambas as asserções estão corretas, e a asserção II justifica a asserção I.',
+      'A asserção I está correta, mas a asserção II está incorreta.',
+      'A asserção I está incorreta, mas a asserção II está correta.'
+    ],
+    g: 1,
+    exp: 'Ambas corretas e II justifica I. Os sintomas (anosmia e vertigem/zumbido) são manifestações clínicas diretas da disfunção dos nervos cranianos I e VIII, respectivamente. A asserção II descreve corretamente as funções desses nervos, fornecendo a base biológica para os sintomas.',
+    deep: 'Esta questão integra semiologia neurológica com anatomia dos nervos cranianos. O nervo olfatório (NC I) é formado por axônios de neurônios bipolares do epitélio olfatório que atravessam a lâmina crivosa do etmoide; sua lesão causa anosmia e consequente hipogeusia (paladar diminuído). O nervo vestibulococlear (NC VIII) possui dois ramos: o ramo coclear (audição — lesão causa zumbido/surdez) e o ramo vestibular (equilíbrio — lesão causa vertigem e ataxia). Na questão do tipo "asserção-razão", a chave é verificar: (1) ambas são verdadeiras? Sim. (2) II é a justificativa biológica de I? Sim — os sintomas ocorrem exatamente porque essas são as funções dos nervos afetados. Portanto, resposta B. Em pacientes idosos com múltiplas disfunções de nervos cranianos, deve-se investigar lesões de base de crânio ou processos neurodegenerativos.'
+  },
+  {
+    num: 3, type: 'mc', source: 'AFYA Abaetetuba',
+    theme: 'Bioquímica Neural',
+    context: 'A cotransmissão é a capacidade de um neurônio pré-sináptico liberar diferentes neurotransmissores, sendo que a importância funcional dos neurônios transmissores duplos (ou múltiplos) se estende além das ações nos receptores pós-sinápticos.',
+    text: 'Neste contexto, assinale a única alternativa correta:',
+    opts: [
+      'A cotransmissão impede que mais de um neurotransmissor atue sobre a mesma sinapse, evitando modulação da resposta.',
+      'A cotransmissão permite que um neurônio libere dois ou mais neurotransmissores, como serotonina e glutamato, atuando em múltiplas funções.',
+      'Glutamato e serotonina são liberados alternadamente, nunca ao mesmo tempo, evitando conflito de sinalização.',
+      'No núcleo da rafe, apenas a serotonina é liberada, e sua ação é exclusivamente inibitória em todo o encéfalo.'
+    ],
+    g: 1,
+    exp: 'A cotransmissão permite que um único neurônio libere dois ou mais neurotransmissores simultaneamente (ex: serotonina + glutamato), desafiando o antigo "Princípio de Dale" (um neurônio, um neurotransmissor).',
+    deep: 'O conceito de cotransmissão representa uma revolução na compreensão da sinalização química do SNC. O antigo Princípio de Dale (1934) postulava que cada neurônio libera apenas um neurotransmissor. Hoje sabemos que neurônios podem coarmazenar e coliberar múltiplos mensageiros — tipicamente um neurotransmissor clássico (como serotonina) e um neuromodulador (como glutamato). No núcleo da rafe, especificamente, neurônios liberam tanto serotonina quanto glutamato. A serotonina pode ter efeito excitatório ou inibitório dependendo do receptor pós-sináptico (5-HT1 é inibitório; 5-HT2, 5-HT3 são excitatórios). Essa plasticidade na sinalização amplia enormemente a capacidade regulatória do sistema nervoso, permitindo respostas mais precisas e contextuais. A alternativa C (liberação alternada) está errada porque a cotransmissão ocorre de forma simultânea, com vesículas diferentes respondendo ao mesmo potencial de ação conforme o estímulo.'
+  },
+  {
+    num: 4, type: 'mc', source: 'UNIGRANRIO Caxias',
+    theme: 'Anatomia da Medula Espinal',
+    context: 'Durante o estudo da medula espinal, um aluno nota que cada nervo espinal emerge como uma estrutura mista.',
+    text: 'Com base na anatomia funcional, qual alternativa representa corretamente a formação e os componentes de um nervo espinal típico?',
+    opts: [
+      'Após emergir da medula, o nervo espinal se divide em raízes anteriores e posteriores, que então formam os nervos periféricos motores.',
+      'O nervo espinal é formado pela união das raízes ventrais e dorsais, contendo fibras motoras e sensitivas, com o gânglio espinal localizado na raiz ventral.',
+      'O nervo espinal resulta da junção das raízes dorsal (aferente) e ventral (eferente), sendo uma estrutura mista com gânglio sensitivo na raiz dorsal.',
+      'A raiz dorsal carrega fibras eferentes e possui o gânglio espinal, enquanto a raiz ventral conduz impulsos aferentes para a medula.'
+    ],
+    g: 2,
+    exp: 'O nervo espinal é misto: raiz dorsal = aferente (sensitiva), com gânglio espinal; raiz ventral = eferente (motora). A Lei de Bell-Magendie define essa polaridade funcional.',
+    deep: 'A Lei de Bell-Magendie (estabelecida no início do séc. XIX) é o alicerce desta questão: a raiz dorsal é sensitiva (aferente) e a raiz ventral é motora (eferente). O gânglio espinal (ou gânglio da raiz dorsal) abriga os corpos celulares dos neurônios sensitivos de primeiro ordem — são neurônios pseudounipolares com um axônio que se bifurca: um ramo vai para a periferia (receptor) e outro entra na medula. O nervo espinal, ao reunir essas duas raízes, torna-se uma estrutura mista. As principais pegadinhas em prova: (1) inverter as funções das raízes; (2) colocar o gânglio na raiz ventral. Na clínica, esta distinção é crucial: lesão isolada da raiz dorsal causa perda sensorial sem déficit motor; lesão da raiz ventral causa paralisia flácida sem perda sensitiva.'
+  },
+  {
+    num: 5, type: 'disc', source: 'AFYA Manacapuru',
+    theme: 'Fisiologia Auditiva',
+    context: 'A audição é um processo complexo que envolve captação, transmissão e interpretação das ondas sonoras.',
+    image: 'data:image/png;base64,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',
+    text: 'A) Descreva o mecanismo de amplificação e transferência das ondas sonoras, destacando as estruturas 1 (pavilhão auricular), 2 (meato acústico), 3 (membrana timpânica), 4 (martelo), 5 (bigorna), 6 (estribo) e 8 (tuba auditiva).\n\nB) Explique como ocorre a mecanotransdução e a transmissão do sinal ao sistema nervoso central, enfatizando as estruturas 9 (cóclea/Órgão de Corti) e 10 (nervo coclear/vestibulococlear).',
+    exp: 'Item A: O pavilhão auricular e meato captam e conduzem o som até o tímpano (3), que vibra e aciona os ossículos (4,5,6). O estribo empurra a janela oval gerando ondas na perilinfa. A tuba auditiva (8) equilibra pressão. Item B: No Órgão de Corti (9), o movimento dos estereocílios contra a membrana tectória abre canais de K⁺, despolarizando a célula ciliada e liberando glutamato para o nervo coclear (10).',
+    deep: 'A questão integra física acústica com neurobiologia sensorial. Item A — O problema fundamental da audição é a transição de meio: o som vem pelo ar (baixa impedância) e precisa chegar à perilinfa coclear (alta impedância). Sem amplificação, ~99,9% da energia seria refletida. Os ossículos resolvem isso com dois mecanismos: (1) diferença de área entre tímpano e janela oval (~17:1) aumenta a pressão; (2) alavanca dos ossículos adiciona ganho mecânico extra (~1,3x). Resultado: ganho total de ~25-30 dB. A tuba auditiva (tuba de Eustáquio) equaliza a pressão do ouvido médio com a atmosférica — essencial para que o tímpano vibre adequadamente. Item B — A mecanotransdução no Órgão de Corti é única: diferente da maioria das células, a despolarização é causada por influxo de K⁺ (e não Na⁺), porque a endolinfa é excepcionalmente rica em K⁺. O movimento dos estereocílios em direção ao kinocílio abre canais mecanossensíveis (PIEZO e TMC1/2). A entrada de K⁺ despolariza a célula, abre canais de Ca²⁺, que triggeriam a exocitose de glutamato para os neurônios do nervo coclear. A via auditiva segue: núcleo coclear → complexo olivar superior → colículo inferior → corpo geniculado medial (tálamo) → córtex auditivo primário (giro temporal transverso de Heschl).'
+  },
+  {
+    num: 6, type: 'mc', source: 'AFYA Santa Inês',
+    theme: 'Neuroanatomia da Memória',
+    context: 'O telencéfalo é composto pelo córtex cerebral e pelos núcleos da base e tem diversas funções complexas, como o controle do movimento, da fala, da percepção sensitiva, da audição, da visão, o pensamento abstrato, a memória, a cognição, entre outras funções.',
+    text: 'De acordo com essa estrutura cerebral, assinale a alternativa que indica estruturas envolvidas na elaboração, evocação ou consolidação de memórias:',
+    opts: [
+      'Putâmen e núcleo accumbens.',
+      'Corpo mamilar e hipocampo.',
+      'Núcleo caudado e corpo mamilar.',
+      'Hipocampo e olivas.'
+    ],
+    g: 1,
+    exp: 'O hipocampo é essencial para formar novas memórias declarativas (fatos e eventos). Os corpos mamilares participam do Circuito de Papez, recebendo informações do hipocampo via fórnice e retransmitindo ao tálamo anterior para consolidação da memória.',
+    deep: 'O Sistema Límbico e as bases anatômicas da memória são temas centrais nesta questão. O Circuito de Papez (1937) é o anel neural da memória: hipocampo → fórnice → corpos mamilares → tálamo anterior → giro cingulado → córtex entorrinal → hipocampo. O hipocampo (formação hipocampal) é essencial para a consolidação de memórias declarativas: episódicas (eventos autobiográficos) e semânticas (fatos). Sua destruição bilateral causa amnésia anterógrada severa (caso famoso: H.M.). Os corpos mamilares, estruturas do hipotálamo posterior, recebem o input hipocampal via fórnice e são lesados no Síndrome de Wernicke-Korsakoff (deficiência de tiamina em alcoolistas), causando amnésia. Por que as outras são erradas? Putâmen e núcleo caudado → motricidade voluntária (circuito extrapiramidal). Núcleo accumbens → recompensa e motivação (via dopaminérgica mesolímbica). Olivas (bulbo) → coordenação motora e memória procedural, não declarativa.'
+  },
+  {
+    num: 7, type: 'mc', source: 'UniREDENTOR',
+    theme: 'Histologia Muscular',
+    context: 'A fibra muscular esquelética é uma célula alongada, estriada e com múltiplos núcleos periféricos. Internamente, a fibra é preenchida por miofibrilas, organizadas em unidades que conferem ao músculo sua aparência estriada, devido à presença de bandas I (claras) e A (escuras) na organização do sarcômero. Além disso, nessa fibra muscular existe o túbulo T, uma invaginação do sarcolema que possibilita a propagação do potencial de ação para o retículo sarcoplasmático.',
+    text: 'De acordo com as características da fibra descritas no enunciado, marque a alternativa correta:',
+    opts: [
+      'As miofibrilas estão presentes na fibra muscular estriada esquelética e são formadas pelos filamentos finos e espessos organizados em sarcômeros.',
+      'O sarcolema de uma fibra muscular estriada é unido a outra célula por um complexo juncional chamado de disco intercalar.',
+      'Para possibilitar a propagação do potencial de ação na fibra esquelética, existe a díade, estrutura formada pelo túbulo T e uma cisterna do retículo sarcoplasmático.',
+      'Na fibra muscular estriada, a banda A nos sarcômeros é formada pelo filamento de actina, enquanto a banda I é formada pelos filamentos de miosina.'
+    ],
+    g: 0,
+    exp: 'As miofibrilas são formadas por filamentos finos (actina) e espessos (miosina) organizados em sarcômeros — a unidade funcional da contração. Discos intercalares e díades são exclusivos do músculo cardíaco; no esquelético existe a TRÍADE.',
+    deep: 'A ultraestrutura do músculo esquelético é um tema recorrente em provas. O sarcômero é delimitado por dois discos Z consecutivos e contém: Banda A (escura, anisotrópica) = filamentos grossos de miosina + sobreposição com actina; Banda I (clara, isotrópica) = apenas filamentos finos de actina; Zona H = apenas miosina (sem actina); Disco M = proteínas de ancoragem da miosina. A contração encurta a Banda I e a Zona H, mas a Banda A permanece constante (Teoria do Filamento Deslizante). Estruturas de condução: TRÍADE (esquelético) = 1 túbulo T flanqueado por 2 cisternas terminais do retículo sarcoplasmático; DÍADE (cardíaco) = 1 túbulo T + 1 cisterna. DISCOS INTERCALARES = exclusivos do cardíaco, contêm desmossomos (adesão mecânica) e junções comunicantes (sincronização elétrica). Inversões entre fibra esquelética e cardíaca são as pegadinhas mais comuns desta área.'
+  },
+  {
+    num: 8, type: 'mc', source: 'UNIGRANRIO Caxias',
+    theme: 'Neuroanatomia Cortical',
+    context: 'No córtex cerebral se organizam neurônios responsáveis por desempenhar funções diversas. A área de associação somestésica ou somatosensorial é importante para a integração e interpretação de informações sensoriais provenientes do corpo. Essa área recebe informações dos receptores sensoriais e as combina com dados de outras áreas cerebrais, permitindo a percepção consciente do toque, da dor, da temperatura e da posição do corpo no espaço.',
+    text: 'Qual das alternativas abaixo descreve corretamente a área de associação somestésica do córtex cerebral?',
+    opts: [
+      'Está diretamente envolvida com a produção da fala, sendo localizada próxima à área de Broca, no lobo frontal.',
+      'Essa região permite o reconhecimento tátil de objetos sem o uso da visão, por meio da integração sensorial.',
+      'A área de associação somestésica é responsável por gerar comandos motores conscientes baseados em estímulos táteis.',
+      'Lesões nessa área geralmente causam afasia, por afetarem diretamente a compreensão da linguagem falada.'
+    ],
+    g: 1,
+    exp: 'A área de associação somestésica (lobo parietal) integra estímulos de toque, pressão e temperatura para permitir o reconhecimento tátil de objetos sem auxílio visual — função chamada estereognosia.',
+    deep: 'O córtex parietal posterior abriga a área de associação somestésica, localizada caudalmente ao giro pós-central (córtex somatossensorial primário, S1). Enquanto S1 processa a qualidade básica do estímulo (localização, intensidade), a área de associação realiza processamento de alto nível: estereognosia (reconhecer objetos pelo tato sem ver), grafestesia (reconhecer letras/números escritos na pele), discriminação de dois pontos e senso de posição corporal no espaço. Lesão → agnosia tátil e negligência contralateral. Comparando com outras áreas: Área de Broca (giro frontal inferior, lobo frontal) → produção da fala; afasia de Broca = fala não-fluente. Área de Wernicke (giro temporal superior, lobo temporal) → compreensão da linguagem; afasia de Wernicke = fala fluente mas sem sentido. Córtex motor primário (giro pré-central) → execução dos movimentos voluntários. A área de associação somestésica pode informar o planejamento motor, mas não gera comandos motores diretamente.'
+  },
+  {
+    num: 9, type: 'disc', source: 'UNIGRANRIO Caxias',
+    theme: 'Vias Somestésicas',
+    context: 'Um paciente sofreu um ferimento cortante profundo na região lateral do braço, próximo ao cotovelo, e passou a relatar perda parcial da sensibilidade ao toque e à pressão na mão do mesmo lado, especialmente na região do polegar e indicador. No exame clínico, a força muscular estava preservada, mas a sensibilidade tátil discriminativa estava reduzida.',
+    text: 'Explique quais neurônios e vias somestésicas estão envolvidos na condução do tato discriminativo, desde a periferia até o córtex cerebral, e como a lesão descrita pode ter causado o sintoma relatado.',
+    exp: 'Via envolvida: coluna dorsal-lemnisco medial. 1º neurônio: gânglio espinal (raiz dorsal) → sobe ipsilateralmente pela coluna dorsal. 2º neurônio: núcleos grácil/cuneiforme (bulbo) → cruza e sobe pelo lemnisco medial até o tálamo. 3º neurônio: tálamo → córtex somatossensorial (giro pós-central). A lesão periférica afetou fibras do 1º neurônio, preservando as raízes motoras (força mantida).',
+    deep: 'A via da coluna dorsal-lemnisco medial conduz tato discriminativo (fino), propriocepção consciente e vibração. Detalhes: 1º neurônio — corpo celular no gânglio espinal (raiz dorsal); axônio periférico vai aos mecanorreceptores (Corpúsculos de Meissner — toque leve; Corpúsculos de Pacini — vibração/pressão); axônio central sobe ipsilateralmente pelo funículo posterior (trato grácil — membros inferiores; trato cuneiforme — membros superiores). 2º neurônio — faz sinapse nos núcleos grácil e cuneiforme do bulbo; o axônio cruza a linha média (decussação das lemniscos) e forma o lemnisco medial, ascendendo até o núcleo ventral póstero-lateral (VPL) do tálamo. 3º neurônio — do tálamo ao córtex somatossensorial primário (área 3,1,2 de Brodmann, giro pós-central). Clínica desta questão: lesão de nervo periférico (1º neurônio) no braço → perda sensitiva ipsilateral no território do nervo lesado (C6: polegar e indicador) + força preservada (raízes motoras intactas). Contraste importante: lesão medular unilateral (Síndrome de Brown-Séquard) → perda de tato fino ipsilateral + perda de dor/temperatura contralateral.'
+  },
+  {
+    num: 10, type: 'mc', source: 'FASA-VIC',
+    theme: 'Tronco Encefálico',
+    context: 'O tronco encefálico é uma estrutura vital para a regulação de funções autonômicas, integração de vias sensoriais e motoras, e comunicação entre encéfalo e medula espinhal. Sua organização anatômica inclui três divisões principais: bulbo, ponte e mesencéfalo, cada uma com núcleos específicos e funções especializadas.',
+    text: 'A partir desse contexto, marque a alternativa que descreva corretamente funções associadas ao tronco encefálico:',
+    opts: [
+      'O mesencéfalo contém os colículos superiores (associados à visão) e inferiores (associados à audição), e é o local dos núcleos e da emergência do nervo troclear (IV).',
+      'A formação reticular conta com núcleos importantes ricos em noradrenalina, para a regulação da homeostase, e, graças ao SARA, atua evocando memórias de longo prazo.',
+      'A ponte e suas fibras transversais atuam primariamente na regulação da temperatura corporal e no controle endócrino, com alguma participação na coordenação motora.',
+      'O bulbo é responsável pelo controle motor voluntário e involuntário, devido aos tratos que abriga, e abriga também os núcleos dos nervos cranianos olfatório (I) e óptico (II).'
+    ],
+    g: 0,
+    exp: 'O mesencéfalo contém colículos superiores (reflexos visuais) e inferiores (reflexos auditivos). O nervo troclear (NC IV) é o único craniano que emerge dorsalmente, no mesencéfalo.',
+    deep: 'O tronco encefálico possui anatomia complexa com funções precisas por segmento. MESENCÉFALO: colículos superiores (reflexos visuais, como piscar reflexo); colículos inferiores (reflexos auditivos e relay da via auditiva); substância negra (dopaminérgica — via nigroestriatal); núcleo rubro (via rubroespinal); NC III (oculomotor) e NC IV (troclear — único que emerge dorsalmente e cruza antes de emergir!). PONTE: NC V (trigêmeo), VI (abducente), VII (facial), VIII (vestibulococlear); núcleos pontinos (relay para o cerebelo); centro pneumotáxico e apnêustico (controle respiratório). BULBO: NC IX, X, XI, XII; núcleo do trato solitário (gustação, visceral); núcleos grácil e cuneiforme; centros vitais (cardiovascular, respiratório, vasomotor). NC I e II NÃO estão no bulbo — são extensões do próprio encéfalo, não nervos espinais típicos. A formação reticular, embora regule o sono-vigília via SARA, não evoca memórias de longo prazo (função hipocampal). Controle endócrino e temperatura → hipotálamo, não o tronco.'
+  },
+  {
+    num: 11, type: 'mc', source: 'UNIDEP',
+    theme: 'Líquor (LCE)',
+    context: 'O líquido cefalorraquidiano, também conhecido como líquor, está presente nos ventrículos cerebrais, no canal central da medula espinal e no espaço subaracnoide. Sua principal função é proteger o encéfalo, atuando no amortecimento de impactos.',
+    assertions: [
+      'I. As junções de oclusão entre as células ependimárias dos plexos corioides formam a barreira hematoliquórica, que impede a passagem livre de substâncias e obriga aquelas que compõem o líquor a atravessarem essas células.',
+      'II. O líquor flui do quarto ventrículo para o terceiro ventrículo pelos forames interventriculares. Em seguida, passa para o ventrículo lateral pelo aqueduto cerebral e chega ao espaço subaracnoide através dos forames laterais e medial.',
+      'III. A produção de líquor depende do transporte ativo de sódio pelas células ependimárias dos plexos corioides. O sódio, por possuir carga positiva, atrai o cloreto e o composto formado provoca a passagem de água para dentro dos ventrículos.',
+      'IV. A absorção do líquor ocorre através das vilosidades aracnoides, projeções digitiformes da membrana aracnoide que se estendem através da lâmina meníngea da dura-máter até os seios venosos, especialmente o seio sagital superior.'
+    ],
+    text: 'Sobre a produção, circulação e absorção do líquor, analise as afirmativas acima. Assinale a alternativa que apresente todas as afirmativas corretas:',
+    opts: ['I, II e III.', 'I, III e IV.', 'I e IV.', 'I, II e IV.'],
+    g: 1,
+    exp: 'Corretas: I, III e IV. A afirmativa II está errada porque inverte o fluxo: o líquor vai dos ventrículos laterais → III ventrículo (pelo forame de Monro) → IV ventrículo (pelo aqueduto de Sylvius) → espaço subaracnoide.',
+    deep: 'A hidrodinâmica do LCE é um tema frequente e exige memorização do trajeto correto. PRODUÇÃO: plexos coroides dos ventrículos (principalmente laterais) produzem ~500 mL/dia, mas apenas ~150 mL estão em circulação a qualquer momento (reabsorção contínua). Mecanismo bioquímico: bomba Na⁺/K⁺-ATPase na borda luminal das células coroidais bombeia Na⁺ para dentro do ventrículo → Cl⁻ segue eletricamente → osmose puxa H₂O. TRAJETO CORRETO: Ventrículos laterais → Forames interventriculares de Monro → III Ventrículo → Aqueduto cerebral de Sylvius → IV Ventrículo → Forames de Luschka (laterais) e Magendie (medial) → Espaço subaracnoide → Granulações aracnoideas de Pacchioni → Seio sagital superior. A afirmativa II inverte completamente este fluxo (descreve IV→III, que é impossível anatomicamente). BARREIRA HEMATOLIQUÓRICA: formada por junções oclusivas (tight junctions) das células ependimárias dos plexos coroides — controla rigorosamente a composição do LCE. ABSORÇÃO: granulações aracnoideas funcionam como válvulas unidirecionais dependentes de pressão: quando a pressão do LCE > pressão venosa, o LCE flui para os seios. Bloqueio da absorção → hidrocefalia comunicante.'
+  },
+  {
+    num: 12, type: 'mc', source: 'UNIMA',
+    theme: 'Histologia Óssea',
+    context: 'F.R., 45 anos, masculino, foi encaminhado ao hospital vítima de assalto à mão armada com duas perfurações por arma de fogo: fratura exposta de fêmur esquerdo e fratura da tíbia direita. Nos locais de fratura óssea ocorre hemorragia, destruição de matriz e morte de células ósseas.',
+    assertions: [
+      'I. O coágulo sanguíneo e os restos celulares e da matriz devem ser removidos pelos macrófagos para iniciar a regeneração óssea.',
+      'II. O periósteo e o endósteo não participam da resposta à fratura, sendo o colar formado apenas por células hematopoiéticas.',
+      'III. O colar conjuntivo dá origem a tecido ósseo maduro diretamente, sem participação de ossificação endocondral.',
+      'IV. O calo ósseo envolve a extremidade dos ossos fraturados e é formado por tecido ósseo imaturo que une provisoriamente as partes.'
+    ],
+    text: 'Para que a reparação se inicie, avalie as proposições acima. Selecione a alternativa correta:',
+    opts: [
+      'Apenas as proposições I e III estão corretas.',
+      'Apenas as proposições II e IV estão corretas.',
+      'Apenas as proposições I e IV estão corretas.',
+      'Apenas as proposições I e II estão corretas.'
+    ],
+    g: 2,
+    exp: 'Corretas: I e IV. Os macrófagos removem o hematoma e detritos (I) e o calo ósseo imaturo une provisoriamente os fragmentos (IV). O periósteo e endósteo são essenciais para o reparo (II incorreta), e a ossificação endocondral participa do processo (III incorreta).',
+    deep: 'O reparo ósseo segue uma cronologia biológica rigorosa de 4 fases: FASE 1 — Hematoma e inflamação (dias 1-5): após a fratura, vasos se rompem formando hematoma. Macrófagos e monócitos removem detritos e coágulo (afirmativa I correta), liberando citocinas que recrutam células-tronco. FASE 2 — Calo mole (semanas 1-3): fibroblastos e condroblastos do periósteo e endósteo (fontes principais de células osteoprogenitoras — afirmativa II errada!) formam o colar periosteal. O calo mole é cartilaginoso. FASE 3 — Calo duro (semanas 3-12): ossificação endocondral (substituição da cartilagem por osso) e intramembranosa (formação direta de osso pelo periósteo externo) convertem o calo mole em calo ósseo imaturo (primário, woven bone) — afirmativa III errada por excluir a ossificação endocondral; afirmativa IV correta, o calo é de osso imaturo que une provisoriamente as partes. FASE 4 — Remodelação (meses a anos): osteoclastos reabsorvem e osteoblastos depositam osso lamelar ao longo das linhas de tensão (Lei de Wolff).'
+  },
+  {
+    num: 13, type: 'mc', source: 'AFYA Bragança',
+    theme: 'Neurotransmissores',
+    context: 'A neurotransmissão consiste no mecanismo básico de comunicação celular em boa parte do sistema nervoso, tanto na divisão central quanto na periférica. Conta com mecanismos reguladores da sua atividade e ainda com a liberação de co-transmissores que auxiliam na ação do "neurotransmissor efetor" daquele sistema.',
+    text: 'Relacione os neurotransmissores da Coluna A com os locais de liberação e efeitos da Coluna B:\n\nColuna A: I. Acetilcolina | II. Noradrenalina\nColuna B: A. Junção neuromuscular – indução da contração muscular | B. Nó sinoatrial – aumento da frequência de disparo | C. Vasos sanguíneos – vasoconstrição | D. Pulmões – Broncoconstrição\n\nAssinale a alternativa de correlação correta:',
+    opts: [
+      'II-A; II-B; I-C; I-D.',
+      'I-A; I-B; II-C; II-D.',
+      'I-A; II-B; II-C; I-D.',
+      'II-A; I-B; II-C; I-D.'
+    ],
+    g: 2,
+    exp: 'Acetilcolina (I): junção neuromuscular (A) e broncoconstrição pulmonar (D). Noradrenalina (II): nó sinoatrial/aumento da FC (B) e vasoconstrição (C). ACh é o transmissor somático e parassimpático; NA é o mediador simpático.',
+    deep: 'Esta questão exige domínio do Sistema Nervoso Autônomo e Motor Somático. ACETILCOLINA (ACh): neurotransmissor da junção neuromuscular (receptores nicotínicos → contração esquelética), do parassimpático pós-ganglionar (receptores muscarínicos) e de todos os gânglios autonômicos. Efeitos parassimpáticos: bradicardia (no nó sinoatrial a ACh diminui a FC, não aumenta!), broncoconstrição, vasodilatação via óxido nítrico, aumento da peristálse ("rest and digest"). NORADRENALINA (NA): neurotransmissor simpático pós-ganglionar (exceto glândulas sudoríparas). Efeitos α1: vasoconstrição, midríase. Efeitos β1: taquicardia, aumento da contratilidade cardíaca. Efeitos β2: broncodilatação (adrenalina > NA). Atenção ao "B" da questão: NA aumenta a FC no nó sinoatrial (efeito β1 cronotrópico positivo) — correto. A ACh faria o oposto (diminuiria). Os pulmões têm inervação simpática discreta; o broncoespasmo (D) é mediado principalmente por ACh (parassimpático), e a broncodilatação pelo simpático via adrenalina/β2.'
+  },
+  {
+    num: 14, type: 'mc', source: 'UniREDENTOR',
+    theme: 'Fisiologia Muscular',
+    context: 'O medicamento à base de Bupropiona é indicado para tratamento da dependência à nicotina, como adjuvante na cessação tabágica. Manter este medicamento longe de crianças deve ser uma preocupação, pois uma overdose de nicotina pode resultar em danos na fisiologia dos músculos respiratórios.',
+    text: 'Considerando a fisiologia muscular, o princípio ativo do fármaco em questão (nicotina) e o seu efeito nos processos de excitação e contração dos músculos estriados esqueléticos, assinale a alternativa correta:',
+    opts: [
+      'O excesso do fármaco em questão desencadeia uma alta atividade de excitação e uma contratilidade contínua do músculo estriado esquelético.',
+      'O excesso de nicotina promove uma redução de cálcio no citoplasma, gerando mudança na tropomiosina e assim permitindo a ligação entre a miosina e a actina.',
+      'Receptores nicotínicos ativados permitem o influxo de sódio e o efluxo de potássio, levando a uma despolarização. O excesso de fármaco nesta região possibilita o alto grau de relaxamento.',
+      'A junção neuromuscular de um músculo estriado esquelético é formada por terminais axônicos de fibras nervosas do tipo noradrenérgico e fibras musculares de receptores nicotínicos.'
+    ],
+    g: 0,
+    exp: 'A nicotina, agonista colinérgico nos receptores nicotínicos da junção neuromuscular, em excesso causa ativação contínua → contratilidade ininterrupta (tetania) dos músculos esqueléticos respiratórios, impedindo o relaxamento necessário para a respiração.',
+    deep: 'Mecanismo de ação normal na JNM: acetilcolina se liga ao receptor nicotínico (canal iônico ligante) → influxo de Na⁺ e efluxo de K⁺ → despolarização da placa motora → potencial de ação → túbulos T → receptor di-hidropiridina (sensor de voltagem) → ativa receptor rianodina → liberação de Ca²⁺ do retículo sarcoplasmático → Ca²⁺ liga à troponina C → tropomiosina sai do sulco → sítios da actina expostos → ligação de actina-miosina → deslizamento dos filamentos → CONTRAÇÃO. A nicotina MIMETIZA a ACh, ativando persistentemente os receptores nicotínicos → despolarização bloqueante: inicialmente contração excessiva (fasciculações), depois bloqueio despolarizante (paralisia flácida). Na overdose pediátrica, a paralisia dos músculos respiratórios é o principal risco de morte. Por que as outras estão erradas? B) O Ca²⁺ AUMENTA (não reduz) para permitir contração. C) O influxo de Na⁺ causa despolarização que leva à CONTRAÇÃO, não ao relaxamento. D) A JNM do esquelético é COLINÉRGICA (não noradrenérgica) — a noradrenalina atua no sistema autônomo simpático.'
+  },
+  {
+    num: 15, type: 'mc', source: 'UNIGRANRIO Caxias',
+    theme: 'Núcleos da Base',
+    context: 'Um paciente com lentidão motora progressiva (bradicinesia) e rigidez muscular é avaliado por suspeita de disfunção nos núcleos da base.',
+    text: 'Considerando as vias D1 e D2, qual das alternativas está correta sobre sua função e regulação motora?',
+    opts: [
+      'A via indireta age inibindo os neurônios dopaminérgicos da substância negra, bloqueando a atividade do córtex motor.',
+      'A via direta ativa o núcleo subtalâmico, promovendo a inibição do córtex motor e bloqueando o movimento.',
+      'A via direta (D1) inibe o globo pálido interno, facilitando a liberação de estímulos motores pelo tálamo.',
+      'A via indireta (D2) facilita o movimento ao estimular diretamente o tálamo, promovendo atividade motora voluntária.'
+    ],
+    g: 2,
+    exp: 'A via direta (receptores D1) usa o princípio da "dupla inibição": dopamina → ativa neurônios estriatais D1 → inibem o globo pálido interno (GPi) → GPi desinibido libera o tálamo → tálamo estimula o córtex motor → MOVIMENTO facilitado.',
+    deep: 'Os núcleos da base são o circuito extrapiramidal de modulação motora. Compreender as vias é fundamental para entender o Parkinson. VIA DIRETA (pró-cinética, facilitadora do movimento): SNc libera DA → receptores D1 no estriado → ativa neurônios GABAérgicos do estriado → inibem o GPi → GPi desinibido de inibir o tálamo → tálamo ativo → córtex motor ativo → MOVIMENTO. VIA INDIRETA (anti-cinética, inibidora do movimento): SNc libera DA → receptores D2 no estriado → inibe neurônios GABAérgicos → desinibe GPe → GPe ativo inibe núcleo subtalâmico (NST) → NST menos ativo → GPi menos ativo → tálamo mais livre → mais movimento (a dopamina também facilita via D2 ao atenuar a inibição). PARKINSON: degeneração da SNc → queda de dopamina → via direta hipofuncionante + via indireta hiperfuncionante → GPi superativo → tálamo suprimido → bradicinesia, rigidez, tremor de repouso. Tratamento: levodopa (precursor da DA) repõe o transmissor. Alternativas erradas: A) A via indireta não inibe diretamente a SNc. B) O NST é da via indireta. D) A via D2 não estimula diretamente o tálamo.'
+  }
+];
+
+
+var S={cur:0,ans:Array(Q.length).fill(null),done:Array(Q.length).fill(false),sel:null,deep:Array(Q.length).fill(false)};
+
+function boot(){buildPills();renderQ();}
+
+function buildPills(){
+  var c=document.getElementById('pills');c.innerHTML='';
+  Q.forEach(function(q,i){
+    var b=document.createElement('button');
+    b.className='pill';b.textContent=i+1;b.id='p'+i;
+    b.onclick=function(){goto(i);};c.appendChild(b);
+  });syncPills();
+}
+function syncPills(){
+  Q.forEach(function(q,i){
+    var p=document.getElementById('p'+i);if(!p)return;
+    p.className='pill';
+    if(i===S.cur){p.classList.add('active');return;}
+    if(S.done[i]){p.classList.add(q.type==='disc'?'disc':(S.ans[i]===q.g?'ok':'err'));}
+  });
+}
+
+function goto(i){S.cur=i;S.sel=S.ans[i];renderQ();syncPills();}
+function prev(){if(S.cur>0)goto(S.cur-1);}
+function nextQ(){if(S.cur<Q.length-1)goto(S.cur+1);}
+
+function renderQ(){
+  var q=Q[S.cur];
+  var isDone=S.done[S.cur];
+  var html='<div class="q-meta"><span class="q-tag">Questao '+q.num+'</span>';
+  if(q.type==='disc')html+='<span class="q-tag-disc">Discursiva</span>';
+  html+='<span class="q-theme">'+q.theme+'</span><span class="q-source">'+q.source+'</span></div><div class="q-card">';
+  if(q.context)html+='<div class="q-context">'+q.context+'</div>';
+  if(q.image)html+='<img src="'+q.image+'" class="q-image" alt="Diagrama da questao">';
+  if(q.assertions){
+    html+='<div class="q-assertions">';
+    q.assertions.forEach(function(a){
+      if(a==='PORQUE')html+='<p class="porque">PORQUE</p>';
+      else html+='<p>'+a+'</p>';
+    });
+    html+='</div>';
+  }
+  html+='<div class="q-text">'+q.text.replace(/\n/g,'<br>')+'</div>';
+  if(q.type==='mc'){
+    var ltrs=['A','B','C','D'];
+    html+='<div class="opts">';
+    q.opts.forEach(function(opt,i){
+      var cls='opt';var icon='';
+      if(isDone){
+        cls+=' done';
+        if(i===q.g){cls+=' hit';icon='<span class="opt-icon">\u2713</span>';}
+        else if(i===S.ans[S.cur]){cls+=' miss';icon='<span class="opt-icon">\u2717</span>';}
+      } else if(S.sel===i){cls+=' sel';}
+      var clickHandler=isDone?'':' onclick="pickOpt('+i+')"';
+      html+='<div class="'+cls+'"'+clickHandler+'><span class="opt-ltr">'+ltrs[i]+'</span><span class="opt-txt">'+opt+'</span>'+icon+'</div>';
+    });
+    html+='</div>';
+  } else {
+    var val=isDone?(S.ans[S.cur]||''):'';
+    html+='<textarea class="disc" id="discTA" placeholder="Escreva sua resposta aqui..."'+(isDone?' disabled':'')+'>'+val+'</textarea>';
+  }
+  if(isDone){
+    var isOk=q.type==='mc'&&S.ans[S.cur]===q.g;
+    var fbCls=q.type==='disc'?'fb-disc':(isOk?'fb-ok':'fb-err');
+    var fbLbl=q.type==='disc'?'\u270d Gabarito Comentado':(isOk?'\u2713 Resposta correta':'\u2717 Resposta incorreta');
+    html+='<div class="feedback '+fbCls+'"><div class="fb-label">'+fbLbl+'</div><div class="fb-text">'+q.exp+'</div><div class="deep-divider"></div><button class="btn-deep" onclick="toggleDeep('+S.cur+')">\u2736 Aprofundar com IA</button><div class="deep-content'+(S.deep[S.cur]?' open':'')+'" id="dc'+S.cur+'">'+q.deep+'</div></div>';
+  }
+  html+='</div>';
+  var wrap=document.getElementById('quizWrap');
+  wrap.innerHTML='<div class="q-wrap">'+html+'</div>';
+  renderBottom();
+}
+
+function renderBottom(){
+  var q=Q[S.cur];var isDone=S.done[S.cur];
+  document.getElementById('btnPrev').disabled=S.cur===0;
+  document.getElementById('ctrQ').textContent=S.cur+1;
+  var zone=document.getElementById('btnZone');
+  var canAnswer=!isDone&&(q.type==='disc'||S.sel!==null);
+  var zhtml='';
+  if(!isDone)zhtml='<button class="btn-answer" id="btnAnswer" onclick="doAnswer()"'+(canAnswer?'':' disabled')+'>Responder</button>';
+  zhtml+='<button class="btn-nav" onclick="nextQ()"'+(S.cur===Q.length-1?' disabled':'')+'>Proxima \u2192</button>';
+  zone.innerHTML=zhtml;
+}
+
+function pickOpt(i){
+  S.sel=i;
+  document.querySelectorAll('.opt').forEach(function(el,idx){
+    el.className='opt'+(idx===i?' sel':'');
+    el.querySelector('.opt-ltr').className='opt-ltr';
+  });
+  var btn=document.getElementById('btnAnswer');
+  if(btn)btn.disabled=false;
+}
+
+function doAnswer(){
+  var q=Q[S.cur];
+  if(q.type==='mc'){S.ans[S.cur]=S.sel;}
+  else{var ta=document.getElementById('discTA');S.ans[S.cur]=ta?ta.value:'';}
+  S.done[S.cur]=true;syncPills();renderQ();
+  if(S.done.every(function(x){return x;}))setTimeout(showResults,600);
+}
+
+function toggleDeep(i){
+  S.deep[i]=!S.deep[i];
+  var el=document.getElementById('dc'+i);
+  if(el)el.classList.toggle('open',S.deep[i]);
+}
+
+function showResults(){
+  document.getElementById('quizWrap').style.display='none';
+  document.getElementById('bottomBar').style.display='none';
+  var mcQs=Q.filter(function(q){return q.type==='mc';});
+  var discQs=Q.filter(function(q){return q.type==='disc';});
+  var correct=mcQs.filter(function(q){return S.ans[Q.indexOf(q)]===q.g;}).length;
+  var total=mcQs.length;
+  var pct=Math.round(correct/total*100);
+  var themes={};
+  Q.forEach(function(q,i){
+    if(!themes[q.theme])themes[q.theme]={t:0,c:0};
+    themes[q.theme].t++;
+    if(q.type==='mc'&&S.ans[i]===q.g)themes[q.theme].c++;
+    else if(q.type==='disc')themes[q.theme].c+=0.5;
+  });
+  var errors=Q.filter(function(q,i){return q.type==='mc'&&S.done[i]&&S.ans[i]!==q.g;});
+  var weakThemes=Object.entries(themes).filter(function(e){return e[1].c/e[1].t<0.5;}).map(function(e){return e[0];});
+  var topWeak=weakThemes[0]||'\u2014';
+  var titleTxt=pct>=70?'Bom trabalho!':pct>=50?'Continue praticando!':'N\u00e3o desista!';
+  var html='<div class="res-hero"><div class="res-circle"><span class="res-pct">'+pct+'%</span><span class="res-pct-lbl">MC</span></div><div class="res-title">'+titleTxt+'</div><div class="res-sub">Voc\u00ea acertou '+correct+' de '+total+' quest\u00f5es de m\u00faltipla escolha</div></div>';
+  html+='<div class="res-stats"><div class="res-stat"><div class="res-stat-n ok">'+correct+'</div><div class="res-stat-lbl">MC corretas</div></div><div class="res-stat"><div class="res-stat-n err">'+(total-correct)+'</div><div class="res-stat-lbl">MC erradas</div></div><div class="res-stat"><div class="res-stat-n dc">'+discQs.length+'</div><div class="res-stat-lbl">Discursivas</div></div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Desempenho por Tema</div><div class="res-section-body">';
+  Object.entries(themes).forEach(function(e){
+    var name=e[0];var d=e[1];
+    var tp=Math.round(d.c/d.t*100);
+    var isDiscOnly=d.t===1&&Q.find(function(q){return q.theme===name;}).type==='disc';
+    var label=isDiscOnly?'Disc.':tp+'%';
+    var color=tp>=70?'var(--green)':tp>=40?'var(--purple)':'var(--red)';
+    html+='<div class="theme-row"><div class="theme-top"><span class="theme-name">'+name+'</span><span class="theme-pct">'+label+'</span></div><div class="theme-bar-bg"><div class="theme-bar" style="width:'+tp+'%;background:'+color+'" data-w="'+tp+'"></div></div></div>';
+  });
+  html+='</div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Insights</div><div class="res-section-body"><div class="insights-grid"><div class="insight-card"><div class="insight-lbl">Ponto mais fraco</div><div class="insight-val">'+topWeak+'</div><div class="insight-sub">Maior \u00e1rea de melhoria</div></div><div class="insight-card"><div class="insight-lbl">MC acertadas</div><div class="insight-val">'+correct+'/'+total+'</div><div class="insight-sub">Revise antes da prova</div></div><div class="insight-card"><div class="insight-lbl">MC erradas</div><div class="insight-val">'+(total-correct)+'</div><div class="insight-sub">M\u00faltipla escolha</div></div><div class="insight-card"><div class="insight-lbl">Discursivas</div><div class="insight-val">'+discQs.length+'</div><div class="insight-sub">Quest\u00f5es abertas</div></div></div></div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Revis\u00e3o por Quest\u00e3o</div><div class="res-section-body">';
+  if(errors.length===0){html+='<div class="review-empty">Nenhum erro nas m\u00faltipla escolha \ud83c\udf89</div>';}
+  else{errors.forEach(function(q){var i=Q.indexOf(q);html+='<div class="review-item" onclick="revisit('+i+')"><div class="review-num">'+q.num+'</div><div class="review-text"><strong>'+q.theme+'</strong>'+q.text.substring(0,80)+'\u2026</div></div>';});}
+  html+='</div></div><button class="btn-retry" onclick="resetQuiz()">\u21ba Tentar novamente</button>';
+  var rs=document.getElementById('results');rs.innerHTML=html;rs.classList.add('on');
+  setTimeout(function(){
+    document.querySelectorAll('.theme-bar').forEach(function(el){
+      var w=el.dataset.w;el.style.width='0%';
+      setTimeout(function(){el.style.width=w+'%';},80);
+    });
+  },80);
+}
+
+function revisit(i){
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('quizWrap').style.display='';
+  document.getElementById('bottomBar').style.display='';
+  goto(i);window.scrollTo(0,0);
+}
+
+function resetQuiz(){
+  if(!confirm('Resetar a prova? Todo progresso ser\u00e1 perdido.'))return;
+  S={cur:0,ans:Array(Q.length).fill(null),done:Array(Q.length).fill(false),sel:null,deep:Array(Q.length).fill(false)};
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('quizWrap').style.display='';
+  document.getElementById('bottomBar').style.display='';
+  syncPills();renderQ();window.scrollTo(0,0);
+}
+
+boot();
+</script>
+</body>
+</html>
