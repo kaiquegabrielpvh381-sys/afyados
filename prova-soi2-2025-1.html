@@ -66,22 +66,25 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 .opts{display:flex;flex-direction:column;gap:8px;}
 .opt{display:flex;align-items:center;gap:12px;padding:11px 45px 11px 14px;border-radius:9px;border:1.5px solid var(--border);background:rgba(255,255,255,0.018);cursor:pointer;transition:all .15s;position:relative;}
 
-/* Efeitos de Hover padrão */
+/* Efeitos de Hover padrão (somente se não estiver desativada nem eliminada) */
 .opt:hover:not(.done):not(.eliminated){border-color:rgba(200,0,106,0.4);background:var(--primary-light);}
+
+/* Opção Selecionada */
 .opt.sel{border-color:var(--primary);background:var(--primary-light);}
 .opt-ltr{width:24px;height:24px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;background:rgba(255,255,255,0.05);color:var(--text-3);transition:all .15s;}
 .opt.sel .opt-ltr{background:var(--primary);color:#fff;}
 .opt-txt{font-size:0.845rem;line-height:1.5;color:var(--text);flex:1;transition:all .15s;}
 .opt-icon{margin-left:auto;font-size:0.9rem;flex-shrink:0;padding-top:2px;}
 
-/* FERRAMENTA DE ELIMINAÇÃO (Risco vermelho) */
-.btn-eliminate{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:14px;font-weight:900;transition:all .2s;cursor:pointer;z-index:10;background:transparent;border:1.5px solid transparent;font-family:sans-serif;}
-.btn-eliminate:hover{color:var(--red);background:var(--red-light);border-color:rgba(199,51,72,0.3);}
-.opt.eliminated .opt-txt{text-decoration:line-through;text-decoration-color:var(--red);opacity:0.4;}
-.opt.eliminated .opt-ltr{opacity:0.4;}
-.opt.eliminated .btn-eliminate{color:var(--red);border-color:var(--red);}
-.opt.eliminated{border-color:rgba(255,255,255,0.03);background:rgba(255,255,255,0.01);}
-.opt.done .btn-eliminate{display:none;}
+/* FERRAMENTA DE ELIMINAÇÃO (Risco vermelho estilo Qconcursos) */
+.btn-eliminate{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:4px;border:1.5px solid var(--border-2);background:transparent;color:var(--text-3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;cursor:pointer;z-index:10;transition:all .2s;font-family:sans-serif;}
+.btn-eliminate:hover{color:var(--red);border-color:var(--red);background:var(--red-light);}
+/* Estilos aplicados quando a opção é eliminada */
+.opt.eliminated .opt-txt, .opt.eliminated .opt-ltr {text-decoration:line-through;text-decoration-color:var(--red);opacity:0.4;}
+.opt.eliminated .btn-eliminate {color:var(--red);border-color:var(--red);}
+.opt.eliminated {background:transparent;border-color:rgba(255,255,255,0.03);}
+/* Esconder o X quando a questão já foi respondida */
+.opt.done .btn-eliminate {display:none;}
 
 /* Pós-resposta (Gabarito) */
 .opt.done{cursor:default;}
@@ -207,7 +210,7 @@ textarea.disc:disabled{opacity:0.7;cursor:default;}
 const Q = [
   {
     num: 1, type: 'mc', source: 'UNISL Porto Velho',
-    theme: 'Biomecânica e Estruturas do Joelho',
+    theme: 'Anatomia do Joelho',
     context: 'A articulação do joelho é classificada como sinovial do tipo dobradiça modificada e apresenta estruturas osteomioarticulares que garantem sua estabilidade e funcionalidade. Os ligamentos, os músculos e as superfícies articulares desempenham papéis fundamentais no controle do movimento e na proteção contra forças externas.',
     assertions: [
       'I. O joelho é formado pelos ossos fêmur, tíbia e patela, sendo estabilizado por estruturas ligamentares, como os ligamentos cruzados e colaterais, que controlam os movimentos excessivos e protegem contra os deslocamentos anormais.',
@@ -223,14 +226,14 @@ const Q = [
   },
   {
     num: 2, type: 'mc', source: 'ITPAC Porto Nacional',
-    theme: 'Nervos Cranianos e Sentidos Especiais',
+    theme: 'Nervos Cranianos',
     context: 'Um paciente de 60 anos apresenta-se na clínica com queixa de perda progressiva do olfato (anosmia) e dificuldade em perceber sabores. Além disso, o paciente relata zumbido constante e perda de equilíbrio ao caminhar. Durante o exame neurológico, foram constatadas alterações nos movimentos oculares e na visão periférica.',
     assertions: [
       'I. Os sintomas de anosmia, zumbido e dificuldade de equilíbrio no paciente indicam um comprometimento dos nervos olfatório (I) e vestibulococlear (VIII).',
       'PORQUE',
       'II. O nervo olfatório (I) é responsável pela percepção dos odores, enquanto o nervo vestibulococlear (VIII) é responsável pelas funções auditivas e pelo equilíbrio.'
     ],
-    text: 'Considerando esse contexto, avalie as asserções abaixo e a relação proposta entre elas. Assinale a opção correta:',
+    text: 'Considerando esse contexto, avalie as asserções acima e a relação proposta entre elas. Assinale a opção correta:',
     opts: [
       'Ambas as asserções estão corretas, mas a asserção II não justifica a asserção I.',
       'Ambas as asserções estão corretas, e a asserção II justifica a asserção I.',
@@ -367,13 +370,13 @@ const Q = [
       'I, II e IV.'
     ],
     g: 1,
-    exp: 'A alternativa correta é a B, validando I, III e IV. O líquor é produzido nos plexos corioides por transporte de íons que atrai água, e circula unidirecionalmente, sendo reabsorvido nos seios venosos. A afirmativa II está incorreta porque inverte o fluxo (o líquor flui do terceiro para o quarto ventrículo).',
+    exp: 'A alternativa correta é a B, validando I, III e IV. O líquor é produzido nos plexos corioides por transporte de íons que atrai água, e circula unidirecionalmente, sendo reabsorvido nos seios venosos. A afirmativa II está incorreta porque inverte o fluxo.',
     deep: 'A hidrodinâmica do SNC exige um trajeto preciso: ventrículos laterais → Monro → III ventrículo → Aqueduto → IV ventrículo → Espaço subaracnoide. A afirmação II é o erro clássico de prova ao inverter essa sequência. Bioquimicamente, o bombeamento de Na⁺ cria um gradiente osmótico que "puxa" água do plasma capilar para os ventrículos (III), enquanto as junções de oclusão (1) garantem a seletividade dessa "filtragem". A absorção final ocorre por pressão nas granulações aracnoideas para o sistema venoso (IV).'
   },
   {
     num: 12, type: 'mc', source: 'UNIMA',
-    theme: 'Histologia e Regeneração Óssea em Fraturas',
-    context: 'F. R., 45 anos, masculino, foi encaminhado para hospital vítima de assalto à mão armada. No exame clínico, observam-se duas perfurações por arma de fogo... Nesse contexto, sabendo-se que nos locais de fratura óssea ocorre hemorragia, destruição de matriz e morte de células ósseas, e que para a reparação se iniciar, é necessário que:',
+    theme: 'Histologia Óssea',
+    context: 'F. R., 45 anos, masculino... vítima de assalto à mão armada. No exame clínico, observam-se duas perfurações por arma de fogo... Nesse contexto, sabendo-se que nos locais de fratura óssea ocorre hemorragia, destruição de matriz e morte de células ósseas, e que para a reparação se iniciar, é necessário que:',
     assertions: [
       'I. O coágulo sanguíneo e os restos celulares e da matriz devem ser removidos pelos macrófagos para iniciar a regeneração óssea.',
       'II. O periósteo e o endósteo não participam da resposta à fratura, sendo o colar formado apenas por células hematopoiéticas.',
@@ -393,7 +396,7 @@ const Q = [
   },
   {
     num: 13, type: 'mc', source: 'AFYA Bragança',
-    theme: 'Neurotransmissores e Efeitos Viscerais',
+    theme: 'Neurotransmissores',
     context: 'A neurotransmissão consiste no mecanismo básico de comunicação celular em boa parte do sistema nervoso... Diante disso, relacione os neurotransmissores da coluna A com os locais de liberação e efeitos desencadeados por cada um deles na coluna B.',
     text: 'Coluna A:\nI. Acetilcolina.\nII. Noradrenalina.\n\nColuna B:\nA. Junção neuromuscular - indução da contração muscular.\nB. Nó sinoatrial - aumento da frequência de disparo das células sinusais.\nC. Vasos sanguíneos - vasoconstrição.\nD. Pulmões - Broncoconstrição.\n\nAssinale a alternativa de correlação correta:',
     opts: [
@@ -408,7 +411,7 @@ const Q = [
   },
   {
     num: 14, type: 'mc', source: 'UniREDENTOR',
-    theme: 'Fisiologia Muscular e Overdose de Nicotina',
+    theme: 'Fisiologia Muscular',
     context: 'O medicamento à base de Bupropiona é indicado para tratamento da dependência à nicotina... Manter este medicamento longe de crianças deve ser uma preocupação, pois uma overdose de nicotina pode resultar em danos na fisiologia dos músculos respiratórios...',
     text: 'Considerando a fisiologia muscular, o princípio ativo do fármaco em questão (nicotina) e o seu efeito nos processos de excitação e contração dos músculos estriados esqueléticos, assinale a alternativa correta.',
     opts: [
@@ -423,8 +426,8 @@ const Q = [
   },
   {
     num: 15, type: 'mc', source: 'UNIGRANRIO Caxias',
-    theme: 'Vias Dopaminérgicas dos Núcleos da Base',
-    context: 'Um paciente com lentidão motora e rigidez é avaliado por suspeita de disfunção nos núcleos da base.',
+    theme: 'Núcleos da Base',
+    context: 'Um paciente com lentidão motora progressiva e rigidez muscular é avaliado por suspeita de disfunção nos núcleos da base.',
     text: 'Considerando as vias D1 e D2, qual das alternativas está correta sobre sua função e regulação motora?',
     opts: [
       'A via indireta age inibindo os neurônios dopaminérgicos da substância negra, bloqueando a atividade do córtex motor.',
@@ -437,6 +440,7 @@ const Q = [
     deep: 'O conteúdo trata da modulação extrapiramidal. O raciocínio funcional separa a via pró-cinética (direta) da anti-cinética (indireta). A dopamina facilita o movimento ao ativar a via direta (D1) e inibir a indireta (D2). A alternativa D está errada pois a via indireta inibe o movimento ao frear o tálamo. A alternativa B erra porque o núcleo subtalâmico pertence à via indireta. A principal pegadinha é esquecer que a facilitação ocorre por "dupla inibição": inibir um inibidor (o globo pálido), o efeito resultante é a excitação do tálamo.'
   }
 ];
+
 
 // Objeto S armazena agora o array 'eliminated' para lembrar quais foram riscadas
 var S={cur:0,ans:Array(Q.length).fill(null),done:Array(Q.length).fill(false),sel:null,deep:Array(Q.length).fill(false), eliminated:{}};
@@ -464,7 +468,7 @@ function goto(i){S.cur=i;S.sel=S.ans[i];renderQ();syncPills();}
 function prev(){if(S.cur>0)goto(S.cur-1);}
 function nextQ(){if(S.cur<Q.length-1)goto(S.cur+1);}
 
-// Lógica de eliminação (X)
+// Lógica de eliminação
 function toggleElim(i, ev){
   ev.stopPropagation(); // Evita que o clique selecione a alternativa
   if(S.done[S.cur]) return;
@@ -493,7 +497,7 @@ function renderQ(){
   html+='<span class="q-theme">'+q.theme+'</span><span class="q-source">'+q.source+'</span></div><div class="q-card">';
   
   if(q.context)html+='<div class="q-context">'+q.context.replace(/\n/g,'<br>')+'</div>';
-  if(q.image)html+='<img src="'+q.image+'" class="q-image" style="max-width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin: 14px auto; display:block;" alt="Imagem da questão">';
+  if(q.image)html+=q.image;
   
   if(q.assertions){
     html+='<div class="q-assertions">';
@@ -601,7 +605,7 @@ function showResults(){
   var weakThemes=Object.entries(themes).filter(function(e){return e[1].c/e[1].t<0.5;}).map(function(e){return e[0];});
   var topWeak=weakThemes[0]||'\u2014';
   var titleTxt=pct>=70?'Bom trabalho!':pct>=50?'Continue praticando!':'N\u00e3o desista!';
-  var html='<div class="res-hero"><div class="res-circle"><span class="res-pct">'+pct+'%</span><span class="res-pct-lbl">MC</span></div><div class="res-title">'+titleTxt+'</div><div class="res-sub">Você acertou '+correct+' de '+total+' questões de múltipla escolha</div></div>';
+  var html='<div class="res-hero"><div class="res-circle"><span class="res-pct">'+pct+'%</span><span class="res-pct-lbl">MC</span></div><div class="res-title">'+titleTxt+'</div><div class="res-sub">Voc\u00ea acertou '+correct+' de '+total+' quest\u00f5es de m\u00faltipla escolha</div></div>';
   html+='<div class="res-stats"><div class="res-stat"><div class="res-stat-n ok">'+correct+'</div><div class="res-stat-lbl">MC corretas</div></div><div class="res-stat"><div class="res-stat-n err">'+(total-correct)+'</div><div class="res-stat-lbl">MC erradas</div></div><div class="res-stat"><div class="res-stat-n dc">'+discQs.length+'</div><div class="res-stat-lbl">Discursivas</div></div></div>';
   html+='<div class="res-section"><div class="res-section-head">Desempenho por Tema</div><div class="res-section-body">';
   Object.entries(themes).forEach(function(e){
@@ -613,7 +617,37 @@ function showResults(){
     html+='<div class="theme-row"><div class="theme-top"><span class="theme-name">'+name+'</span><span class="theme-pct">'+label+'</span></div><div class="theme-bar-bg"><div class="theme-bar" style="width:'+tp+'%;background:'+color+'" data-w="'+tp+'"></div></div></div>';
   });
   html+='</div></div>';
-  html+='<div class="res-section"><div class="res-section-head">Insights</div><div class="res-section-body"><div class="insights-grid"><div class="insight-card"><div class="insight-lbl">Ponto mais fraco</div><div class="insight-val">'+topWeak+'</div><div class="insight-sub">Maior área de melhoria</div></div><div class="insight-card"><div class="insight-lbl">MC acertadas</div><div class="insight-val">'+correct+'/'+total+'</div><div class="insight-sub">Revise antes da prova</div></div><div class="insight-card"><div class="insight-lbl">MC erradas</div><div class="insight-val">'+(total-correct)+'</div><div class="insight-sub">Múltipla escolha</div></div><div class="insight-card"><div class="insight-lbl">Discursivas</div><div class="insight-val">'+discQs.length+'</div><div class="insight-sub">Questões abertas</div></div></div></div></div>';
-  html+='<div class="res-section"><div class="res-section-head">Revisão por Questão</div><div class="res-section-body">';
-  if(errors.length===0){html+='<div class="review-empty">Nenhum erro nas múltipla escolha 🎉</div>';}
-  else{errors
+  html+='<div class="res-section"><div class="res-section-head">Insights</div><div class="res-section-body"><div class="insights-grid"><div class="insight-card"><div class="insight-lbl">Ponto mais fraco</div><div class="insight-val">'+topWeak+'</div><div class="insight-sub">Maior \u00e1rea de melhoria</div></div><div class="insight-card"><div class="insight-lbl">MC acertadas</div><div class="insight-val">'+correct+'/'+total+'</div><div class="insight-sub">Revise antes da prova</div></div><div class="insight-card"><div class="insight-lbl">MC erradas</div><div class="insight-val">'+(total-correct)+'</div><div class="insight-sub">M\u00faltipla escolha</div></div><div class="insight-card"><div class="insight-lbl">Discursivas</div><div class="insight-val">'+discQs.length+'</div><div class="insight-sub">Quest\u00f5es abertas</div></div></div></div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Revis\u00e3o por Quest\u00e3o</div><div class="res-section-body">';
+  if(errors.length===0){html+='<div class="review-empty">Nenhum erro nas m\u00faltipla escolha \ud83c\udf89</div>';}
+  else{errors.forEach(function(q){var i=Q.indexOf(q);html+='<div class="review-item" onclick="revisit('+i+')"><div class="review-num">'+q.num+'</div><div class="review-text"><strong>'+q.theme+'</strong>'+q.text.substring(0,80)+'\u2026</div></div>';});}
+  html+='</div></div><button class="btn-retry" onclick="resetQuiz()">\u21ba Tentar novamente</button>';
+  var rs=document.getElementById('results');rs.innerHTML=html;rs.classList.add('on');
+  setTimeout(function(){
+    document.querySelectorAll('.theme-bar').forEach(function(el){
+      var w=el.dataset.w;el.style.width='0%';
+      setTimeout(function(){el.style.width=w+'%';},80);
+    });
+  },80);
+}
+
+function revisit(i){
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('quizWrap').style.display='';
+  document.getElementById('bottomBar').style.display='';
+  goto(i);window.scrollTo(0,0);
+}
+
+function resetQuiz(){
+  if(!confirm('Resetar a prova? Todo progresso ser\u00e1 perdido.'))return;
+  S={cur:0,ans:Array(Q.length).fill(null),done:Array(Q.length).fill(false),sel:null,deep:Array(Q.length).fill(false), eliminated:{}};
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('quizWrap').style.display='';
+  document.getElementById('bottomBar').style.display='';
+  syncPills();renderQ();window.scrollTo(0,0);
+}
+
+boot();
+</script>
+</body>
+</html>
