@@ -130,17 +130,8 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-rev-row span{flex:1;font-size:13px;color:var(--light);}
 .q-rev-row small{font-size:12px;color:var(--muted);}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:640px){
-  nav,.sticky-bar{padding-left:16px;padding-right:16px;}
-  .main{padding:150px 14px 60px;}
-  .q-body,.q-card-header,.q-nav-bar{padding-left:16px;padding-right:16px;}
-  .q-feedback,.ai-box{margin-left:16px;margin-right:16px;}
-  .q-text{font-size:15px;} .q-opt{font-size:14px;padding:12px 14px;}
-  .insight-grid{grid-template-columns:1fr;}
-  .tema-name{min-width:110px;font-size:12px;}
-}
-  .linha-corte {
+/* CSS DA LINHA DE CORTE ADICIONADO AQUI */
+.linha-corte {
   position: relative;
   width: 100%;
   border-bottom: 2px dashed #555;
@@ -152,10 +143,21 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
   position: absolute;
   top: -14px;
   left: 5%;
-  background-color: #1A1226; /* Esta é a cor exata do fundo do cartão da sua questão (--card) */
+  background-color: #1A1226; 
   padding: 0 15px;
   color: #888;
   font-size: 22px;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){
+  nav,.sticky-bar{padding-left:16px;padding-right:16px;}
+  .main{padding:150px 14px 60px;}
+  .q-body,.q-card-header,.q-nav-bar{padding-left:16px;padding-right:16px;}
+  .q-feedback,.ai-box{margin-left:16px;margin-right:16px;}
+  .q-text{font-size:15px;} .q-opt{font-size:14px;padding:12px 14px;}
+  .insight-grid{grid-template-columns:1fr;}
+  .tema-name{min-width:110px;font-size:12px;}
 }
 </style>
 </head>
@@ -217,11 +219,14 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
       <span class="q-tag-sep">·</span>
       <span class="q-tag-tema" id="qTagTema"></span>
     </div>
-  <div class="q-body">
+    <div class="q-body">
       <p id="qContext" style="font-size: 16px; line-height: 1.8; color: #F4EFFA; margin-bottom: 10px; font-weight: 500; white-space: pre-line;"></p>
+      
       <div class="q-text" id="qText"></div>
       <img class="q-img" id="qImg" alt="Imagem da questão">
-    <div class="linha-corte"></div>
+      
+      <div class="linha-corte"></div>
+      
       <div class="q-opts" id="qOpts"></div>
     </div>
     <div class="q-feedback" id="qFeedback"></div>
