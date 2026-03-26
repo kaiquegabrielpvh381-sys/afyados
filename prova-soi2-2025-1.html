@@ -64,27 +64,34 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
 
 /* OPTIONS */
 .opts{display:flex;flex-direction:column;gap:8px;}
-.opt{display:flex;align-items:flex-start;gap:11px;padding:11px 45px 11px 14px;border-radius:9px;border:1.5px solid var(--border);background:rgba(255,255,255,0.018);cursor:pointer;transition:all .15s;position:relative;}
+.opt{display:flex;align-items:center;gap:12px;padding:11px 45px 11px 14px;border-radius:9px;border:1.5px solid var(--border);background:rgba(255,255,255,0.018);cursor:pointer;transition:all .15s;position:relative;}
+
+/* Efeitos de Hover padrão (somente se não estiver desativada nem eliminada) */
 .opt:hover:not(.done):not(.eliminated){border-color:rgba(200,0,106,0.4);background:var(--primary-light);}
+
+/* Opção Selecionada */
 .opt.sel{border-color:var(--primary);background:var(--primary-light);}
-.opt.hit{border-color:var(--green);background:var(--green-light);}
-.opt.miss{border-color:var(--red);background:var(--red-light);}
-.opt.done{cursor:default;}
-.opt-ltr{width:24px;height:24px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;background:rgba(255,255,255,0.05);color:var(--text-3);transition:all .15s;margin-top:1px;}
+.opt-ltr{width:24px;height:24px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;background:rgba(255,255,255,0.05);color:var(--text-3);transition:all .15s;}
 .opt.sel .opt-ltr{background:var(--primary);color:#fff;}
-.opt.hit .opt-ltr{background:var(--green);color:#fff;}
-.opt.miss .opt-ltr{background:var(--red);color:#fff;}
-.opt-txt{font-size:0.845rem;line-height:1.5;color:var(--text);flex:1;}
+.opt-txt{font-size:0.845rem;line-height:1.5;color:var(--text);flex:1;transition:all .15s;}
 .opt-icon{margin-left:auto;font-size:0.9rem;flex-shrink:0;padding-top:2px;}
 
-/* BOTÃO E ESTADO DE ELIMINAÇÃO (X) */
-.btn-eliminate{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:14px;font-weight:900;transition:all .2s;cursor:pointer;z-index:10;background:transparent;border:1.5px solid transparent;font-family:sans-serif;}
-.btn-eliminate:hover{color:var(--red);background:var(--red-light);border-color:rgba(199,51,72,0.3);}
-.opt.eliminated .opt-txt{text-decoration:line-through;text-decoration-color:var(--red);opacity:0.4;}
-.opt.eliminated .opt-ltr{opacity:0.4;}
-.opt.eliminated .btn-eliminate{color:var(--red);border-color:var(--red);}
-.opt.eliminated{border-color:rgba(255,255,255,0.03);background:rgba(255,255,255,0.01);}
-.opt.done .btn-eliminate{display:none;}
+/* FERRAMENTA DE ELIMINAÇÃO (Risco vermelho estilo Qconcursos) */
+.btn-eliminate{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:4px;border:1.5px solid var(--border-2);background:transparent;color:var(--text-3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;cursor:pointer;z-index:10;transition:all .2s;font-family:sans-serif;}
+.btn-eliminate:hover{color:var(--red);border-color:var(--red);background:var(--red-light);}
+/* Estilos aplicados quando a opção é eliminada */
+.opt.eliminated .opt-txt, .opt.eliminated .opt-ltr {text-decoration:line-through;text-decoration-color:var(--red);opacity:0.4;}
+.opt.eliminated .btn-eliminate {color:var(--red);border-color:var(--red);}
+.opt.eliminated {background:transparent;border-color:rgba(255,255,255,0.03);}
+/* Esconder o X quando a questão já foi respondida */
+.opt.done .btn-eliminate {display:none;}
+
+/* Pós-resposta (Gabarito) */
+.opt.done{cursor:default;}
+.opt.hit{border-color:var(--green);background:var(--green-light);}
+.opt.hit .opt-ltr{background:var(--green);color:#fff;}
+.opt.miss{border-color:var(--red);background:var(--red-light);}
+.opt.miss .opt-ltr{background:var(--red);color:#fff;}
 
 /* TEXTAREA */
 textarea.disc{width:100%;min-height:120px;resize:vertical;background:rgba(255,255,255,0.025);border:1.5px solid var(--border-2);border-radius:9px;color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.845rem;line-height:1.6;padding:12px 14px;outline:none;transition:border-color .2s;}
@@ -211,11 +218,11 @@ const Q = [
       'III. O ligamento cruzado posterior (LCP) impede a translação posterior da tíbia em relação ao fêmur e é mais resistente que o ligamento cruzado anterior (LCA), desempenhando um papel fundamental na estabilização da articulação.',
       'IV. Os meniscos são estruturas que atuam na dissipação de forças compressivas, distribuição de carga e produção da lubrificação da articulação do joelho, o que leva à redução significativa do atrito entre as diversas superfícies articulares.'
     ],
-    text: 'Acerca das características estruturais e funcionais do joelho, avalie as asserções acima. É correto o que se afirma em:',
+    text: 'Acerca das características estruturais e funcionais do joelho, avalie as asserções a seguir. É correto o que se afirma em:',
     opts: ['II e IV, apenas.', 'I e III, apenas.', 'I, II, III e IV, apenas.', 'I, II e III, apenas.'],
     g: 3,
-    exp: 'Apenas I, II e III são corretas. A asserção IV é incorreta porque os meniscos têm função mecânica (amortecimento e distribuição de carga), mas a lubrificação é produzida pela membrana sinovial — não pelos meniscos.',
-    deep: 'O ponto central desta questão é a distinção entre as funções dos meniscos e da membrana sinovial. Os meniscos são fibrocartilagens com função exclusivamente mecânica: aumentam a congruência articular, distribuem a carga compressiva e absorvem impactos. Já o líquido sinovial, responsável pela lubrificação, é um ultrafiltrado plasmático produzido pelas células sinoviócitos da membrana sinovial. As asserções I (composição óssea e papel dos ligamentos), II (patela como polia biológica que aumenta o braço de alavanca do quadríceps) e III (LCP é de fato mais resistente que o LCA e impede o deslocamento posterior da tíbia) são todas corretas. A banca explora um detalhe histofisiológico: atribuir função glandular/secretora a uma estrutura que possui apenas função mecânica — clássica pegadinha de prova.'
+    exp: 'A alternativa correta é a D, validando as asserções I, II e III. O joelho é estabilizado pelos ligamentos cruzados e colaterais, e a patela otimiza a extensão ao aumentar o braço de alavanca do quadríceps. Embora os meniscos distribuam carga, a lubrificação é função da membrana sinovial, tornando a asserção IV incorreta.',
+    deep: 'O conteúdo teórico envolve a anatomia funcional da maior articulação sinovial do corpo humano. O raciocínio clínico baseia-se na correta identificação dos estabilizadores passivos e ativos: os ligamentos cruzados controlam o deslize anteroposterior da tíbia (o LCP evita a translação posterior e é comprovadamente mais resistente que o LCA), enquanto a patela atua como uma polia biológica que facilita a extensão da perna. A afirmação IV está incorreta devido a um detalhe histofisiológico: o líquido sinovial responsável pela lubrificação é um ultrafiltrado plasmático produzido pela membrana sinovial, e não pelas fibrocartilagens que formam os meniscos. A pegadinha da banca reside em atribuir uma função glandular/secretora aos meniscos, que possuem função puramente mecânica de amortecimento e adaptação de superfícies.'
   },
   {
     num: 2, type: 'mc', source: 'ITPAC Porto Nacional',
@@ -234,8 +241,8 @@ const Q = [
       'A asserção I está incorreta, mas a asserção II está correta.'
     ],
     g: 1,
-    exp: 'Ambas corretas e II justifica I. Os sintomas (anosmia e vertigem/zumbido) são manifestações clínicas diretas da disfunção dos nervos cranianos I e VIII, respectivamente. A asserção II descreve corretamente as funções desses nervos, fornecendo a base biológica para os sintomas.',
-    deep: 'Esta questão integra semiologia neurológica com anatomia dos nervos cranianos. O nervo olfatório (NC I) é formado por axônios de neurônios bipolares do epitélio olfatório que atravessam a lâmina crivosa do etmoide; sua lesão causa anosmia e consequente hipogeusia (paladar diminuído). O nervo vestibulococlear (NC VIII) possui dois ramos: o ramo coclear (audição — lesão causa zumbido/surdez) e o ramo vestibular (equilíbrio — lesão causa vertigem e ataxia). Na questão do tipo "asserção-razão", a chave é verificar: (1) ambas são verdadeiras? Sim. (2) II é a justificativa biológica de I? Sim — os sintomas ocorrem exatamente porque essas são as funções dos nervos afetados. Portanto, resposta B. Em pacientes idosos com múltiplas disfunções de nervos cranianos, deve-se investigar lesões de base de crânio ou processos neurodegenerativos.'
+    exp: 'A alternativa correta é a B, pois ambas as asserções estão corretas e a II justifica a I. Os sintomas relatados pelo paciente (anosmia e vertigem) são manifestações clínicas diretas da disfunção dos nervos cranianos olfatório e vestibulococlear, respectivamente.',
+    deep: 'Esta questão integra a fisiologia dos nervos cranianos com a semiologia neurológica. O raciocínio exige a correlação anatofuncional imediata: a perda de olfato é o sinal cardinal de lesão no Nervo I (Olfatório), enquanto zumbido e perda de equilíbrio indicam disfunção no Nervo VIII (Vestibulococlear), que possui os ramos coclear e vestibular. A asserção II é a justificativa biológica correta porque descreve as funções normais desses nervos, cuja falha gera os sintomas descritos. Outras alternativas estariam erradas se sugerissem que apenas um nervo estivesse afetado ou que as funções descritas não correspondessem aos sintomas. A correlação clínica estende-se ao fato de que múltiplas deficiências de nervos cranianos em pacientes idosos podem sugerir lesões em base de crânio ou patologias neurodegenerativas.'
   },
   {
     num: 3, type: 'mc', source: 'AFYA Abaetetuba',
@@ -249,8 +256,8 @@ const Q = [
       'No núcleo da rafe, apenas a serotonina é liberada, e sua ação é exclusivamente inibitória em todo o encéfalo.'
     ],
     g: 1,
-    exp: 'A cotransmissão permite que um único neurônio libere dois ou mais neurotransmissores simultaneamente (ex: serotonina + glutamato), desafiando o antigo "Princípio de Dale" (um neurônio, um neurotransmissor).',
-    deep: 'O conceito de cotransmissão representa uma revolução na compreensão da sinalização química do SNC. O antigo Princípio de Dale (1934) postulava que cada neurônio libera apenas um neurotransmissor. Hoje sabemos que neurônios podem coarmazenar e coliberar múltiplos mensageiros — tipicamente um neurotransmissor clássico (como serotonina) e um neuromodulador (como glutamato). No núcleo da rafe, especificamente, neurônios liberam tanto serotonina quanto glutamato. A serotonina pode ter efeito excitatório ou inibitório dependendo do receptor pós-sináptico (5-HT1 é inibitório; 5-HT2, 5-HT3 são excitatórios). Essa plasticidade na sinalização amplia enormemente a capacidade regulatória do sistema nervoso, permitindo respostas mais precisas e contextuais. A alternativa C (liberação alternada) está errada porque a cotransmissão ocorre de forma simultânea, com vesículas diferentes respondendo ao mesmo potencial de ação conforme o estímulo.'
+    exp: 'A alternativa correta é a B, pois a cotransmissão permite que um único neurônio libere dois ou mais neurotransmissores (ex: serotonina e glutamato), possibilitando múltiplas funções regulatórias.',
+    deep: 'O conteúdo aborda os avanços na sinalização química do sistema nervoso central, desafiando o antigo "Princípio de Dale" (um neurônio, um neurotransmissor). O raciocínio demonstra que a coexistência de mensageiros químicos (como um neurotransmissor clássico e um neuromodulador) amplia a plasticidade sináptica e a precisão da resposta. A alternativa A é falsa porque a cotransmissão favorece, e não impede, a modulação. A alternativa C erra ao dizer que são liberados apenas alternadamente, pois podem ser liberados simultaneamente conforme o estímulo. A alternativa D está incorreta porque no núcleo da rafe há liberação conjunta de glutamato, e a serotonina não é exclusivamente inibitória, dependendo do receptor pós-sináptico.'
   },
   {
     num: 4, type: 'mc', source: 'UNIGRANRIO Caxias',
@@ -264,11 +271,383 @@ const Q = [
       'A raiz dorsal carrega fibras eferentes e possui o gânglio espinal, enquanto a raiz ventral conduz impulsos aferentes para a medula.'
     ],
     g: 2,
-    exp: 'O nervo espinal é misto: raiz dorsal = aferente (sensitiva), com gânglio espinal; raiz ventral = eferente (motora). A Lei de Bell-Magendie define essa polaridade funcional.',
-    deep: 'A Lei de Bell-Magendie (estabelecida no início do séc. XIX) é o alicerce desta questão: a raiz dorsal é sensitiva (aferente) e a raiz ventral é motora (eferente). O gânglio espinal (ou gânglio da raiz dorsal) abriga os corpos celulares dos neurônios sensitivos de primeiro ordem — são neurônios pseudounipolares com um axônio que se bifurca: um ramo vai para a periferia (receptor) e outro entra na medula. O nervo espinal, ao reunir essas duas raízes, torna-se uma estrutura mista. As principais pegadinhas em prova: (1) inverter as funções das raízes; (2) colocar o gânglio na raiz ventral. Na clínica, esta distinção é crucial: lesão isolada da raiz dorsal causa perda sensorial sem déficit motor; lesão da raiz ventral causa paralisia flácida sem perda sensitiva.'
+    exp: 'A alternativa correta é a C. O nervo espinal é formado pela união da raiz dorsal (fibras aferentes/sensitivas) e da raiz ventral (fibras eferentes/motoras), localizando-se o gânglio sensitivo obrigatoriamente na raiz dorsal.',
+    deep: 'Esta questão revisa a Lei de Bell-Magendie sobre a polaridade funcional das raízes medulares. O raciocínio separa o fluxo de informação: a raiz dorsal conduz impulsos sensoriais da periferia para a medula (aferente) e abriga o corpo celular desses neurônios no gânglio espinal. A raiz ventral conduz impulsos motores da medula para os músculos (eferente). As outras alternativas estão incorretas pois trocam as funções das raízes (A, D) ou situam erroneamente o gânglio na raiz ventral (B). A pegadinha comum em provas de anatomia é a inversão das funções aferente/eferente entre as raízes anterior (ventral) e posterior (dorsal).'
   },
   {
     num: 5, type: 'disc', source: 'AFYA Manacapuru',
     theme: 'Fisiologia Auditiva',
-    context: 'A audição é um processo complexo que envolve captação, transmissão e interpretação das ondas sonoras.',
-    image: 'data:image/png;base64,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最好不要买带数字键的，这样手放上去键盘和屏幕不对称，打字难受，打游戏左手和右手距离太远
+    context: 'A audição é um processo complexo que envolve captação, transmissão e interpretação das ondas sonoras. Analise a imagem a seguir que ilustra as principais estruturas envolvidas nesse processo.\n\n<img src="img_2025_1_q5.jpg" style="max-width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-top: 14px;">',
+    text: 'Responda:\n\nA) Descreva o mecanismo de amplificação e transferência das ondas sonoras, destacando as estruturas 1, 2, 3, 4, 5, 6 e 8.\n\nB) Explique como ocorre a mecanotransdução e a transmissão do sinal ao sistema nervoso central, enfatizando as estruturas 9 e 10.',
+    opts: [],
+    exp: 'A amplificação ocorre no ouvido médio através da membrana timpânica e dos ossículos (martelo, bigorna e estribo), que convertem vibrações aéreas em mecânicas com ganho de pressão para compensar o meio líquido da cóclea. A mecanotransdução ocorre no Órgão de Corti (9), onde o movimento dos cílios abre canais de K⁺, despolarizando a célula ciliada e liberando glutamato para o nervo coclear (10).',
+    deep: 'O conteúdo integra a física acústica com a neurobiologia sensorial. O raciocínio do item A explica que a orelha e o meato (1, 2) captam o som até o tímpano (3); a amplificação é necessária porque o som passa de um meio de baixa impedância (ar) para alta (líquido coclear). Os ossículos (4, 5, 6) atuam como alavancas, e a tuba auditiva (8) equilibra pressões. No item B, detalha-se que a vibração da membrana basilar empurra os cílios contra a membrana tectória no Órgão de Corti (9), gerando potenciais graduados. Diferente de outras células, a entrada de K⁺ (rico na endolinfa) é o que despolariza a célula ciliada. O sinal segue pelo nervo (10) via via auditiva clássica (núcleo coclear → colículo inferior → tálamo → córtex).'
+  },
+  {
+    num: 6, type: 'mc', source: 'AFYA Santa Inês',
+    theme: 'Neuroanatomia da Memória',
+    context: 'O telencéfalo é composto pelo córtex cerebral e pelos núcleos da base e tem diversas funções complexas, como o controle do movimento, da fala, da percepção sensitiva, da audição, da visão, o pensamento abstrato, a memória, a cognição, entre outras funções.',
+    text: 'De acordo com essa estrutura cerebral, assinale a alternativa que indica estruturas envolvidas na elaboração, evocação ou consolidação de memórias:',
+    opts: [
+      'Putâmen e núcleo accumbens.',
+      'Corpo mamilar e hipocampo.',
+      'Núcleo caudado e corpo mamilar.',
+      'Hipocampo e olivas.'
+    ],
+    g: 1,
+    exp: 'A alternativa correta é a B, identificando o corpo mamilar e o hipocampo. O hipocampo é essencial para a formação de novas memórias declarativas, enquanto os corpos mamilares (hipotálamo) participam da consolidação no circuito de Papez.',
+    deep: 'O tema central é o sistema límbico e as bases anatômicas da memória. O raciocínio exige a distinção entre núcleos motores (como o putâmen e caudado, voltados ao movimento) e núcleos cognitivo-emocionais. O hipocampo é a estrutura mestre para memórias episódicas e factuais. A alternativa A é incorreta pois o núcleo accumbens foca no sistema de recompensa e prazer. A alternativa D está errada porque as olivas (bulbo) estão envolvidas na coordenação e memória motora (procedural), não na declarativa focada pelo enunciado. A pegadinha comum é confundir os diversos tipos de memória com suas localizações específicas.'
+  },
+  {
+    num: 7, type: 'mc', source: 'UniREDENTOR',
+    theme: 'Histologia Muscular',
+    context: 'A fibra muscular esquelética é uma célula alongada, estriada e com múltiplos núcleos periféricos. Internamente, a fibra é preenchida por miofibrilas, organizadas em unidades que conferem ao músculo sua aparência estriada, devido à presença de bandas I (claras) e A (escuras) na organização do sarcômero. Além disso, nessa fibra muscular existe o túbulo T, uma invaginação do sarcolema que possibilita a propagação do potencial de ação para o retículo sarcoplasmático.',
+    text: 'De acordo com as características da fibra descritas no enunciado, marque a alternativa correta:',
+    opts: [
+      'As miofibrilas estão presentes na fibra muscular estriada esquelética e são formadas pelos filamentos finos e espessos organizados em sarcômeros.',
+      'O sarcolema de uma fibra muscular estriada é unido a outra célula por um complexo juncional chamado de disco intercalar.',
+      'Para possibilitar a propagação do potencial de ação na fibra esquelética, existe a díade, estrutura formada pelo túbulo T e uma cisterna do retículo sarcoplasmático.',
+      'Na fibra muscular estriada, a banda A nos sarcômeros é formada pelo filamento de actina, enquanto a banda I é formada pelos filamentos de miosina.'
+    ],
+    g: 0,
+    exp: 'A alternativa correta é a A. As miofibrilas são formadas por filamentos finos e espessos organizados em sarcômeros, que são a unidade funcional da contração.',
+    deep: 'A questão aborda a ultraestrutura do músculo estriado esquelético. O raciocínio histológico diferencia os tecidos: discos intercalares (B) e díades (C) são exclusivos do músculo cardíaco. No esquelético, a estrutura de condução é a tríade (um túbulo T e duas cisternas terminais). A alternativa D está incorreta pois inverte a composição: a banda A contém filamentos grossos (miosina) e a banda I contém finos (actina). Uma pegadinha clássica é trocar os componentes das bandas ou as estruturas exclusivas de cada tipo de fibra muscular.'
+  },
+  {
+    num: 8, type: 'mc', source: 'UNIGRANRIO Caxias',
+    theme: 'Neuroanatomia Cortical',
+    context: 'No córtex cerebral se organizam neurônios responsáveis por desempenhar funções diversas. A área de associação somestésica ou somatosensorial é importante para a integração e interpretação de informações sensoriais provenientes do corpo. Essa área recebe informações dos receptores sensoriais e as combina com dados de outras áreas cerebrais, permitindo a percepção consciente do toque, da dor, da temperatura e da posição do corpo no espaço.',
+    text: 'Qual das alternativas abaixo descreve corretamente a área de associação somestésica do córtex cerebral?',
+    opts: [
+      'Está diretamente envolvida com a produção da fala, sendo localizada próxima à área de Broca, no lobo frontal.',
+      'Essa região permite o reconhecimento tátil de objetos sem o uso da visão, por meio da integração sensorial.',
+      'A área de associação somestésica é responsável por gerar comandos motores conscientes baseados em estímulos táteis.',
+      'Lesões nessa área geralmente causam afasia, por afetarem diretamente a compreensão da linguagem falada.'
+    ],
+    g: 1,
+    exp: 'A alternativa correta é a B. Esta região permite o reconhecimento tátil de objetos sem o uso da visão (estereognosia), por meio da integração de estímulos de toque, pressão e temperatura.',
+    deep: 'Esta área, localizada no lobo parietal, é responsável pelo processamento de alto nível das sensações somáticas. Enquanto o córtex somatossensorial primário apenas "sente" o toque, a área de associação interpreta a forma e textura (reconhecimento). As outras alternativas referem-se a outras áreas: produção da fala (A) é função da Área de Broca no lobo frontal; compreensão da linguagem (D) é função da Área de Wernicke; comandos motores (C) partem do lobo frontal. A pegadinha reside em não diferenciar a percepção simples da interpretação complexa.'
+  },
+  {
+    num: 9, type: 'disc', source: 'UNIGRANRIO Caxias',
+    theme: 'Vias Somestésicas',
+    context: 'Um paciente sofreu um ferimento cortante profundo na região lateral do braço, próximo ao cotovelo, e passou a relatar perda parcial da sensibilidade ao toque e à pressão na mão do mesmo lado, especialmente na região do polegar e indicador. No exame clínico, a força muscular estava preservada, mas a sensibilidade tátil discriminativa estava reduzida.',
+    text: 'Explique quais neurônios e vias somestésicas estão envolvidos na condução do tato discriminativo, desde a periferia até o córtex cerebral, e como a lesão descrita pode ter causado o sintoma relatado.',
+    opts: [],
+    exp: 'A via envolvida é a coluna dorsal-lemnisco medial. O 1º neurônio (gânglio espinal) conduz o estímulo até o bulbo; o 2º neurônio cruza no bulbo e segue até o tálamo; o 3º neurônio projeta para o córtex somatossensorial. A lesão afetou fibras sensoriais periféricas do primeiro neurônio, mas poupou as raízes motoras, mantendo a força intacta.',
+    deep: 'O raciocínio clínico baseia-se na dissociação sensorial-motora. Se há perda de tato fino mas a força é mantida, a lesão é puramente sensorial. O tato discriminativo utiliza a via do funículo posterior, onde o axônio do primeiro neurônio sobe ipsilateralmente pela medula antes de decussar (cruzar) no tronco encefálico (núcleos grácil/cuneiforme). A perda no polegar e indicador sugere interrupção de fibras sensitivas que entram pelos níveis cervicais. Como a força foi preservada, os neurônios motores e a via corticoespinal permaneceram íntegros, confirmando que o dano foi restrito à aferência tátil.'
+  },
+  {
+    num: 10, type: 'mc', source: 'FASA-VIC',
+    theme: 'Tronco Encefálico',
+    context: 'O tronco encefálico é uma estrutura vital para a regulação de funções autonômicas, integração de vias sensoriais e motoras, e comunicação entre encéfalo e medula espinhal. Sua organização anatômica inclui três divisões principais: bulbo, ponte e mesencéfalo, cada uma com núcleos específicos e funções especializadas.',
+    text: 'A partir desse contexto, marque a alternativa que descreva corretamente funções associadas ao tronco encefálico:',
+    opts: [
+      'O mesencéfalo contém os colículos superiores (associados à visão) e inferiores (associados à audição), e é o local dos núcleos e da emergência do nervo troclear (IV).',
+      'A formação reticular conta com núcleos importantes ricos em noradrenalina, para a regulação da homeostase, e, graças ao SARA, atua evocando memórias de longo prazo.',
+      'A ponte e suas fibras transversais atuam primariamente na regulação da temperatura corporal e no controle endócrino, com alguma participação na coordenação motora.',
+      'O bulbo é responsável pelo controle motor voluntário e involuntário, devido aos tratos que abriga, e abriga também os núcleos dos nervos cranianos olfatório (I) e óptico (II).'
+    ],
+    g: 0,
+    exp: 'A alternativa correta é a A. O mesencéfalo contém os colículos superiores (visão) e inferiores (audição), além de ser o ponto de emergência do nervo troclear (IV), único nervo craniano que emerge dorsalmente.',
+    deep: 'O tronco encefálico divide-se em bulbo, ponte e mesencéfalo. O raciocínio exige a exclusão de funções de outros níveis: o bulbo não contém núcleos dos nervos I e II (olfato e visão), que são prolongamentos do próprio cérebro (D); controle endócrino e de temperatura (C) são funções do hipotálamo; a formação reticular (B) regula alerta e homeostase, mas não é o sítio primário de memórias de longo prazo. A pegadinha típica é atribuir funções corticais ou diencefálicas (como controle endócrino) a estruturas do tronco encefálico.'
+  },
+  {
+    num: 11, type: 'mc', source: 'UNIDEP',
+    theme: 'Líquor (LCE)',
+    context: 'O líquido cefalorraquidiano, também conhecido como líquor, está presente nos ventrículos cerebrais, no canal central da medula espinal e no espaço subaracnoide. Sua principal função é proteger o encéfalo, atuando no amortecimento de impactos.',
+    assertions: [
+      'I. As junções de oclusão entre as células ependimárias dos plexos corioides formam a barreira hematoliquórica, que impede a passagem livre de substâncias e obriga aquelas que compõem o líquor a atravessarem essas células.',
+      'II. O líquor flui do quarto ventrículo para o terceiro ventrículo pelos forames interventriculares. Em seguida, passa para o ventrículo lateral pelo aqueduto cerebral e chega ao espaço subaracnoide através dos forames laterais e medial.',
+      'III. A produção de líquor depende do transporte ativo de sódio pelas células ependimárias dos plexos corioides. O sódio, por possuir carga positiva, atrai o cloreto e o composto formado provoca a passagem de água para dentro dos ventrículos.',
+      'IV. A absorção do líquor ocorre através das vilosidades aracnoides, projeções digitiformes da membrana aracnoide que se estendem através da lâmina meníngea da dura-máter até os seios venosos, especialmente o seio sagital superior.'
+    ],
+    text: 'Sobre a produção, circulação e absorção do líquor, analise as afirmativas acima. Assinale a alternativa que apresente todas as afirmativas corretas:',
+    opts: [
+      'I, II e III.',
+      'I, III e IV.',
+      'I e IV.',
+      'I, II e IV.'
+    ],
+    g: 1,
+    exp: 'A alternativa correta é a B, validando I, III e IV. O líquor é produzido nos plexos corioides por transporte de íons que atrai água, e circula unidirecionalmente, sendo reabsorvido nos seios venosos. A afirmativa II está incorreta porque inverte o fluxo.',
+    deep: 'A hidrodinâmica do SNC exige um trajeto preciso: ventrículos laterais → Monro → III ventrículo → Aqueduto → IV ventrículo → Espaço subaracnoide. A afirmação II é o erro clássico de prova ao inverter essa sequência. Bioquimicamente, o bombeamento de Na⁺ cria um gradiente osmótico que "puxa" água do plasma capilar para os ventrículos (III), enquanto as junções de oclusão (1) garantem a seletividade dessa "filtragem". A absorção final ocorre por pressão nas granulações aracnoideas para o sistema venoso (IV).'
+  },
+  {
+    num: 12, type: 'mc', source: 'UNIMA',
+    theme: 'Histologia Óssea',
+    context: 'F. R., 45 anos, masculino... vítima de assalto à mão armada. No exame clínico, observam-se duas perfurações por arma de fogo... Nesse contexto, sabendo-se que nos locais de fratura óssea ocorre hemorragia, destruição de matriz e morte de células ósseas, e que para a reparação se iniciar, é necessário que:',
+    assertions: [
+      'I. O coágulo sanguíneo e os restos celulares e da matriz devem ser removidos pelos macrófagos para iniciar a regeneração óssea.',
+      'II. O periósteo e o endósteo não participam da resposta à fratura, sendo o colar formado apenas por células hematopoiéticas.',
+      'III. O colar conjuntivo dá origem a tecido ósseo maduro diretamente, sem participação de ossificação endocondral.',
+      'IV. O calo ósseo envolve a extremidade dos ossos fraturados e é formado por tecido ósseo imaturo que une provisoriamente as partes.'
+    ],
+    text: 'Selecione a alternativa correta.',
+    opts: [
+      'Apenas as proposições I e III estão corretas.',
+      'Apenas as proposições II e IV estão corretas.',
+      'Apenas as proposições I e IV estão corretas.',
+      'Apenas as proposições I e II estão corretas.'
+    ],
+    g: 2,
+    exp: 'A alternativa correta é a C, pois as proposições I e IV estão corretas. A limpeza pelo sistema imune e a formação de um calo ósseo imaturo (primário) são etapas fundamentais e consecutivas do reparo ósseo.',
+    deep: 'O reparo de fraturas segue uma cronologia biológica rigorosa. Primeiro, macrófagos realizam a "limpeza" dos detritos da matriz e do hematoma (I). A afirmação II está errada porque o periósteo e endósteo são as fontes essenciais de células osteoprogenitoras. A afirmação III é incorreta porque o osso passa primeiro por uma fase de tecido imaturo (calo mole/duro) e pode envolver ossificação endocondral. O calo ósseo resultante (IV) é feito de osso primário, que só depois será remodelado em osso lamelar maduro.'
+  },
+  {
+    num: 13, type: 'mc', source: 'AFYA Bragança',
+    theme: 'Neurotransmissores',
+    context: 'A neurotransmissão consiste no mecanismo básico de comunicação celular em boa parte do sistema nervoso... Diante disso, relacione os neurotransmissores da coluna A com os locais de liberação e efeitos desencadeados por cada um deles na coluna B.',
+    text: 'Coluna A:\nI. Acetilcolina.\nII. Noradrenalina.\n\nColuna B:\nA. Junção neuromuscular - indução da contração muscular.\nB. Nó sinoatrial - aumento da frequência de disparo das células sinusais.\nC. Vasos sanguíneos - vasoconstrição.\nD. Pulmões - Broncoconstrição.\n\nAssinale a alternativa de correlação correta:',
+    opts: [
+      'II-A; II-B; I-C; I-D.',
+      'I-A; I-B; II-C; II-D.',
+      'I-A; II-B; II-C; I-D.',
+      'II-A; I-B; II-C; I-D.'
+    ],
+    g: 2,
+    exp: 'A alternativa correta é a C (I-A, II-B, II-C, I-D). A acetilcolina promove contração no músculo esquelético e broncoconstrição, enquanto a noradrenalina aumenta a frequência cardíaca e causa vasoconstrição periférica.',
+    deep: 'O raciocínio baseia-se na distinção entre o sistema motor somático e o sistema autônomo (simpático vs. parassimpático). A Acetilcolina (I) é o neurotransmissor da placa motora (A) e do parassimpático, agindo nos pulmões para estreitar as vias aéreas (D). A Noradrenalina (II) é o mediador simpático, preparando para "luta ou fuga" ao acelerar o coração (B) e contrair vasos sanguíneos para redistribuir o fluxo (C). A pegadinha comum é trocar os efeitos pulmonares ou cardíacos entre os dois sistemas.'
+  },
+  {
+    num: 14, type: 'mc', source: 'UniREDENTOR',
+    theme: 'Fisiologia Muscular',
+    context: 'O medicamento à base de Bupropiona é indicado para tratamento da dependência à nicotina... Manter este medicamento longe de crianças deve ser uma preocupação, pois uma overdose de nicotina pode resultar em danos na fisiologia dos músculos respiratórios...',
+    text: 'Considerando a fisiologia muscular, o princípio ativo do fármaco em questão (nicotina) e o seu efeito nos processos de excitação e contração dos músculos estriados esqueléticos, assinale a alternativa correta.',
+    opts: [
+      'O excesso do fármaco em questão desencadeia uma alta atividade de excitação e uma contratilidade contínua do músculo estriado esquelético.',
+      'O excesso de nicotina promove uma redução de cálcio no citoplasma, gerando mudança na tropomiosina e assim permitindo a ligação entre a miosina e a actina.',
+      'Receptores nicotínicos ativados permitem o influxo de sódio e o efluxo de potássio, levando a uma despolarização. O excesso de fármaco nesta região possibilita o alto grau de relaxamento.',
+      'A junção neuromuscular de um músculo estriado esquelético é formada por terminais axônicos de fibras nervosas do tipo noradrenérgico e fibras musculares de receptores nicotínicos.'
+    ],
+    g: 0,
+    exp: 'A alternativa correta é a A. O excesso de nicotina ativa continuamente os receptores nicotínicos na placa motora, gerando uma contratilidade contínua (tetania) do músculo esquelético, o que impede os ciclos de relaxamento necessários para a respiração.',
+    deep: 'O princípio ativo é um agonista colinérgico que mimetiza a acetilcolina na junção neuromuscular. O raciocínio clínico para a toxicidade é que a ativação persistente despolariza a fibra muscular (via influxo de sódio), levando à fadiga e paralisia espástica. A alternativa B está errada pois a contração exige aumento de cálcio, não redução. A alternativa C erra ao associar o estímulo ao relaxamento. A alternativa D é incorreta porque as fibras motoras esqueléticas são colinérgicas, não noradrenérgicas.'
+  },
+  {
+    num: 15, type: 'mc', source: 'UNIGRANRIO Caxias',
+    theme: 'Núcleos da Base',
+    context: 'Um paciente com lentidão motora progressiva e rigidez muscular é avaliado por suspeita de disfunção nos núcleos da base.',
+    text: 'Considerando as vias D1 e D2, qual das alternativas está correta sobre sua função e regulação motora?',
+    opts: [
+      'A via indireta age inibindo os neurônios dopaminérgicos da substância negra, bloqueando a atividade do córtex motor.',
+      'A via direta ativa o núcleo subtalâmico, promovendo a inibição do córtex motor e bloqueando o movimento.',
+      'A via direta (D1) inibe o globo pálido interno, facilitando a liberação de estímulos motores pelo tálamo.',
+      'A via indireta (D2) facilita o movimento ao estimular diretamente o tálamo, promovendo atividade motora voluntária.'
+    ],
+    g: 2,
+    exp: 'A alternativa correta é a C. A via direta (estimulada via D1) inibe o globo pálido interno, o que desibe o tálamo e facilita a liberação de estímulos motores pelo córtex.',
+    deep: 'O conteúdo trata da modulação extrapiramidal. O raciocínio funcional separa a via pró-cinética (direta) da anti-cinética (indireta). A dopamina facilita o movimento ao ativar a via direta (D1) e inibir a indireta (D2). A alternativa D está errada pois a via indireta inibe o movimento ao frear o tálamo. A alternativa B erra porque o núcleo subtalâmico pertence à via indireta. A principal pegadinha é esquecer que a facilitação ocorre por "dupla inibição": inibir um inibidor (o globo pálido), o efeito resultante é a excitação do tálamo.'
+  }
+];
+
+
+// Objeto S armazena agora o array 'eliminated' para lembrar quais foram riscadas
+var S={cur:0,ans:Array(Q.length).fill(null),done:Array(Q.length).fill(false),sel:null,deep:Array(Q.length).fill(false), eliminated:{}};
+
+function boot(){buildPills();renderQ();}
+
+function buildPills(){
+  var c=document.getElementById('pills');c.innerHTML='';
+  Q.forEach(function(q,i){
+    var b=document.createElement('button');
+    b.className='pill';b.textContent=i+1;b.id='p'+i;
+    b.onclick=function(){goto(i);};c.appendChild(b);
+  });syncPills();
+}
+function syncPills(){
+  Q.forEach(function(q,i){
+    var p=document.getElementById('p'+i);if(!p)return;
+    p.className='pill';
+    if(i===S.cur){p.classList.add('active');return;}
+    if(S.done[i]){p.classList.add(q.type==='disc'?'disc':(S.ans[i]===q.g?'ok':'err'));}
+  });
+}
+
+function goto(i){S.cur=i;S.sel=S.ans[i];renderQ();syncPills();}
+function prev(){if(S.cur>0)goto(S.cur-1);}
+function nextQ(){if(S.cur<Q.length-1)goto(S.cur+1);}
+
+// Lógica de eliminação
+function toggleElim(i, ev){
+  ev.stopPropagation(); // Evita que o clique selecione a alternativa
+  if(S.done[S.cur]) return;
+  if(S.sel === i) S.sel = null; // Se eliminou a que tava selecionada, desmarca ela
+  S.eliminated[S.cur][i] = !S.eliminated[S.cur][i];
+  renderQ();
+}
+
+function pickOpt(i){
+  S.sel=i;
+  document.querySelectorAll('.opt').forEach(function(el,idx){
+    el.className='opt'+(idx===i?' sel':'');
+  });
+  var btn=document.getElementById('btnAnswer');
+  if(btn)btn.disabled=false;
+}
+
+function renderQ(){
+  if (!S.eliminated[S.cur]) S.eliminated[S.cur] = {}; // Inicia o registro de eliminadas da questao
+  
+  var q=Q[S.cur];
+  var isDone=S.done[S.cur];
+  
+  var html='<div class="q-meta"><span class="q-tag">Questão '+q.num+'</span>';
+  if(q.type==='disc')html+='<span class="q-tag-disc">Discursiva</span>';
+  html+='<span class="q-theme">'+q.theme+'</span><span class="q-source">'+q.source+'</span></div><div class="q-card">';
+  
+  if(q.context)html+='<div class="q-context">'+q.context.replace(/\n/g,'<br>')+'</div>';
+  if(q.image)html+=q.image;
+  
+  if(q.assertions){
+    html+='<div class="q-assertions">';
+    q.assertions.forEach(function(a){
+      if(a==='PORQUE')html+='<p class="porque">PORQUE</p>';
+      else html+='<p>'+a+'</p>';
+    });
+    html+='</div>';
+  }
+  
+  html+='<div class="q-text">'+q.text.replace(/\n/g,'<br>')+'</div>';
+  
+  if(q.type==='mc'){
+    var ltrs=['A','B','C','D', 'E'];
+    html+='<div class="opts">';
+    
+    q.opts.forEach(function(opt,i){
+      var isElim = S.eliminated[S.cur][i];
+      var cls='opt';
+      var icon='';
+      
+      if(isDone){
+        cls+=' done';
+        if(i===q.g){cls+=' hit';icon='<span class="opt-icon">\u2713</span>';}
+        else if(i===S.ans[S.cur]){cls+=' miss';icon='<span class="opt-icon">\u2717</span>';}
+        else if(isElim){cls+=' eliminated';}
+      } else {
+        if(isElim) cls+=' eliminated';
+        else if(S.sel===i) cls+=' sel';
+      }
+      
+      var clickHandler = (!isDone && !isElim) ? ' onclick="pickOpt('+i+')"' : '';
+      
+      html+='<div class="'+cls+'"'+clickHandler+'>';
+      html+='<span class="opt-ltr">'+ltrs[i]+'</span><span class="opt-txt">'+opt+'</span>'+icon;
+      
+      // Botão de eliminação (SÓ aparece se a questão não foi respondida)
+      if(!isDone){
+        html += '<button class="btn-eliminate" onclick="toggleElim('+i+', event)">✕</button>';
+      }
+      
+      html+='</div>';
+    });
+    html+='</div>';
+  } else {
+    var val=isDone?(S.ans[S.cur]||''):'';
+    html+='<textarea class="disc" id="discTA" placeholder="Escreva sua resposta aqui..."'+(isDone?' disabled':'')+'>'+val+'</textarea>';
+  }
+  
+  if(isDone){
+    var isOk=q.type==='mc'&&S.ans[S.cur]===q.g;
+    var fbCls=q.type==='disc'?'fb-disc':(isOk?'fb-ok':'fb-err');
+    var fbLbl=q.type==='disc'?'\u270d Gabarito Comentado':(isOk?'\u2713 Resposta correta':'\u2717 Resposta incorreta');
+    html+='<div class="feedback '+fbCls+'"><div class="fb-label">'+fbLbl+'</div><div class="fb-text">'+q.exp+'</div><div class="deep-divider"></div><button class="btn-deep" onclick="toggleDeep('+S.cur+')">\u2736 Aprofundar com IA</button><div class="deep-content'+(S.deep[S.cur]?' open':'')+'" id="dc'+S.cur+'">'+q.deep+'</div></div>';
+  }
+  
+  html+='</div>';
+  var wrap=document.getElementById('quizWrap');
+  wrap.innerHTML='<div class="q-wrap">'+html+'</div>';
+  renderBottom();
+}
+
+function renderBottom(){
+  var q=Q[S.cur];var isDone=S.done[S.cur];
+  document.getElementById('btnPrev').disabled=S.cur===0;
+  document.getElementById('ctrQ').textContent=S.cur+1;
+  var zone=document.getElementById('btnZone');
+  var canAnswer=!isDone&&(q.type==='disc'||S.sel!==null);
+  var zhtml='';
+  if(!isDone)zhtml='<button class="btn-answer" id="btnAnswer" onclick="doAnswer()"'+(canAnswer?'':' disabled')+'>Responder</button>';
+  zhtml+='<button class="btn-nav" onclick="nextQ()"'+(S.cur===Q.length-1?' disabled':'')+'>Próxima \u2192</button>';
+  zone.innerHTML=zhtml;
+}
+
+function doAnswer(){
+  var q=Q[S.cur];
+  if(q.type==='mc'){S.ans[S.cur]=S.sel;}
+  else{var ta=document.getElementById('discTA');S.ans[S.cur]=ta?ta.value:'';}
+  S.done[S.cur]=true;syncPills();renderQ();
+  if(S.done.every(function(x){return x;}))setTimeout(showResults,600);
+}
+
+function toggleDeep(i){
+  S.deep[i]=!S.deep[i];
+  var el=document.getElementById('dc'+i);
+  if(el)el.classList.toggle('open',S.deep[i]);
+}
+
+function showResults(){
+  document.getElementById('quizWrap').style.display='none';
+  document.getElementById('bottomBar').style.display='none';
+  var mcQs=Q.filter(function(q){return q.type==='mc';});
+  var discQs=Q.filter(function(q){return q.type==='disc';});
+  var correct=mcQs.filter(function(q){return S.ans[Q.indexOf(q)]===q.g;}).length;
+  var total=mcQs.length;
+  var pct=Math.round(correct/total*100);
+  var themes={};
+  Q.forEach(function(q,i){
+    if(!themes[q.theme])themes[q.theme]={t:0,c:0};
+    themes[q.theme].t++;
+    if(q.type==='mc'&&S.ans[i]===q.g)themes[q.theme].c++;
+    else if(q.type==='disc')themes[q.theme].c+=0.5;
+  });
+  var errors=Q.filter(function(q,i){return q.type==='mc'&&S.done[i]&&S.ans[i]!==q.g;});
+  var weakThemes=Object.entries(themes).filter(function(e){return e[1].c/e[1].t<0.5;}).map(function(e){return e[0];});
+  var topWeak=weakThemes[0]||'\u2014';
+  var titleTxt=pct>=70?'Bom trabalho!':pct>=50?'Continue praticando!':'N\u00e3o desista!';
+  var html='<div class="res-hero"><div class="res-circle"><span class="res-pct">'+pct+'%</span><span class="res-pct-lbl">MC</span></div><div class="res-title">'+titleTxt+'</div><div class="res-sub">Voc\u00ea acertou '+correct+' de '+total+' quest\u00f5es de m\u00faltipla escolha</div></div>';
+  html+='<div class="res-stats"><div class="res-stat"><div class="res-stat-n ok">'+correct+'</div><div class="res-stat-lbl">MC corretas</div></div><div class="res-stat"><div class="res-stat-n err">'+(total-correct)+'</div><div class="res-stat-lbl">MC erradas</div></div><div class="res-stat"><div class="res-stat-n dc">'+discQs.length+'</div><div class="res-stat-lbl">Discursivas</div></div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Desempenho por Tema</div><div class="res-section-body">';
+  Object.entries(themes).forEach(function(e){
+    var name=e[0];var d=e[1];
+    var tp=Math.round(d.c/d.t*100);
+    var isDiscOnly=d.t===1&&Q.find(function(q){return q.theme===name;}).type==='disc';
+    var label=isDiscOnly?'Disc.':tp+'%';
+    var color=tp>=70?'var(--green)':tp>=40?'var(--purple)':'var(--red)';
+    html+='<div class="theme-row"><div class="theme-top"><span class="theme-name">'+name+'</span><span class="theme-pct">'+label+'</span></div><div class="theme-bar-bg"><div class="theme-bar" style="width:'+tp+'%;background:'+color+'" data-w="'+tp+'"></div></div></div>';
+  });
+  html+='</div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Insights</div><div class="res-section-body"><div class="insights-grid"><div class="insight-card"><div class="insight-lbl">Ponto mais fraco</div><div class="insight-val">'+topWeak+'</div><div class="insight-sub">Maior \u00e1rea de melhoria</div></div><div class="insight-card"><div class="insight-lbl">MC acertadas</div><div class="insight-val">'+correct+'/'+total+'</div><div class="insight-sub">Revise antes da prova</div></div><div class="insight-card"><div class="insight-lbl">MC erradas</div><div class="insight-val">'+(total-correct)+'</div><div class="insight-sub">M\u00faltipla escolha</div></div><div class="insight-card"><div class="insight-lbl">Discursivas</div><div class="insight-val">'+discQs.length+'</div><div class="insight-sub">Quest\u00f5es abertas</div></div></div></div></div>';
+  html+='<div class="res-section"><div class="res-section-head">Revis\u00e3o por Quest\u00e3o</div><div class="res-section-body">';
+  if(errors.length===0){html+='<div class="review-empty">Nenhum erro nas m\u00faltipla escolha \ud83c\udf89</div>';}
+  else{errors.forEach(function(q){var i=Q.indexOf(q);html+='<div class="review-item" onclick="revisit('+i+')"><div class="review-num">'+q.num+'</div><div class="review-text"><strong>'+q.theme+'</strong>'+q.text.substring(0,80)+'\u2026</div></div>';});}
+  html+='</div></div><button class="btn-retry" onclick="resetQuiz()">\u21ba Tentar novamente</button>';
+  var rs=document.getElementById('results');rs.innerHTML=html;rs.classList.add('on');
+  setTimeout(function(){
+    document.querySelectorAll('.theme-bar').forEach(function(el){
+      var w=el.dataset.w;el.style.width='0%';
+      setTimeout(function(){el.style.width=w+'%';},80);
+    });
+  },80);
+}
+
+function revisit(i){
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('quizWrap').style.display='';
+  document.getElementById('bottomBar').style.display='';
+  goto(i);window.scrollTo(0,0);
+}
+
+function resetQuiz(){
+  if(!confirm('Resetar a prova? Todo progresso ser\u00e1 perdido.'))return;
+  S={cur:0,ans:Array(Q.length).fill(null),done:Array(Q.length).fill(false),sel:null,deep:Array(Q.length).fill(false), eliminated:{}};
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('quizWrap').style.display='';
+  document.getElementById('bottomBar').style.display='';
+  syncPills();renderQ();window.scrollTo(0,0);
+}
+
+boot();
+</script>
+</body>
+</html>
