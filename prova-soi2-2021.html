@@ -140,6 +140,23 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
   .insight-grid{grid-template-columns:1fr;}
   .tema-name{min-width:110px;font-size:12px;}
 }
+  .linha-corte {
+  position: relative;
+  width: 100%;
+  border-bottom: 2px dashed #555;
+  margin: 30px 0;
+}
+
+.linha-corte::after {
+  content: "\2702";
+  position: absolute;
+  top: -14px;
+  left: 5%;
+  background-color: #1A1226; /* Esta é a cor exata do fundo do cartão da sua questão (--card) */
+  padding: 0 15px;
+  color: #888;
+  font-size: 22px;
+}
 </style>
 </head>
 <body>
@@ -200,10 +217,11 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
       <span class="q-tag-sep">·</span>
       <span class="q-tag-tema" id="qTagTema"></span>
     </div>
-    <div class="q-body">
-      <div class="q-context" id="qContext"></div>
+  <div class="q-body">
+      <p id="qContext" style="font-size: 16px; line-height: 1.8; color: #F4EFFA; margin-bottom: 10px; font-weight: 500; white-space: pre-line;"></p>
       <div class="q-text" id="qText"></div>
       <img class="q-img" id="qImg" alt="Imagem da questão">
+    <div class="linha-corte"></div>
       <div class="q-opts" id="qOpts"></div>
     </div>
     <div class="q-feedback" id="qFeedback"></div>
