@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulados — Afyados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f; --surface: #13131a; --surface2: #1c1c27;
+      --border: #2a2a3a; --accent: #6c63ff; --text: #e8e8f0; --muted: #6b6b80;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    header {
+      padding: 28px 40px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--accent); }
+    .tagline { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    .filters {
+      padding: 24px 40px 0;
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 7px 16px; border-radius: 8px; border: 1px solid var(--border);
+      background: none; color: var(--muted); font-family: inherit; font-size: 13px;
+      cursor: pointer; transition: all .15s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent); color: var(--accent); background: #13133a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 28px 40px 60px;
+    }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px;
+      text-decoration: none; color: inherit;
+      transition: all .2s; display: flex; flex-direction: column; gap: 12px;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); background: #13133a; }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .card-period {
+      font-size: 11px; font-weight: 700; font-family: 'Syne', sans-serif;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); background: #1a1a3a;
+      padding: 4px 10px; border-radius: 6px;
+    }
+    .card-badge {
+      font-size: 11px; padding: 4px 10px; border-radius: 6px;
+      font-weight: 600;
+    }
+    .badge-novo { background: #16301f; color: #4ade80; }
+    .badge-classico { background: #1e1e10; color: #facc15; }
+
+    .card-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+    .card-sub { font-size: 13px; color: var(--muted); }
+
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--border); padding-top: 12px; margin-top: auto;
+    }
+    .card-meta { font-size: 12px; color: var(--muted); }
+    .card-arrow { color: var(--accent); font-size: 18px; }
+
+    .empty { text-align: center; padding: 80px; color: var(--muted); font-size: 14px; grid-column: 1/-1; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Afyados</div>
+  <div class="tagline">Simulados interativos para medicina</div>
+</header>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" onclick="filter('todos', this)">Todos</button>
+  <!-- Outros filtros gerados dinamicamente -->
+</div>
+
+<div class="grid" id="grid">
+  <div class="empty">Carregando simulados...</div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  ADICIONAR NOVO SIMULADO: basta adicionar um objeto
+//  nesta lista. Não precisa mexer em mais nada.
+// ══════════════════════════════════════════════════════
+const SIMULADOS = [
+  {
+    title: "SOI II — N1 2024.2",
+    subject: "Sistemas Orgânicos Integrados II",
+    year: "2024.2",
+    period: 2,
+    questions: 10,
+    badge: "novo",          // "novo" | "classico" | "" (vazio = sem badge)
+    file: "template-quiz.html?data=quiz-data-soi2-n1-2024-2.json"
+  },
+  {
+    title: "SOI II — N1 2021.1",
+    subject: "Sistemas Orgânicos Integrados II",
+    year: "2021.1",
+    period: 2,
+    questions: 10,
+    badge: "classico",
+    file: "template-quiz.html?data=quiz-data-soi2-n1-2021-1.json"
+  },
+  {
+    title: "SOI II — N1 2021.2",
+    subject: "Sistemas Orgânicos Integrados II",
+    year: "2021.2",
+    period: 2,
+    questions: 10,
+    badge: "classico",
+    file: "template-quiz.html?data=quiz-data-soi2-n1-2021-2.json"
+  }
+  // ← Acrescente aqui os próximos simulados
+];
+// ══════════════════════════════════════════════════════
+
+let currentFilter = 'todos';
+
+function filter(value, btn) {
+  currentFilter = value;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+function buildFilters() {
+  const periods = [...new Set(SIMULADOS.map(s => s.period))].sort();
+  const container = document.getElementById('filters');
+  periods.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.textContent = `Período ${p}`;
+    btn.onclick = () => filter(`period-${p}`, btn);
+    container.appendChild(btn);
+  });
+}
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  const filtered = currentFilter === 'todos'
+    ? SIMULADOS
+    : SIMULADOS.filter(s => `period-${s.period}` === currentFilter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty">Nenhum simulado encontrado.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(s => `
+    <a class="card" href="${s.file}">
+      <div class="card-top">
+        <span class="card-period">Período ${s.period}</span>
+        ${s.badge === 'novo' ? '<span class="card-badge badge-novo">Novo</span>' :
+          s.badge === 'classico' ? '<span class="card-badge badge-classico">Clássico</span>' : ''}
+      </div>
+      <div class="card-title">${s.title}</div>
+      <div class="card-sub">${s.subject}</div>
+      <div class="card-footer">
+        <span class="card-meta">${s.questions} questões · ${s.year}</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  `).join('');
+}
+
+buildFilters();
+renderGrid();
+</script>
+</body>
+</html>
