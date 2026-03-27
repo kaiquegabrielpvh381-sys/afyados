@@ -2,442 +2,655 @@
 <html lang="pt-BR">
 <head>
   <link rel="icon" type="image/png" href="favicon.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N1 SOI II 2021.2 | Afyados</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{background:#0C0810;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;min-height:100vh;}
-    :root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--card:#1A1226;--border:rgba(255,255,255,0.07);--muted:#9080A8;--light:#D8CEEA;--green:#1D9E75;--green-l:rgba(29,158,117,0.12);--green-b:rgba(29,158,117,0.3);}
-    nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(12,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .logo-mark{width:30px;height:30px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:7px;display:flex;align-items:center;justify-content:center;}
-    .logo-mark svg{width:14px;height:14px;fill:white;}
-    .logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:16px;letter-spacing:.05em;color:#fff;}
-    .back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:50px;border:1px solid var(--border);transition:all .2s;}
-    .back-btn:hover{border-color:var(--pink);color:var(--pink-light);}
-    .sticky-bar{position:fixed;top:56px;left:0;right:0;z-index:400;background:rgba(12,8,16,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 32px;}
-    .sticky-inner{max-width:820px;margin:0 auto;}
-    .sticky-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-    .sticky-aviso{display:flex;align-items:center;gap:8px;font-size:11px;color:#FAAD3F;font-weight:600;margin-bottom:8px;padding:5px 10px;background:rgba(186,113,0,0.1);border-radius:6px;border:1px solid rgba(186,113,0,0.2);}
-    .sticky-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-    .btn-reset{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;padding:4px 8px;border-radius:6px;transition:color .15s;}
-    .btn-reset:hover{color:var(--pink-light);}
-    .q-pills{display:flex;gap:5px;flex-wrap:wrap;}
-    .qp{width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif;}
-    .qp:hover{border-color:var(--green-b);color:#5DCAA5;}
-    .qp.current{background:var(--pink);border-color:var(--pink);color:#fff;}
-    .qp.correct{background:rgba(29,158,117,0.15);border-color:rgba(29,158,117,0.5);color:#5DCAA5;}
-    .qp.wrong{background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.4);color:#F09595;}
-    .qp.disc{background:rgba(155,0,232,0.15);border-color:rgba(155,0,232,0.4);color:#D4A8FF;}
-    .main{max-width:820px;margin:0 auto;padding:160px 32px 80px;}
-    .q-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
-    .q-card-header{padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
-    .q-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
-    .q-tag-tema{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-    .q-tag-disc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(155,0,232,0.15);color:#D4A8FF;border:1px solid rgba(155,0,232,0.3);}
-    .q-body{padding:28px;}
-    .q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
-    .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
-    .q-img{width:100%;max-width:560px;border-radius:10px;margin:0 auto 24px;display:block;border:1px solid rgba(255,255,255,0.1);background:#fff;padding:10px;}
-    .q-opts{display:flex;flex-direction:column;gap:9px;}
-    .q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;position: relative;}
-    .q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
-    .q-opt.selected{background:rgba(214,0,110,0.08);border-color:rgba(214,0,110,0.45);color:#F4EFFA;}
-    .q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
-    .q-opt.wrong{background:rgba(226,75,74,0.07);border-color:rgba(226,75,74,0.45);color:#F4B8B8;}
-    .q-opt.discarded{opacity: 0.4; filter: grayscale(1);}
-    .btn-discard{position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; padding: 5px; opacity: 0.3; transition: opacity 0.2s;}
-    .btn-discard:hover{opacity: 1;}
-    .q-feedback{margin:0 28px;padding:16px 18px;border-radius:12px;font-size:14px;line-height:1.8;border:1px solid;display:none;}
-    .q-feedback.show{display:block;animation:fadeUp .25s ease;}
-    .fb-ok{background:rgba(29,158,117,0.07);border-color:rgba(29,158,117,0.3);color:#C5EDD9;}
-    .fb-err{background:rgba(226,75,74,0.06);border-color:rgba(226,75,74,0.3);color:#F4B8B8;}
-    .fb-disc{background:rgba(155,0,232,0.07);border-color:rgba(155,0,232,0.25);color:#E8D8FF;}
-    .fb-label{font-weight:700;display:block;margin-bottom:6px;}
-    .ai-box{margin:12px 28px 0;background:linear-gradient(135deg,rgba(155,0,232,0.07),rgba(214,0,110,0.03));border:1px solid rgba(155,0,232,0.2);border-radius:14px;display:none;}
-    .ai-box.open{display:block;}
-    .ai-content{padding:18px;font-size:14px;line-height:1.9;color:#E8D8FF;white-space:pre-line;}
-    .q-nav-bar{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
-    .btn-respond{background:var(--green-l);color:#5DCAA5;border:1px solid var(--green-b);padding:10px 20px;border-radius:50px;cursor:pointer;font-weight:700;}
-    .btn-next{background:var(--pink);color:#fff;border:none;padding:10px 22px;border-radius:50px;cursor:pointer;font-weight:700;}
-    .result-screen{display:none;}
-    .result-screen.show{display:block;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N1 SOI II 2021.2 | Afyados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0C0810;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;min-height:100vh;}
+:root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--card:#1A1226;--border:rgba(255,255,255,0.07);--muted:#9080A8;--light:#D8CEEA;--green:#1D9E75;--green-l:rgba(29,158,117,0.12);--green-b:rgba(29,158,117,0.3);}
+
+nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(12,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{width:30px;height:30px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.logo-mark svg{width:14px;height:14px;fill:white;}
+.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:16px;letter-spacing:.05em;color:#fff;}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:50px;border:1px solid var(--border);transition:all .2s;}
+.back-btn:hover{border-color:var(--pink);color:var(--pink-light);}
+
+.sticky-bar{position:fixed;top:56px;left:0;right:0;z-index:400;background:rgba(12,8,16,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 32px;}
+.sticky-inner{max-width:820px;margin:0 auto;}
+.sticky-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.sticky-aviso{display:flex;align-items:center;gap:8px;font-size:11px;color:#FAAD3F;font-weight:600;margin-bottom:8px;padding:5px 10px;background:rgba(186,113,0,0.1);border-radius:6px;border:1px solid rgba(186,113,0,0.2);}
+.sticky-aviso svg{flex-shrink:0;}
+.sticky-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.btn-reset{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;padding:4px 8px;border-radius:6px;transition:color .15s;}
+.btn-reset:hover{color:var(--pink-light);}
+.q-pills{display:flex;gap:5px;flex-wrap:wrap;}
+.qp{width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif;}
+.qp:hover{border-color:var(--green-b);color:#5DCAA5;}
+.qp.current{background:var(--pink);border-color:var(--pink);color:#fff;}
+.qp.correct{background:rgba(29,158,117,0.15);border-color:rgba(29,158,117,0.5);color:#5DCAA5;}
+.qp.wrong{background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.4);color:#F09595;}
+.qp.disc{background:rgba(155,0,232,0.15);border-color:rgba(155,0,232,0.4);color:#D4A8FF;}
+
+.main{max-width:820px;margin:0 auto;padding:160px 32px 80px;}
+
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.q-card-header{padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.q-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
+.q-tag-sep{color:rgba(255,255,255,0.12);}
+.q-tag-tema{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+.q-tag-disc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(155,0,232,0.15);color:#D4A8FF;border:1px solid rgba(155,0,232,0.3);}
+.q-body{padding:28px;}
+.q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
+.q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
+.q-img{width:100%;max-width:560px;border-radius:10px;margin:0 auto 24px;display:block;border:1px solid rgba(255,255,255,0.1);background:#fff;padding:10px;}
+
+.q-opts{display:flex;flex-direction:column;gap:9px;}
+.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
+.q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
+.q-opt.selected{background:rgba(214,0,110,0.08);border-color:rgba(214,0,110,0.45);color:#F4EFFA;}
+.q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
+.q-opt.wrong{background:rgba(226,75,74,0.07);border-color:rgba(226,75,74,0.45);color:#F4B8B8;}
+.q-opt[disabled]{cursor:default;}
+.opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);transition:all .2s;}
+.q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
+.q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
+.q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
+
+/* Discursiva */
+.disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;resize:vertical;line-height:1.7;transition:border-color .2s;}
+.disc-area:focus{outline:none;border-color:rgba(155,0,232,0.4);}
+.disc-area[disabled]{opacity:0.6;cursor:default;}
+.disc-label{font-size:12px;color:var(--muted);margin-bottom:8px;}
+
+.q-feedback{margin:0 28px;padding:16px 18px;border-radius:12px;font-size:14px;line-height:1.8;border:1px solid;display:none;}
+.q-feedback.show{display:block;animation:fadeUp .25s ease;}
+.fb-ok{background:rgba(29,158,117,0.07);border-color:rgba(29,158,117,0.3);color:#C5EDD9;}
+.fb-err{background:rgba(226,75,74,0.06);border-color:rgba(226,75,74,0.3);color:#F4B8B8;}
+.fb-disc{background:rgba(155,0,232,0.07);border-color:rgba(155,0,232,0.25);color:#E8D8FF;}
+.fb-label{font-weight:700;display:block;margin-bottom:6px;font-size:14px;}
+.fb-exp{display:block;margin-bottom:14px;}
+
+.btn-aprofundar{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(155,0,232,0.15),rgba(214,0,110,0.1));border:1px solid rgba(155,0,232,0.35);color:#D4A8FF;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-aprofundar:hover{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));}
+.btn-aprofundar.active{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));border-color:rgba(155,0,232,0.5);}
+
+.ai-box{margin:12px 28px 0;background:linear-gradient(135deg,rgba(155,0,232,0.07),rgba(214,0,110,0.03));border:1px solid rgba(155,0,232,0.2);border-radius:14px;overflow:hidden;display:none;}
+.ai-box.open{display:block;animation:fadeUp .3s ease;}
+.ai-box-header{padding:11px 16px;border-bottom:1px solid rgba(155,0,232,0.15);display:flex;align-items:center;gap:8px;}
+.ai-box-header span{font-size:11px;font-weight:700;color:#D4A8FF;letter-spacing:.06em;text-transform:uppercase;}
+.ai-content{padding:18px;font-size:14px;line-height:1.9;color:#E8D8FF;white-space:pre-line;}
+
+.q-nav-bar{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
+.btn-prev{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--light);border:1px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-prev:hover:not([disabled]){background:rgba(255,255,255,0.09);}
+.btn-prev[disabled]{opacity:0.3;cursor:default;}
+.q-counter{font-size:14px;color:var(--muted);}
+.q-counter strong{color:#F4EFFA;font-weight:700;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-respond{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--green-l);color:#5DCAA5;border:1px solid var(--green-b);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-respond:hover:not([disabled]){background:rgba(29,158,117,0.22);}
+.btn-respond[disabled]{opacity:0.35;cursor:default;}
+.btn-next{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--pink);color:#fff;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 16px var(--pink-glow);}
+.btn-next:hover{background:var(--pink-bright);transform:translateY(-1px);}
+
+.result-screen{display:none;animation:fadeUp .35s ease;}
+.result-screen.show{display:block;}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:20px;}
+.res-ring{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Playfair Display',serif;font-size:34px;font-weight:900;}
+.res-ring.great{background:rgba(29,158,117,0.12);border:2px solid rgba(29,158,117,0.5);color:#9FE1CB;}
+.res-ring.ok{background:rgba(214,0,110,0.1);border:2px solid rgba(214,0,110,0.3);color:var(--pink-light);}
+.res-ring.bad{background:rgba(226,75,74,0.08);border:2px solid rgba(226,75,74,0.3);color:#F09595;}
+.res-card h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-bottom:6px;}
+.res-card p{color:var(--muted);font-size:14px;margin-bottom:24px;}
+.res-stats{display:flex;gap:12px;max-width:400px;margin:0 auto 28px;}
+.res-stat{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:14px 10px;}
+.res-stat .v{font-size:22px;font-weight:700;}
+.res-stat .l{font-size:11px;color:var(--muted);margin-top:2px;}
+.btn-retry{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:#fff;padding:12px 28px;border-radius:50px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 18px var(--pink-glow);}
+.btn-retry:hover{background:var(--pink-bright);}
+
+.report-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;}
+.report-card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.report-section{margin-bottom:24px;}
+.report-section h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.tema-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.tema-name{font-size:13px;color:var(--light);min-width:180px;flex-shrink:0;}
+.tema-bar-bg{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.tema-bar-fill{height:100%;border-radius:99px;transition:width .8s ease;}
+.tema-bar-fill.green{background:linear-gradient(90deg,#1D9E75,#9FE1CB);}
+.tema-bar-fill.red{background:linear-gradient(90deg,#E24B4A,#F09595);}
+.tema-bar-fill.purple{background:linear-gradient(90deg,#9B00E8,#D4A8FF);}
+.tema-pct{font-size:12px;font-weight:700;min-width:36px;text-align:right;}
+.tema-pct.green{color:#5DCAA5;}
+.tema-pct.red{color:#F09595;}
+.tema-pct.purple{color:#D4A8FF;}
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.insight-box{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.insight-box .ib-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.insight-box .ib-val{font-size:15px;font-weight:700;color:#F4EFFA;line-height:1.4;}
+.insight-box .ib-sub{font-size:12px;color:var(--muted);margin-top:3px;}
+.q-review-list{display:flex;flex-direction:column;gap:6px;}
+.q-rev-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.q-rev-row:hover{background:rgba(255,255,255,0.05);}
+.rev-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot-ok{background:#5DCAA5;}
+.dot-err{background:#E24B4A;}
+.dot-disc{background:#D4A8FF;}
+.q-rev-row span{flex:1;font-size:13px;color:var(--light);}
+.q-rev-row small{font-size:12px;color:var(--muted);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){
+  nav,.sticky-bar{padding-left:16px;padding-right:16px;}
+  .main{padding:150px 14px 60px;}
+  .q-body,.q-card-header,.q-nav-bar{padding-left:16px;padding-right:16px;}
+  .q-feedback,.ai-box{margin-left:16px;margin-right:16px;}
+  .q-text{font-size:15px;}
+  .q-opt{font-size:14px;padding:12px 14px;}
+  .insight-grid{grid-template-columns:1fr;}
+  .tema-name{min-width:110px;}
+}
+</style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
-    <span class="logo-name">AFYADOS</span>
-  </a>
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
+    <span class="logo-name">AFYADOS</span>
+  </a>
+  <a href="simulados2.html" class="back-btn">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Voltar aos simulados
+  </a>
 </nav>
 
 <div class="sticky-bar">
-  <div class="sticky-inner">
-    <div class="sticky-top">
-      <span class="sticky-title">N1 SOI II · 2021.2 &nbsp;·&nbsp; Gabarito de questões</span>
-      <button class="btn-reset" onclick="resetAll()">Resetar lista</button>
-    </div>
-    <div class="q-pills" id="qPills"></div>
-  </div>
+  <div class="sticky-inner">
+    <div class="sticky-aviso">
+      <svg width="13" height="13" fill="none" stroke="#FAAD3F" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      <span>PDF incompleto — algumas questões podem estar ausentes ou com enunciado parcial.</span>
+    </div>
+    <div class="sticky-top">
+      <span class="sticky-title">N1 SOI II · 2021.2 &nbsp;·&nbsp; Gabarito de questões</span>
+      <button class="btn-reset" onclick="resetAll()">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        Resetar lista
+      </button>
+    </div>
+    <div class="q-pills" id="qPills"></div>
+  </div>
 </div>
 
 <div class="main">
-  <div class="result-screen" id="resultScreen">
-    <div class="res-card">
-      <div class="res-ring" id="resRing">0%</div>
-      <h2 id="resTitle">Resultado</h2>
-      <p id="resSub"></p>
-      <button class="btn-retry" onclick="resetAll()">Tentar novamente</button>
-    </div>
-    <div id="reportContent"></div>
-  </div>
+  <div class="result-screen" id="resultScreen">
+    <div class="res-card">
+      <div class="res-ring" id="resRing">0%</div>
+      <h2 id="resTitle">Resultado</h2>
+      <p id="resSub"></p>
+      <div class="res-stats">
+        <div class="res-stat"><div class="v" id="resOk" style="color:#5DCAA5;">0</div><div class="l">MC corretas</div></div>
+        <div class="res-stat"><div class="v" id="resErr" style="color:#F09595;">0</div><div class="l">MC erradas</div></div>
+        <div class="res-stat"><div class="v" id="resDisc" style="color:#D4A8FF;">0</div><div class="l">Discursivas</div></div>
+      </div>
+      <button class="btn-retry" onclick="resetAll()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        Tentar novamente
+      </button>
+    </div>
+    <div class="report-card">
+      <h3>
+        <svg width="18" height="18" fill="none" stroke="#D4A8FF" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
+        Relatório de desempenho
+      </h3>
+      <div id="reportContent"></div>
+    </div>
+  </div>
 
-  <div class="q-card" id="qCard">
-    <div class="q-card-header">
-      <span class="q-tag" id="qTagNum">Questão 1</span>
-      <span class="q-tag-tema" id="qTagTema"></span>
-      <span class="q-tag-disc" id="qTagDisc" style="display:none;">Discursiva</span>
-    </div>
-    <div class="q-body">
-      <div class="q-context" id="qContext"></div>
-      <div class="q-text" id="qText"></div>
-      <img class="q-img" id="qImg" alt="" style="display:none;">
-      <div class="q-opts" id="qOpts"></div>
-    </div>
-    <div class="q-feedback" id="qFeedback"></div>
-    <div class="ai-box" id="aiBox">
-      <div class="ai-content" id="aiContent"></div>
-    </div>
-    <div class="q-nav-bar">
-      <button class="btn-prev" id="btnPrev" onclick="prevQ()">Anterior</button>
-      <span class="q-counter">Questão <strong id="qCounterNum">1</strong> de <strong id="qCounterTotal">15</strong></span>
-      <div class="nav-right">
-        <button class="btn-respond" id="btnRespond" onclick="submitAnswer()">Responder</button>
-        <button class="btn-next" id="btnNext" onclick="nextQ()">Próxima</button>
-      </div>
-    </div>
-  </div>
+  <div class="q-card" id="qCard">
+    <div class="q-card-header">
+      <span class="q-tag" id="qTagNum">Questão 1</span>
+      <span class="q-tag-sep">·</span>
+      <span class="q-tag-tema" id="qTagTema"></span>
+      <span class="q-tag-disc" id="qTagDisc" style="display:none;">Discursiva</span>
+    </div>
+    <div class="q-body">
+      <div class="q-context" id="qContext"></div>
+      <div class="q-text" id="qText"></div>
+      <img class="q-img" id="qImg" alt="" style="display:none;">
+      <div class="q-opts" id="qOpts"></div>
+    </div>
+    <div class="q-feedback" id="qFeedback"></div>
+    <div class="ai-box" id="aiBox" style="display:none;">
+      <div class="ai-box-header">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4A8FF" stroke-width="2.5"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>Aprofundamento — SOI II</span>
+      </div>
+      <div class="ai-content" id="aiContent"></div>
+    </div>
+    <div class="q-nav-bar">
+      <button class="btn-prev" id="btnPrev" onclick="prevQ()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Anterior
+      </button>
+      <span class="q-counter">Questão <strong id="qCounterNum">1</strong> de <strong>7</strong></span>
+      <div class="nav-right">
+        <button class="btn-respond" id="btnRespond" onclick="submitAnswer()">Responder</button>
+        <button class="btn-next" id="btnNext" onclick="nextQ()">
+          Próxima <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
 var QS = [
-  {
-    n: 1, tema: "Doença de Huntington", tipo: "mc",
-    context: "Em um episódio de House, M.D., pode ser observado a personagem Remy Hadley mais conhecida como Thirteen (Treze) que possuía a Doença de Huntington. Sendo esta uma patologia genética hereditária que afeta o sistema nervoso, causando alteração no gene da Huntingtina (HTT). A patologia desencadeia a produção de uma proteína mutante (mHTT). É uma doença caracterizada por interferências cognitivas, distúrbios motores e psiquiátricos. A nível celular, a mHTT promove disfunção e morte neuronal por vários mecanismos.",
-    text: "Marque abaixo alternativa correta.",
-    opts: ["I, III e IV.", "II e III.", "I e IV.", "II, III e V."],
-    g: 0
-  },
-  {
-    n: 2, tema: "Medula Espinal", tipo: "mc",
-    context: "A medula espinal possui formato cilíndrico e não uniforme, com dilatações conhecidas como intumescências nas regiões cervical e lombar. Macroscopicamente a superfície da medula apresenta sulcos longitudinais.",
-    text: "Assinale a alternativa que descreve a associação correta entre a formação dos nervos espinais e a estrutura da medula espinal:",
-    opts: [
-      "Os nervos espinais ligam-se aos sulcos mediano posterior e lateral anterior.",
-      "Os nervos espinais ligam-se aos sulcos lateral posterior e lateral anterior.",
-      "Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora) nos sulcos lateral posterior e lateral anterior.",
-      "Os nervos espinais ligam-se aos sulcos posterior e anterior."
-    ],
-    g: 2
-  },
-  {
-    n: 3, tema: "AVE Isquêmico", tipo: "mc",
-    context: "Homem, 67 anos, diabético e hipertenso, apresentou alterações de campo visual, rebaixamento de consciência e déficit sensitivo após um AVEI.",
-    text: "Identifique qual artéria foi obstruída:",
-    opts: ["Artéria cerebral posterior.", "Artéria cerebral anterior.", "Artéria basilar.", "Artéria vertebral."],
-    g: 0
-  },
-  {
-    n: 4, tema: "Hidrocefalia", tipo: "mc",
-    context: "Criança de 8 meses com hidrocefalia, náuseas, irritabilidade e sonolência.",
-    text: "Sobre a morfologia das cavidades do SNC, avalie as afirmativas:\nI. O plexo coroide produz LCR.\nII. O aqueduto cerebral conecta o 3º ao 4º ventrículo.\nIII. O LCR é absorvido pelas granulações aracnóideas.",
-    opts: ["II e III apenas.", "II apenas.", "I apenas.", "I, II e III."],
-    g: 3,
-    img: "image_e5db3b.png"
-  },
-  {
-    n: 5, tema: "Sistema de Recompensa", tipo: "disc",
-    context: "Ao comer um chocolate, sentimos bem-estar devido ao sistema de recompensa límbico.",
-    text: "A) Relacione três estruturas encefálicas e as sensações provocadas.\nB) Explique o processo de sinapse bioquímica.\nC) Identifique dois produtos (neurotransmissores) e suas ações.",
-    resposta: "A) Amígdala (emoção), Núcleo Accumbens (prazer) e Córtex Pré-frontal (memória).\nB) Chegada do potencial de ação causa influxo de Ca2+ e exocitose de vesículas.\nC) Dopamina e Serotonina; promovem motivação e bem-estar.",
-    img: "image_e5db98.png"
-  },
-  {
-    n: 6, tema: "Herpes-Zoster", tipo: "mc",
-    context: "O vírus herpes-zoster causa dor unilateral seguindo o território de um dermátomo.",
-    text: "É correto afirmar que:",
-    opts: [
-      "A multiplicação ocorre no neurônio da pele.",
-      "É possível determinar os nervos espinais acometidos pela observação.",
-      "A infecção do gânglio sensorial interfere na resposta motora.",
-      "O vírus fica latente na raiz ventral."
-    ],
-    g: 1
-  },
-  {
-    n: 7, tema: "Neurotransmissores", tipo: "mc",
-    context: "Neurotransmissores transportam e equilibram sinais entre neurônios.",
-    text: "Assinale a alternativa correta:",
-    opts: [
-      "O GABA está ativo em comportamentos de adição.",
-      "A glicina é um neurotransmissor excitatório.",
-      "O GABA é o principal neurotransmissor inibitório do SNC.",
-      "A Acetilcolina é exclusivamente inibitória."
-    ],
-    g: 2
-  },
-  {
-    n: 8, tema: "Biomecânica do Joelho", tipo: "mc",
-    context: "O joelho é estabilizado pelos ligamentos cruzados e colaterais.",
-    text: "Avalie as asserções:\nI. Formado por fêmur, tíbia e patela.\nII. Patela aumenta o braço de alavanca.\nIII. LCP impede a translação posterior.\nIV. Meniscos produzem lubrificação.",
-    opts: ["I, II, III e IV.", "I e II apenas.", "II e III apenas.", "I, II e III apenas."],
-    g: 3
-  },
-  {
-    n: 9, tema: "Nervos Cranianos", tipo: "mc",
-    context: "Paciente com perda de olfato (anosmia), zumbido e perda de equilíbrio.",
-    text: "Identifique os nervos comprometidos:",
-    opts: [
-      "I e VIII.",
-      "II e VII.",
-      "III e V.",
-      "IV e VI."
-    ],
-    g: 0
-  },
-  {
-    n: 10, tema: "Doença de Parkinson", tipo: "mc",
-    context: "Depleção de dopamina na via nigroestriatal causa Parkinsonismo.",
-    text: "A dopamina coordena movimentos porque:",
-    opts: [
-      "Estimula a via indireta.",
-      "Estimula a via direta (receptores D1) inibindo o globo pálido medial.",
-      "Inibe o tálamo.",
-      "Inibe o núcleo subtalâmico na via direta."
-    ],
-    g: 1
-  },
-  {
-    n: 11, tema: "Dinâmica do Líquor", tipo: "mc",
-    context: "O LCR protege o encéfalo de lesões químicas e físicas.",
-    text: "Sobre sua dinâmica:",
-    opts: [
-      "Produzido nas granulações.",
-      "Produzido pelos plexos corioides nos ventrículos.",
-      "Flui do 4º para o 3º ventrículo.",
-      "Circula sangue nos ventrículos."
-    ],
-    g: 1
-  },
-  {
-    n: 12, tema: "Fibra Muscular", tipo: "mc",
-    context: "A fibra muscular esquelética é preenchida por miofibrilas.",
-    text: "Assinale a correta:",
-    opts: [
-      "Formada por filamentos de actina e miosina (sarcômeros).",
-      "Núcleos centrais.",
-      "Possui díades.",
-      "Banda A tem apenas actina."
-    ],
-    g: 0
-  },
-  {
-    n: 13, tema: "Ação de Neurotransmissores", tipo: "mc",
-    context: "Diferentes neurotransmissores possuem efeitos excitatórios ou inibitórios.",
-    text: "Assinale a única correta:",
-    opts: [
-      "O GABA é o principal inibitório.",
-      "Glutamato é inibitório.",
-      "ACh é apenas excitatória.",
-      "Glicina é excitatória."
-    ],
-    g: 0
-  },
-  {
-    n: 14, tema: "Placa Motora", tipo: "disc",
-    context: "A toxina botulínica causa paralisia muscular.",
-    text: "Explique o processo de estimulação na placa motora e a ação do Botox.",
-    resposta: "A ACh liga-se a receptores nicotínicos causando contração. O Botox cliva proteínas SNARE, impedindo a liberação de ACh e causando paralisia."
-  },
-  {
-    n: 15, tema: "Consolidação Óssea", tipo: "disc",
-    context: "O osso se regenera através de fases cronológicas.",
-    text: "Descreva as fases da consolidação óssea.",
-    resposta: "1. Hematoma; 2. Calo Mole; 3. Calo Duro; 4. Remodelação (Osteoclastos limpam e osteoblastos mineralizam)."
-  }
+  {n:1,tema:"Doença de Huntington",tipo:"mc",
+   context:"Em um episódio de House, M.D., pode ser observado a personagem Remy Hadley mais conhecida como Thirteen (Treze) que possuía a Doença de Huntington. Sendo esta uma patologia genética hereditária que afeta o sistema nervoso, causando alteração no gene da Huntingtina (HTT). A patologia desencadeia a produção de uma proteína mutante (mHTT). É uma doença caracterizada por interferências cognitivas, distúrbios motores e psiquiátricos. A nível celular, a mHTT promove disfunção e morte neuronal por vários mecanismos.\n\nConsiderando o texto base, avalie as afirmativas a seguir:\n\nI. A perda neuronal atinge importantes núcleos da base, como o caudado e o putâmen.\n\nII. Os núcleos envolvidos nesta doença participam do controle do equilíbrio e das emoções agindo de maneira desassociada aos núcleos caudais.\n\nIII. Pessoas com até 35 repetições CAG no gene HTT possivelmente não desenvolvem a doença de Huntington, mas à medida que o gene é transmitido nas gerações, há expansão da repetição CAG associando-se ao início dos sintomas.\n\nIV. Do ponto de vista neuroquímico, observa-se uma redução acentuada do GABA, principal neurotransmissor inibitório do sistema nervoso central.\n\nMarque abaixo alternativa correta.",
+   text:"É correto o que se afirma em:",
+   opts:["I, III e IV.","II e III.","I e IV.","II, III e IV."],
+   g:0},
+  {n:2,tema:"Nervos Espinais",tipo:"mc",
+   context:"A medula espinhal possui formato cilíndrico e não uniforme, com dilatações conhecidas como intumescências (regiões com maior quantidade de neurônios que entram e saem dessas áreas) nas regiões cervical e lombar, onde as raízes formam, respectivamente, os plexos braquial e lombossacro, responsáveis pela inervação dos membros superiores e inferiores. Além disso, macroscopicamente a superfície da medula apresenta sulcos longitudinais.",
+   text:"Assinale a alternativa que descreve a associação correta entre a formação dos nervos espinais e a estrutura da medula espinal:",
+   opts:["Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos mediano posterior e lateral anterior da medula através de filamentos radiculares.",
+         "Os nervos espinais são formados pela união das raízes dorsal (motora) e ventral (sensitiva), as quais se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares.",
+         "Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares.",
+         "Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos posterior e anterior da medula através de filamentos radiculares."],
+   g:2},
+  {n:3,tema:"AVE Isquêmico",tipo:"mc",
+   context:"Homem, 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\n\n- Alterações de campo visual.\n- Rebaixamento do nível de consciência.\n- Déficit sensitivo.",
+   text:"Sobre o caso acima, identifique qual artéria foi obstruída:",
+   opts:["Artéria cerebral posterior.","Artéria cerebral anterior.","Artéria basilar.","Artéria vertebral."],
+   g:0},
+  {n:4,tema:"Hidrocefalia e LCR",tipo:"mc",
+   context:"Dona Josefa traz seu filho, João, criança com 8 meses de idade, com diagnóstico de hidrocefalia apresentando náuseas e vômitos, irritabilidade e sonolência. Com o exame abaixo que compara uma tomografia computadorizada de crânio sem alterações com uma que demonstra a hidrocefalia e, em relação ao conhecimento sobre a morfologia macro e micro das cavidades do Sistema Nervoso Central (SNC), analise as afirmativas seguintes:\n\nFigura 1: Tomografia Computadorizada de Crânio Normal (A) e Hidrocefalia com dilatação ventricular (B).\n\n[[IMG_Q4]]\n\nFonte: https://www.neurocirurgiabh.com.br/hidrocefalia\n\nI. O plexo coroide é uma estrutura localizada dentro dos ventrículos que produz o líquido cefalorraquidiano (LCR) com funções de nutrição e proteção.\n\nII. O aqueduto cerebral, também conhecido como ducto mesencefálico, é um canal que conecta o terceiro ao quarto ventrículo e permite a passagem do LCR pelo mesencéfalo.\n\nIII. O LCR circula pelos seios venosos cerebrais e é absorvido pelas granulações aracnóideas.",
+   text:"É correto o que se afirma em:",
+   opts:["II e III, apenas.","II, apenas.","I, apenas.","I, II e III."],
+   g:3},
+  {n:5,tema:"Chocolate e Sistema Nervoso",tipo:"disc",
+   context:"Ao comer um chocolate, por exemplo, sentimo-nos bem. E isso gera impacto significativo sobre a nossa motivação, produtividade e bem-estar. Nenhuma pessoa sã manifestaria oposição em ter níveis fisiológicos mais elevados de alguns produtos do corpo, os quais podem minimizar os impactos dos desafios diários.\n\nA imagem abaixo pode ser utilizada para ilustrar parte desse complexo mecanismo:\n\n[[IMG_Q5]]",
+   text:"Responda as questões a seguir:\n\nA) Relacione quais áreas ou estruturas morfológicas (três) do encéfalo receberam essas informações e quais as sensações provocadas pelo chocolate nessas estruturas.\n\nB) Explique bioquimicamente o processo de resposta (sinapse), a partir da estimulação das células dessas áreas ou estruturas.\n\nC) Defenda quais são os principais produtos (dois) e as ações fisiológicas produzidas no organismo da pessoa que comeu o chocolate.",
+   resposta:"A) Amígdala (emoção/saciedade), Hipocampo (memória e emoção), Córtex pré-frontal (memória curta/lembrança), Núcleo accumbens (recompensa), Hipotálamo (saciedade).\n\nB) Potencial de ação chega ao terminal pré-sináptico → despolarização da membrana → abertura de canais de Ca²⁺ → vesículas sinápticas se fundem à membrana → liberação de neurotransmissores na fenda sináptica → ligação com receptores pós-sinápticos.\n\nC) Principais neurotransmissores: Dopamina (recompensa, motivação, prazer) e Serotonina (bem-estar, humor, saciedade). Também noradrenalina (alerta, energia). Ações: excitação do neurônio pós-sináptico, alterações de permeabilidade da membrana, reações bioquímicas e regulação gênica."},
+  {n:6,tema:"Herpes-Zóster e Dermátomos",tipo:"mc",
+   context:"O vírus herpes-zóster causa dor unilateral e aparecimento de vesículas sobre base eritematosa, seguindo o território de um dermátomo. Geralmente ocorre como resultado de reativação endógena do vírus, que persistiu de forma latente num gânglio sensorial após um episódio de varicela.",
+   text:"Analisando o contexto acima, é possível afirmar que:",
+   opts:["A multiplicação do microrganismo acontece no corpo celular do neurônio presente na pele.",
+         "É possível pela observação determinar os nervos espinais acometidos.",
+         "A infecção do gânglio sensorial pode interferir na resposta motora.",
+         "Provavelmente o microrganismo ficou latente na raiz ventral da medula espinal."],
+   g:1},
+  {n:7,tema:"Neurotransmissores",tipo:"mc",
+   context:"Os neurotransmissores ou neuromoduladores atuam como sinais parácrinos, com as suas células-alvo localizadas perto do neurônio que as secreta. Eles são definidos como mensageiros químicos que transportam, estimulam e equilibram os sinais entre os neurônios, ou células nervosas e outras células do corpo.",
+   text:"Sobre estes neurotransmissores, analise e marque a alternativa correta:",
+   opts:["Os neurônios encefálicos que contêm o neurotransmissor GABA estão ativos durante respostas emocionais, comportamentos de adição e experiências agradáveis.",
+         "A glicina, neurotransmissor excitatório, se liga a receptores ionotrópicos e abre canais de Cl⁻. Cerca de metade das sinapses excitatórias na medula espinal utilizam a glicina.",
+         "O GABA é encontrado somente no SNC, onde é o neurotransmissor inibitório mais comum. Cerca de um terço de todas as sinapses encefálicas utiliza o GABA.",
+         "A Acetilcolina é um neurotransmissor inibitório em algumas sinapses e é excitatório em outras, como nas que se liga a receptores metabotrópicos acoplados a proteínas G."],
+   g:2}
 ];
-
 var SHORT = [
-  "Correta: A. Huntington afeta o estriado e reduz o GABA.",
-  "Correta: C. Nervos espinais nascem da fusão das raízes dorsal e ventral.",
-  "Correta: A. Artéria Cerebral Posterior irriga o lobo occipital (visão).",
-  "Correta: D. Todas as asserções descrevem a produção e fluxo do LCR.",
-  null,
-  "Correta: B. A topografia do dermátomo identifica a raiz nervosa.",
-  "Correta: C. GABA é o inibitório universal do SNC.",
-  "Correta: D. Meniscos não produzem lubrificação (papel da sinóvia).",
-  "Correta: A. Olfato (Nervo I) e Vestibulococlear (Nervo VIII).",
-  "Correta: B. Via direta facilita movimento via D1.",
-  "Correta: B. Produção nos plexos corioides ventriculares.",
-  "Correta: A. Sarcômeros são unidades de actina e miosina.",
-  "Correta: A. GABA inibe; Glutamato excita.",
-  null,
-  null
+`As afirmativas corretas são I, III e IV. A perda neuronal afeta caudado e putâmen (I). As repetições CAG se expandem nas gerações, associando-se ao início dos sintomas (III). Observa-se redução acentuada do GABA (IV). A II está errada: os núcleos da base atuam principalmente no controle motor e são altamente interligados — não agem de forma desassociada.`,
+`Os nervos espinais são formados pela raiz dorsal (sensitiva) + raiz ventral (motora), ligando-se respectivamente aos sulcos LATERAL POSTERIOR e LATERAL ANTERIOR. A alternativa A erra ao mencionar 'sulco mediano posterior'. A B inverte as funções das raízes. A D usa nomenclatura imprecisa ('posterior' e 'anterior' sem 'lateral').`,
+`A artéria cerebral POSTERIOR é responsável pela irrigação dos lobos occipitais e parte dos temporais. Sua oclusão causa: alterações de campo visual (lobos occipitais), rebaixamento da consciência e déficit sensitivo. A cerebral anterior afeta membros inferiores; a média afeta face e membros superiores com afasia.`,
+`Todas as afirmativas estão corretas. I: O plexo coroide produz o LCR nos ventrículos. II: O aqueduto cerebral (ducto mesencefálico) conecta o 3º ao 4º ventrículo. III: O LCR é absorvido pelas granulações aracnóideas nos seios venosos. Na hidrocefalia, há desequilíbrio entre produção e absorção do LCR.`,
+null,
+`Como cada dermátomo corresponde a um nervo espinal específico, a distribuição das lesões do herpes-zóster permite identificar qual nervo está acometido. O vírus fica latente nos gânglios SENSORIAIS da raiz DORSAL (não ventral). Os gânglios sensoriais não propagam impulsos motores, portanto não interferem na resposta motora.`,
+`O GABA é o principal neurotransmissor inibitório do SNC, presente em ~1/3 das sinapses encefálicas. A glicina é INIBITÓRIA (não excitatória). Os neurônios com DOPAMINA (não GABA) estão ativos em recompensa e experiências agradáveis. A acetilcolina é excitatória na junção neuromuscular (receptores ionotrópicos) e inibitória em sinapses com receptores metabotrópicos que abrem canais de K⁺.`
 ];
-
 var DEEP = [
-  "A Doença de Huntington atrofia o caudado e putâmen. 
+`A doença de Huntington é uma condição neurodegenerativa hereditária causada pela expansão de repetições do trinucleotídeo CAG no gene da huntingtina, levando ao acúmulo de glutamina e morte neuronal progressiva. As estruturas mais afetadas são os núcleos da base, especialmente o núcleo caudado e o putâmen.
 
-[Image of the basal ganglia in Huntington's disease]
-",
-  "A formação do nervo espinal ocorre nos forames intervertebrais. 
+✅ Por que I, III e IV são corretas:
+• I: A perda neuronal afeta diretamente o caudado e o putâmen — estruturas dos núcleos da base essenciais para o controle motor.
+• III: Até 35 repetições CAG — geralmente sem sintomas. Com mais de 40 repetições — doença se manifesta. Entre 36-39 — penetrância variável. O fenômeno de antecipação faz com que, a cada geração, o número de repetições aumente.
+• IV: A redução do GABA compromete a inibição dentro dos circuitos dos núcleos da base, desequilibrando o controle motor e gerando os movimentos involuntários (coreia).
 
-[Image of a cross-section of the spinal cord]
-",
-  "A ACP irriga o córtex visual primário. 
+❌ Por que a II está errada:
+O putâmen NÃO age de forma desassociada. Todos os núcleos da base são altamente interligados e atuam principalmente no controle motor. Atribuir ao putâmen funções isoladas de emoção é incorreto.
 
-[Image of the Circle of Willis]
-",
-  "A obstrução do aqueduto de Sylvius causa hidrocefalia. 
+Clinicamente: tremor involuntário (coreia), declínio cognitivo progressivo, alterações psiquiátricas. Não há cura — tratamento é sintomático.`,
+`A formação dos nervos espinais envolve a união de duas raízes com funções distintas:
 
-[Image of the brain's ventricular system]
-",
-  "A via mesolímbica dopaminérgica gera prazer. 
+• Raiz DORSAL (posterior) = SENSITIVA — conduz informações sensoriais DO corpo PARA o SNC
+• Raiz VENTRAL (anterior) = MOTORA — conduz comandos motores DO SNC PARA o corpo
 
-[Image of the dopaminergic reward pathway]
-",
-  "Vírus latente no gânglio da raiz dorsal. 
+Conexões com a medula:
+• Raiz dorsal → sulco LATERAL POSTERIOR
+• Raiz ventral → sulco LATERAL ANTERIOR
 
-[Image of human dermatomes map]
-",
-  "GABA abre canais de cloro causando hiperpolarização.",
-  "O LCP é mais forte que o LCA. 
+⚠️ Pegadinhas clássicas exploradas nas alternativas:
+• A: usa "sulco mediano posterior" — errado, o mediano posterior é um sulco central da medula, não onde emergem as raízes
+• B: inverte as funções (dorsal = motora / ventral = sensitiva) — completamente errado
+• D: usa apenas "posterior e anterior" sem o "lateral" — impreciso e errado
 
-[Image of the human knee ligaments]
-",
-  "Nervo VIII tem componentes coclear e vestibular. 
+Clinicamente: essa organização explica a Síndrome de Brown-Séquard — lesão medular unilateral que causa déficit motor ipsilateral + déficit sensitivo contralateral.`,
+`Os acidentes vasculares encefálicos isquêmicos geram déficits específicos conforme o território arterial afetado:
 
-[Image of the vestibulocochlear nerve]
-",
-  "A via direta inibe o globo pálido medial. ",
-  "Fluxo do LCR é unidirecional. 
+🔴 Artéria Cerebral POSTERIOR (GABARITO):
+• Irriga: lobos occipitais, parte dos temporais, tálamo
+• Déficits: alterações de campo visual (hemianopsia), déficit sensitivo (lesão talâmica), rebaixamento de consciência
+• Exatamente o quadro do paciente!
 
-[Image of cerebrospinal fluid circulation]
-",
-  "Tríades permitem a liberação de cálcio. 
+❌ Por que as outras estão erradas:
+• Cerebral ANTERIOR: afeta lobo frontal medial e parietal → déficit motor e sensitivo em membros INFERIORES, alterações de comportamento
+• Artéria BASILAR: sintomas de tronco encefálico → diplopia, disfagia, ataxia, coma — síndrome muito grave
+• Artéria VERTEBRAL: síndrome de Wallenberg (lateral do bulbo) → disfagia, ataxia, Horner
 
-[Image of the sarcomere structure]
-",
-  "ACh é inibitória no coração via receptores muscarínicos.",
-  "Toxina botulínica impede a exocitose de ACh.",
-  "Osteoclastos lapidam o calo ósseo na fase final. 
+💡 Dica: campo visual comprometido + déficit sensitivo = pensar na cerebral posterior e no tálamo.`,
+`O LCR (líquido cefalorraquidiano) é fundamental para proteger e nutrir o SNC. Entender sua produção, circulação e absorção é essencial:
 
-[Image of bone fracture healing stages]
-"
+✅ Todas as afirmativas são corretas:
+
+I. PLEXO COROIDE: estruturas vasculares nos ventrículos (especialmente laterais e 4º ventrículo), formadas por células ependimárias modificadas + capilares. Produzem o LCR continuamente (~500 mL/dia, mas apenas ~150 mL estão presentes a qualquer momento).
+
+II. AQUEDUTO CEREBRAL (Ducto mesencefálico): canal estreito que atravessa o mesencéfalo conectando o 3º ao 4º ventrículo. Obstruções nesse ponto causam hidrocefalia obstrutiva — exatamente o caso do paciente.
+
+III. ABSORÇÃO: o LCR passa do espaço subaracnoide para os seios venosos durais pelas granulações aracnóideas (vilosidades aracnóideas). Alterações aqui causam hidrocefalia comunicante.
+
+Clinicamente: hidrocefalia em lactente → macrocefalia progressiva, abaulamento da fontanela, irritabilidade, vômitos — igual ao caso descrito.`,
+`Esta é uma questão discursiva sobre o mecanismo de recompensa cerebral. A resposta esperada integra neuroanatomia, fisiologia sináptica e neuroquímica:
+
+A) ESTRUTURAS ENCEFÁLICAS ATIVADAS PELO CHOCOLATE:
+• Amígdala → emoção e saciedade
+• Hipocampo → memória de longa duração e emoção
+• Córtex pré-frontal → memória de curta duração e tomada de decisão
+• Núcleo accumbens → sistema de recompensa (prazer)
+• Hipotálamo → centro da saciedade (núcleo ventromedial)
+
+B) MECANISMO SINÁPTICO:
+Potencial de ação elétrico chega ao terminal pré-sináptico → despolarização da membrana → abertura de canais de Ca²⁺ voltagem-dependentes → entrada de Ca²⁺ → vesículas sinápticas se fundem à membrana pré-sináptica → exocitose de neurotransmissores na fenda sináptica → ligação com receptores do neurônio pós-sináptico → modificação da permeabilidade iônica → excitação ou inibição.
+
+C) PRINCIPAIS NEUROTRANSMISSORES:
+• Dopamina: recompensa, prazer, motivação — liberada pelo núcleo accumbens
+• Serotonina: bem-estar, humor, saciedade
+• Noradrenalina: alerta, energia, atenção
+
+Efeitos fisiológicos: sensação de prazer e bem-estar, aumento da motivação, modulação do humor.`,
+`O herpes-zóster resulta da reativação do vírus varicela-zóster, que permanece latente nos gânglios sensoriais da raiz DORSAL após um episódio de varicela na infância.
+
+Por que a alternativa B é a correta:
+Como cada dermátomo (área da pele inervada por um único nervo espinal) tem distribuição anatômica precisa e mapeada, as lesões vesiculares do herpes-zóster seguem exatamente esse trajeto, permitindo identificar qual nervo espinal está acometido. Isso é usado clinicamente para diagnóstico e localização.
+
+❌ Erros das outras alternativas:
+• A: O vírus não se multiplica na pele — ele está latente nos gânglios da raiz DORSAL (corpos celulares neuronais)
+• C: Gânglios SENSORIAIS não transmitem impulsos motores. O gânglio da raiz dorsal é puramente sensitivo — não há interferência motora
+• D: O vírus fica latente na raiz DORSAL (sensitiva), não na ventral (motora)
+
+Clinicamente: dor em queimação + vesículas em distribuição dermatômica → diagnóstico de herpes-zóster. Pode ocorrer neuralgia pós-herpética.`,
+`Os neurotransmissores são classificados quanto à função (excitatório/inibitório) e ao tipo de receptor que ativam:
+
+✅ Alternativa C (CORRETA):
+O GABA (ácido gama-aminobutírico) é o principal neurotransmissor INIBITÓRIO do SNC. Abre canais de Cl⁻ (hiperpolarização). Presente em ~1/3 de todas as sinapses encefálicas. Essencial para controlar a excitabilidade neuronal.
+
+❌ Análise das alternativas erradas:
+• A: ERRADA — são os neurônios com DOPAMINA (não GABA) que estão ativos em recompensa e experiências agradáveis. O GABA é inibitório.
+• B: ERRADA — a glicina é neurotransmissor INIBITÓRIO (não excitatório). Liga-se a receptores que abrem canais de Cl⁻. É o principal inibitório da medula espinal.
+• D: ERRADA pela inversão — a ACh é EXCITATÓRIA na junção neuromuscular (receptores nicotínicos ionotrópicos, canais catiônicos). É inibitória em sinapses com receptores muscarínicos que abrem canais de K⁺.
+
+💡 Resumo para memorizar: GABA = inibição encefálica | Glicina = inibição medular | Glutamato = principal excitatório do SNC`
 ];
-
 var L = ['a','b','c','d'];
-var cur = 0, sel = null, answered = {}, discAnswered = {}, discarded = {};
+var cur = 0, sel = null, answered = {}, discAnswered = {};
 
 function buildPills(){
-  var w = document.getElementById('qPills'); w.innerHTML = '';
-  for(var i=0;i<QS.length;i++){
-    var b = document.createElement('button');
-    b.className='qp'; b.id='qp'+i; b.textContent=i+1;
-    (function(idx){ b.onclick = function(){ goTo(idx); }; })(i);
-    w.appendChild(b);
-  }
+  var w = document.getElementById('qPills'); w.innerHTML = '';
+  for(var i=0;i<QS.length;i++){
+    var b = document.createElement('button');
+    b.className='qp'; b.id='qp'+i; b.textContent=i+1;
+    (function(idx){ b.onclick = function(){ goTo(idx); }; })(i);
+    w.appendChild(b);
+  }
+}
+function syncPills(){
+  for(var i=0;i<QS.length;i++){
+    var p=document.getElementById('qp'+i); if(!p) continue;
+    p.className='qp';
+    if(i===cur) p.classList.add('current');
+    var q=QS[i];
+    if(q.tipo==='disc'){
+      if(discAnswered[i]) p.classList.add('disc');
+    } else {
+      if(answered[i]!==undefined) p.classList.add(answered[i]===q.g?'correct':'wrong');
+    }
+  }
 }
 
 function renderQ(){
-  var q=QS[cur];
-  sel=(answered[cur]!==undefined)?answered[cur]:null;
-  var done = q.tipo==='disc' ? !!discAnswered[cur] : answered[cur]!==undefined;
+  var q=QS[cur];
+  sel=(answered[cur]!==undefined)?answered[cur]:null;
+  var done = q.tipo==='disc' ? !!discAnswered[cur] : answered[cur]!==undefined;
 
-  document.getElementById('qTagNum').textContent='Questão '+q.n;
-  document.getElementById('qTagTema').textContent=q.tema;
-  document.getElementById('qCounterNum').textContent=q.n;
-  document.getElementById('qCounterTotal').textContent=QS.length;
-  document.getElementById('qTagDisc').style.display = q.tipo==='disc' ? 'inline-flex' : 'none';
+  document.getElementById('qTagNum').textContent='Questão '+q.n;
+  document.getElementById('qTagTema').textContent=q.tema;
+  document.getElementById('qCounterNum').textContent=q.n;
 
-  var ctx=document.getElementById('qContext');
-  ctx.innerHTML=q.context.replace(/\n/g,'<br>');
-  document.getElementById('qText').innerHTML = q.text.replace(/\n/g,'<br>');
-  
-  var qImg=document.getElementById('qImg');
-  if(q.img){ qImg.src=q.img; qImg.style.display='block'; }
-  else{ qImg.style.display='none'; }
+  var discTag = document.getElementById('qTagDisc');
+  discTag.style.display = q.tipo==='disc' ? 'inline-flex' : 'none';
 
-  var wrap=document.getElementById('qOpts'); wrap.innerHTML='';
-  if(q.tipo==='disc'){
-    var ta=document.createElement('textarea');
-    ta.className='disc-area'; ta.id='discInput';
-    ta.placeholder='Sua resposta...';
-    if(done){ ta.disabled=true; ta.value=discAnswered[cur]; }
-    wrap.appendChild(ta);
-  } else {
-    q.opts.forEach(function(o,i){
-      var btn=document.createElement('button'); btn.className='q-opt';
-      if(discarded[cur] && discarded[cur].includes(i)) btn.classList.add('discarded');
-      if(done){
-        if(i===q.g)btn.classList.add('correct');
-        else if(i===sel)btn.classList.add('wrong');
-        btn.disabled=true;
-      } else if(sel===i) btn.classList.add('selected');
-      
-      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span>'+o+'</span>';
-      
-      if(!done){
-        btn.onclick=function(){ selectOpt(i); };
-        var d=document.createElement('button'); d.className='btn-discard'; d.innerHTML='✂️';
-        d.onclick=function(e){ e.stopPropagation(); toggleDiscard(i); };
-        btn.appendChild(d);
-      }
-      wrap.appendChild(btn);
-    });
-  }
+  var ctx=document.getElementById('qContext');
+  if(q.context){
+    ctx.style.display='block';
+    var ctxHtml=q.context.replace(/\n/g,'<br>');
+    ctxHtml=ctxHtml.replace('[[IMG_Q4]]','<img src="data:image/png;base64,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">');
 
-  var fb=document.getElementById('qFeedback');
-  if(done){
-    fb.style.display='block';
-    fb.innerHTML = q.tipo==='disc' ? q.resposta : SHORT[cur];
-    document.getElementById('aiContent').innerHTML=DEEP[cur];
-    document.getElementById('aiBox').style.display='block';
-  } else {
-    fb.style.display='none';
-    document.getElementById('aiBox').style.display='none';
-  }
-  syncPills();
+    ctx.innerHTML=ctxHtml;
+  }
+  else{ctx.style.display='none';}
+
+  // INSTRUÇÃO ALTERADA: O enunciado não será mais exibido. 
+  // Se você quiser que o bloco verde suma completamente, use: ctx.style.display = 'none';
+  // Se quiser o bloco verde lá, mas vazio, mantenha como está acima.
+  ctx.innerHTML = ""; 
+
+  document.getElementById('qText').innerHTML = q.text ? q.text.replace(/\n/g,'<br>') : '';
+  var qImg=document.getElementById('qImg');
+  if(q.img){qImg.src='data:image/png;base64,'+q.img;qImg.style.display='block';}
+  else{qImg.style.display='none';}
+
+  var wrap=document.getElementById('qOpts'); wrap.innerHTML='';
+  if(q.tipo==='disc'){
+    var ta=document.createElement('textarea');
+    ta.className='disc-area'; ta.id='discInput';
+    ta.placeholder='Escreva sua resposta aqui...';
+    ta.rows=6;
+    if(done){ ta.disabled=true; ta.value=discAnswered[cur]||''; }
+    wrap.innerHTML='<p class="disc-label">Questão discursiva — escreva sua resposta antes de ver o gabarito</p>';
+    wrap.appendChild(ta);
+  } else {
+    q.opts.forEach(function(o,i){
+      var btn=document.createElement('button'); btn.className='q-opt';
+      if(done){btn.setAttribute('disabled','');if(i===q.g)btn.classList.add('correct');else if(i===sel&&i!==q.g)btn.classList.add('wrong');}
+      else if(sel===i){btn.classList.add('selected');}
+      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span>'+o+'</span>';
+      if(!done){(function(idx){btn.onclick=function(){selectOpt(idx);};})(i);}
+      wrap.appendChild(btn);
+    });
+  }
+
+  var fb=document.getElementById('qFeedback');
+  var aiBox=document.getElementById('aiBox');
+  if(done){
+    if(q.tipo==='disc'){
+      fb.className='q-feedback show fb-disc';
+      fb.innerHTML='<span class="fb-label">📋 Gabarito comentado</span>'
+        +'<span class="fb-exp">'+q.resposta.replace(/\n/g,'<br>')+'</span>'
+        +'<button class="btn-aprofundar" id="btnAI" onclick="toggleAI('+cur+')">✦ Aprofundar com IA</button>';
+    } else {
+      var ok=sel===q.g;
+      fb.className='q-feedback show '+(ok?'fb-ok':'fb-err');
+      fb.innerHTML='<span class="fb-label">'+(ok?'✓ Correto!':'✗ Incorreto — Gabarito: '+L[q.g].toUpperCase())+'</span>'
+        +'<span class="fb-exp">'+SHORT[cur]+'</span>'
+        +'<button class="btn-aprofundar" id="btnAI" onclick="toggleAI('+cur+')">✦ Aprofundar com IA</button>';
+    }
+    aiBox.style.display='none';
+    aiBox.classList.remove('open');
+    document.getElementById('aiContent').textContent='';
+  } else {
+    fb.className='q-feedback'; fb.innerHTML='';
+    aiBox.style.display='none'; aiBox.classList.remove('open');
+  }
+
+  document.getElementById('btnPrev').disabled=(cur===0);
+  var btnN=document.getElementById('btnNext');
+  if(cur===QS.length-1){btnN.innerHTML='Ver resultado <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';}
+  else{btnN.innerHTML='Próxima <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';}
+
+  var btnR=document.getElementById('btnRespond');
+  if(done){btnR.style.display='none';}
+  else{
+    btnR.style.display='flex';
+    if(q.tipo==='disc') btnR.disabled=false;
+    else btnR.disabled=(sel===null);
+  }
+  syncPills();
 }
 
-function selectOpt(i){ sel=i; renderQ(); }
-function toggleDiscard(i){
-  if(!discarded[cur]) discarded[cur]=[];
-  var idx=discarded[cur].indexOf(i);
-  if(idx===-1) discarded[cur].push(i); else discarded[cur].splice(idx,1);
-  renderQ();
+function toggleAI(qIdx){
+  var aiBox=document.getElementById('aiBox');
+  var btnAI=document.getElementById('btnAI');
+  if(aiBox.classList.contains('open')){
+    aiBox.classList.remove('open');
+    if(btnAI) btnAI.classList.remove('active');
+  } else {
+    document.getElementById('aiContent').textContent=DEEP[qIdx];
+    aiBox.style.display='block';
+    aiBox.classList.add('open');
+    if(btnAI) btnAI.classList.add('active');
+  }
 }
+
+function selectOpt(i){
+  if(answered[cur]!==undefined) return;
+  sel=i; document.getElementById('btnRespond').disabled=false;
+  var opts=document.querySelectorAll('.q-opt');
+  opts.forEach(function(o,idx){
+    o.className='q-opt'+(idx===i?' selected':'');
+    if(!o.classList.contains('selected')){(function(ii){o.onclick=function(){selectOpt(ii);};})(idx);}
+  });
+}
+
 function submitAnswer(){
-  if(QS[cur].tipo==='disc') discAnswered[cur]=document.getElementById('discInput').value;
-  else answered[cur]=sel;
-  renderQ();
+  var q=QS[cur];
+  if(q.tipo==='disc'){
+    var ta=document.getElementById('discInput');
+    var val=ta?ta.value.trim():'';
+    discAnswered[cur]=val||'(sem resposta)';
+  } else {
+    if(sel===null||answered[cur]!==undefined) return;
+    answered[cur]=sel;
+  }
+  renderQ();
+  var mcDone=Object.keys(answered).length;
+  var discDone=Object.keys(discAnswered).length;
+  var total=0;
+  for(var i=0;i<QS.length;i++){ if(QS[i].tipo==='disc'?discAnswered[i]:answered[i]!==undefined) total++; }
+  if(total===QS.length){ setTimeout(showResult,350); }
 }
-function prevQ(){ if(cur>0) cur--; renderQ(); }
-function nextQ(){ if(cur<QS.length-1) cur++; renderQ(); }
-function goTo(i){ cur=i; renderQ(); }
-function resetAll(){ location.reload(); }
-function syncPills(){
-  for(var i=0;i<QS.length;i++){
-    var p=document.getElementById('qp'+i);
-    p.className='qp'+(i===cur?' current':'');
-    if(answered[i]!==undefined) p.classList.add(answered[i]===QS[i].g?'correct':'wrong');
-    if(discAnswered[i]) p.classList.add('disc');
-  }
+
+function prevQ(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'});}}
+function nextQ(){if(cur===QS.length-1){showResult();return;}cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function goTo(i){cur=i;renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+
+function showResult(){
+  document.getElementById('qCard').style.display='none';
+  var rs=document.getElementById('resultScreen'); rs.classList.add('show');
+  var mcQs=QS.filter(function(q){return q.tipo==='mc';});
+  var correct=mcQs.filter(function(q,i){
+    var idx=QS.indexOf(q);
+    return answered[idx]===q.g;
+  }).length;
+  var wrong=mcQs.filter(function(q){
+    var idx=QS.indexOf(q);
+    return answered[idx]!==undefined&&answered[idx]!==q.g;
+  }).length;
+  var discCount=Object.keys(discAnswered).length;
+  var pct=mcQs.length>0?Math.round((correct/mcQs.length)*100):0;
+  var ring=document.getElementById('resRing');
+  ring.textContent=pct+'%';
+  ring.className='res-ring '+(pct>=70?'great':pct>=50?'ok':'bad');
+  document.getElementById('resTitle').textContent=pct>=70?'Parabéns!':pct>=50?'Quase lá!':'Continue praticando!';
+  document.getElementById('resSub').textContent='Você acertou '+correct+' de '+mcQs.length+' questões de múltipla escolha ('+pct+'%)';
+  document.getElementById('resOk').textContent=correct;
+  document.getElementById('resErr').textContent=wrong;
+  document.getElementById('resDisc').textContent=discCount;
+  buildReport(correct,wrong);
+  rs.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function buildReport(correct,wrong){
+  var temaStats={};
+  QS.forEach(function(q,i){
+    if(!temaStats[q.tema]) temaStats[q.tema]={total:0,correct:0,wrong:0,disc:0};
+    var t=temaStats[q.tema]; t.total++;
+    if(q.tipo==='disc'){t.disc++;}
+    else if(answered[i]===q.g){t.correct++;}
+    else if(answered[i]!==undefined){t.wrong++;}
+  });
+  var sorted=Object.keys(temaStats).sort(function(a,b){return temaStats[b].wrong-temaStats[a].wrong;});
+  var barsHtml='';
+  sorted.forEach(function(tema){
+    var s=temaStats[tema];
+    if(s.disc===s.total){
+      barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
+        +'<div class="tema-bar-bg"><div class="tema-bar-fill purple" style="width:100%"></div></div>'
+        +'<span class="tema-pct purple">Disc.</span></div>';
+    } else {
+      var pct=s.total>0?Math.round((s.correct/s.total)*100):0;
+      var good=pct>=50;
+      barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
+        +'<div class="tema-bar-bg"><div class="tema-bar-fill '+(good?'green':'red')+'" style="width:'+pct+'%"></div></div>'
+        +'<span class="tema-pct '+(good?'green':'red')+'">'+pct+'%</span></div>';
+    }
+  });
+  var mcWrong=QS.filter(function(q,i){return q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g;});
+  var worstTema=sorted.find(function(t){return temaStats[t].wrong>0;})||sorted[0]||'—';
+  var wrongListHtml='';
+  QS.forEach(function(q,i){
+    if(q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g){
+      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+        +'<div class="rev-dot dot-err"></div>'
+        +'<span>Q'+q.n+' — '+q.tema+'</span>'
+        +'<small>Resp: '+L[answered[i]].toUpperCase()+' · Gabarito: '+L[q.g].toUpperCase()+'</small></div>';
+    }
+      if(q.tipo==='disc'&&discAnswered[i]){
+      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+        +'<div class="rev-dot dot-disc"></div>'
+        +'<span>Q'+q.n+' — '+q.tema+'</span>'
+        +'<small>Discursiva — revisar gabarito</small></div>';
+    }
+  });
+  if(!wrongListHtml) wrongListHtml='<div style="font-size:13px;color:var(--muted);padding:8px 0;">Nenhum erro nas múltipla escolha! 🎉</div>';
+  var mcCount=QS.filter(function(q){return q.tipo==='mc';}).length;
+  var pct=mcCount>0?Math.round((correct/mcCount)*100):0;
+  var msg=pct>=70?'Ótimo domínio geral!':pct>=50?'Foque nos pontos fracos.':'Revise antes da prova.';
+  document.getElementById('reportContent').innerHTML=
+    '<div class="report-section"><h4>Desempenho por tema</h4>'+barsHtml+'</div>'
+    +'<div class="report-section"><h4>Insights</h4><div class="insight-grid">'
+      +'<div class="insight-box"><div class="ib-label">Ponto mais fraco</div><div class="ib-val">'+worstTema+'</div><div class="ib-sub">Mais erros nesse tema</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC acertadas</div><div class="ib-val">'+correct+'/'+mcCount+'</div><div class="ib-sub">'+msg+'</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class="ib-val" style="color:#F09595;">'+wrong+'</div><div class="ib-sub">Múltipla escolha</div></div>'
+      +'<div class="insight-box"><div class="ib-label">Discursivas</div><div class="ib-val" style="color:#D4A8FF;">'+Object.keys(discAnswered).length+'</div><div class="ib-sub">Questões abertas</div></div>'
+    +'</div></div>'
+    +'<div class="report-section"><h4>Revisão por questão</h4><div class="q-review-list">'+wrongListHtml+'</div></div>';
+}
+
+function goToQ(i){
+  document.getElementById('qCard').style.display='block';
+  document.getElementById('resultScreen').classList.remove('show');
+  cur=i; renderQ(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function resetAll(){
+  answered={}; discAnswered={}; sel=null; cur=0;
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('qCard').style.display='block';
+  renderQ(); window.scrollTo({top:0,behavior:'smooth'});
 }
 buildPills(); renderQ();
 </script>
