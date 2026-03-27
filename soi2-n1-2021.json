@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "title": "N1 SOI II 2021.2",
+    "label": "N1 Específica 2021.2 - 2º Período",
+    "backLink": "#"
+  },
+  "questoes": [
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Em um episódio de House, M.D., pode ser observado a personagem Remy Hadley mais conhecida como Thirteen (Treze) que possuía a Doença de Huntington. Sendo esta uma patologia genética hereditária que afeta o sistema nervoso, causando alteração no gene da Huntingtina (HTT). A patologia desencadeia a produção de uma proteína mutante (mHTT). É uma doença caracterizada por interferências cognitivas, distúrbios motores e psiquiátricos. A nível celular, a mHTT promove disfunção e morte neuronal por vários mecanismos.\n\nConsiderando o texto base, avalie as afirmativas a seguir.\nI. A perda neuronal atinge importantes núcleos da base, como o caudado e o putâmen.\nII. Os núcleos envolvidos nesta doença participam do controle do equilibrio e das emoções agindo de maneira desassociada aos núcleos caudais.\nIII. Pessoas com até 35 repetições CAG no gene HTT possivelmente não desenvolvem a doença de Huntington, mas à medida que o gene é transmitido nas gerações, há expansão da repetição CAG associando-se ao início dos sintomas.\nIV. Do ponto de vista neuroquímico, observa-se uma redução acentuada do GABA, principal neurotransmissor inibitório do sistema nervoso central.\n\nMarque abaixo alternativa correta.",
+      "opts": [
+        "I, III e IV.",
+        "II e III.",
+        "I e IV.",
+        "II, III e V."
+      ],
+      "g": 0,
+      "short": "Na alternativa C está falando que núcleo putâmen controla as emoções e não tem ligações com o núcleo caudal sendo essa informação incorreta, pois todos os núcleos da base estão interligados. Além disso o putâmen está bastante envolvido no controle motor, nos movimentos e no aprendizado. Ao mesmo passo que às outras afirmativas são verdadeiras a única alternativa correta é a I, III e IV.",
+      "deep": "A perda neuronal atinge importantes núcleos da base, como o caudado e o putâmen; à medida que o gene HTT é transmitido nas gerações, há expansão da repetição CAG associando-se ao início dos sintomas; observa-se redução acentuada do GABA."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "A medula espinal possui formato cilíndrico e não uniforme, com dilatações conhecidas como intumescências (regiões com maior quantidade de neurônios que entram e saem dessas áreas) nas regiões cervical e lombar, onde as raízes formam, respectivamente, os plexos braquial e lombossacro, responsáveis pela inervação dos membros superiores e inferiores. Além disso, macroscopicamente a superfície da medula apresenta sulcos longitudinais.\n\nMediante isso, assinale a alternativa que descreve a associação correta entre a formação dos nervos espinais e a estrutura da medula espinal:",
+      "opts": [
+        "os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos mediano posterior e lateral anterior da medula através de filamentos radiculares.",
+        "os nervos espinais são formados pela união das raízes dorsal (motora) e ventral (sensitiva), as quais se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares.",
+        "os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares.",
+        "os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos posterior e anterior da medula através de filamentos radiculares."
+      ],
+      "g": 2,
+      "short": "Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), que se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares.",
+      "deep": "Enquanto a raiz ventral emerge da superfície ventral da medula espinal como diversas radículas ou filamentos que em geral se combinam para formar dois feixes próximo ao forame intervertebral; a raiz dorsal, maior em tamanho e número de radículas, se prendem ao longo do sulco lateral posterior da medula espinal e se unem para formar dois feixes que penetram no ganglio espinhal. Tanto as raízes ventral e dorsal se unem imediatamente além do gânglio espinhal para formar o nervo espinhal, que então emerge através do forame interespinhal."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Homem, 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\nAlterações de campo visual.\nRebaixamento do nível de consciência.\nDéficit sensitivo.\n\nSobre o caso acima, identifique qual artéria foi obstruída:",
+      "opts": [
+        "artéria cerebral posterior.",
+        "artéria cerebral anterior.",
+        "artéria basilar.",
+        "arteria vertebral."
+      ],
+      "g": 0,
+      "short": "A região afetada pela oclusão da ACP, possivelmente ocasionou uma cegueira cortical, provocada por lesão bilateral dos lobos occipitais associadas à agnosia.",
+      "deep": "Através do Polígono de Willis o fluxo sanguíneo é fornecido aos hemisférios cerebrais pelas artérias anteriores e posteriores, artérias comunicantes e pela carótida interna. No entanto, essas artérias possuem paredes muitas finas que as tornam mais vulneráveis aos acidentes vasculares cerebrais no demonstrado no caso. E de acordo com a região que elas irrigam, a oclusão de diferentes artérias cerebrais, irá dar origem a síndromes vasculares diversas."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Dona Josefa traz seu filho, João, criança com 8 meses de idade, com diagnóstico de hidrocefalia apresentando, segundo a genitora, náuseas e vômitos, irritabilidade e sonolência. Com o exame que compara uma tomografia computadorizada de crânio sem alterações com uma que demonstra a hidrocefalia e, em relação ao conhecimento sobre a morfologia macro e micro das cavidades do Sistema Nervoso Central (SNC), analise as afirmativas seguintes:\n\nI. O plexo coroide é uma estrutura localizada dentro dos ventrículos que produz o líquido cefalorraquidiano (LCR) com funções de nutrição e proteção.\nII. O aqueduto cerebral, também conhecido como ducto mesencefálico é um canal que conecta o terceiro ao quarto ventrículo e permite a passagem do LCR pelo mesencéfalo.\nIII. O LCR circula pelos seios venosos cerebrais e é absorvidos pelas granulações aracnóideas.\n\nÉ correto o que se afirma em:",
+      "opts": [
+        "II e III, apenas.",
+        "II, apenas.",
+        "I, apenas.",
+        "I, II e III."
+      ],
+      "g": 3,
+      "short": "Todas as afirmativas estão corretas, pois trazem adequadamente as definições do plexo coroide (I e III) e do aqueduto cerebral (II).",
+      "deep": "I. O plexo coroide é a área do cérebro localizada dentro dos ventrículos que produz o LCR para nutri-lo e protegê-lo. II. O aqueduto cerebral, também conhecido como ducto mesencefálico é um canal que conecta o terceiro ventrículo ao quarto ventrículo e permite a passagem do líquido cefalorraquidiano pelo mesencéfalo. III. Os plexos coroides são dobras e invaginações altamente vascularizadas da pia-mater que fazem saliência para o interior dos ventrículos."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "O vírus herpes-zoster causa dor unilateral e aparecimento de vesículas sobre base eritematosa, seguindo o território de um dermátomo. Geralmente ocorre como resultado de reativação endógena do vírus, que persistiu de forma latente num gânglio sensorial após um episódio de varicela. Analisando o contexto acima, é possível afirmar que:",
+      "opts": [
+        "a multiplicação do microrganismo acontece no corpo celular do neurônio presente na pele.",
+        "é possível pela observação determinar os nervos espinais acometidos.",
+        "a infecção do ganglio sensorial pode interferir na resposta motora.",
+        "provavelmente o microrganismo ficou latente na raiz ventral da medula espinal."
+      ],
+      "g": 1,
+      "short": "Os dermátomos são áreas da pele que fornece influxo sensitivo para o sistema nervoso central, por meio de um par nevos.",
+      "deep": "Visto que os ganglios são formados pelos corpos celulares, e se tratando de um ganglio sensorial, o qual está localizado na raiz dorsal da medula e não propaga impulsos motores, descartamos as demais alternativas."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Os neurotransmissores ou neuromoduladores atuam como sinais parácrinos, com as suas células-alvo localizadas perto do neurônio que as secreta. Eles são definidos como mensageiros químicos que transportam, estimulam e equilibram os sinais entre os neurônios, ou células nervosas e outras células do corpo. Sobre estes neurotransmissores analise e marque a alternativa correta.",
+      "opts": [
+        "Os neurônios encefálicos que contêm o neurotransmissor GABA estão ativos durante respostas emocionais, comportamentos de adição e experiências agradáveis.",
+        "A glicina, neurotransmissor excitatório se liga a receptores ionotrópicos e abre canais de Cl-. Cerca de metade das sinapses excitatória na medula espinal utilizam a glicina.",
+        "O GABA é encontrado somente no SNC, onde é o neurotransmissor inibitório mais comum. Cerca de um terço de todas as sinapses encefálicas utiliza o GABA.",
+        "A Acetilcolina é um neurotransmissor inibitório em algumas sinapses e é excitatório em outras, como nas que se liga a receptores metabotrópicos acoplados a proteínas G."
+      ],
+      "g": 2,
+      "short": "O GABA é encontrado somente no SNC, onde é o neurotransmissor inibitório mais comum. Cerca de um terço de todas as sinapses encefálicas utiliza o GABA.",
+      "deep": "A opção sobre a glicina está errada, pois a glicina é um neurotransmissor inibitório. Os neurônios encefálicos que contêm o neurotransmissor dopamina que estão ativos durante respostas emocionais. A ACh é um neurotransmissor excitatório em algumas sinapses, como na junção neuromuscular, e inibitória em outras, como onde se liga a receptores metabotrópicos acoplados a proteínas G que abrem canais de K+."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "A articulação do joelho é classificada como sinovial do tipo dobradiça modificada e apresenta estruturas que garantem sua estabilidade e funcionalidade. Acerca das características estruturais e funcionais do joelho, avalie as asserções a seguir:\nI. O joelho é formado pelos ossos fêmur, tíbia e patela, sendo estabilizado pelos ligamentos cruzados e colaterais.\nII. A patela é um osso sesamoide que melhora a eficiência do músculo quadríceps femoral, aumentando o braço de alavanca do tendão patelar durante a extensão.\nIII. O ligamento cruzado posterior (LCP) impede a translação posterior da tíbia em relação ao fêmur e é mais resistente que o ligamento cruzado anterior (LCA).\nIV. Os meniscos são estruturas que atuam na distribuição de carga e produção da lubrificação da articulação do joelho.\nÉ correto o que se afirma em:",
+      "opts": [
+        "I, II, III e IV.",
+        "I e II apenas.",
+        "II e III apenas.",
+        "I, II e III apenas."
+      ],
+      "g": 3,
+      "short": "A alternativa correta é a D. As asserções I, II e III são verdadeiras pois descrevem corretamente a anatomia óssea, o papel biomecânico da patela e a função de estabilização do LCP.",
+      "deep": "A asserção IV está incorreta porque a lubrificação articular é função da membrana sinovial, e não dos meniscos. O conteúdo envolve a anatomia funcional da maior articulação sinovial do corpo humano. O raciocínio clínico baseia-se na identificação dos estabilizadores passivos: o LCA impede a anteriorização da tíbia, enquanto o LCP (comprovadamente mais resistente) impede a posteriorização. A patela atua como uma polia biológica que otimiza a extensão da perna pelo quadríceps."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Um paciente apresenta-se com queixa de perda progressiva do olfato (anosmia), zumbido constante e perda de equilíbrio ao caminhar. Considerando esse contexto, avalie:\nI. Os sintomas indicam comprometimento dos nervos olfatório (I) e vestibulococlear (VIII).\nPORQUE\nII. O nervo olfatório é responsável pela percepção de odores, enquanto o vestibulococlear é responsável pelas funções auditivas e pelo equilíbrio.",
+      "opts": [
+        "A asserção I é verdadeira e a II é falsa.",
+        "As duas são verdadeiras e a II é uma justificativa correta da I.",
+        "As duas são verdadeiras, mas a II não justifica a I.",
+        "Ambas são falsas."
+      ],
+      "g": 1,
+      "short": "A alternativa correta é a B. Ambas as asserções estão corretas e a relação de causa e efeito é válida: a perda de olfato é o sinal cardinal de lesão no Nervo I, enquanto o zumbido e a vertigem apontam para disfunção no Nervo VIII.",
+      "deep": "Esta questão integra a fisiologia dos nervos cranianos com a semiologia neurológica. O raciocínio exige a correlação anatofuncional direta entre a queixa e o território de inervação. O Nervo VIII possui dois ramos: o coclear (audição/zumbido) e o vestibular (equilíbrio/tontura). Erros comuns incluem sugerir que o olfato e o paladar viajam pelo mesmo nervo; embora o paciente sinta o sabor alterado, isso ocorre pela perda do componente olfativo retronasal."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "O Parkinsonismo caracteriza-se por hipocinesia e rigidez em decorrência da depleção de dopamina na via nigroestriatal. De acordo com a fisiologia dos núcleos da base, os movimentos são coordenados porque a dopamina:",
+      "opts": [
+        "Pelos receptores D2 estimula a atividade talâmica na via indireta.",
+        "Pelos receptores D1 contribui para a atividade gabaérgica do globo pálido medial, liberando a atividade talâmica na via direta.",
+        "Pelos receptores D1 inibe o tálamo através da via direta.",
+        "Pelos receptores D2 inibe o núcleo subtalâmico para facilitar o movimento na via direta."
+      ],
+      "g": 1,
+      "short": "A alternativa correta é a B. Na via direta, a dopamina via receptores D1 estimula o estriado a inibir o globo pálido medial (interno), o que desibe o tálamo e facilita o movimento voluntário.",
+      "deep": "O conteúdo envolve a modulação motora extraparamidal. A dopamina tem efeito pró-cinético: ela ativa a via direta (D1), que inibe o freio talâmico, e inibe a via indireta (D2), que normalmente freia o movimento. No Parkinson, a morte de neurônios na substância negra reduz a atividade facilitadora (direta) e permite a predominância da inibição (indireta), gerando a desordem hipocinética."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "O líquido cerebrospinal protege o encéfalo de lesões químicas e físicas. Sobre sua dinâmica, assinale a alternativa correta:",
+      "opts": [
+        "O líquor é produzido pelas granulações aracnoideas.",
+        "É produzido pelos plexos corioides nos ventrículos laterais, 3º e 4º ventrículos.",
+        "O líquor flui do quarto ventrículo para o terceiro através do aqueduto.",
+        "Os ventrículos permitem a circulação de líquor e sangue para trocas metabólicas."
+      ],
+      "g": 1,
+      "short": "A alternativa correta é a B. O líquor é produzido por filtração e secreção do plasma nos plexos corioides situados nos ventrículos cerebrais.",
+      "deep": "O tema é a circulação liquórica. O raciocínio exige o domínio do fluxo unidirecional: Ventrículos Laterais -> Forames Interventriculares -> 3º Ventrículo -> Aqueduto do Mesencéfalo -> 4º Ventrículo -> Espaço subaracnóideo. A alternativa C inverte esse fluxo e a D sugere erroneamente a presença de sangue nos ventrículos. A reabsorção ocorre nas vilosidades (ou granulações) aracnoideas para o seio sagital superior."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "A fibra muscular esquelética é preenchida por miofibrilas organizadas em sarcômeros. Sobre essa fibra, é correto afirmar:",
+      "opts": [
+        "Possui miofibrilas formadas por filamentos finos e espessos organizados em sarcômeros.",
+        "Apresenta núcleos localizados no centro das células, como no músculo cardíaco.",
+        "Possui díades para a propagação do potencial de ação.",
+        "A banda A contém apenas filamentos de actina."
+      ],
+      "g": 0,
+      "short": "A alternativa correta é a A. O sarcômero é a unidade funcional composta por filamentos grossos (miosina) e finos (actina), sendo delimitado por duas linhas Z.",
+      "deep": "O conteúdo exige a diferenciação histológica dos tipos musculares. No músculo esquelético, os núcleos são múltiplos e periféricos, situados logo abaixo do sarcolema. A condução do sinal elétrico ocorre pela tríade (um túbulo T e duas cisternas do retículo), enquanto a díade é característica do músculo cardíaco. Erros comuns incluem inverter a composição das bandas: a banda A (escura) contém miosina e a banda I (clara) apenas actina."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Uma paciente de 30 anos queixa-se de bradicardia, constrição das pupilas (miose) e aumento da salivação após momentos de repouso. A origem das fibras responsáveis por esses sintomas é:",
+      "opts": [
+        "Tronco cerebral e medula sacral.",
+        "Região toracolombar da medula espinal.",
+        "Tronco cerebral e medula cervical.",
+        "Exclusivamente os nervos cranianos glossofaríngeo e vago."
+      ],
+      "g": 0,
+      "short": "A alternativa correta é a A. Os sintomas são de ativação parassimpática, cuja origem anatômica é craniossacral, partindo de núcleos do tronco cerebral (como o do nervo vago) e de segmentos da medula sacral.",
+      "deep": "O raciocínio clínico identifica o estado de \"repouso e digestão\". A bradicardia ocorre pela inibição do nó sinoatrial pelas fibras parassimpáticas. O sistema simpático, por outro lado, tem origem toracolombar (T1-L2) e causaria taquicardia e midríase. Uma pegadinha comum é associar a origem do parassimpático à região cervical porque o nervo vago transita por ali, mas sua origem real são núcleos no bulbo (região craniana)."
+    },
+    {
+      "tipo": "mc",
+      "context": "",
+      "text": "Sobre os neurotransmissores, assinale a única alternativa correta:",
+      "opts": [
+        "O GABA é o principal neurotransmissor inibitório do SNC.",
+        "A glicina é um importante neurotransmissor excitatório.",
+        "O glutamato e o aspartato possuem efeito predominantemente inibitório.",
+        "A acetilcolina possui apenas efeitos excitatórios em todas as sinapses."
+      ],
+      "g": 0,
+      "short": "A alternativa correta é a A. O GABA é o mediador inibitório mais comum do encéfalo. Em contraste, o glutamato e o aspartato são excitatórios.",
+      "deep": "O conteúdo trata da bioquímica sinaptica. O raciocínio exige classificar as substâncias: GABA e Glicina abrem canais de cloro, causando hiperpolarização (inibição). A Acetilcolina (ACh) é versátil: é excitatória na placa motora (receptores nicotínicos), mas inibitória no coração via nervo vago (receptores muscarínicos), onde reduz a frequência cardíaca."
+    },
+    {
+      "tipo": "disc",
+      "context": "",
+      "text": "Ao comer um chocolate, por exemplo, sentimo-nos bem. E isso tem impacto significativo sobre a nossa motivação, produtividade e bem-estar. Nenhuma pessoa manifestaria oposição em ter níveis fisiológicos mais elevados de alguns produtos no corpo, os quais podem minimizar os impactos dos desafios diários.\n\nA) (0,75 pts) Relacione quais áreas ou estruturas morfológicas (três) do encéfalo receberam essas informações e quais as sensações provocadas pelo chocolate nestas estruturas.\nB) (0,75 pts) Explique bioquimicamente o processo de resposta (sinapse), a partir da estimulação das células dessas áreas ou estruturas.\nC) (1,0 pts) Defenda quais são os principais produtos (dois) e as ações fisiológicas produzidas no organismo da pessoa que comeu o chocolate.",
+      "resposta": "A) Amigdala - emoção, saciedade; Hipocampo - memória de longa duração e a emoção; Córtex pré-frontal - memória de curta duração e lembrança; Núcleo accumbens - sistema de recompensa; Parte posterior da ínsula - área gustativa primária; Hipotálamo - centro da saciedade, núcleo ventro-medial.\n\nB) Potencial de ação elétrico chega no terminal pré-sináptico que é separado do corpo do neurônio pós-sináptico pela fenda sinaptica. O terminal pré, tem dois tipos de estruturas internas importantes para a função excitatória ou inibitória da sinapse: as vesículas transmissoras e as mitocondrias, que fornecem energia. Quando o potencial de ação chega ao terminal pré-sináptico, há despolarização de sua membrana e entrada de Ca2+, que faz com que pequeno número de vesículas se ligue à membrana e libere moléculas de neurotransmissores na fenda sináptica.\n\nC) Os neurotransmissores mais excitatórios, lembrando as ações do chocolate são: norepinefrina, serotonina, dopamina. Como seria esperado, esses três sistemas têm diferentes efeitos nos níveis de excitabilidade, em diferentes partes do cérebro. As vesículas que continham esses neurotransmissores, liberadas na fenda sinaptica, excitam o neurônio pós-sináptico. As mitocondrias fornecem ATP, que, por sua vez, supre a energia necessária para sintetizar novas moléculas da substância transmissora. A liberação de moléculas, por sua vez, provoca alterações imediatas nas características de permeabilidade da membrana neuronal pós-sináptica, o que leva à excitação ou à inibição do neurônio sináptico.",
+      "opts": [],
+      "g": 0,
+      "short": "",
+      "deep": ""
+    },
+    {
+      "tipo": "disc",
+      "context": "",
+      "text": "A toxina botulínica atua como paralisante na musculatura estriada esquelética. Explique o processo de estimulação da fibra muscular, destacando os eventos na placa motora e por que o Botox causa paralisia.",
+      "resposta": "A estimulação normal ocorre pela exocitose de acetilcolina (ACh) após a entrada de Ca2+ no terminal axonal. A ACh liga-se aos receptores nicotínicos, causando despolarização da fibra. O Botox causa paralisia porque interrompe a exocitose de ACh, impedindo a comunicação entre o nervo e o músculo.\n\nSequência de eventos: 1. Despolarização do terminal axonal abre canais de Ca2+ dependentes de voltagem. 2. Influxo de cálcio dispara a fusão de vesículas e liberação de ACh na fenda sináptica. 3. A ACh liga-se a receptores ionotrópicos, abrindo canais de sódio e gerando o potencial de placa motora. O Botox age clivando proteínas SNARE, fundamentais para a ancoragem das vesículas; sem a liberação do neurotransmissor, não há sinal elétrico para iniciar a contração no músculo, resultando em relaxamento prolongado.",
+      "opts": [],
+      "g": 0,
+      "short": "",
+      "deep": ""
+    }
+  ]
+}
