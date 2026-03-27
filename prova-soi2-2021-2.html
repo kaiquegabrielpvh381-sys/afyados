@@ -50,18 +50,20 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-img{width:100%;max-width:560px;border-radius:10px;margin:0 auto 24px;display:block;border:1px solid rgba(255,255,255,0.1);background:#fff;padding:10px;}
 
 .q-opts{display:flex;flex-direction:column;gap:9px;}
-.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
+.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;position: relative;}
 .q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
 .q-opt.selected{background:rgba(214,0,110,0.08);border-color:rgba(214,0,110,0.45);color:#F4EFFA;}
 .q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
 .q-opt.wrong{background:rgba(226,75,74,0.07);border-color:rgba(226,75,74,0.45);color:#F4B8B8;}
+.q-opt.discarded{opacity: 0.4; filter: grayscale(1);}
 .q-opt[disabled]{cursor:default;}
 .opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);transition:all .2s;}
+.btn-discard{position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; padding: 5px; opacity: 0.3; transition: opacity 0.2s;}
+.btn-discard:hover{opacity: 1;}
 .q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
 .q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
 .q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
 
-/* Discursiva */
 .disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;resize:vertical;line-height:1.7;transition:border-color .2s;}
 .disc-area:focus{outline:none;border-color:rgba(155,0,232,0.4);}
 .disc-area[disabled]{opacity:0.6;cursor:default;}
@@ -259,7 +261,7 @@ var QS = [
     g: 0
   },
   {
-    n: 2, tema: "Medula Espinal", tipo: "mc",
+    n: 2, tema: "Formação dos Nervos Espinais", tipo: "mc",
     context: "A medula espinal possui formato cilíndrico e não uniforme, com dilatações conhecidas como intumescências (regiões com maior quantidade de neurônios que entram e saem dessas áreas) nas regiões cervical e lombar, onde as raízes formam, respectivamente, os plexos braquial e lombossacro, responsáveis pela inervação dos membros superiores e inferiores. Além disso, macroscopicamente a superfície da medula apresenta sulcos longitudinais.",
     text: "Mediante isso, assinale a alternativa que descreve a associação correta entre a formação dos nervos espinais e a estrutura da medula espinal:",
     opts: [
@@ -271,22 +273,30 @@ var QS = [
     g: 2
   },
   {
-    n: 3, tema: "Acidente Vascular Encefálico", tipo: "mc",
-    context: "(S2_S2_Q4_FIPGBI) Homem., 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\nAlterações de campo visual.\nRebaixamento do nível de consciência.\nDéficit sensitivo.",
+    n: 3, tema: "Vascularização Cerebral", tipo: "mc",
+    context: "Homem., 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\n\nAlterações de campo visual.\nRebaixamento do nível de consciência.\nDéficit sensitivo.",
     text: "Sobre o caso acima, identifique qual artéria foi obstruída:",
     opts: ["artéria cerebral posterior.", "artéria cerebral anterior.", "artéria basilar.", "arteria vertebral."],
     g: 0
   },
   {
     n: 4, tema: "Hidrocefalia", tipo: "mc",
-    context: "(S2 S2 Q3_FCM) Dona Josefa traz seu filho, João, criança com 8 meses de idade, com diagnóstico de hidrocefalia apresentando, segundo a genitora, náuseas e vômitos, irritabilidade e sonolência. Com o exame abaixo que compara uma tomografia computadorizada de crânio sem alterações com uma que demonstra a hidrocefalia e, em relação ao conhecimento sobre a morfologia macro e micro das cavidades do Sistema Nervoso Central (SNC), analise as afirmativas seguintes:\n\nFigura 1: Tomografia Computadorizada de Crânio Normal (A) e Hidrocefalia com dilatação ventricular (B).\n<br><img src=\"imagem_q4.jpg\" alt=\"Tomografia Computadorizada de Crânio\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\"><br>\nFonte: https://www.neurocirurgiabh.com.br/hidrocefalia\n\nI. O plexo coroide é uma estrutura localizada dentro dos ventrículos que produz o líquido cefalorraquidiano (LCR) com funções de nutrição e proteção.\nII. O aqueduto cerebral, também conhecido como ducto mesencefálico é um canal que conecta o terceiro ao quarto ventrículo e permite a passagem do LCR pelo mesencéfalo.\nIII. O LCR circula pelos seios venosos cerebrais e é absorvidos pelas granulações aracnóideas.",
+    context: "Dona Josefa traz seu filho, João, criança com 8 meses de idade, com diagnóstico de hidrocefalia apresentando, segundo a genitora, náuseas e vômitos, irritabilidade e sonolência. Com o exame abaixo que compara uma tomografia computadorizada de crânio sem alterações com uma que demonstra a hidrocefalia e, em relação ao conhecimento sobre a morfologia macro e micro das cavidades do Sistema Nervoso Central (SNC), analise as afirmativas seguintes:\n\nI. O plexo coroide é uma estrutura localizada dentro dos ventrículos que produz o líquido cefalorraquidiano (LCR) com funções de nutrição e proteção.\nII. O aqueduto cerebral, também conhecido como ducto mesencefálico é um canal que conecta o terceiro ao quarto ventrículo e permite a passagem do LCR pelo mesencéfalo.\nIII. O LCR circula pelos seios venosos cerebrais e é absorvidos pelas granulações aracnóideas.",
     text: "É correto o que se afirma em:",
     opts: ["II e III, apenas.", "II, apenas.", "I, apenas.", "I, II e III."],
-    g: 3
+    g: 3,
+    img: "image_e5db3b.png"
   },
   {
-    n: 5, tema: "Herpes-zóster", tipo: "mc",
-    context: "(S2 S3 Q5 Santaines) O vírus herpes-zoster causa dor unilateral e aparecimento de vesículas sobre base eritematosa, seguindo o território de um dermátomo. Geralmente ocorre como resultado de reativação endógena do vírus, que persistiu de forma latente num gânglio sensorial após um episódio de varicela.",
+    n: 5, tema: "Sistema de Recompensa", tipo: "disc",
+    context: "Ao comer um chocolate, por exemplo, sentimo-nos bem. E isso tem impacto significativo sobre a nossa motivação, produtividade e bem-estar. Nenhuma pessoa sã manifestaria oposição em ter níveis fisiológicos mais elevados de alguns produtos no corpo, os quais podem minimizar os impactos dos desafios diários.\n\nA imagem abaixo pode ser utilizada para ilustrar parte desse complexo mecanismo.",
+    text: "A) Relacione quais áreas ou estruturas morfológicas (três) do encéfalo receberam essas informações e quais as sensações provocadas pelo chocolate nestas estruturas.\n\nB) Explique bioquimicamente o processo de resposta (sinapse considere sobretudo o A da imagem), a partir da estimulação das células dessas áreas ou estruturas.\n\nC) Defenda quais são os principais produtos (dois) e as ações fisiológicas produzidas no organismo da pessoa que comeu o chocolate (considere sobretudo o B da imagem).",
+    resposta: "A) Amigdala (emoção, saciedade); Hipocampo (memória de longa duração e emoção); Córtex pré-frontal (memória de curta duração e lembrança); Núcleo accumbens (sistema de recompensa); Parte posterior da insula (área gustativa primária); Hipotálamo (centro da saciedade, núcleo ventro-medial).\n\nB) O potencial de ação elétrico chega no terminal pré-sináptico. Há despolarização da membrana e entrada de Ca2+, fazendo com que as vesículas sinápticas se liguem à membrana e libertem neurotransmissores na fenda sináptica. As mitocôndrias fornecem a energia necessária.\n\nC) Neurotransmissores como norepinefrina, serotonina e dopamina. Estes excitam o neurónio pós-sináptico, provocando alterações imediatas nas características de permeabilidade da membrana neuronal pós-sináptica, o que leva à excitação ou à inibição do neurónio sináptico, dependendo do receptor.",
+    img: "image_e5db98.png"
+  },
+  {
+    n: 6, tema: "Herpes-zoster", tipo: "mc",
+    context: "O vírus herpes-zoster causa dor unilateral e aparecimento de vesículas sobre base eritematosa, seguindo o território de um dermátomo. Geralmente ocorre como resultado de reativação endógena do vírus, que persistiu de forma latente num gânglio sensorial após um episódio de varicela.",
     text: "Analisando o contexto acima, é possível afirmar que:",
     opts: [
       "a multiplicação do microrganismo acontece no corpo celular do neurônio presente na pele.",
@@ -297,8 +307,8 @@ var QS = [
     g: 1
   },
   {
-    n: 6, tema: "Neurotransmissores", tipo: "mc",
-    context: "(S2 51 Q2 ITPACSANTAINES) Os neurotransmissores ou neuromoduladores atuam como sinais parácrinos, com as suas células-alvo localizadas perto do neurônio que as secreta. Eles são definidos como mensageiros químicos que transportam, estimulam e equilibram os sinais entre os neurônios, ou células nervosas e outras células do corpo.",
+    n: 7, tema: "Neurotransmissores", tipo: "mc",
+    context: "Os neurotransmissores ou neuromoduladores atuam como sinais parácrinos, com as suas células-alvo localizadas perto do neurônio que as secreta. Eles são definidos como mensageiros químicos que transportam, estimulam e equilibram os sinais entre os neurônios, ou células nervosas e outras células do corpo.",
     text: "Sobre estes neurotransmissores analise e marque a alternativa correta.",
     opts: [
       "Os neurônios encefálicos que contêm o neurotransmissor GABA estão ativos durante respostas emocionais, comportamentos de adição e experiências agradáveis.",
@@ -309,27 +319,27 @@ var QS = [
     g: 2
   },
   {
-    n: 7, tema: "Biomecânica do Joelho", tipo: "mc",
-    context: "(UNISL Porto Velho) A articulação do joelho é classificada como sinovial do tipo dobradiça modificada e apresenta estruturas que garantem sua estabilidade e funcionalidade. Acerca das características estruturais e funcionais do joelho, avalie as asserções a seguir:\nI. O joelho é formado pelos ossos fêmur, tíbia e patela, sendo estabilizado pelos ligamentos cruzados e colaterais.\nII. A patela é um osso sesamoide que melhora a eficiência do músculo quadríceps femoral, aumentando o braço de alavanca do tendão patelar durante a extensão.\nIII. O ligamento cruzado posterior (LCP) impede a translação posterior da tíbia em relação ao fêmur e é mais resistente que о ligamento cruzado anterior (LCA).\nIV. Os meniscos são estruturas que atuam na distribuição de carga e produção da lubrificação da articulação do joelho.",
+    n: 8, tema: "Biomecânica do Joelho", tipo: "mc",
+    context: "A articulação do joelho é classificada como sinovial do tipo dobradiça modificada e apresenta estruturas que garantem sua estabilidade e funcionalidade. Acerca das características estruturais e funcionais do joelho, avalie as asserções a seguir: I. O joelho é formado pelos ossos fêmur, tíbia e patela, sendo estabilizado pelos ligamentos cruzados e colaterais. II. A patela é um osso sesamoide que melhora a eficiência do músculo quadríceps femoral, aumentando o braço de alavanca do tendão patelar durante a extensão. III. O ligamento cruzado posterior (LCP) impede a translação posterior da tíbia em relação ao fêmur e é mais resistente que о ligamento cruzado anterior (LCA). IV. Os meniscos são estruturas que atuam na distribuição de carga e produção da lubrificação da articulação do joelho.",
     text: "É correto o que se afirma em:",
     opts: ["I, II, III e IV.", "I e II apenas.", "II e III apenas.", "I, II e III apenas."],
     g: 3
   },
   {
-    n: 8, tema: "Nervos Cranianos", tipo: "mc",
-    context: "(ITPAC) Um paciente apresenta-se com queixa de perda progressiva do olfato (anosmia), zumbido constante e perda de equilíbrio ao caminhar. Considerando esse contexto, avalie:\nI. Os sintomas indicam comprometimento dos nervos olfatório (1) e vestibulococlear (VIII).\nPORQUE\nII. O nervo olfatório é responsável pela percepção de odores, enquanto o vestibulococlear é responsável pelas funções auditivas e pelo equilíbrio.",
+    n: 9, tema: "Nervos Cranianos (I e VIII)", tipo: "mc",
+    context: "Um paciente apresenta-se com queixa de perda progressiva do olfato (anosmia), zumbido constante e perda de equilíbrio ao caminhar. Considerando esse contexto, avalie: I. Os sintomas indicam comprometimento dos nervos olfatório (I) e vestibulococlear (VIII). PORQUE II. O nervo olfatório é responsável pela percepção de odores, enquanto o vestibulococlear é responsável pelas funções auditivas e pelo equilíbrio.",
     text: "Assinale a alternativa correta:",
     opts: [
-      "A asserção I é verdadeira e a ll é falsa.",
-      "As duas são verdadeiras e a ll é uma justificativa correta da I.",
-      "As duas são verdadeiras, mas a Il não justifica a I.",
+      "A asserção I é verdadeira e a II é falsa.",
+      "As duas são verdadeiras e a II é uma justificativa correta da I.",
+      "As duas são verdadeiras, mas a II não justifica a I.",
       "Ambas são falsas."
     ],
     g: 1
   },
   {
-    n: 9, tema: "Doença de Parkinson", tipo: "mc",
-    context: "(AFYA) O Parkinsonismo caracteriza-se por hipocinesia e rigidez em decorrência da depleção de dopamina na via nigroestriatal.",
+    n: 10, tema: "Doença de Parkinson", tipo: "mc",
+    context: "O Parkinsonismo caracteriza-se por hipocinesia e rigidez em decorrência da depleção de dopamina na via nigroestriatal.",
     text: "De acordo com a fisiologia dos núcleos da base, os movimentos são coordenados porque a dopamina:",
     opts: [
       "Pelos receptores D2 estimula a atividade talâmica na via indireta.",
@@ -340,8 +350,8 @@ var QS = [
     g: 1
   },
   {
-    n: 10, tema: "Líquido Cefalorraquidiano", tipo: "mc",
-    context: "(AFYA) O líquido cerebrospinal protege o encéfalo de lesões químicas e físicas.",
+    n: 11, tema: "Líquido Cefalorraquidiano (LCE)", tipo: "mc",
+    context: "O líquido cerebrospinal protege o encéfalo de lesões químicas e físicas.",
     text: "Sobre sua dinâmica, assinale a alternativa correta:",
     opts: [
       "O líquor é produzido pelas granulações aracnoideas.",
@@ -352,8 +362,8 @@ var QS = [
     g: 1
   },
   {
-    n: 11, tema: "Tecido Muscular", tipo: "mc",
-    context: "(UniREDENTOR) A fibra muscular esquelética é preenchida por miofibrilas organizadas em sarcômeros.",
+    n: 12, tema: "Tecido Muscular", tipo: "mc",
+    context: "A fibra muscular esquelética é preenchida por miofibrilas organizadas em sarcômeros.",
     text: "Sobre essa fibra, é correto afirmar:",
     opts: [
       "Possui miofibrilas formadas por filamentos finos e espessos organizados em sarcômeros.",
@@ -364,81 +374,87 @@ var QS = [
     g: 0
   },
   {
-    n: 12, tema: "Sistema Nervoso Autônomo", tipo: "mc",
-    context: "(AFYA) Uma paciente de 30 anos queixa-se de bradicardia, constrição das pupilas (miose) e aumento da salivação após momentos de repouso.",
-    text: "A origem das fibras responsáveis por esses sintomas é:",
-    opts: [
-      "Tronco cerebral e medula sacral.",
-      "Região toracolombar da medula espinal.",
-      "Tronco cerebral e medula cervical.",
-      "Exclusivamente os nervos cranianos glossofaríngeo e vago."
-    ],
-    g: 0
-  },
-  {
-    n: 13, tema: "Neurotransmissores", tipo: "mc",
-    context: "(AFYA) Sobre os neurotransmissores, assinale a única alternativa correta:",
-    text: "Marque a alternativa correta:",
-    opts: [
-      "O GABA é o principal neurotransmissor inibitório do SNC.",
-      "A glicina é um importante neurotransmissor excitatório.",
-      "O glutamato e o aspartato possuem efeito predominantemente inibitório.",
-      "A acetilcolina possui apenas efeitos excitatórios em todas as sinapses."
-    ],
-    g: 0
-  },
-  {
-    n: 14, tema: "Sistema de Recompensa", tipo: "disc",
-    context: "AS1-S1- UNIVAÇO - Ao comer um chocolate, por exemplo, sentimo-nos bem. E isso tem impacto significativo sobre a nossa motivação, produtividade e bem-estar. Nenhuma pessoa sã manifestaria oposição em ter níveis fisiológicos mais elevados de alguns produtos no corpo, os quais podem minimizar os impactos dos desafios diários.\n\nA imagem abaixo pode ser utilizada para ilustrar parte desse complexo mecanismo.\n<br><img src=\"imagem_q5.jpg\" alt=\"Sinapse A e B\" style=\"max-width:100%; border-radius:8px; margin: 10px 0;\"><br>\nAssim sendo, correlacione as informações supracitadas à imagem apresentada e responda:",
-    text: "A) (0,75 pts) Relacione quais áreas ou estruturas morfológicas (três) do encéfalo receberam essas informações e quais as sensações provocadas pelo chocolate nestas estruturas.\n\nB) (0,75 pts) Explique bioquimicamente o processo de resposta (sinapse, considere sobretudo o A da imagem), a partir da estimulação das células dessas áreas ou estruturas.\n\nC) (1,0 pts) Defenda quais são os principais produtos (dois) e as ações fisiológicas produzidas no organismo da pessoa que comeu o chocolate (considere sobretudo a imagem).",
-    resposta: "A) Amigdala - emoção, saciedade\nHipocampo - memória de longa duração e a emoção\nCórtex pré-frontal - memória de curta duração e lembrança\nNúcleo accumbens - sistema de recompensa\nParte posterior da ínsula - área gustativa primária\nHipotálamo - centro da saciedade, núcleo ventro-medial\n\nB) Potencial de ação elétrico chega no terminal pré-sináptico que é separado do corpo do neurônio pós-sináptico pela fenda sinaptica. O terminal pré, tem dois tipos de estruturas internas importantes para a função excitatória ou inibitória da sinapse: as vesículas transmissoras e as mitocondrias, que fornecem energia. Quando o potencial de ação chega ao terminal pré-sináptico, há despolarização de sua membrana e entrada de Ca2+, que faz com que pequeno número de vesículas se ligue à membrana e libere moléculas de neurotransmissores na fenda sináptica.\n\nC) Os neurotransmissores mais excitatórios, lembrando as ações do chocolate são: norepinefrina, serotonina, dopamina. Como seria esperado, esses três sistemas têm diferentes efeitos nos níveis de excitabilidade, em diferentes partes do cérebro. As vesículas que continham esses neurotransmissores, liberadas na fenda sinaptica, excitam o neurônio pós-sináptico. As mitocondrias fornecem ATP, que, por sua vez, supre a energia necessária para sintetizar novas moléculas da substância transmissora. A liberação de moléculas, por sua vez, provoca alterações imediatas nas características de permeabilidade da membrana neuronal pós-sináptica, o que leva à excitação ou à inibição do neurônio sináptico."
-  },
-  {
-    n: 15, tema: "Junção Neuromuscular", tipo: "disc",
-    context: "(AFYA) A toxina botulínica atua como paralisante na musculatura estriada esquelética.",
+    n: 13, tema: "Junção Neuromuscular", tipo: "disc",
+    context: "A toxina botulínica atua como paralisante na musculatura estriada esquelética.",
     text: "Explique o processo de estimulação da fibra muscular, destacando os eventos na placa motora e por que o Botox causa paralisia.",
-    resposta: "A estimulação normal ocorre pela exocitose de acetilcolina (ACh) após a entrada de Ca2+ no terminal axonal. A ACh liga-se aos receptores nicotínicos, causando despolarização da fibra. O Botox causa paralisia porque interrompe a exocitose de ACh, impedindo a comunicação entre o nervo e o músculo.\n\nSequência de eventos: 1. Despolarização do terminal axonal abre canais de Ca2+ dependentes de voltagem. 2. Influxo de cálcio dispara a fusão de vesículas e liberação de ACh na fenda sináptica. 3. A ACh liga-se a receptores ionotrópicos, abrindo canais de sódio e gerando o potencial de placa motora. O Botox age clivando proteínas SNARE, fundamentais para a ancoragem das vesículas; sem a liberação do neurotransmissor, não há sinal elétrico para iniciar a contração no músculo, resultando em relaxamento prolongado."
+    resposta: "A estimulação normal ocorre pela exocitose de acetilcolina (ACh) após a entrada de Ca2+ no terminal axonal. A ACh liga-se aos receptores nicotínicos, causando despolarização da fibra. O Botox causa paralisia porque interrompe a exocitose de ACh, impedindo a comunicação entre o nervo e o músculo. Eventos detalhados: 1. Despolarização do terminal abre canais de Ca2+. 2. Influxo de Ca2+ dispara fusão de vesículas. 3. ACh liga-se a receptores ionotrópicos. O Botox cliva proteínas SNARE."
+  },
+  {
+    n: 14, tema: "Consolidação Óssea", tipo: "disc",
+    context: "Descreva a sequência cronológica da consolidação óssea após uma fratura transversal e identifique o papel dos osteoclastos e osteoblastos nesse processo.",
+    text: "Forneça a descrição detalhada do processo.",
+    resposta: "A sequência é: Hematoma -> Calo Mole -> Calo Duro -> Remodelação Óssea. Os osteoclastos limpam os detritos e o osso danificado na fase inflamatória e na remodelação final. Os osteoblastos sintetizam a nova matriz orgânica e mineralizam o calo ósseo para formar osso primário e depois lamelar maduro."
+  },
+  {
+    n: 15, tema: "Vias de Sensibilidade", tipo: "mc",
+    context: "Um paciente refere perda de sensibilidade vibratória no hálux e no tornozelo.",
+    text: "Sobre a via responsável por transmitir essa informação:",
+    opts: [
+      "A decussação ocorre imediatamente ao entrar na medula espinal.",
+      "A informação é detectada por corpúsculos de Pacini e ascende pela via coluna dorsal-lemnisco medial.",
+      "O neurônio de segunda ordem localiza-se no núcleo ventral póstero-lateral do tálamo.",
+      "O tato grosseiro e a dor seguem essa mesma via."
+    ],
+    g: 1
   }
 ];
 
 var SHORT = [
-  "Na alternativa C está falando que núcleo putâmen controla as emoções e não tem ligações com o núcleo caudal sendo essa informação incorreta, pois todos os núcleos da base estão interligados. Além disso o putâmen está bastante envolvido no controle motor, nos movimentos e no aprendizado. Ao mesmo passo que às outras afirmativas são verdadeiras a única alternativa correta é a \"C\".",
-  "Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), que se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares.",
-  "A resposta correta é a letra C [A], pois através do Polígono de Willis o fluxo sanguíneo é fornecido aos hemisférios cerebrais pelas artérias anteriores e posteriores, artérias comunicantes e pela carótida interna.",
-  "Todas as afirmativas estão corretas pois trazem adequadamente as definições do plexo coroide (I e III) e do aqueduto cerebral (II).",
-  "Os dermátomos são áreas da pele que fornece influxo sensitivo para o sistema nervoso central, por meio de um par nevos.",
-  "Letra A está correta [referindo-se ao texto da alternativa C], pois O GABA é encontrado somente no SNC, onde é o neurotransmissor inibitório mais comum.",
-  "A alternativa correta é a D. As asserções I, II e III são verdadeiras pois descrevem corretamente a anatomia óssea, o papel biomecânico da patela e a função de estabilização do LCP.",
-  "A alternativa correta é a B. Ambas as asserções estão corretas e a relação de causa e efeito é válida.",
-  "A alternativa correta é a B. Na via direta, a dopamina via receptores D1 estimula o estriado a inibir o globo pálido medial (interno), o que desibe o tálamo e facilita o movimento voluntário.",
-  "A alternativa correta é a B. O líquor é produzido por filtração e secreção do plasma nos plexos corioides situados nos ventrículos cerebrais.",
-  "A alternativa correta é a A. O sarcômero é a unidade funcional composta por filamentos grossos (miosina) e finos (actina), sendo delimitado por duas linhas Z.",
-  "A alternativa correta é a A. Os sintomas são de ativação parassimpática, cuja origem anatômica é craniossacral.",
-  "A alternativa correta é a A. O GABA é o mediador inibitório mais comum do encéfalo. Em contraste, o glutamato e o aspartato são excitatórios.",
+  "A alternativa correta é a A. A Doença de Huntington atinge os núcleos da base (caudado e putâmen), apresentando expansão de repetição CAG e redução de GABA.",
+  "A alternativa correta é a C. Os nervos espinais resultam da união das raízes dorsal (sensitiva) e ventral (motora), que se ligam aos sulcos lateral posterior e lateral anterior.",
+  "A alternativa correta é a A. A oclusão da artéria cerebral posterior (ACP) pode ocasionar cegueira cortical e alterações visuais por lesão dos lobos occipitais.",
+  "A alternativa correta é a D. Todas as afirmações estão correctas descrevendo as funções do plexo coroide, aqueduto cerebral e granulações aracnóideas.",
   null,
-  null
+  "A alternativa correta é a B. O território de um dermátomo permite determinar clinicamente os nervos espinais acometidos pela reativação do vírus.",
+  "A alternativa correta é a C. O GABA é o principal neurotransmissor inibitório do SNC, utilizado em cerca de um terço das sinapses encefálicas.",
+  "A alternativa correta é a D. As asserções I, II e III são verdadeiras, descrevendo a anatomia e biomecânica do joelho. A IV está incorreta pois a lubrificação é papel da membrana sinovial.",
+  "A alternativa correta é a B. A anosmia aponta para o Nervo I e os sintomas auditivos/equilíbrio apontam para o Nervo VIII. A asserção II justifica a I.",
+  "A alternativa correta é a B. A dopamina estimula a via direta (D1) e inibe a via indireta (D2), facilitando o movimento voluntário.",
+  "A alternativa correta é a B. O líquor é secretado pelos plexos corioides localizados nos ventrículos cerebrais.",
+  "A alternativa correta é a A. O sarcômero é composto por filamentos grossos e finos. Núcleos periféricos e tríades são típicos do músculo esquelético.",
+  null,
+  null,
+  "A alternativa correta é a B. Vibração e propriocepção consciente ascendem pela via coluna dorsal-lemnisco medial, detectadas por receptores como corpúsculos de Pacini."
 ];
 
 var DEEP = [
-  "Na alternativa C está falando que núcleo putâmen controla as emoções e não tem ligações com o núcleo caudal sendo essa informação incorreta, pois todos os núcleos da base estão interligados. Além disso o putâmen está bastante envolvido no controle motor, nos movimentos e no aprendizado. Ao mesmo passo que às outras afirmativas são verdadeiras a única alternativa correta é a \"C\".",
-  "Os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), que se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares. Enquanto, a raiz ventral emerge da superfície ventral da medula espinal como diversas radículas ou filamentos que em geral se combinam para formar dois feixes próximo ao forame intervertebral; a raiz dorsal, maior em tamanho e número de radículas, se prendem ao longo do sulco lateral posterior da medula espinal e se unem para formar dois feixes que penetram no ganglio espinhal. Tanto as raízes ventral e dorsal se unem imediatamente além do gânglio espinhal para formar o nervo espinhal, que então emerge através do forame interespinhal.",
-  "A resposta correta é a letra C, pois através do Polígono de Willis o fluxo sanguíneo é fornecido aos hemisférios cerebrais pelas artérias anteriores e posteriores, artérias comunicantes e pela carótida interna. No entanto, essas artérias possuem paredes muitas finas que as tornam mais vulneráveis aos acidentes vasculares cerebrais no demonstrado no caso. E de acordo com a região que elas irrigam, a oclusão de diferentes artérias cerebrais, irá dar origem a síndromes vasculares diversas, com seus sinais clínicos específicos e característicos de cada artéria cerebral envolvida. No caso de P. M. A., a região afetada pela oclusão da ACP, possivelmente ocasionou uma cegueira cortical, provocada por lesão bilateral dos lobos occipitais associadas à agnosia.",
-  "Todas as afirmativas estão corretas:\nI. O plexo coroide é a área do cérebro localizada dentro dos ventrículos que produz o líquido cefalorraquidiano (LCR) para nutri-lo e protegê-lo.\nII. O aqueduto cerebral, também conhecido como ducto mesencefálico é um canal que conecta o terceiro ventrículo ao quarto ventrículo e permite a passagem do líquido cefalorraquidiano pelo mesencéfalo.\nIII. Os plexos coroides são dobras e invaginações altamente vascularizadas (ricas em capilares) da pia-mater que fazem saliência para o interior dos ventrículos.",
-  "Os dermátomos são áreas da pele que fornece influxo sensitivo para o sistema nervoso central, por meio de um par nevos. Visto que os ganglios são formados pelos corpos celulares, e se tratando de um ganglio sensorial, o qual está localizado na raiz dorsal da medula e não propaga impulsos motores, descartamos as demais alternativas.",
-  "Letra A está correta, pois O GABA é encontrado somente no SNC, onde é o neurotransmissor inibitório mais comum. Cerca de um terço de todas as sinapses encefálicas utiliza o GABA. Letra B está errada, pois a glicina é um neurotransmissor inibitório. Letra C está errada, pois Os neurônios encefálicos que contêm o neurotransmissor dopamina que estão ativos durante respostas emocionais, comportamentos de adição e experiências agradáveis. Letra d está errada, pois a ACh é um neurotransmissor excitatório em algumas sinapses...",
-  "A alternativa correta é a D. As asserções I, II e III são verdadeiras pois descrevem corretamente a anatomia óssea, o papel biomecânico da patela e a função de estabilização do LCP. A asserção IV está incorreta porque a lubrificação articular é função da membrana sinovial, e não dos meniscos. O raciocínio clínico baseia-se na identificação dos estabilizadores passivos: o LCA impede a anteriorização da tíbia, enquanto o LCP (comprovadamente mais resistente) impede a posteriorização.",
-  "A alternativa correta é a B. Ambas as asserções estão corretas e a relação de causa e efeito é válida: a perda de olfato é o sinal cardinal de lesão no Nervo I, enquanto o zumbido e a vertigem apontam para disfunção no Nervo VIII. Esta questão integra a fisiologia dos nervos cranianos com a semiologia neurológica. O raciocínio exige a correlação anatofuncional direta entre a queixa e o território de inervação.",
-  "A alternativa correta é a B. Na via direta, a dopamina via receptores D1 estimula o estriado a inibir o globo pálido medial (interno), o que desibe o tálamo e facilita o movimento voluntário. O conteúdo envolve a modulação motora extraparamidal. A dopamina tem efeito pró-cinético: ela ativa a via direta (D1), que inibe o freio talâmico, e inibe a via indireta (D2), que normalmente freia o movimento. No Parkinson, a morte de neurônios na substância negra reduz a atividade facilitadora...",
-  "A alternativa correta é a B. O líquor é produzido por filtração e secreção do plasma nos plexos corioides situados nos ventrículos cerebrais. O tema é a circulação liquórica. O raciocínio exige o domínio do fluxo unidirecional: Ventrículos Laterais -> Forames Interventriculares -> 3° Ventrículo -> Aqueduto do Mesencéfalo -> 4° Ventrículo -> Espaço subaracnóideo. A alternativa C inverte esse fluxo e a D sugere erroneamente a presença de sangue nos ventrículos.",
-  "A alternativa correta é a A. O sarcômero é a unidade funcional composta por filamentos grossos (miosina) e finos (actina), sendo delimitado por duas linhas Z. O conteúdo exige a diferenciação histológica dos tipos musculares. No músculo esquelético, os núcleos são múltiplos e periféricos, situados logo abaixo do sarcolema. A condução do sinal elétrico ocorre pela tríade (um túbulo T e duas cisternas do retículo), enquanto a díade é característica do músculo cardíaco.",
-  "A alternativa correta é a A. Os sintomas são de ativação parassimpática, cuja origem anatômica é craniossacral, partindo de núcleos do tronco cerebral (como o do nervo vago) e de segmentos da medula sacral. O raciocínio clínico identifica o estado de \"repouso e digestão\". A bradicardia ocorre pela inibição do nó sinoatrial pelas fibras parassimpáticas. O sistema simpático, por outro lado, tem origem toracolombar (T1-L2) e causaria taquicardia e midríase.",
-  "A alternativa correta é a A. O GABA é o mediador inibitório mais comum do encéfalo. Em contraste, o glutamato e o aspartato são excitatórios. O conteúdo trata da bioquímica sinaptica. O raciocínio exige classificar as substâncias: GABA e Glicina abrem canais de cloro, causando hiperpolarização (inibição). A Acetilcolina (ACh) é versátil: é excitatória na placa motora (receptores nicotínicos), mas inibitória no coração via nervo vago (receptores muscarínicos)...",
-  null,
-  null
+  "A Doença de Huntington atinge núcleos da base como o caudado e o putâmen.  A patologia relaciona a expansão da trinca CAG com a degeneração neuronal tardia. Neuroquimicamente, há redução acentuada de GABA, o que desorganiza a modulação motora.",
+  "A medula espinal liga-se às raízes dorsal (sensitiva) e ventral (motora) nos sulcos lateral posterior e lateral anterior.  Radículas combinam-se para formar as raízes que se unem imediatamente após o gânglio espinal (situado na raiz dorsal) para formar o nervo espinal.",
+  "O fluxo sanguíneo aos hemisférios é fornecido pelas artérias anteriores e posteriores via Polígono de Willis. 
+
+[Image of the Circle of Willis]
+ A oclusão da ACP provoca síndromes vasculares específicas, como a cegueira cortical bilateral nos lobos occipitais.",
+  "O plexo coroide produz o LCR para nutrição e proteção. O aqueduto liga o 3° ao 4° ventrículo no mesencéfalo. 
+
+[Image of the ventricular system in the human brain]
+ A reabsorção final ocorre nas granulações aracnóideas para os seios venosos.",
+  "O sistema de recompensa envolve o núcleo accumbens e a dopamina.  A sinapse (A) envolve despolarização terminal e entrada de Ca2+ para libertar vesículas na fenda sináptica. Os neurotransmissores (B) como serotonina e dopamina alteram a permeabilidade da membrana pós-sináptica.",
+  "O herpes-zoster manifesta-se em dermátomos por reativação viral latente no gânglio sensorial. 
+
+[Image of human dermatomes map]
+ Os gânglios são formados por corpos celulares na raiz dorsal da medula e não propagam impulsos motores.",
+  "GABA é o mediador inibitório mais comum do encéfalo, enquanto Glicina é inibitória principalmente na medula espinal (abre canais de Cl-). A Dopamina modula respostas emocionais e adição. A Acetilcolina pode ser excitatória (nicotínicos) ou inibitória (muscarínicos acoplados a proteína G abrindo canais de K+).",
+  "O LCA impede a translação anterior e o LCP impede a posterior (sendo este mais resistente). A patela funciona como uma polia biológica aumentando o braço de alavanca. 
+
+[Image of human knee joint anatomy]
+ O líquido sinovial, e não os meniscos, é responsável pela lubrificação via membrana sinovial.",
+  "O Nervo VIII integra ramos coclear (audição/zumbido) e vestibular (equilíbrio).  A lesão do Nervo I causa anosmia. A alteração do paladar é frequentemente decorrente da perda do componente olfativo retronasal.",
+  "Dopamina via receptores D1 estimula a via direta, inibindo o globo pálido medial para desibir o tálamo e facilitar o movimento.  Na via indireta, a dopamina via D2 inibe a inibição, também facilitando o movimento. No Parkinson, a depleção de dopamina rompe este equilíbrio.",
+  "O LCR flui dos ventrículos laterais -> forames interventriculares -> 3° ventrículo -> aqueduto -> 4° ventrículo -> espaço subaracnóideo. A reabsorção ocorre nas granulações aracnóideas.  A obstrução em qualquer ponto causa hidrocefalia.",
+  "No músculo esquelético, os núcleos são múltiplos e periféricos. A tríade (um túbulo T e duas cisternas) propaga o potencial, enquanto a díade é cardíaca.  A banda A contém miosina e a banda I apenas actina.",
+  "O acoplamento excitação-contração inicia com a libertação de ACh na fenda sináptica. 
+
+[Image of the neuromuscular junction]
+ O Botox cliva proteínas SNARE essenciais para ancorar e fundir vesículas; sem ACh, não há potencial de placa motora nem contração muscular.",
+  "O reparo ósseo segue: 1. Hematoma (inflamatória com limpeza por osteoclastos). 2. Calo Mole (fibrocartilaginoso). 3. Calo Duro (mineralização por osteoblastos). 4. Remodelação (osteoclastos reabsorvem excesso e osteoblastos depositam osso maduro). 
+
+[Image of the stages of bone fracture healing]
+",
+  "A via coluna dorsal (fascículos grácil e cuneiforme) conduz tato epicrítico e vibração. O 1° neurónio entra e sobe ipsilateralmente até o bulbo.  A decussação ocorre no bulbo, formando o lemnisco medial até o tálamo (3° neurónio)."
 ];
 
 var L = ['a','b','c','d'];
-var cur = 0, sel = null, answered = {}, discAnswered = {};
+var cur = 0, sel = null, answered = {}, discAnswered = {}, discarded = {};
 
 function buildPills(){
   var w = document.getElementById('qPills'); w.innerHTML = '';
@@ -485,8 +501,12 @@ function renderQ(){
   else{ctx.style.display='none';}
 
   document.getElementById('qText').innerHTML = q.text ? q.text.replace(/\n/g,'<br>') : '';
+  
   var qImg=document.getElementById('qImg');
-  if(q.img){qImg.src='data:image/png;base64,'+q.img;qImg.style.display='block';}
+  if(q.img){
+    qImg.src = q.img; 
+    qImg.style.display='block';
+  }
   else{qImg.style.display='none';}
 
   var wrap=document.getElementById('qOpts'); wrap.innerHTML='';
@@ -501,10 +521,28 @@ function renderQ(){
   } else {
     q.opts.forEach(function(o,i){
       var btn=document.createElement('button'); btn.className='q-opt';
-      if(done){btn.setAttribute('disabled','');if(i===q.g)btn.classList.add('correct');else if(i===sel&&i!==q.g)btn.classList.add('wrong');}
+      if(discarded[cur] && discarded[cur].includes(i)) btn.classList.add('discarded');
+      
+      if(done){
+        btn.setAttribute('disabled','');
+        if(i===q.g)btn.classList.add('correct');
+        else if(i===sel&&i!==q.g)btn.classList.add('wrong');
+      }
       else if(sel===i){btn.classList.add('selected');}
+      
       btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span>'+o+'</span>';
-      if(!done){(function(idx){btn.onclick=function(){selectOpt(idx);};})(i);}
+      
+      if(!done){
+        (function(idx){
+          btn.onclick=function(e){ if(e.target.closest('.btn-discard')) return; selectOpt(idx); };
+          var discardBtn = document.createElement('button');
+          discardBtn.className = 'btn-discard';
+          discardBtn.innerHTML = '✂️';
+          discardBtn.title = 'Marcar como incorreta';
+          discardBtn.onclick = function(e){ e.stopPropagation(); toggleDiscard(idx); };
+          btn.appendChild(discardBtn);
+        })(i);
+      }
       wrap.appendChild(btn);
     });
   }
@@ -521,7 +559,7 @@ function renderQ(){
       var ok=sel===q.g;
       fb.className='q-feedback show '+(ok?'fb-ok':'fb-err');
       fb.innerHTML='<span class="fb-label">'+(ok?'✓ Correto!':'✗ Incorreto — Gabarito: '+L[q.g].toUpperCase())+'</span>'
-        +'<span class="fb-exp">'+SHORT[cur]+'</span>'
+        +'<span class="fb-exp">'+(SHORT[cur] ? SHORT[cur].replace(/\n/g,'<br>') : 'Sem explicação curta.')+'</span>'
         +'<button class="btn-aprofundar" id="btnAI" onclick="toggleAI('+cur+')">✦ Aprofundar com IA</button>';
     }
     aiBox.style.display='none';
@@ -547,6 +585,14 @@ function renderQ(){
   syncPills();
 }
 
+function toggleDiscard(i){
+  if(!discarded[cur]) discarded[cur] = [];
+  var idx = discarded[cur].indexOf(i);
+  if(idx === -1) discarded[cur].push(i);
+  else discarded[cur].splice(idx, 1);
+  renderQ();
+}
+
 function toggleAI(qIdx){
   var aiBox=document.getElementById('aiBox');
   var btnAI=document.getElementById('btnAI');
@@ -554,7 +600,7 @@ function toggleAI(qIdx){
     aiBox.classList.remove('open');
     if(btnAI) btnAI.classList.remove('active');
   } else {
-    document.getElementById('aiContent').textContent=DEEP[qIdx];
+    document.getElementById('aiContent').innerHTML=DEEP[qIdx] ? DEEP[qIdx].replace(/\n/g,'<br>') : 'Conteúdo indisponível.';
     aiBox.style.display='block';
     aiBox.classList.add('open');
     if(btnAI) btnAI.classList.add('active');
@@ -564,11 +610,7 @@ function toggleAI(qIdx){
 function selectOpt(i){
   if(answered[cur]!==undefined) return;
   sel=i; document.getElementById('btnRespond').disabled=false;
-  var opts=document.querySelectorAll('.q-opt');
-  opts.forEach(function(o,idx){
-    o.className='q-opt'+(idx===i?' selected':'');
-    if(!o.classList.contains('selected')){(function(ii){o.onclick=function(){selectOpt(ii);};})(idx);}
-  });
+  renderQ();
 }
 
 function submitAnswer(){
@@ -582,8 +624,6 @@ function submitAnswer(){
     answered[cur]=sel;
   }
   renderQ();
-  var mcDone=Object.keys(answered).length;
-  var discDone=Object.keys(discAnswered).length;
   var total=0;
   for(var i=0;i<QS.length;i++){ if(QS[i].tipo==='disc'?discAnswered[i]:answered[i]!==undefined) total++; }
   if(total===QS.length){ setTimeout(showResult,350); }
@@ -644,7 +684,6 @@ function buildReport(correct,wrong){
         +'<span class="tema-pct '+(good?'green':'red')+'">'+pct+'%</span></div>';
     }
   });
-  var mcWrong=QS.filter(function(q,i){return q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g;});
   var worstTema=sorted.find(function(t){return temaStats[t].wrong>0;})||sorted[0]||'—';
   var wrongListHtml='';
   QS.forEach(function(q,i){
@@ -682,7 +721,7 @@ function goToQ(i){
   cur=i; renderQ(); window.scrollTo({top:0,behavior:'smooth'});
 }
 function resetAll(){
-  answered={}; discAnswered={}; sel=null; cur=0;
+  answered={}; discAnswered={}; discarded={}; sel=null; cur=0;
   document.getElementById('resultScreen').classList.remove('show');
   document.getElementById('qCard').style.display='block';
   renderQ(); window.scrollTo({top:0,behavior:'smooth'});
