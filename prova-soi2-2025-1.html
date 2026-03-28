@@ -1,132 +1,137 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOI II - N1 2025.1 | Afyados</title>
+    <title>Quiz</title>
     <style>
-        :root {
-            --primary-color: #4CAF50;
-            --secondary-color: #FF5722;
-            --background-color: #f4f4f4;
-            --font-color: #333;
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
         }
-        body { background-color: var(--background-color); font-family: Arial, sans-serif; }
-        .header { background: var(--primary-color); padding: 10px; color: white; text-align: center; }
-        .navbar { display: flex; justify-content: space-between; }
-        .btn { background: var(--secondary-color); color: white; border: none; padding: 10px; cursor: pointer; }
-        .sticky-header { position: sticky; top: 0; background: white; }
-        .pill { margin: 5px; padding: 8px; border: 1px solid #ccc; }
-        .quiz-main { margin: 20px; }
-        .results { padding: 15px; }
-        .hidden { display: none; }
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px;
+        }
+        /* Sticky Headers with Pills */
+        .quiz-header {
+            position: sticky;
+            top: 0;
+            background-color: #1f1f1f;
+            padding: 10px;
+        }
+        /* Main Quiz Area */
+        .quiz-area {
+            padding: 20px;
+        }
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1f1f1f;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        /* Results Section */
+        .res-hero {
+            text-align: center;
+            margin: 20px;
+        }
+        .res-stats {
+            display: flex;
+            justify-content: space-around;
+        }
+        .res-section {
+            margin: 20px;
+        }
+        .btn-retry {
+            cursor: pointer;
+            background-color: #ff5722;
+            color: #ffffff;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Quiz Afyados</h1>
-    </div>
     <div class="navbar">
-        <button class="btn" onclick="goto('home')">Voltar</button>
-        <img src="logo.png" alt="Logo" />
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
     </div>
-    <div class="sticky-header">
-        <div class="pills" id="pills"></div>
+    <div class="quiz-header">
+        <!-- Pills for Questions -->
     </div>
-    <div class="quiz-main" id="quiz-area">
+    <div class="quiz-area">
         <!-- Questions will be rendered here -->
     </div>
-    <div class="results hidden" id="results">
-        <h2>Resultados</h2>
-        <div class="res-hero">Resultado: <span id="percentage"></span>%</div>
-        <div class="res-stats">
-            Corretas: <span id="correct-count"></span><br>
-            Incorretas: <span id="incorrect-count"></span><br>
-            Discursivas: <span id="discursive-count"></span>
-        </div>
-        <div class="theme-performance">
-            <div class="performance-bar">Desempenho: <span id="performance-bars"></span></div>
-        </div>
-        <div class="insights">
-            <p>Ponto Forte: <span id="strong-point"></span></p>
-            <p>Ponto Fraco: <span id="weak-point"></span></p>
-        </div>
-        <div class="detailed-report">
-            <h3>Relatório Detalhado</h3>
-            <div id="summary"></div>
-            <div id="recommendations"></div>
-            <h4>Erros:</h4>
-            <div id="review-items"></div>
-        </div>
-        <button class="btn" onclick="resetQuiz()">Tentar Novamente</button>
+    <div class="bottom-nav">
+        <button onclick="prev()">Previous</button>
+        <button onclick="nextQ()">Next</button>
     </div>
+    <div class="res-hero">
+        <h2>Your Result</h2>
+        <div id="percentage-circle"></div>
+    </div>
+    <div class="res-stats">
+        <div>Correct: <span id="correctCount"></span></div>
+        <div>Incorrect: <span id="incorrectCount"></span></div>
+        <div>Discursive: <span id="discursiveCount"></span></div>
+    </div>
+    <div class="res-section">
+        <h3>Performance by Theme</h3>
+        <div id="themePerformanceBars"></div>
+    </div>
+    <button class="btn-retry" onclick="resetQuiz()">Retry</button>
     <script>
-        const questions = [
-            'Anatomia do Joelho', 'Nervos Cranianos', 'Bioquímica Neural',
-            'Anatomia da Medula Espinal', 'Fisiologia Auditiva', 'Neuroanatomia da Memória',
-            'Histologia Muscular', 'Neuroanatomia Cortical', 'Vias Somestésicas',
-            'Tronco Encefálico', 'Líquor', 'Histologia Óssea',
-            'Neurotransmissores', 'Fisiologia Muscular', 'Núcleos da Base'
-        ];
-
-        function getTier(score) {
-            if (score >= 90) return '⭐⭐⭐⭐⭐';
-            else if (score >= 75) return '⭐⭐⭐⭐';
-            else if (score >= 50) return '⭐⭐⭐';
-            return '⭐⭐';
-        }
-
         function boot() {
-            // Initialize quiz
+            // Initial setup
         }
-
         function buildPills() {
-            // Create pills for questions
+            // Builds the navigation pills
         }
-
-        function goto(section) {
-            // Navigate to different sections
+        function syncPills() {
+            // Sync pills with current question
         }
-
+        function goto(questionIndex) {
+            // Go to specific question
+        }
         function prev() {
             // Go to previous question
         }
-
         function nextQ() {
             // Go to next question
         }
-
         function renderQ() {
             // Render current question
         }
-
         function renderBottom() {
             // Render bottom navigation
         }
-
-        function pickOpt(option) {
-            // Handle option selection
+        function pickOpt(opt) {
+            // Select an option
         }
-
         function doAnswer() {
-            // Handle answer submission
+            // Process answer
         }
-
-        function toggleDeep() {
-            // Toggle deep insights
-        }
-
         function showResults() {
-            // Show results at the end
+            // Show results after quiz
         }
-
-        function revisit() {
-            // Revisit answers
-        }
-
         function resetQuiz() {
             // Reset the quiz
         }
+        boot();
     </script>
 </body>
 </html>
