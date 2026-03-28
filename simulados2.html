@@ -63,6 +63,17 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 
 .pc-arrow{position:absolute;bottom:16px;right:16px;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--pink-light);}
 
+/* --- BANNER PROMOCIONAL AFYANDO --- */
+.promo-card {background: linear-gradient(145deg, rgba(214,0,110,0.08), rgba(155,0,232,0.03)); border: 1px solid var(--pink); border-radius: 20px; padding: 36px 32px; margin-bottom: 40px; text-align: center; position: relative; overflow: hidden;}
+.promo-card::before {content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--pink), #9B00E8);}
+.promo-title {font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: #fff; margin-bottom: 16px;}
+.promo-text {font-size: 15px; color: var(--light); margin-bottom: 12px; line-height: 1.6;}
+.promo-highlight {color: var(--pink-light); font-weight: 700;}
+.promo-bonus {background: rgba(29,158,117,0.15); border: 1px solid rgba(29,158,117,0.4); color: #5DCAA5; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; margin: 24px auto; max-width: 600px;}
+.promo-warning {font-size: 13px; color: var(--muted); margin-bottom: 28px; font-style: italic;}
+.btn-buy {display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--pink); color: #fff; text-decoration: none; padding: 14px 36px; border-radius: 50px; font-size: 16px; font-weight: 700; transition: all 0.2s; box-shadow: 0 4px 20px var(--pink-glow); font-family: 'Plus Jakarta Sans', sans-serif;}
+.btn-buy:hover {background: var(--pink-bright); transform: translateY(-2px); box-shadow: 0 6px 25px var(--pink-glow);}
+
 @media(max-width:768px){
   nav{padding:0 20px;}
   .hero{padding:100px 20px 40px;}
@@ -92,6 +103,22 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 
 <div class="content">
 
+  <div class="promo-card">
+    <div class="promo-title">🔥 Simulado AFYANDO A N1 disponível! 🔥</div>
+    <p class="promo-text">Já está no ar o nosso simulado completo para a N1 (SOI II). São <span class="promo-highlight">80 questões com vídeos comentados detalhados</span> para te ajudar a entender o raciocínio e revisar de forma estratégica.</p>
+    <p class="promo-text">Cobertura completa: <strong>Neuro + Sistema Ósseo-muscular</strong>.</p>
+    
+    <div class="promo-bonus">
+      🎁 Bônus exclusivo: Comprando hoje até às 21:00, ganhas acesso direto ao WhatsApp dos nossos tutores para tirar dúvidas até segunda-feira!
+    </div>
+    
+    <p class="promo-warning">⚠️ Importante: ainda estamos a terminar de carregar o restante das vídeo-aulas comentadas (até às 20h–21h a plataforma estará 100% completa), mas já podes garantir o acesso e começar a treinar as questões agora mesmo!</p>
+    
+    <a href="https://pay.kiwify.com.br/ZtqnuTa" target="_blank" class="btn-buy">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+      Garantir meu acesso agora
+    </a>
+  </div>
   <div class="section-label">Simulados pagos</div>
   <div class="sim-card">
     <div>
