@@ -1,353 +1,522 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>N1 SOI II - 2023.1 (2) | Afyados</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--bg:#0C0810;--card:#1A1226;--border:rgba(255,255,255,0.07);--border-pink:rgba(214,0,110,0.3);--text:#F4EFFA;--muted:#9080A8;--light:#D8CEEA;}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - N1 SOI II (2023.1)</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1f1f1f;
+            padding: 10px 20px;
+            border-bottom: 1px solid #333;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+        /* Sticky Headers with Pills */
+        .quiz-header {
+            position: sticky;
+            top: 0;
+            background-color: #1f1f1f;
+            padding: 15px 20px;
+            z-index: 100;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            border-bottom: 1px solid #333;
+        }
+        .pill {
+            min-width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .pill.active { background-color: #ff5722; color: #fff; border: 2px solid #fff; }
+        .pill.answered-correct { background-color: #4CAF50; color: white; }
+        .pill.answered-wrong { background-color: #F44336; color: white; }
+        .pill.answered-discursive { background-color: #2196F3; color: white; }
 
-/* NAV BASE */
-nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(12,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px var(--pink-glow);}
-.logo-mark svg{width:18px;height:18px;fill:white;}
-.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;letter-spacing:.06em;color:#FFF;}
-.back-btn{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 18px;border-radius:50px;border:1px solid var(--border);transition:all .2s;}
-.back-btn:hover{border-color:var(--border-pink);color:var(--pink-light);}
+        /* Main Quiz Area */
+        .quiz-area {
+            padding: 30px 20px 80px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .question-title { font-size: 1.2rem; margin-bottom: 20px; color: #ff5722; }
+        .question-text { font-size: 1rem; margin-bottom: 25px; }
+        
+        /* Options */
+        .options-container { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn {
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        .option-btn:hover:not(:disabled) { background-color: #3a3a3a; }
+        .option-btn.selected { border-color: #ff5722; background-color: rgba(255, 87, 34, 0.1); }
+        .option-btn.correct { background-color: #4CAF50; border-color: #4CAF50; color: white; }
+        .option-btn.wrong { background-color: #F44336; border-color: #F44336; color: white; }
+        .option-btn:disabled { cursor: default; }
 
-/* HERO */
-.hero{padding:120px 48px 56px;text-align:center;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 30%,rgba(214,0,110,0.1),transparent 70%);}
-.s-label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:14px;position:relative;display:inline-block;background:rgba(214,0,110,0.1);padding:4px 12px;border-radius:100px;border:1px solid var(--border-pink);}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);font-weight:900;line-height:1.1;margin-bottom:12px;position:relative;}
-.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--pink-bright),var(--pink-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero p{color:var(--muted);font-size:15px;max-width:500px;margin:0 auto;position:relative;}
+        /* Discursive Textarea */
+        .discursive-area { width: 100%; height: 120px; background: #2a2a2a; color: #fff; border: 1px solid #444; border-radius: 8px; padding: 10px; font-family: inherit; resize: vertical; margin-bottom: 15px; }
 
-/* CONTAINER PRINCIPAL */
-.content{max-width:860px;margin:0 auto;padding:20px 48px 80px;animation:fadeUp .4s ease;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        /* Explanation Box */
+        .explanation-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-left: 4px solid #ff5722;
+            border-radius: 0 8px 8px 0;
+            display: none;
+        }
+        .explanation-box h4 { margin-top: 0; color: #ff5722; }
 
-/* ESTILIZAÇÃO DAS QUESTÕES */
-.q-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 36px;
-    margin-bottom: 32px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    transition: all 0.3s;
-}
-.q-card:hover {
-    border-color: rgba(214,0,110,0.2);
-}
-.q-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-}
-.q-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.q-num span {
-    color: var(--pink);
-}
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1f1f1f;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            border-top: 1px solid #333;
+            z-index: 100;
+        }
+        .bottom-nav button {
+            background-color: #333;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .bottom-nav button:hover { background-color: #444; }
+        .bottom-nav button.primary { background-color: #ff5722; }
+        .bottom-nav button.primary:hover { background-color: #e64a19; }
 
-.q-enunciado {
-    font-size: 15px;
-    color: var(--light);
-    line-height: 1.7;
-    margin-bottom: 28px;
-}
-.q-enunciado p { margin-bottom: 12px; }
-
-/* ALTERNATIVAS */
-.alts-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 32px;
-}
-.alt-item {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px 20px;
-    font-size: 14px;
-    color: var(--muted);
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    transition: all 0.2s;
-}
-.alt-item:hover {
-    background: rgba(214,0,110,0.04);
-    border-color: rgba(214,0,110,0.3);
-    color: var(--light);
-}
-.alt-letter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 12px;
-    color: var(--text);
-    flex-shrink: 0;
-}
-/* Estilo Alternativa Correta */
-.alt-item.correct {
-    background: linear-gradient(135deg, rgba(29, 158, 117, 0.08), rgba(29, 158, 117, 0.02));
-    border-color: rgba(29,158,117,0.3);
-    color: #5DCAA5;
-}
-.alt-item.correct .alt-letter {
-    background: rgba(29,158,117,0.2);
-    color: #5DCAA5;
-}
-
-/* BLOCO DE COMENTÁRIO PBL */
-.disc-box {
-    background: linear-gradient(135deg, rgba(214,0,110,.05), rgba(155,0,232,.03));
-    border: 1px solid var(--border-pink);
-    border-radius: 18px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-}
-.disc-box::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0; width: 4px;
-    background: var(--pink);
-}
-.disc-title {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--pink-light);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.disc-title svg { width: 14px; height: 14px; fill: currentColor; }
-.disc-text {
-    font-size: 14px;
-    color: var(--light);
-    line-height: 1.6;
-}
-.disc-text ul { padding-left: 20px; margin-bottom: 16px; }
-.disc-text li { margin-bottom: 8px; }
-.disc-text strong { color: var(--text); font-weight: 600; }
-
-.disc-resumo {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--muted);
-}
-.disc-resumo strong {
-    color: #FAAD3F; /* Amarelo das tags adaptadas */
-}
-
-@media(max-width:768px){
-  nav{padding:0 20px;}
-  .hero{padding:100px 20px 32px;}
-  .content{padding:20px 20px 60px;}
-  .q-card{padding: 24px;}
-}
-</style>
+        /* Results Section */
+        .results-container { display: none; padding: 40px 20px; max-width: 600px; margin: 0 auto; text-align: center; }
+        .res-hero h2 { color: #ff5722; font-size: 2.5rem; margin-bottom: 10px; }
+        #percentage-circle { font-size: 4rem; font-weight: bold; margin: 20px 0; }
+        .res-stats { display: flex; justify-content: space-around; background: #1f1f1f; padding: 20px; border-radius: 10px; margin-bottom: 30px; }
+        .res-stats div { display: flex; flex-direction: column; align-items: center; }
+        .res-stats span { font-size: 1.5rem; font-weight: bold; margin-top: 5px; }
+        .btn-retry { cursor: pointer; background-color: #ff5722; color: #ffffff; padding: 15px 30px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; width: 100%; }
+        .btn-retry:hover { background-color: #e64a19; }
+    </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
-    <span class="logo-name">AFYADOS</span>
-  </a>
-  <a href="index.html" class="back-btn">← Voltar</a>
-</nav>
-
-<div class="hero">
-  <div class="s-label">Gabarito Comentado</div>
-  <h1>N1 SOI II — <em>2023.1 (2)</em></h1>
-  <p>15 questões baseadas no formato PBL/APG com distratores clínicos.</p>
-</div>
-
-<div class="content">
-
-  <div class="q-card" id="q1">
-    <div class="q-header">
-      <div class="q-num">Questão <span>01</span></div>
+    <div class="navbar">
+        <div style="font-weight: 900; color: #ff5722; letter-spacing: 1px;">AFYADOS</div>
+        <div>
+            <a href="#">Sair</a>
+        </div>
     </div>
-    <div class="q-enunciado">
-      <p>Denominam-se nervos cranianos todos aqueles nervos que fazem conexão com o encéfalo. Existem 12 pares de nervos cranianos, os quais são numerados com algarismos romanos de I a XII, obedecendo à ordem de sua origem aparente no encéfalo no sentido rostrocaudal. Com base nos aspectos morfofuncionais que caracterizam os nervos cranianos correlacionados especificamente aos sentidos especiais, analise as assertivas a seguir:</p>
-      <p>I - O primeiro par de nervos cranianos é responsável pela condução dos impulsos olfatórios em direção aos bulbos olfatórios, sendo classificado como exclusivamente sensitivo.<br>
-      II - O nervo vestíbulo-coclear (VIII) responde pela condução tanto da informação auditiva (porção coclear) quanto da informação referente ao equilíbrio (porção vestibular).<br>
-      III - O nervo óptico é considerado um nervo misto, já que conduz a informação visual até o quiasma óptico e também permite ajustes motores no diâmetro pupilar em resposta à luz.<br>
-      IV- Os impulsos gustativos provenientes dos 2/3 anteriores da língua se projetam para o tronco encefálico via nervo glossofaríngeo (XI), enquanto o 1/3 posterior é inervado pelo nervo facial (VII).</p>
-    </div>
-    
-    <ul class="alts-list">
-      <li class="alt-item">
-        <div class="alt-letter">A</div>
-        <div>I e III.</div>
-      </li>
-      <li class="alt-item correct">
-        <div class="alt-letter">B</div>
-        <div>I e II.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">C</div>
-        <div>II e IV.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">D</div>
-        <div>III e IV.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">E</div>
-        <div>I, II e IV.</div>
-      </li>
-    </ul>
 
-    <div class="disc-box">
-      <div class="disc-title">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        Discussão APG
-      </div>
-      <div class="disc-text">
-        <ul>
-          <li><strong>NC I (Olfatório):</strong> Exclusivamente sensitivo especial. Axônios cruzam a lâmina cribriforme do etmoide. Lesão clínica: Anosmia.</li>
-          <li><strong>NC VIII (Vestibulococlear):</strong> Exclusivamente sensitivo especial. Componente vestibular integra equilíbrio; componente coclear integra audição.</li>
-          <li><strong>NC II (Óptico):</strong> Exclusivamente sensitivo. A regulação motora pupilar (miose) em resposta à luz é função motora parassimpática do <strong>NC III (Oculomotor)</strong>.</li>
-          <li><strong>Gustação:</strong> A assertiva IV inverte as inervações. O NC VII (Facial) inerva os 2/3 anteriores. O NC IX (Glossofaríngeo) inerva o 1/3 posterior.</li>
-        </ul>
-      </div>
-      <div class="disc-resumo">
-        <strong>RESUMO:</strong> NC I e VIII são exclusivamente sensitivos. NC II é apenas sensitivo (o motor pupilar é o NC III). Gustação: 2/3 anteriores = VII; 1/3 posterior = IX.
-      </div>
-    </div>
-  </div>
+    <div class="quiz-header" id="pills-container">
+        </div>
 
-  <div class="q-card" id="q2">
-    <div class="q-header">
-      <div class="q-num">Questão <span>02</span></div>
-    </div>
-    <div class="q-enunciado">
-      <p>Considere a anatomia do pescoço. De acordo com a imagem e seus conhecimentos, avalie as afirmações a seguir:</p>
-      <p>I - O nervo vago origina-se de um núcleo no bulbo, para formar um único nervo, que emerge do crânio pelo forame jugular, percorre o pescoço e o tórax, terminando no abdome.<br>
-      II - O plexo faríngeo é formado por ramos dos IX, X e XI nervos cranianos, além de ramos do tronco simpático.<br>
-      III - Uma lesão afetando o plexo faríngeo irá causar paresia ou paralisa dos músculos constritores ipsilaterais, que podem eventualmente se tornar atróficos.</p>
-    </div>
-    
-    <ul class="alts-list">
-      <li class="alt-item">
-        <div class="alt-letter">A</div>
-        <div>I e II.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">B</div>
-        <div>I e III.</div>
-      </li>
-      <li class="alt-item correct">
-        <div class="alt-letter">C</div>
-        <div>II e III.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">D</div>
-        <div>Apenas a II.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">E</div>
-        <div>I, II e III.</div>
-      </li>
-    </ul>
+    <div class="quiz-area" id="quiz-area">
+        </div>
 
-    <div class="disc-box">
-      <div class="disc-title">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        Discussão APG
-      </div>
-      <div class="disc-text">
-        <ul>
-          <li><strong>Origem do NC X:</strong> O NC X não se origina de "um núcleo", mas de múltiplos núcleos bulbares (Núcleo Ambíguo, Núcleo Dorsal do Vago, Trato Solitário e Trato Espinal do Trigêmeo).</li>
-          <li><strong>Plexo Faríngeo:</strong> Formado primariamente por NC IX, X, XI e cadeia simpática cervical. O NC X é o principal eferente para músculos constritores.</li>
-          <li><strong>Clínica:</strong> Lesões no plexo geram paresia flácida ipsilateral dos constritores da faringe, causando disfagia neurogênica e desvio da úvula.</li>
-        </ul>
-      </div>
-      <div class="disc-resumo">
-        <strong>RESUMO:</strong> O Vago (X) origina-se de múltiplos núcleos. Plexo faríngeo (IX, X, XI e simpático) controla a faringe; sua lesão gera paralisia ipsilateral e disfagia.
-      </div>
+    <div class="bottom-nav">
+        <button onclick="prev()" id="btn-prev">Anterior</button>
+        <button onclick="nextQ()" id="btn-next" class="primary">Próxima</button>
     </div>
-  </div>
 
-  <div class="q-card" id="q3">
-    <div class="q-header">
-      <div class="q-num">Questão <span>03</span></div>
+    <div class="results-container" id="results-area">
+        <div class="res-hero">
+            <h2>Resultado Final</h2>
+            <div id="percentage-circle">0%</div>
+        </div>
+        <div class="res-stats">
+            <div>Corretas <span id="correctCount" style="color: #4CAF50;">0</span></div>
+            <div>Incorretas <span id="incorrectCount" style="color: #F44336;">0</span></div>
+            <div>Discursivas <span id="discursiveCount" style="color: #2196F3;">0</span></div>
+        </div>
+        <button class="btn-retry" onclick="resetQuiz()">Refazer Simulado</button>
     </div>
-    <div class="q-enunciado">
-      <p>A tireoide é uma das maiores glândulas endócrinas, localizada em uma região na base do pescoço, relacionada com o controle do metabolismo e produção de três hormônios. Qual das seguintes alternativas descreve corretamente os tipos de células e as vias bioquímicas que produzem os hormônios da referida glândula?</p>
-    </div>
-    
-    <ul class="alts-list">
-      <li class="alt-item correct">
-        <div class="alt-letter">A</div>
-        <div>As células foliculares da tireoide produzem hormônios tireoidianos (T3 e T4), por meio da captação de iodo e sua subsequente incorporação na tirosina para formar MIT e DIT, que são combinados para formar T3 e T4.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">B</div>
-        <div>As células parafoliculares produzem T3 e T4 ativos no citoplasma através da clivagem enzimática mediada pela tirosina quinase.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">C</div>
-        <div>As células foliculares são responsáveis pela produção exclusiva de calcitonina.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">D</div>
-        <div>A síntese ocorre nas células parafoliculares por meio da oxidação de ácidos graxos.</div>
-      </li>
-      <li class="alt-item">
-        <div class="alt-letter">E</div>
-        <div>O iodo absorvido no intestino atua como mensageiro secundário no núcleo, estimulando TSH.</div>
-      </li>
-    </ul>
 
-    <div class="disc-box">
-      <div class="disc-title">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-        Discussão APG
-      </div>
-      <div class="disc-text">
-        <p><strong>Mecanismo Bioquímico:</strong> Células foliculares internalizam iodeto pelo simportador Na+/I- (NIS). A enzima tireoide peroxidase (TPO) oxida o iodeto e o liga à tireoglobulina, formando monoiodotirosina (MIT) e di-iodotirosina (DIT). A TPO catalisa o acoplamento: DIT + DIT = T4; MIT + DIT = T3.<br>
-        <strong>Células C (Parafoliculares):</strong> Produzem calcitonina, hormônio envolvido no metabolismo do cálcio, sem correlação com o iodo.</p>
-      </div>
-      <div class="disc-resumo">
-        <strong>RESUMO:</strong> Foliculares captam iodo, a TPO oxida e acopla na tirosina formando MIT/DIT, gerando T3/T4. Parafoliculares produzem calcitonina.
-      </div>
-    </div>
-  </div>
+    <script>
+        const quizData = [
+            {
+                id: 1, type: "objective", answer: 1, // B
+                title: "1ª QUESTÃO",
+                text: "Denominam-se nervos cranianos todos aqueles nervos que fazem conexão com o encéfalo. Existem 12 pares de nervos cranianos. Com base nos aspectos morfofuncionais que caracterizam os nervos cranianos correlacionados especificamente aos sentidos especiais, analise as assertivas a seguir:<br><br>I - O primeiro par de nervos cranianos é responsável pela condução dos impulsos olfatórios em direção aos bulbos olfatórios, sendo classificado como exclusivamente sensitivo.<br>II - O nervo vestíbulo-coclear (VIII) responde pela condução tanto da informação auditiva quanto da informação referente ao equilíbrio.<br>III - O nervo óptico é considerado um nervo misto, já que conduz a informação visual até o quiasma óptico e também permite ajustes motores no diâmetro pupilar.<br>IV- Os impulsos gustativos provenientes dos 2/3 anteriores da língua se projetam via nervo glossofaríngeo (XI), enquanto o 1/3 posterior é inervado pelo nervo facial (VII).",
+                options: ["A) I e III.", "B) I e II.", "C) II e IV.", "D) III e IV.", "E) I, II e IV."],
+                explanation: "<strong>Discussão APG:</strong> O NC I e o NC VIII são exclusivamente sensitivos. O NC II não é misto (apenas aferente visual); o controle motor pupilar é do NC III. A gustação dos 2/3 anteriores da língua é pelo Facial (VII) e o 1/3 posterior pelo Glossofaríngeo (IX)."
+            },
+            {
+                id: 2, type: "objective", answer: 2, // C
+                title: "2ª QUESTÃO",
+                text: "Considere a anatomia do pescoço. Avalie as afirmações a seguir:<br><br>I - O nervo vago origina-se de um núcleo no bulbo, para formar um único nervo, que emerge do crânio pelo forame jugular, percorre o pescoço e o tórax, terminando no abdome.<br>II - O plexo faríngeo é formado por ramos dos IX, X e XI nervos cranianos, além de ramos do tronco simpático.<br>III - Uma lesão afetando o plexo faríngeo irá causar paresia ou paralisa dos músculos constritores ipsilaterais, que podem eventualmente se tornar atróficos.",
+                options: ["A) I e II.", "B) I e III.", "C) II e III.", "D) Apenas a II.", "E) I, II e III."],
+                explanation: "<strong>Discussão APG:</strong> O Vago (X) tem origem em múltiplos núcleos no bulbo (Ambíguo, Dorsal, Trato Solitário), não em apenas um. O plexo faríngeo realiza o controle sensitivo e motor da faringe; sua lesão gera paralisia ipsilateral e disfagia."
+            },
+            {
+                id: 3, type: "objective", answer: 0, // A
+                title: "3ª QUESTÃO",
+                text: "A tireoide é uma das maiores glândulas endócrinas, localizada em uma região na base do pescoço, relacionada com o controle do metabolismo e produção de três hormônios. Qual das alternativas descreve corretamente os tipos de células e vias bioquímicas?",
+                options: [
+                    "A) As células foliculares produzem hormônios tireoidianos, como a T3 e T4, por meio da captação de iodo e sua subsequente incorporação na tirosina para formar MIT e DIT, que combinados formam T3 e T4.",
+                    "B) As células parafoliculares produzem T3 e T4 ativos no citoplasma através da clivagem enzimática do colesterol mediada pela tirosina quinase.",
+                    "C) As células foliculares são responsáveis pela produção exclusiva de calcitonina.",
+                    "D) A síntese de hormônios tireoidianos ocorre nas células parafoliculares por meio da oxidação de ácidos graxos.",
+                    "E) O iodo atua como mensageiro secundário no núcleo das células foliculares, estimulando a transcrição direta de TSH."
+                ],
+                explanation: "<strong>Discussão APG:</strong> O iodo captado pelas células foliculares é oxidado pela TPO e acoplado à tireoglobulina no coloide, formando MIT e DIT, combinados para T3 e T4. Células parafoliculares (Células C) sintetizam apenas calcitonina."
+            },
+            {
+                id: 4, type: "objective", answer: 2, // C
+                title: "4ª QUESTÃO",
+                text: "Um homem de 40 anos de idade se acidentou e sofreu uma lesão da coluna em C5, com transecção da metade esquerda da medula espinal. Selecione a alternativa que apresente corretamente o lado do corpo que esse paciente não sentirá a sensação de dor e de temperatura.",
+                options: [
+                    "A) Lado esquerdo para a sensação de dor e de temperatura.",
+                    "B) Lado direito para a propriocepção consciente e lado esquerdo para a dor.",
+                    "C) Lado direito para a sensação de dor e de temperatura.",
+                    "D) Ambos os lados para a sensação de dor e temperatura, preservando o tato epicrítico.",
+                    "E) Lado esquerdo para a sensação de temperatura e preservação bilateral da dor."
+                ],
+                explanation: "<strong>Discussão APG:</strong> Síndrome de Brown-Séquard. Fibras de dor e temperatura (Trato Espinotalâmico Lateral) cruzam a medula espinal logo no nível em que entram. Portanto, lesão à esquerda interrompe os sinais termoalgésicos originários do lado direito."
+            },
+            {
+                id: 5, type: "objective", answer: 0, // A
+                title: "5ª QUESTÃO",
+                text: "O hipotálamo sintetiza, pelo menos, nove hormônios diferentes, e a hipófise secreta sete. Com base na embriogênese e fisiologia, aponte a alternativa correta.",
+                options: [
+                    "A) O prosencéfalo dá origem ao diencéfalo, que possibilita a formação do hipotálamo, responsável pela produção do hormônio antidiurético (ADH).",
+                    "B) O rombencéfalo dá origem ao telencéfalo, que forma a adeno-hipófise, secretora de somatostatina.",
+                    "C) A neuro-hipófise tem origem ectodérmica oral a partir da bolsa de Rathke.",
+                    "D) O mesencéfalo origina a neuroectoderme, precursora do hipotálamo.",
+                    "E) A adeno-hipófise origina-se da crista neural e produz ocitocina e vasopressina."
+                ],
+                explanation: "<strong>Discussão APG:</strong> O diencéfalo (derivado do prosencéfalo) origina o hipotálamo e a neuro-hipófise. O hipotálamo produz ADH e Ocitocina, estocados na neuro-hipófise. A adeno-hipófise tem origem separada na ectoderme oral (Bolsa de Rathke)."
+            },
+            {
+                id: 6, type: "discursive",
+                title: "6ª QUESTÃO (Discursiva)",
+                text: "Durante uma cirurgia de mais de 12 horas, um residente acabou desmaiando durante o procedimento (situação 1). O médico pediu que conduzissem o aluno para a emergência. 15 minutos após o início de um soro glicosado intravenoso, o aluno despertou (situação 2) e reportou não ter se alimentado adequadamente.<br><br>A) Cite duas vias metabólicas ativadas pelo hormônio pancreático envolvido na situação 1.<br>B) Na situação 2, identifique o hormônio pancreático e a respectiva célula secretora.",
+                explanation: "<strong>Gabarito Esperado:</strong><br>A) Hormônio: Glucagon. Vias: Glicogenólise, Gliconeogênese, Cetogênese, Oxidação de ácidos graxos.<br>B) Hormônio: Insulina. Célula: Beta pancreática.<br><br><strong>Discussão APG:</strong> No jejum (Situação 1), cai a glicose, elevando o glucagon nas células alfa, acionando gliconeogênese hepática. A glicose IV (Situação 2) entra nas células beta, gerando ATP, despolarizando a membrana e induzindo liberação de insulina."
+            },
+            {
+                id: 7, type: "objective", answer: 3, // D
+                title: "7ª QUESTÃO",
+                text: "No ouvido interno a energia mecânica do som é convertida em sinais elétricos complexos. Assinale a alternativa que traz corretamente o nome da estrutura responsável por esta função, sua origem embrionária e classificação histológica.",
+                options: [
+                    "A) Sáculo, deriva do mesoderma, epitélio estratificado pavimentoso.",
+                    "B) Canais semicirculares, derivam do endoderma, terminações nervosas livres.",
+                    "C) Mácula acústica, deriva da crista neural, epitélio pseudoestratificado de transição.",
+                    "D) Cóclea, deriva do ectoderma, epitélio simples colunar ciliado.",
+                    "E) Utrículo, deriva do ectoderma superficial, epitélio cúbico simples."
+                ],
+                explanation: "<strong>Discussão APG:</strong> A energia mecânica sonora é convertida em impulso nervoso no Órgão de Corti, contido na cóclea. O labirinto deriva do ectoderma superficial (placoide ótico) e o tecido sensitivo (células ciliadas) adota arquitetura de epitélio colunar simples ciliado modificado."
+            },
+            {
+                id: 8, type: "objective", answer: 0, // A
+                title: "8ª QUESTÃO",
+                text: "Paciente submetido a uma retirada total da tireoide, devido à presença de uma neoplasia. No pós-operatório apresentou formigamento nas extremidades e espasmos musculares. O residente levantou a hipótese de alteração nos níveis de cálcio e PTH. Marque a alternativa verdadeira.",
+                options: [
+                    "A) Os sintomas acontecem pela hipocalcemia, devido a disfunção das paratireoides, não promovendo controle adequado do cálcio pelo PTH.",
+                    "B) Os sintomas acontecem pela hipercalcemia reativa, decorrente do pico de liberação de PTH pelas paratireoides remanescentes estressadas.",
+                    "C) A clínica sugere crise tireotóxica induzida por liberação maciça de T3 e T4 durante a ressecção do tecido.",
+                    "D) Os espasmos ocorrem devido à hipercalemia secundária provocada pela lesão isquêmica do nervo laríngeo recorrente.",
+                    "E) O quadro é compatível com hipocalcemia primária mediada pelo excesso de calcitonina circulante."
+                ],
+                explanation: "<strong>Discussão APG:</strong> A excisão cirúrgica ou isquemia das paratireoides pós-tireoidectomia inibe a produção de PTH, zerando a mobilização de cálcio ósseo e reabsorção renal. A hipocalcemia resultante reduz o limiar do potencial de ação neuronal, gerando hiperexcitabilidade (tetania, formigamentos e espasmos)."
+            },
+            {
+                id: 9, type: "discursive",
+                title: "9ª QUESTÃO (Discursiva)",
+                text: "O líquido cerebrospinal (LCS) protege o encéfalo e a medula espinal. Sobre o LCS, faça o que se pede:<br><br>A) Identifique os locais do SNC onde é produzido o LCS.<br>B) Descreva os processos de produção, circulação e reabsorção do LCS.",
+                explanation: "<strong>Gabarito Esperado:</strong><br>A) Plexos corioideos dos ventrículos (laterais, 3º e 4º).<br>B) Produzido por filtração/secreção nas células ependimárias; circula dos ventrículos laterais -> forames interventriculares -> 3º ventrículo -> aqueduto -> 4º ventrículo -> espaço subaracnóideo; reabsorvido para o sangue via granulações aracnoideas para os seios venosos durais."
+            },
+            {
+                id: 10, type: "objective", answer: 2, // C
+                title: "10ª QUESTÃO",
+                text: "Considere duas estruturas: A estrutura 'A' secreta o hormônio 1, e as estruturas 'B' (posteriores à tireoide) secretam o hormônio 2. Ambos afetam o osso. Assinale a correta.",
+                options: [
+                    "A) O hormônio 1 corresponde ao paratormônio, que estimula atividade osteoblástica para reduzir o cálcio.",
+                    "B) O hormônio 2 corresponde à calcitonina, secretada pelas paratireoides.",
+                    "C) O hormônio 2 corresponde ao paratormônio, secretado pelas paratireoides, que aumenta a atividade dos osteoclastos, promovendo a liberação de Ca2+ e fosfato no sangue.",
+                    "D) O hormônio 2 atua nos rins aumentando de forma acentuada as taxas de eliminação de cálcio.",
+                    "E) Ambos são sintetizados pelas células foliculares da tireoide."
+                ],
+                explanation: "<strong>Discussão APG:</strong> As glândulas paratireoides secretam o PTH quando o nível de cálcio sérico cai, estimulando diretamente a atividade osteoclástica (liberando cálcio e fosfato do osso) e aumentando a retenção tubular renal de cálcio."
+            },
+            {
+                id: 11, type: "objective", answer: 0, // A
+                title: "11ª QUESTÃO",
+                text: "Homem, 35 anos, fratura lombar. O médico observou que o paciente não fazia movimentos voluntários com a perna direita e não apresentava sensibilidade profunda do mesmo lado nem sensibilidade superficial na perna esquerda. Afirma-se que:",
+                options: [
+                    "A) a lesão foi do lado direito, afetando os tratos corticoespinal e tratos do sistema coluna dorsal lemnisco medial do lado direito.",
+                    "B) a lesão foi do lado esquerdo, afetando os tratos espinotalâmico lateral e anterior ipsilaterais.",
+                    "C) a lesão acometeu o corno anterior da medula bilateralmente na altura de L3.",
+                    "D) a lesão foi transversal completa manifestando sintomas assimétricos nos tratos vestibuloespinais.",
+                    "E) a lesão ocorreu no trato espinotalâmico lateral direito antes de sua decussação."
+                ],
+                explanation: "<strong>Discussão APG:</strong> Hemissecção medular à direita (Brown-Séquard). Corta o trato corticospinal ipsilateral (paralisia direita), a coluna dorsal ipsilateral (perda de sensibilidade profunda direita) e o trato espinotalâmico cruzado proveniente da perna esquerda (perda termoalgésica na perna esquerda)."
+            },
+            {
+                id: 12, type: "objective", answer: 3, // D
+                title: "12ª QUESTÃO",
+                text: "Sobre as funções específicas do tegumento, analise as afirmativas:<br><br>I - A epiderme é formada por epitélio pseudoestratificado pavimentoso queratinizado.<br>II - As células da camada basal são células-tronco totipotentes responsáveis pela renovação.<br>III - A pele contém diversos receptores sensoriais, sendo os mais numerosos as terminações nervosas livres.<br>IV - As glândulas sudoríparas produzem secreção rica em cloreto de sódio para termorregulação.",
+                options: ["A) I, II e III.", "B) I e IV.", "C) III e IV.", "D) II, III e IV.", "E) I, III e IV."],
+                explanation: "<strong>Discussão APG:</strong> A epiderme é um epitélio ESTRATIFICADO pavimentoso queratinizado (a afirmação I está incorreta). Sua renovação ocorre na camada basal. A derme possui abundantes fibras nervosas livres de dor e temperatura, e glândulas sudoríparas écrinas que termorregulam através de suor (água + NaCl)."
+            },
+            {
+                id: 13, type: "objective", answer: 3, // D
+                title: "13ª QUESTÃO",
+                text: "Os olhos funcionam como órgãos de conversão seletiva do estímulo luminoso em sinais elétricos. É correto afirmar que:",
+                options: [
+                    "A) a córnea é a lente fotossensível primária dotada de receptores ciliares.",
+                    "B) o cristalino atua na conversão direta dos fótons em potenciais de ação graduados.",
+                    "C) a esclera converte seletivamente frequências de luz visível.",
+                    "D) a retina é uma fina camada de tecido nervoso que converte a imagem em impulsos elétricos.",
+                    "E) o humor vítreo inicia a despolarização dos fotorreceptores."
+                ],
+                explanation: "<strong>Discussão APG:</strong> A córnea e o cristalino apenas refratam e direcionam a luz. A conversão fotoquímica em sinal nervoso (transdução) é atribuição exclusiva dos fotorreceptores (bastonetes e cones) localizados na retina sensorial."
+            },
+            {
+                id: 14, type: "objective", answer: 2, // C
+                title: "14ª QUESTÃO",
+                text: "Escolar, 8 anos, baixo crescimento pôndero-estatural. O médico percebeu alteração de um hormônio importante. A explicação correta do médico é:",
+                options: [
+                    "A) O hormônio do crescimento (GH) possui atuação restrita ao fechamento das epífises ósseas fetais.",
+                    "B) A baixa estatura é consequência da ausência completa de receptores de osteocalcina.",
+                    "C) O hormônio do crescimento é indispensável durante o período de desenvolvimento estatural, e sem ele a altura esperada não poderá ser alcançada.",
+                    "D) O tratamento exige a reposição de testosterona para mimetizar o IGF-1.",
+                    "E) O GH, produzido pela glândula tireoide sob estímulo do tronco encefálico, é essencial apenas para massa magra."
+                ],
+                explanation: "<strong>Discussão APG:</strong> O GH, secretado pela adeno-hipófise, induz a produção hepática de IGF-1, que estimula intensamente as placas epifisárias cartilaginosas (abertas na infância), garantindo o crescimento longitudinal dos ossos."
+            },
+            {
+                id: 15, type: "objective", answer: 2, // C
+                title: "15ª QUESTÃO",
+                text: "Paciente com hérnias de disco na lombar comprimindo a substância branca da medula. Sobre a área medular comprimida:<br><br>I- É composta por fibras nervosas mielinizadas em tratos ascendentes e descendentes.<br>II- É dividida em três colunas (funículos): posterior, lateral e anterior.<br>III- Lembra a letra H ou borboleta, constituída de corpos de neurônios.<br>IV- É subdividida em regiões chamadas de cornos.",
+                options: ["A) I e III.", "B) II e IV.", "C) I e II.", "D) III e IV.", "E) I, II e IV."],
+                explanation: "<strong>Discussão APG:</strong> O enunciado pede características da SUBSTÂNCIA BRANCA (periférica, composta por axônios mielinizados formando tratos em funículos/colunas). As afirmações III e IV descrevem a substância cinzenta central (formato de H, contendo cornos e corpos celulares)."
+            }
+        ];
 
-  </div>
+        let currentIndex = 0;
+        let userAnswers = {}; // Store user choices
 
+        // Core Functions
+        function boot() {
+            buildPills();
+            renderQ();
+            updateNavigation();
+            document.getElementById('quiz-area').style.display = 'block';
+            document.getElementById('results-area').style.display = 'none';
+            document.querySelector('.bottom-nav').style.display = 'flex';
+        }
+
+        function buildPills() {
+            const container = document.getElementById('pills-container');
+            container.innerHTML = '';
+            quizData.forEach((q, index) => {
+                const pill = document.createElement('div');
+                pill.className = 'pill';
+                pill.textContent = index + 1;
+                pill.onclick = () => goto(index);
+                container.appendChild(pill);
+            });
+            syncPills();
+        }
+
+        function syncPills() {
+            const pills = document.querySelectorAll('.pill');
+            pills.forEach((pill, index) => {
+                pill.className = 'pill'; // Reset classes
+                if (index === currentIndex) pill.classList.add('active');
+                
+                // Add status colors
+                if (userAnswers[index] !== undefined) {
+                    const q = quizData[index];
+                    if (q.type === 'objective') {
+                        if (userAnswers[index] === q.answer) pill.classList.add('answered-correct');
+                        else pill.classList.add('answered-wrong');
+                    } else {
+                        pill.classList.add('answered-discursive');
+                    }
+                }
+            });
+            
+            // Auto scroll active pill into view
+            const activePill = document.querySelector('.pill.active');
+            if(activePill) activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+
+        function goto(index) {
+            currentIndex = index;
+            renderQ();
+            updateNavigation();
+        }
+
+        function prev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQ();
+                updateNavigation();
+            }
+        }
+
+        function nextQ() {
+            if (currentIndex < quizData.length - 1) {
+                currentIndex++;
+                renderQ();
+                updateNavigation();
+            } else {
+                showResults();
+            }
+        }
+
+        function updateNavigation() {
+            syncPills();
+            const btnNext = document.getElementById('btn-next');
+            const btnPrev = document.getElementById('btn-prev');
+            
+            btnPrev.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+            
+            if (currentIndex === quizData.length - 1) {
+                btnNext.textContent = 'Finalizar Simulado';
+                btnNext.style.backgroundColor = '#4CAF50';
+            } else {
+                btnNext.textContent = 'Próxima';
+                btnNext.style.backgroundColor = '#ff5722';
+            }
+        }
+
+        function renderQ() {
+            const q = quizData[currentIndex];
+            const container = document.getElementById('quiz-area');
+            const isAnswered = userAnswers[currentIndex] !== undefined;
+            
+            let html = `<div class="question-title">${q.title}</div>`;
+            html += `<div class="question-text">${q.text}</div>`;
+            
+            if (q.type === 'objective') {
+                html += `<div class="options-container">`;
+                q.options.forEach((opt, optIndex) => {
+                    let btnClass = 'option-btn';
+                    
+                    if (isAnswered) {
+                        if (optIndex === q.answer) btnClass += ' correct';
+                        else if (optIndex === userAnswers[currentIndex]) btnClass += ' wrong';
+                    }
+
+                    html += `<button class="${btnClass}" onclick="pickOpt(${optIndex})" ${isAnswered ? 'disabled' : ''}>${opt}</button>`;
+                });
+                html += `</div>`;
+            } else {
+                // Discursive type
+                let savedText = userAnswers[currentIndex] || "";
+                html += `<textarea class="discursive-area" id="disc-input" placeholder="Digite seu raciocínio aqui..." ${isAnswered ? 'disabled' : ''}>${savedText}</textarea>`;
+                if (!isAnswered) {
+                    html += `<button class="option-btn" style="text-align:center; background:#ff5722; color:#fff;" onclick="doDiscursive()">Ver Resposta e Comentários</button>`;
+                }
+            }
+
+            // Explanation Block
+            if (isAnswered) {
+                html += `<div class="explanation-box" style="display:block;">
+                            <h4>Gabarito e Comentários</h4>
+                            <div>${q.explanation}</div>
+                         </div>`;
+            }
+
+            container.innerHTML = html;
+            window.scrollTo(0, 0);
+        }
+
+        function pickOpt(optIndex) {
+            userAnswers[currentIndex] = optIndex;
+            renderQ();
+            syncPills();
+        }
+
+        function doDiscursive() {
+            const val = document.getElementById('disc-input').value;
+            userAnswers[currentIndex] = val;
+            renderQ();
+            syncPills();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-area').style.display = 'none';
+            document.querySelector('.bottom-nav').style.display = 'none';
+            document.getElementById('results-area').style.display = 'block';
+
+            let correct = 0;
+            let wrong = 0;
+            let discursive = 0;
+            let totalObj = 0;
+
+            quizData.forEach((q, index) => {
+                if (q.type === 'objective') {
+                    totalObj++;
+                    if (userAnswers[index] === q.answer) correct++;
+                    else if (userAnswers[index] !== undefined) wrong++;
+                } else {
+                    if (userAnswers[index] !== undefined) discursive++;
+                }
+            });
+
+            document.getElementById('correctCount').innerText = correct;
+            document.getElementById('incorrectCount').innerText = wrong;
+            document.getElementById('discursiveCount').innerText = discursive;
+            
+            const perc = totalObj > 0 ? Math.round((correct / totalObj) * 100) : 0;
+            const circle = document.getElementById('percentage-circle');
+            circle.innerText = perc + '%';
+            circle.style.color = perc >= 70 ? '#4CAF50' : (perc >= 40 ? '#FFEB3B' : '#F44336');
+            
+            window.scrollTo(0, 0);
+        }
+
+        function resetQuiz() {
+            currentIndex = 0;
+            userAnswers = {};
+            boot();
+        }
+
+        // Init
+        boot();
+    </script>
 </body>
 </html>
