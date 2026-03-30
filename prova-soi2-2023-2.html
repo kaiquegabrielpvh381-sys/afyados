@@ -33,7 +33,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .qp.correct{background:rgba(29,158,117,0.15);border-color:rgba(29,158,117,0.5);color:#5DCAA5;}
 .qp.wrong{background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.4);color:#F09595;}
 .qp.disc{background:rgba(155,0,232,0.15);border-color:rgba(155,0,232,0.4);color:#D4A8FF;}
-.main{max-width:820px;margin:0 auto;padding:160px 32px 80px;}
+.main{max-width:820px;margin:0 auto;padding:180px 32px 80px;}
 .q-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
 .q-card-header{padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
 .q-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
@@ -41,15 +41,20 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-tag-tema{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
 .q-tag-disc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(155,0,232,0.15);color:#D4A8FF;border:1px solid rgba(155,0,232,0.3);}
 .q-body{padding:28px;}
-.q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
+.q-context{font-size:16px;color:#F4EFFA;line-height:1.8;margin-bottom:20px;font-weight:500;white-space:pre-line;}
 .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
+.q-img{max-width:100%;border-radius:10px;display:block;margin:16px auto;background:#fff;padding:8px;border:1px solid rgba(255,255,255,0.1);}
 .q-opts{display:flex;flex-direction:column;gap:9px;}
-.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
+.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;position:relative;}
 .q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
 .q-opt.selected{background:rgba(214,0,110,0.08);border-color:rgba(214,0,110,0.45);color:#F4EFFA;}
 .q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
 .q-opt.wrong{background:rgba(226,75,74,0.07);border-color:rgba(226,75,74,0.45);color:#F4B8B8;}
+.q-opt.eliminated{opacity:0.35;text-decoration:line-through;pointer-events:auto;}
+.q-opt.eliminated .opt-badge{text-decoration:line-through;}
 .q-opt[disabled]{cursor:default;}
+.opt-elim-btn{position:absolute;top:8px;right:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:1;transition:opacity .15s;color:var(--muted);}
+.q-opt.eliminated .opt-elim-btn{background:rgba(226,75,74,0.15);border-color:rgba(226,75,74,0.3);color:#F09595;}
 .opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);transition:all .2s;}
 .q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
 .q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
@@ -147,7 +152,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <nav>
   <a href="index.html" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
+    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABZklEQVR4nO2ayRaCMAxFg///z3UVDw5I08zw7sqNtHm5hUolAgAAAAC4KVvEIGOMsfK9bdvc5/fwHkDDanASQgLQdNI7hNIGMJ4hhAUQsZ5XaGEAkZ8FoQFUtKCNAUQ+FoQHUM2CVgYQ2VuQEkAlC9oZQGRrgVkA0klVscAkgIg9u9eYpkugowXqADK6bzm2+U0wM5AVVAFYFKtdBto5uDwGoy3QjLccgGWRmTdDt41QFwuWAvAoLssCcQCS4jtYUOq3QIYFogA6POOlc3Q3oPr2eDqADt1nJHMNuQdUtmAqgE7dZ2bnXOopsCfKgtMAOnafmZl76cPR9OPxzt1nzmpwN0DbRW8LDgO4QveZf7W4GmDVPYvrHIXwM4Ardf+MrwCsirdeu14WlN0IRfEWQNXuW173s0YYwB+qd9/y+vtaYQBRn+5bjsM1396AV5JaCzLe6LqeDksKyjrUqPD/AgAAAAD05QmqJdARPLlg+gAAAABJRU5ErkJggg==" style="width:26px;height:26px;object-fit:contain;"></div>
     <span class="logo-name">AFYADOS</span>
   </a>
   <a href="simulados2.html" class="back-btn">
@@ -160,7 +165,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
   <div class="sticky-inner">
     <div class="sticky-aviso">
       <svg width="13" height="13" fill="none" stroke="#FAAD3F" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-      <span>⚠ Simulado adaptado — as alternativas incorretas foram criadas com base no gabarito para fins de estudo.</span>
+      <span>Simulado adaptado — as alternativas incorretas foram criadas com base no gabarito para fins de estudo.</span>
     </div>
     <div class="sticky-top">
       <span class="sticky-title">N1 SOI II · 2023.2 &nbsp;·&nbsp; Prova e Gabarito</span>
@@ -230,116 +235,118 @@ var QS = [
   {n:1,tema:"Áreas Corticais e Linguagem (Afasia de Broca)",tipo:"mc",
    context:"João, um homem de 40 anos, sempre foi muito comunicativo e eloquente. Recentemente, ele sofreu um acidente vascular cerebral (AVC) que afetou uma região específica do cérebro. Desde o AVC, João tem apresentado dificuldades significativas na produção da fala, frequentemente trocando as palavras, formando frases confusas e tendo dificuldade em encontrar as palavras certas para se expressar. Ele também tem problemas em compreender frases complexas e em seguir instruções verbais detalhadas.",
    text:"Marque abaixo a alternativa que contém a(s) área(s) de Brodmann afetada(s) no cérebro de João.",
-   opts:["Área 4, o córtex motor primário responsável pela execução de movimentos voluntários.","44 e 45 Área de Broca.","Área 17, responsável pelo processamento visual inicial.","Áreas 41 e 42, envolvidas no processamento auditivo primário.","Área 22, correspondente à Área de Wernicke e responsável pela compreensão da linguagem."],
+   opts:["4 — Área Motora Primária.","44 e 45 — Área de Broca.","41 e 42 — Áreas Auditivas Primárias.","17 — Área Visual Primária."],
    g:1},
   {n:2,tema:"Metabolismo Ósseo e Densidade Mineral",tipo:"mc",
-   context:"O metabolismo ósseo é infuenciado por fatores hormonais e desempenha um papel fundamental na manutenção da densidade óssea, que se refere à quantidade de minerais, como o cálcio e o fósforo, presentes nos ossos.",
+   context:"O metabolismo ósseo é influenciado por fatores hormonais e desempenha um papel fundamental na manutenção da densidade óssea, que se refere à quantidade de minerais, como o cálcio e o fósforo, presentes nos ossos.",
    text:"Qual das seguintes situações pode levar a uma diminuição na densidade óssea devido a alterações no seu metabolismo?",
-   opts:["Aumento da atividade dos osteoblastos, promovendo rápida deposição da matriz calcificada.","Desenvolvimento de um distúrbio que resulta em hiperatividade dos osteoclastos, onde os hormônios podem ter papel crucial.","Redução da ação dos osteoclastos, diminuindo a degradação de cálcio e fósforo.","Hiperatividade das células osteoprogenitoras, que consomem o cálcio circulante e enfraquecem o osso maduro."],
-   g:1},
+   opts:["Diminuição da atividade dos osteoclastos, responsáveis pela formação de novo osso, associado a uma dieta rica em cálcio e vitamina D.","Aumento da atividade dos osteoclastos e osteoblastos, uma vez que ambos são responsáveis pela reabsorção do tecido ósseo.","Desenvolvimento de um distúrbio que resulta em hiperatividade dos osteoclastos, onde os hormônios podem ter papel crucial.","Diminuição da ação do estradiol e o aumento da atividade dos osteoblastos, uma vez que essas células são responsáveis pela reabsorção óssea."],
+   g:2},
   {n:3,tema:"Anatomia das Bolsas Articulares (Bursite)",tipo:"mc",
    context:"A bursite, inflamação aguda ou crônica de uma bolsa articular, é uma condição frequente no ombro, geralmente causada por irritação decorrente de esforço repetitivo excessivo. A condição também pode decorrer de traumatismo, infecção aguda ou crônica ou artrite reumatoide.",
    text:"Analise as alternativas abaixo e assinale a que contém a descrição anatomofuncional adequada da estrutura anatômica citada no texto.",
-   opts:["As bolsas minimizam o atrito dos tecidos moles entre si ou contra os ossos adjacentes. Encontram-se presentes no ombro: subacromial, subdeltóidea, subescapular e subcoracóidea.","As bolsas maximizam a aderência articular. Encontram-se presentes no ombro: pré-patelar e infrapatelar.","As bolsas são estruturas de cartilagem densa. Encontram-se presentes no ombro: suprapatelar e subdeltóidea.","As bolsas são ligamentos espessados. Encontram-se presentes no ombro: subacromial e infrapatelar profunda."],
+   opts:["As bolsas minimizam o atrito dos tecidos moles entre si ou contra os ossos adjacentes. Encontram-se presentes no ombro: subacromial, subdeltóidea, subescapular e subcoracóidea.","As bolsas minimizam, primariamente, o atrito entre os ossos adjacentes à articulação. Encontram-se presentes no ombro: subdeltóidea, pré-patelar, suprapatelar e infrapatelar.","As bolsas maximizam o atrito dos tecidos moles entre si ou contra os ossos adjacentes. Encontram-se presentes no ombro: subacromial, suprapatelar, infrapatelar e subdeltóidea.","As bolsas maximizam o atrito dos tecidos moles entre si ou contra os ossos adjacentes. Encontram-se presentes no ombro: subdeltóidea, subacromial, suprapatelar e subescapular."],
    g:0},
   {n:4,tema:"Nervo Vestibulococlear (VIII Par)",tipo:"mc",
    context:"Mulher de 45 anos procurou um neurologista com queixa de tontura frequente, dificuldade em manter o equilíbrio e perda auditiva gradual. Ela relatou que também estava enfrentando problemas para detectar os sabores dos alimentos. O médico realizou uma avaliação neurológica detalhada e suspeitou de um distúrbio envolvendo os nervos cranianos e os sentidos especiais.",
    text:"Com base nas informações fornecidas, qual dos seguintes nervos cranianos está mais provavelmente envolvido nesse caso?",
-   opts:["Nervo VII (Nervo Facial).","Nervo VIII (Nervo Vestibulococlear).","Nervo IX (Nervo Glossofaríngeo).","Nervo X (Nervo Vago)."],
-   g:1},
+   opts:["Nervo VIII (Nervo Vestibulococlear).","Nervo VII (Nervo Facial).","Nervo I (Nervo Olfatório).","Nervo II (Nervo Óptico)."],
+   g:0},
   {n:5,tema:"Neurotransmissores (Acetilcolina)",tipo:"mc",
-   context:"José Carlos em uma conversa com os colegas do curso de Medicina, relatou que estava sendo difícil assimilar de forma produtiva os conteúdos do semestre, confidenciado que quase sempre se sentia triste, cansado e com dificuldades em se concentrar. Ao término da APG, um de seus colegas, relembrando da conversa fez o seguinte questionamento: Será que a intensa rotina de estudos, aliada à sua preocupação não está gerando uma cascata de eventos estressores, provocando um aumento na liberação e consequentemente acúmulo de glutamato, causando dificuldades durante esse período?\nO glutamato, é um importante aminoácido que atua no sistema nervoso central (SNC) como neurotransmissor.",
-   text:"Em relação as substâncias como a descrita no caso acima, é correto afirmar que:",
-   opts:["o GABA é o principal neurotransmissor excitatório do sistema nervoso central, atuando na junção neuromuscular.","o glutamato atua exclusivamente com efeito inibitório, sendo o principal responsável pela redução da frequência cardíaca no nervo vago.","a acetilcolina é um neurotransmissor que possui efeito excitatório e inibitório, sendo secretada em diversas áreas do sistema nervoso, como por exemplo, pelos neurônios pós-ganglionares do sistema nervoso parassimpático.","os neuropeptídeos, como a substância P e as endorfinas, são aminas biológicas de efeito puramente inibitório."],
+   context:"José Carlos em uma conversa com os colegas do curso de Medicina, relatou que estava sendo difícil assimilar de forma produtiva os conteúdos do semestre, confidenciado que quase sempre se sentia triste, cansado e com dificuldades em se concentrar. Ao término da APG, um de seus colegas, relembrando da conversa fez o seguinte questionamento: Será que a intensa rotina de estudos, aliada à sua preocupação não está gerando uma cascata de eventos estressores, provocando um aumento na liberação e consequentemente acúmulo de glutamato, causando dificuldades durante esse período?\n\nO glutamato é um importante aminoácido que atua no sistema nervoso central (SNC) como neurotransmissor.",
+   text:"Em relação às substâncias como a descrita no caso acima, é correto afirmar que:",
+   opts:["O glutamato, secretado por terminais pré-sinápticos em diversas vias eferentes, apresenta um potente efeito inibitório, atuando na abertura de canais iônicos, permitindo a passagem de íons positivos para o meio intracelular.","Um dos efeitos da norepinefrina, neurotransmissor pertencente ao grupo das aminas biológicas, é a diminuição da frequência cardíaca através de sinapses nos neurônios parassimpáticos do nervo vago.","A acetilcolina é um neurotransmissor que possui efeito excitatório e inibitório, sendo secretada em diversas áreas do sistema nervoso, como por exemplo, pelos neurônios pós-ganglionares do sistema nervoso parassimpático.","As características dos neurotransmissores pertencentes ao grupo dos neuropeptídeos como a dopamina, é a indução de ações mais duradouras como por exemplo, o fechamento prolongado dos canais de cálcio."],
    g:2},
   {n:6,tema:"Localização dos Gânglios Autônomos",tipo:"disc",
-   context:"Uma coleção de corpos celulares de neurônios no sistema nervoso periférico é denominada ganglio. Existem dois tipos principais de ganglios autônomos: simpáticos e parassimpáticos.",
-   text:"Considerando a conformação estrutural das fibras neurais simpáticas e parassimpáticas, diferencie a localização morfológica dos gânglios simpáticos e parassimpáticos, tendo como ponto de referência os seus órgãos efetores.",
-   resposta:"Os gânglios simpáticos (do tronco simpático e pré-vertebrais) situam-se distantes do órgão efetor inervado, geralmente em ambos os lados ou anteriores à coluna vertebral. Em contrapartida, os gânglios parassimpáticos (intramurais) estão localizados muito próximos ou na própria parede do órgão inervado. Dessa forma, as fibras pré-ganglionares parassimpáticas são longas e as pós-ganglionares são curtas, o oposto do que ocorre na via simpática."},
+   context:"Uma coleção de corpos celulares de neurônios no sistema nervoso periférico é denominada gânglio. Existem dois tipos principais de gânglios autônomos: simpáticos e parassimpáticos.",
+   text:"Considerando a conformação estrutural das fibras neurais simpáticas e parassimpáticas, diferencie a localização morfológica dos gânglios simpáticos e parassimpáticos, tendo como ponto de referência os seus órgãos efetores. (1,3 ponto)",
+   resposta:"Os gânglios simpáticos (do tronco simpático/paravertebrais e pré-vertebrais/colaterais) situam-se relativamente distantes do órgão efetor — os paravertebrais em fileira vertical em ambos os lados da coluna vertebral, e os pré-vertebrais anteriores à coluna. Assim, o neurônio pós-ganglionar simpático possui um axônio longo.\n\nJá os gânglios parassimpáticos (intramurais) estão localizados muito próximos ou na própria parede do órgão/víscera inervado. Por isso, os axônios pré-ganglionares parassimpáticos são longos e os pós-ganglionares são curtos — o oposto do padrão simpático."},
   {n:7,tema:"Entorse de Tornozelo por Inversão",tipo:"mc",
    context:"Um atleta de 25 anos participava de uma partida de futebol quando, ao pisar em falso durante uma jogada, torceu seu tornozelo. Ele imediatamente sentiu dor e inchaço na parte lateral do pé. O médico suspeita que a lesão seja devido a uma torção no tornozelo por inversão.",
    text:"De acordo com o caso, assinale a alternativa que apresenta a estrutura anatômica afetada nesse tipo de lesão.",
-   opts:["Ligamento deltoide.","Ligamento talofibular posterior.","Ligamento talofibular anterior.","Ligamento calcaneofibular medial."],
-   g:2},
+   opts:["Ligamento deltóide.","Ligamento talofibular anterior.","Tendão calcâneo.","Ligamento calcaneofibular."],
+   g:1},
   {n:8,tema:"Fisiopatologia da Doença de Parkinson",tipo:"mc",
    context:"Um homem de 62 anos apresenta marcha arrastada, postura encurvada (instabilidade postural), lentidão de movimentos (bradicinesia), rigidez muscular (pernas, braços e tronco) e tremor de rolagem de comprimidos em repouso. O exame físico constata que ele tem uma expressão facial \"semelhante a uma máscara\". Após término da avaliação neurológica, um diagnóstico de Doença de Parkinson é confirmado.",
    text:"Considerando o caso acima e relacionando com a fisiologia dos núcleos da base, podemos afirmar que a perda neuronal acomete a substância negra pars compacta no circuito do:",
-   opts:["caudado, havendo um aumento de atividade da via direta e inibição da via indireta, gerando hiperatividade talâmica.","globo pálido externo, com estimulação exacerbada dos receptores D2 e ativação da via direta, causando hipercinesia.","putâmen, especificamente havendo uma redução de atividade da via direta, o que deixa a via indireta predominar, resultando em uma saída inibitória (inibição talâmica), gerando uma desordem hipocinética.","núcleo subtalâmico, com redução da atividade da via indireta e predomínio da direta, resultando em desordem hipercinética."],
-   g:2},
-  {n:9,tema:"Embriologia da Orelha Interna",tipo:"mc",
-   context:"A orelha interna é a primeira das três regiões anatômicas a iniciar seu desenvolvimento. No início da 4ª semana, por influências indutoras da notocorda e do mesoderma paraxial, um espessamento aparece de ambos os lados do mielencéfalo que, em seguida se invaginam e mergulham no mesênquima subjacente. As bordas dessa invaginação bilateral se aproximam e formam duas vesículas, que darão origem a duas regiões reconhecíveis: a parte utricular, dorsal, e a sacular, ventralmente.\nConsiderando o contexto acima, analise as seguintes afirmativas.\nI. O espessamento ao qual o texto se refere é o placoide auditivo formado pelo espessamento do mesoderma, o qual é responsável pelas cartilagens dos ossículos.\nII. O órgão de Corti, constituído pelas células ciliadas internas e externas, se original do ducto coclear.\nIII. O ganglio espiral, essencialmente constituído por prolongamentos neuronais sensitivos, é proveniente do nervo vestibulococlear.\nIV. Após formadas, as escalas timpânica e vestibular permitirão a circulação da perilinfa.",
-   text:"Estão corretas:",
-   opts:["I e III.","II e IV.","I e II.","III e IV."],
-   g:1},
-  {n:10,tema:"Fases da Consolidação Óssea",tipo:"mc",
-   context:"Durante plantão na UPA, os alunos do internato atenderam uma criança com fratura de membro superior. Ao discutir o caso com o preceptor, os alunos apresentaram a sequência da consolidação óssea, conforme mostrada a figura abaixo.\n\n[[IMG_Q10]]\n\nAs fases da consolidação óssea representadas pelos alunos, na ordem crescente de 2 a 5, são, respectivamente:",
-   text:"Assinale a alternativa que traz as fases na ordem correta:",
-   opts:["Inflamação. Calo duro. Calo mole. Remodelação óssea.","Calo mole. Hematoma. Remodelação óssea. Calo duro.","Hematoma. Remodelação óssea. Calo duro. Calo mole.","Hematoma. Calo mole. Calo duro. Remodelação óssea."],
+   opts:["caudado, especificamente havendo uma redução de atividade da via direta, o que deixa a via indireta predominar, resultando em uma saída inibitória (inibição talâmica), gerando uma desordem hipocinética.","caudado, especificamente havendo um aumento de atividade da via direta, prejudicando a via indireta, resultando em uma saída excitatória (desinibição talâmica), gerando uma desordem hipercinética.","putâmen, especificamente havendo um aumento de atividade da via direta, prejudicando a via indireta, resultando em uma saída excitatória (desinibição talâmica), gerando uma desordem hipercinética.","putâmen, especificamente havendo uma redução de atividade da via direta, o que deixa a via indireta predominar, resultando em uma saída inibitória (inibição talâmica), gerando uma desordem hipocinética."],
    g:3},
+  {n:9,tema:"Embriologia da Orelha Interna",tipo:"mc",
+   context:"A orelha interna é a primeira das três regiões anatômicas a iniciar seu desenvolvimento. No início da 4ª semana, por influências indutoras da notocorda e do mesoderma paraxial, um espessamento aparece de ambos os lados do mielencéfalo que, em seguida se invaginam e mergulham no mesênquima subjacente. As bordas dessa invaginação bilateral se aproximam e formam duas vesículas, que darão origem a duas regiões reconhecíveis: a parte utricular, dorsal, e a sacular, ventralmente.\n\nConsiderando o contexto acima, analise as seguintes afirmativas:\nI. O espessamento ao qual o texto se refere é o placoide auditivo formado pelo espessamento do mesoderma, o qual é responsável pelas cartilagens dos ossículos.\nII. O órgão de Corti, constituído pelas células ciliadas internas e externas, se origina do ducto coclear.\nIII. O gânglio espiral, essencialmente constituído por prolongamentos neuronais sensitivos, é proveniente do nervo vestibulococlear.\nIV. Após formadas, as escalas timpânica e vestibular permitirão a circulação da perilinfa.",
+   text:"Estão corretas:",
+   opts:["I, II e IV.","I e III.","II e IV.","II, III e IV."],
+   g:2},
+  {n:10,tema:"Fases da Consolidação Óssea",tipo:"mc",
+   img:"img_2023_2_q10.jpg",imgAlt:"Fases da consolidação óssea",
+   context:"Durante plantão na UPA, os alunos do internato atenderam uma criança com fratura de membro superior. Ao discutir o caso com o preceptor, os alunos apresentaram a sequência da consolidação óssea.\n\nAs fases da consolidação óssea representadas pelos alunos, na ordem crescente de 2 a 5, são, respectivamente:",
+   text:"Assinale a alternativa que traz as fases na ordem correta:",
+   opts:["Hematoma. Calo duro. Calo mole. Remodelação óssea.","Hematoma. Calo mole. Calo duro. Remodelação óssea.","Remodelação óssea. Calo mole. Calo duro. Hematoma.","Remodelação óssea. Calo duro. Calo mole. Hematoma."],
+   g:1},
   {n:11,tema:"Histologia das Papilas Linguais",tipo:"mc",
    context:"Macroscopicamente, a superfície dorsal da língua é dividida em dois terços anteriores e um terço posterior ao sulco terminal da língua. A porção anterior é dotada de inúmeras irregularidades e elevações, chamadas de papilas, que permitem, em associação com os botões gustativos, o sentido especial da gustação.",
    text:"Considerando o texto acima e os diferentes tipos de papilas gustativas, assinale a alternativa correta sobre a histologia dessas estruturas.",
-   opts:["Papilas filiformes, mais evidentes na ponta da língua, apresentam um epitélio não queratinizado rico em botões gustativos.","Papilas circunvaladas, distribuídas por toda a superfície anterior, não possuem botões gustativos e são altamente queratinizadas.","Papilas fungiformes, mais evidentes na área mais anterior da língua, apresentam um epitélio pouco queratinizado com botões gustativos.","Papilas folhadas, localizadas no sulco terminal, apresentam epitélio pseudoestratificado e são desprovidas de botões gustativos."],
-   g:2},
+   opts:["Papilas circunvaladas, presentes ao longo de toda a superfície anterior da língua, apresentam epitélio muito queratinizado sem botões gustativos.","Papilas fungiformes, mais evidentes na área mais anterior da língua, apresentam um epitélio pouco queratinizado com botões gustativos.","Papilas filiformes, restritas às áreas laterais posteriores da língua, apresentam um epitélio pouco queratinizado com botões gustativos.","Papilas folhadas, mais evidentes na área imediatamente à frente do sulco terminal lingual, apresentam epitélio muito queratinizado sem botões gustativos."],
+   g:1},
   {n:12,tema:"Receptores de Temperatura e Via Sensitiva",tipo:"mc",
    context:"Um trabalhador de uma obra está enfrentando uma situação de frio intenso durante o inverno, principalmente nos membros superiores que estão expostos. Ele precisa trabalhar ao ar livre para realizar as atividades de construção, mas não possui roupas adequadas para se proteger do frio. Ele está exposto ao vento gelado, o que está afetando sua capacidade de realizar as tarefas com eficiência e segurança.",
    text:"Levando em consideração a situação relatada acima, marque a alternativa correta sobre a via sensitiva ativada na sensação de frio, percebida pelos termoreceptores, que por sua vez apresentam:",
-   opts:["corpúsculos encapsulados e seus impulsos são encaminhados para o córtex através da via da coluna dorsal-lemnisco medial.","terminações nervosas livres e seus impulsos nervosos são encaminhados para o córtex cerebral através da via anterolateral.","terminações nervosas livres e seus impulsos ascendem ao córtex cerebral através do trato corticoespinal anterior.","receptores de Merkel e seus impulsos nervosos são encaminhados para o cerebelo através do trato espinocerebelar."],
+   opts:["terminações receptoras separadas e seus impulsos nervosos são encaminhados para o córtex cerebral através da via trigeminotalâmica.","terminações nervosas livres e seus impulsos nervosos são encaminhados para o córtex cerebral através da via anterolateral.","terminações nervosas encapsuladas e seus impulsos nervosos são encaminhados para o córtex cerebral através da via trigeminotalâmica.","terminações nervosas encapsuladas e seus impulsos nervosos são encaminhados para o córtex cerebral através da via funículo posterior–lemnisco medial."],
    g:1},
   {n:13,tema:"Sinapse Sensorial na Medula (Corno Posterior)",tipo:"mc",
    context:"Após um acidente, um paciente apresenta perda completa da sensibilidade de temperatura e dor no lado esquerdo do corpo, abaixo da região do peito. Os exames revelam uma lesão na região da medula espinhal correspondente à terceira vértebra torácica (T3) do lado esquerdo.",
-   text:"Com base nesse cenário, responda: Qual é a estrutura anatômica da medula espinhal onde as fibras nervosas aferentes que conduzem sensações de temperatura e dor realizam a primeira sinapse após entrar na medula espinhal?",
-   opts:["Corno anterior.","Corno posterior.","Gânglio da raiz dorsal.","Funículo lateral."],
-   g:1},
+   text:"Qual é a estrutura anatômica da medula espinhal onde as fibras nervosas aferentes que conduzem sensações de temperatura e dor realizam a primeira sinapse após entrar na medula espinhal?",
+   opts:["Funiculus cuneatus.","Corno anterior.","Corno posterior.","Funiculus gracilis."],
+   g:2},
   {n:14,tema:"Reflexo Pupilar à Luz",tipo:"mc",
    context:"Quando estamos num ambiente com pouca luz, nossos olhos se adaptam a fim de enxergar com mais nitidez os objetos ali presentes. Logo em seguida, se sairmos para o ambiente externo diurno, imediatamente nossos olhos se readaptam.",
    text:"Neste segundo momento, a íris:",
-   opts:["reduz a abertura da pupila através da contração muscular.","aumenta a abertura da pupila através do relaxamento do músculo esfíncter, mediado pelo parassimpático.","promove a midríase imediata através da contração do músculo dilatador da pupila, mediado pelo simpático.","reduz a abertura da pupila através da dilatação muscular (midríase), controlada pelo sistema nervoso somático."],
+   opts:["reduz a abertura da pupila através da contração muscular.","aumenta a abertura da pupila através da contração muscular.","aumenta a abertura da pupila através do relaxamento muscular.","reduz a abertura da pupila através do relaxamento muscular."],
    g:0},
   {n:15,tema:"Mecanismo de Contração e Junção Neuromuscular",tipo:"disc",
-   context:"Leia a reportagem a seguir:\n\n[[IMG_Q15]]",
-   text:"Sobre a comunicação entre o nervo motor e o músculo citada na reportagem acima, responda:\nA. Descreva o processo de estimulação da fibra muscular, destacando os eventos que ocorrem no neurônio motor somático e na placa motora.\nB. Descreva o mecanismo de contração e relaxamento da fibra muscular, destacando o papel do cálcio neste processo.",
-   resposta:"A. A estimulação ocorre pela despolarização do terminal axonal do neurônio motor, abertura de canais de cálcio dependentes de voltagem, e a exocitose de acetilcolina (ACh) na fenda sináptica. A ACh se liga ao seu receptor ionotrópico na placa motora, abrindo canais de sódio e despolarizando a fibra muscular.\n\nB. O potencial de ação viaja pelos túbulos T e abre canais de cálcio no retículo sarcoplasmático. O cálcio liberado liga-se à troponina, que desloca o complexo tropomiosina e expõe o sítio de ligação na actina. A cabeça da miosina se liga à actina consumindo ATP, gerando o encurtamento (contração). O relaxamento ocorre quando o cálcio é bombeado de volta ao retículo e o sítio de ligação volta a ser bloqueado pela tropomiosina."}
+   img:"img_2023_2_q15.jpg",imgAlt:"Reportagem sobre Botox",
+   context:"Leia a reportagem a seguir:",
+   text:"Sobre a comunicação entre o nervo motor e o músculo citada na reportagem acima, responda:\n\nA. Descreva o processo de estimulação da fibra muscular, destacando os eventos que ocorrem no neurônio motor somático e na placa motora. (1,0 ponto)\n\nB. Descreva o mecanismo de contração e relaxamento da fibra muscular, destacando o papel do cálcio neste processo. (1,0 ponto)",
+   resposta:"A. Despolarização do terminal axonal do neurônio motor somático → abertura de canais de cálcio dependentes de voltagem → entrada de cálcio na célula → exocitose do neurotransmissor (ACh) para a fenda sináptica → ligação da ACh no receptor ionotrópico → abertura dos canais de sódio dependentes de voltagem → despolarização da fibra muscular.\n\nB. O potencial de ação percorre os túbulos T da fibra muscular → provoca abertura de canais de cálcio do retículo sarcoplasmático → cálcio sai para o citoplasma → o cálcio liga-se à troponina e desloca o complexo troponina-tropomiosina do sítio de ligação presente na actina, permitindo a ligação da cabeça da miosina com a actina, com o consumo de ATP, o que faz com que o sarcômero encurte e haja a contração muscular.\n\nO relaxamento ocorre quando o potencial de ação finda e com isso, há fechamento dos canais de cálcio e redução nos níveis de cálcio no citoplasma; o cálcio se separa da troponina e retorna para o retículo sarcoplasmático. Com isso, o complexo troponina-tropomiosina volta a cobrir o sítio de ligação presente na actina, impedindo assim a ligação da cabeça da miosina."}
 ];
 
 var SHORT = [
-`A alternativa correta é a B, que aponta as áreas 44 e 45 de Brodmann, conhecidas como Área de Broca. Localizada no giro frontal inferior do hemisfério dominante, essa região é essencial para a produção da linguagem falada e escrita, além de coordenar os movimentos dos músculos envolvidos na fala.`,
-`A alternativa correta é a C, pois a hiperatividade dos osteoclastos resulta em um aumento na reabsorção óssea, levando à diminuição da densidade mineral. Esse desequilíbrio entre a formação e a reabsorção é o mecanismo fisiopatológico de condições como a osteoporose.`,
-`A alternativa correta é a A. As bolsas (bursas) são estruturas saculares que minimizam o atrito quando tecidos moles, como músculos e tendões, são friccionados entre si ou contra ossos. No ombro, as principais bolsas são a subacromial, subdeltoidea, subescapular e subcoracoidea.`,
-`O nervo envolvido é o Nervo VIII (Vestibulococlear). Esse nervo é o responsável pelos sentidos especiais da audição e do equilíbrio. Os sintomas de tontura, dificuldade de equilíbrio e perda auditiva gradual relatados pela paciente são indicadores diretos de disfunção nesse par craniano.`,
-`A alternativa correta é a C. A acetilcolina (ACh) é um neurotransmissor que pode possuir efeitos tanto excitatórios quanto inibitórios, sendo secretada em diversas áreas, como pelos neurônios pós-ganglionares do sistema parassimpático e pelo nervo vago (onde inibe a frequência cardíaca).`,
+"A alternativa correta é a B, que aponta as áreas 44 e 45 de Brodmann, conhecidas como Área de Broca. Localizada no giro frontal inferior do hemisfério dominante, essa região é essencial para a produção da linguagem falada e escrita, além de coordenar os movimentos dos músculos envolvidos na fala.",
+"A alternativa correta é a C, pois a hiperatividade dos osteoclastos resulta em aumento na reabsorção óssea, levando à diminuição da densidade mineral. Esse desequilíbrio entre formação e reabsorção é o mecanismo de condições como a osteoporose. As demais alternativas contêm erros conceituais sobre as funções de osteoblastos e osteoclastos.",
+"A alternativa correta é a A. As bolsas (bursas) são estruturas saculares que minimizam o atrito quando tecidos moles, como músculos e tendões, são friccionados entre si ou contra ossos. No ombro, as principais bolsas são: subacromial, subdeltóidea, subescapular e subcoracóidea. As bolsas pré-patelar, suprapatelar e infrapatelar pertencem ao joelho.",
+"O nervo envolvido é o Nervo VIII (Vestibulococlear). Esse nervo é responsável pela audição (ramo coclear) e pelo equilíbrio (ramo vestibular). A tontura, dificuldade de equilíbrio e perda auditiva gradual são indicadores diretos de disfunção nesse par craniano. A menção à perda de gustação é um distrator.",
+"A alternativa correta é a C. A acetilcolina (ACh) pode ter efeitos tanto excitatórios quanto inibitórios, dependendo do receptor. É secretada em diversas áreas, como pelos neurônios pós-ganglionares do parassimpático e na junção neuromuscular. Norepinefrina é simpática (não parassimpática), dopamina não é neuropeptídeo, e o glutamato é excitatório (não inibitório).",
 null,
-`A alternativa correta é a B, identificando o ligamento talofibular anterior como a estrutura afetada. Em entorses por inversão (pé virado para dentro), os ligamentos da parte lateral do tornozelo são os mais estressados, sendo o talofibular anterior o mais frequentemente lesionado.`,
-`A alternativa correta é a D. A perda neuronal na substância negra pars compacta reduz a dopamina, o que gera uma redução de atividade da via direta e permite que a via indireta predomine. O resultado final é uma inibição excessiva do tálamo, determinando o padrão hipocinético.`,
-`Estão corretas as afirmativas II e IV. O órgão de Corti origina-se do ducto coclear (II). As escalas timpânica e vestibular são preenchidas por perilinfa, enquanto o ducto coclear (escala média) contém endolinfa (IV).`,
-`A alternativa correta é a B. A ordem crescente das fases de consolidação óssea após uma fratura é: Hematoma, Calo Mole, Calo Duro e Remodelação Óssea.`,
-`A alternativa correta é a B. As papilas fungiformes são mais numerosas na ponta da língua e apresentam epitélio estratificado pavimentoso pouco queratinizado que contém botões gustativos.`,
-`A alternativa correta é a B. Os termoceptores consistem em terminações nervosas livres (dendritos de neurônios de primeira ordem). Os impulsos nervosos de temperatura ascendem para o córtex cerebral através da via anterolateral (ou espinotalâmica).`,
-`A alternativa correta é a C. A estrutura anatômica onde as fibras aferentes de temperatura e dor realizam a primeira sinapse ao entrar na medula é o corno posterior.`,
-`A alternativa correta é a A. Ao passar para um ambiente iluminado, a íris reduz a abertura da pupila através da contração muscular (miose).`,
+"A alternativa correta é a B (ligamento talofibular anterior). Em entorses por inversão (pé virado para dentro), os ligamentos laterais são os mais estressados. O talofibular anterior conecta o talo à fíbula e é o mais frequentemente lesionado. O ligamento deltóide é medial e seria afetado em eversão.",
+"A alternativa correta é a D. A perda neuronal na substância negra pars compacta (SNc) reduz a dopamina no circuito do putâmen (motor). Com menos dopamina, há redução da via direta (D1) e predominância da via indireta (D2), resultando em inibição talâmica excessiva e padrão hipocinético (bradicinesia, rigidez, tremor).",
+"Estão corretas as afirmativas II e IV (alternativa C). O placoide ótico é ectodérmico, não mesodérmico (I é falsa). O gânglio espiral é constituído por corpos neuronais, não prolongamentos (III é falsa). O órgão de Corti origina-se do ducto coclear (II) e as escalas timpânica e vestibular contêm perilinfa (IV).",
+"A alternativa correta é a B: Hematoma → Calo mole → Calo duro → Remodelação óssea. Após a fratura, forma-se um hematoma; depois, um calo fibrocartilaginoso (mole) une os fragmentos; esse calo mineraliza-se (duro); e finalmente ocorre a remodelação em osso lamelar.",
+"A alternativa correta é a B. As papilas fungiformes são mais numerosas na ponta da língua e apresentam epitélio estratificado pavimentoso pouco queratinizado que contém botões gustativos. As filiformes são muito queratinizadas e sem botões; as circunvaladas ficam no sulco terminal; as folhadas na margem lateral.",
+"A alternativa correta é a B. Os termoceptores consistem em terminações nervosas livres (dendritos sem especialização estrutural). Os impulsos nervosos de temperatura dos membros e tronco ascendem ao córtex cerebral pela via anterolateral (espinotalâmica).",
+"A alternativa correta é a C (corno posterior). As fibras aferentes de temperatura e dor entram pela raiz dorsal e fazem sua primeira sinapse no corno posterior da medula, onde estão os neurônios de segunda ordem. O corno anterior é motor, e os funículos são tratos de substância branca.",
+"A alternativa correta é a A. Ao passar para um ambiente iluminado, o músculo esfíncter da pupila (circular, inervado pelo parassimpático via NC III) contrai, reduzindo a abertura pupilar (miose) para diminuir a entrada de luz.",
 null
 ];
 
 var DEEP = [
-`O conteúdo foca na especialização funcional do córtex cerebral e nas bases neuroanatômicas da linguagem. O raciocínio clínico identifica uma afasia de expressão: o paciente apresenta frases confusas e dificuldade motora para articular a fala, sintomas clássicos de comprometimento da Área de Broca. As outras alternativas estão incorretas pois a área 4 é o córtex motor primário, a área 17 é o processamento visual inicial e as áreas 41 e 42 correspondem ao processamento auditivo primário. Uma pegadinha comum é confundir a área de Broca (produção/expressão) com a área de Wernicke (área 22, compreensão).`,
-`O metabolismo ósseo é um processo dinâmico que depende do equilíbrio entre a atividade das células formadoras e reabsortivas. O raciocínio da questão exige entender que os osteoclastos são as células responsáveis pela degradação da matriz calcificada. Quando estimuladas excessivamente, a perda de minerais supera a deposição de novo tecido. Aumento da atividade dos osteoblastos ou a redução da ação dos osteoclastos favoreceriam o aumento da densidade óssea. A principal pegadinha é confundir as funções: osteoBlastos Build (constroem) e osteoclastos Consume (consomem/reabsorvem).`,
-`A questão aborda a anatomia das articulações sinoviais e suas estruturas anexas. O raciocínio clínico foca na bursite como uma inflamação decorrente de esforço repetitivo ou trauma, afetando a bolsa que deveria proteger os tecidos moles do impacto contra o acrômio ou o úmero. É fundamental conhecer a localização específica: no ombro, temos o complexo subacromial/subdeltoideo; já no joelho, destacam-se as bolsas pré-patelar, infrapatelar e suprapatelar. A banca costuma colocar nomes de bolsas de articulações diferentes para confundir a identificação anatômica do ombro.`,
-`O conteúdo envolve a neurofisiologia dos sentidos especiais e nervos cranianos. O raciocínio clínico baseia-se na tríade de sintomas: tontura (vértigo), desequilíbrio e hipoacusia. O ramo vestibular do VIII par conduz informações sobre a posição e movimento da cabeça, enquanto o ramo coclear conduz os impulsos sonoros. Uma pegadinha importante no enunciado é a menção a problemas em detectar sabores; embora o paladar seja função dos nervos VII, IX e X, essa queixa específica não está diretamente ligada ao Nervo VIII, que é o foco principal dos sintomas de equilíbrio e audição.`,
-`Esta questão explora a sinalização química no sistema nervoso. O raciocínio exige a classificação dos neurotransmissores por sua função predominante. A ACh é a principal molécula da junção neuromuscular e do parassimpático. Em contraste, o GABA é o principal mensageiro inibitório do SNC, enquanto o glutamato e o aspartato possuem efeito predominantemente excitatório. A pegadinha reside em acreditar que um neurotransmissor tem função fixa; a resposta depende do receptor (ex: a ACh excita o músculo esquelético, mas inibe o músculo cardíaco).`,
-`O conteúdo foca na anatomia comparativa do Sistema Nervoso Autônomo (SNA). O raciocínio morfológico baseia-se na origem e trajeto das fibras. No sistema simpático, a sinapse entre o neurônio pré e o pós-ganglionar ocorre cedo (nos gânglios da cadeia vertebral ou pré-vertebrais), fazendo com que o sinal precise percorrer uma longa distância até o alvo. No sistema parassimpático, o neurônio pré-ganglionar viaja quase todo o caminho até o órgão efetor, fazendo a sinapse em gânglios terminais ou intramurais. A pegadinha clássica em provas é inverter as extensões axonais.`,
-`A questão aborda a anatomia ligamentar e a biomecânica do trauma. O raciocínio clínico correlaciona o movimento de inversão com a tensão no complexo ligamentar lateral, que inclui os ligamentos talofibular anterior, talofibular posterior e calcaneofibular. O ligamento talofibular anterior conecta o talo à fíbula e é o primeiro a sofrer ruptura em torções comuns. A pegadinha da banca costuma ser sugerir o ligamento deltoide, que é medial e só seria afetado em traumas de eversão (pé para fora), ou confundir os ossos da articulação.`,
-`O conteúdo integra neurofisiologia dos núcleos da base e clínica médica. No circuito motor do putâmen, a via direta (receptores D1) facilita o movimento ao desinibir o tálamo, enquanto a via indireta (receptores D2) inibe o movimento. A dopamina modula ambas as vias. Na ausência de dopamina (Parkinson), o estímulo à via direta cai e o freio da via indireta aumenta. Isso explica a bradicinesia, a rigidez e a expressão facial "em máscara". A pegadinha comum é inverter os receptores ou os efeitos (D1 estimula e D2 inibe).`,
-`A questão exige precisão sobre a morfogênese sensorial. O raciocínio para invalidar a I é que o placoide ótico é um espessamento do ectoderma, não do mesoderma. A afirmativa III é falsa porque gânglios nervosos, como o espiral, são constituídos por corpos neuronais, e não essencialmente por prolongamentos. O desenvolvimento inicia na 4ª semana com a formação das vesículas óticas. A pegadinha está na confusão entre os folhetos embrionários.`,
-`O conteúdo trata do reparo tecidual ósseo. O raciocínio segue a cronologia biológica do trauma: 1) Inflamação/Hematoma: o sangramento dos vasos rompidos forma um coágulo rico em células reparadoras; 2) Calo Mole: forma-se um tecido fibrocartilaginoso provisório que une os fragmentos; 3) Calo Duro: o calo mole mineraliza-se com depósito de cálcio; 4) Remodelação: o osso recém-formado é lapidado em osso lamelar, restaurando a forma original. A pegadinha comum é inverter as fases do calo ou ignorar a necessidade do hematoma inicial.`,
-`A questão explora a morfologia da superfície dorsal da língua. O raciocínio exige a diferenciação histológica das papilas: as filiformes são as mais numerosas, mas são as únicas sem botões gustativos e altamente queratinizadas. As circunvaladas possuem numerosos botões e localizam-se no sulco terminal. As folhadas ficam nas margens laterais. A pegadinha reside em afirmar que papilas filiformes possuem botões gustativos ou confundir o grau de queratinização entre elas.`,
-`O tema é a fisiologia da sensibilidade somática. O raciocínio baseia-se na classificação dos receptores e suas vias. Ao contrário do tato fino (que usa receptores encapsulados), o frio e o calor são detectados por terminações simples na derme. A informação entra na medula, cruza para o lado oposto e sobe pelo funículo lateral (via anterolateral). Erros comuns incluem associar temperatura à via da coluna dorsal (que é para tato e propriocepção) ou sugerir que receptores de temperatura possuem cápsulas complexas.`,
-`Esta questão foca na organização funcional da substância cinzenta medular. O raciocínio baseia-se na entrada de informações sensoriais pela raiz dorsal. Os neurônios de primeira ordem trazem o sinal da periferia; ao chegarem no corno posterior, fazem sinapse com os neurônios de segunda ordem, que então conduzem o impulso adiante. A pegadinha é sugerir que a sinapse ocorre no gânglio (onde está apenas o corpo celular do 1º neurônio) ou no corno anterior (que possui função motora/eferente).`,
-`O conteúdo aborda o controle autonômico da visão. O raciocínio clínico baseia-se na adaptação pupilar: em ambientes claros, o músculo esfíncter da pupila (inervado pelo parassimpático) contrai para diminuir a entrada de luz e proteger a retina. Inversamente, no escuro, ocorre dilatação (midríase) via simpático para captar mais fótons. Inverter os efeitos de luz/escuro ou os nomes (miose/midríase) são as pegadinhas habituais.`,
-`A questão detalha a fisiologia muscular e a ação do Botox. O raciocínio segue o acoplamento excitação-contração: o potencial de ação percorre os túbulos T, liberando Ca2+ que expõe o sítio de ligação na actina. O relaxamento ocorre quando o cálcio é bombeado de volta ao retículo e a tropomiosina recobre o sítio de ligação. O Botox interrompe a comunicação nervo-músculo ao paralisar a exocitose de acetilcolina. Uma pegadinha comum é trocar o papel da troponina (liga o cálcio) pelo da tropomiosina (bloqueia o sítio).`
+"O conteúdo foca na especialização funcional do córtex cerebral e nas bases neuroanatômicas da linguagem. O raciocínio clínico identifica uma afasia de expressão: o paciente apresenta frases confusas e dificuldade motora para articular a fala, sintomas clássicos de comprometimento da Área de Broca (áreas 44 e 45). As outras alternativas estão incorretas pois a área 4 é o córtex motor primário (movimentos voluntários), a área 17 é o processamento visual inicial e as áreas 41/42 correspondem ao processamento auditivo primário. Uma pegadinha comum é confundir a área de Broca (produção/expressão) com a área de Wernicke (área 22, compreensão).",
+"O metabolismo ósseo é um processo dinâmico que depende do equilíbrio entre osteoblastos (formação) e osteoclastos (reabsorção). A questão exige entender que a hiperatividade dos osteoclastos leva à destruição excessiva da matriz calcificada, reduzindo a densidade óssea — como ocorre na osteoporose. A alternativa A inverte a função dos osteoclastos (dizendo que são formadores). A B afirma que ambas as células reabsorvem (falso). A D troca a função dos osteoblastos. Mnemônico: osteoBlastos Build (constroem), osteoclastos Consume (degradam).",
+"A questão aborda a anatomia das articulações sinoviais e suas estruturas anexas. As bursas são sacos sinoviais que reduzem o atrito entre tecidos. No ombro, existem 4 principais: subacromial, subdeltóidea, subescapular e subcoracóidea. As bolsas pré-patelar, infrapatelar e suprapatelar pertencem ao joelho. A pegadinha está em misturar bolsas de articulações diferentes. As alternativas que dizem 'maximizam o atrito' são erradas por definição.",
+"O conteúdo envolve neurofisiologia dos sentidos especiais e nervos cranianos. A tríade tontura + desequilíbrio + hipoacusia é clássica do VIII par (vestibulococlear). O ramo vestibular conduz informações sobre posição e movimento da cabeça; o ramo coclear conduz impulsos sonoros. A menção a 'problemas para detectar sabores' é um distrator — a gustação envolve os nervos VII (facial), IX (glossofaríngeo) e X (vago), mas não é o foco do quadro clínico descrito.",
+"Esta questão explora a sinalização química no SNC. A acetilcolina (ACh) é um neurotransmissor versátil: excitatório na junção neuromuscular (receptor nicotínico) e inibitório no coração (receptor muscarínico via nervo vago). O glutamato é o principal neurotransmissor EXCITATÓRIO do SNC, não inibitório. O GABA é o principal INIBITÓRIO. A dopamina é uma amina biogênica, não um neuropeptídeo (neuropeptídeos incluem substância P, endorfinas e encefalinas). A norepinefrina é simpática, não parassimpática.",
+"O conteúdo foca na anatomia comparativa do SNA. Os gânglios simpáticos dividem-se em paravertebrais (cadeia simpática lateral à coluna) e pré-vertebrais (anteriores à coluna, como celíaco e mesentéricos). Ambos ficam distantes do órgão-alvo, resultando em pré-ganglionar curta e pós-ganglionar longa. Os gânglios parassimpáticos são intramurais (na parede do órgão), resultando em pré-ganglionar longa e pós-ganglionar curta. Essa diferença anatômica reflete a estratégia funcional: o simpático tem ação mais difusa e o parassimpático mais localizada.",
+"A questão aborda a biomecânica do trauma de tornozelo. Na inversão, o pé vira para dentro e os ligamentos laterais são tensionados. O ligamento talofibular anterior é o mais fraco e o primeiro a romper. O talofibular posterior é o mais forte do complexo lateral. O ligamento deltóide é medial (afetado na eversão). O tendão calcâneo (de Aquiles) não é ligamento articular. O calcaneofibular é o segundo a ser lesionado em inversões graves.",
+"Na Doença de Parkinson, a neurodegeneração da SNc reduz a dopamina no estriado (putâmen no circuito motor). Via direta (D1): normalmente facilita movimento ao desinibir o tálamo. Via indireta (D2): normalmente inibe movimento ao inibir o tálamo. Sem dopamina: a via direta enfraquece e a via indireta predomina → inibição talâmica excessiva → hipocinesia. O circuito do putâmen é motor; o do caudado é cognitivo. O globo pálido e o núcleo subtalâmico são estações intermediárias, não o local primário da lesão.",
+"O placoide ótico é um espessamento do ECTODERMA (não mesoderma), invalidando a afirmativa I. O gânglio espiral contém CORPOS celulares neuronais (não prolongamentos), invalidando a III. O órgão de Corti realmente se origina do ducto coclear (II correta). As escalas vestibular e timpânica contêm perilinfa; a escala média (ducto coclear) contém endolinfa (IV correta). A confusão entre folhetos embrionários e entre perilinfa/endolinfa são pegadinhas frequentes.",
+"O reparo ósseo segue uma cronologia previsível: 1) Inflamação (imediata — macrófagos limpam o local); 2) Hematoma (sangue dos vasos rompidos com células medulares); 3) Calo mole (tecido fibrocartilaginoso provisório que une os fragmentos); 4) Calo duro (mineralização do calo com depósito de cálcio); 5) Remodelação (conversão em osso lamelar com sistema haversiano). A numeração na questão começa em 2, pois a fase 1 (inflamação) já é a condição inicial.",
+"As 4 papilas linguais: Filiformes — as mais numerosas, por toda a superfície dorsal anterior, altamente queratinizadas, SEM botões gustativos (função mecânica). Fungiformes — em forma de cogumelo, mais numerosas na ponta, pouco queratinizadas, COM botões gustativos. Circunvaladas — 7 a 12 grandes papilas anteriores ao sulco terminal, pouco queratinizadas, COM numerosos botões. Folhadas — margem lateral, epitélio não queratinizado, COM botões. A pegadinha é atribuir botões gustativos às filiformes ou trocar a localização das demais.",
+"Os termoceptores são terminações nervosas livres (dendritos sem cápsulas especializadas). A via de temperatura e dor é a anterolateral (espinotalâmica): o 1º neurônio entra pela raiz dorsal, faz sinapse no corno posterior, o 2º neurônio cruza e ascende pelo funículo anterolateral até o tálamo. A via do funículo posterior–lemnisco medial conduz tato fino e propriocepção, não temperatura. A via trigeminotalâmica serve a face, não os membros.",
+"As fibras de dor e temperatura entram na medula pela raiz dorsal. O corpo celular do 1º neurônio está no gânglio da raiz dorsal (mas a sinapse não ocorre ali). A primeira sinapse ocorre no corno posterior (substância gelatinosa de Rolando), onde está o 2º neurônio. O axônio do 2º neurônio cruza pela comissura anterior e ascende pelo trato espinotalâmico lateral. O corno anterior contém neurônios motores. Os funículos são feixes de substância branca.",
+"Na adaptação à luz intensa (reflexo pupilar fotomotor), o músculo esfíncter da pupila (músculo circular da íris), inervado pelo parassimpático (via NC III — oculomotor), contrai e reduz o diâmetro pupilar (miose). No escuro, o músculo dilatador da pupila (radial, simpático) contrai e dilata a pupila (midríase). Mnemônico: Parasimpático = Pupilas Pequenas (miose); Simpático = pupilas Suuuper grandes (midríase).",
+"A questão detalha a junção neuromuscular e o ciclo de contração. ESTIMULAÇÃO: PA no axônio → Ca²⁺ entra no terminal → vesículas de ACh fundem → ACh liga receptor nicotínico → Na⁺ entra na fibra → PA muscular. CONTRAÇÃO: PA nos túbulos T → canais de Ca²⁺ do retículo sarcoplasmático (RS) abrem → Ca²⁺ liga troponina C → tropomiosina desloca → actina exposta → cabeças de miosina ligam → power stroke com ATP. RELAXAMENTO: Ca²⁺ volta ao RS pela SERCA → tropomiosina recobre actina → miosina não liga. O Botox bloqueia a exocitose de ACh ao clivar proteínas SNARE."
 ];
 
 var L = ['a','b','c','d','e'];
-var cur = 0, sel = null, answered = {}, discAnswered = {};
+var cur = 0, sel = null, answered = {}, discAnswered = {}, eliminated = {};
 
 function buildPills(){
   var w = document.getElementById('qPills'); w.innerHTML = '';
@@ -380,17 +387,27 @@ function renderQ(){
   if(q.context){
     ctx.style.display='block';
     var ctxHtml=q.context.replace(/\n/g,'<br>');
-    
-    /* Configuração da imagem para a Prova de 2023.2 */
-    ctxHtml = ctxHtml.replace('[[IMG_Q10]]', '<img src="imagem_q10.jpg" alt="Fases da Consolidação Óssea" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
-    ctxHtml = ctxHtml.replace('[[IMG_Q15]]', '<img src="imagem_q15.jpg" alt="Reportagem Botox e Junção Neuromuscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
-    
     ctx.innerHTML=ctxHtml;
   } else {
     ctx.style.display='none';
   }
 
   document.getElementById('qText').innerHTML = q.text ? q.text.replace(/\n/g,'<br>') : '';
+
+  /* Images */
+  var imgContainer = document.getElementById('qImg');
+  if(!imgContainer){
+    imgContainer = document.createElement('div');
+    imgContainer.id = 'qImg';
+    document.getElementById('qContext').after(imgContainer);
+  }
+  if(q.img){
+    imgContainer.innerHTML = '<img class="q-img" src="'+q.img+'" alt="'+(q.imgAlt||'')+'">';
+    imgContainer.style.display = 'block';
+  } else {
+    imgContainer.innerHTML = '';
+    imgContainer.style.display = 'none';
+  }
   
   var wrap=document.getElementById('qOpts'); wrap.innerHTML='';
   if(q.tipo==='disc'){
@@ -404,10 +421,38 @@ function renderQ(){
   } else {
     q.opts.forEach(function(o,i){
       var btn=document.createElement('button'); btn.className='q-opt';
+      var isElim = !done && eliminated[cur] && eliminated[cur].has(i);
       if(done){btn.setAttribute('disabled','');if(i===q.g)btn.classList.add('correct');else if(i===sel&&i!==q.g)btn.classList.add('wrong');}
       else if(sel===i){btn.classList.add('selected');}
-      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span>'+o+'</span>';
-      if(!done){(function(idx){btn.onclick=function(){selectOpt(idx);};})(i);}
+      if(isElim) btn.classList.add('eliminated');
+      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span class="opt-text">'+o+'</span>'
+        +'<button class="opt-elim-btn" title="Eliminar alternativa" data-idx="'+i+'">'
+        +'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+        +'</button>';
+      if(!done){
+        (function(idx){
+          btn.onclick=function(e){
+            if(e.target.closest('.opt-elim-btn')) return;
+            if(eliminated[cur] && eliminated[cur].has(idx)) return;
+            selectOpt(idx);
+          };
+          var elimBtn=btn.querySelector('.opt-elim-btn');
+          elimBtn.onclick=function(e){
+            e.stopPropagation();
+            if(!eliminated[cur]) eliminated[cur]=new Set();
+            if(eliminated[cur].has(idx)){
+              eliminated[cur].delete(idx);
+              btn.classList.remove('eliminated');
+            } else {
+              eliminated[cur].add(idx);
+              btn.classList.add('eliminated');
+              if(sel===idx){sel=null;document.getElementById('btnRespond').disabled=true;}
+            }
+          };
+        })(i);
+      } else {
+        btn.querySelector('.opt-elim-btn').style.display='none';
+      }
       wrap.appendChild(btn);
     });
   }
@@ -494,7 +539,7 @@ function showResult(){
   document.getElementById('qCard').style.display='none';
   var rs=document.getElementById('resultScreen'); rs.classList.add('show');
   var mcQs=QS.filter(function(q){return q.tipo==='mc';});
-  var correct=mcQs.filter(function(q,i){
+  var correct=mcQs.filter(function(q){
     var idx=QS.indexOf(q);
     return answered[idx]===q.g;
   }).length;
@@ -541,7 +586,6 @@ function buildReport(correct,wrong){
         +'<span class="tema-pct '+(good?'green':'red')+'">'+pct+'%</span></div>';
     }
   });
-  var mcWrong=QS.filter(function(q,i){return q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g;});
   var worstTema=sorted.find(function(t){return temaStats[t].wrong>0;})||sorted[0]||'—';
   var wrongListHtml='';
   QS.forEach(function(q,i){
@@ -567,10 +611,10 @@ function buildReport(correct,wrong){
     +'<div class="report-section"><h4>Insights</h4><div class="insight-grid">'
       +'<div class="insight-box"><div class="ib-label">Ponto mais fraco</div><div class="ib-val">'+worstTema+'</div><div class="ib-sub">Mais erros nesse tema</div></div>'
       +'<div class="insight-box"><div class="ib-label">MC acertadas</div><div class="ib-val">'+correct+'/'+mcCount+'</div><div class="ib-sub">'+msg+'</div></div>'
-      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class=\"ib-val\" style=\"color:#F09595;\">'+wrong+'</div><div class=\"ib-sub\">Múltipla escolha</div></div>'
-      +'<div class=\"insight-box\"><div class=\"ib-label\">Discursivas</div><div class=\"ib-val\" style=\"color:#D4A8FF;\">'+Object.keys(discAnswered).length+'</div><div class=\"ib-sub\">Questões abertas</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class="ib-val" style="color:#F09595;">'+wrong+'</div><div class="ib-sub">Múltipla escolha</div></div>'
+      +'<div class="insight-box"><div class="ib-label">Discursivas</div><div class="ib-val" style="color:#D4A8FF;">'+Object.keys(discAnswered).length+'</div><div class="ib-sub">Questões abertas</div></div>'
     +'</div></div>'
-    +'<div class=\"report-section\"><h4>Revisão por questão</h4><div class=\"q-review-list\">'+wrongListHtml+'</div></div>';
+    +'<div class="report-section"><h4>Revisão por questão</h4><div class="q-review-list">'+wrongListHtml+'</div></div>';
 }
 
 function goToQ(i){
@@ -579,7 +623,7 @@ function goToQ(i){
   cur=i; renderQ(); window.scrollTo({top:0,behavior:'smooth'});
 }
 function resetAll(){
-  answered={}; discAnswered={}; sel=null; cur=0;
+  answered={}; discAnswered={}; sel=null; cur=0; eliminated={};
   document.getElementById('resultScreen').classList.remove('show');
   document.getElementById('qCard').style.display='block';
   renderQ(); window.scrollTo({top:0,behavior:'smooth'});
