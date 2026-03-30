@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "id": "soi2-2021-2",
+    "title": "N1 SOI II - 2021.2 - GABARITO DE QUESTÕES",
+    "period": "2021.2",
+    "topic": "Sistemas Orgânicos Integrados II",
+    "totalQuestions": 7,
+    "evaluationUnit": "1ª avaliação",
+    "courseComponent": "N1 Específica 2021.2_2º período",
+    "date": "07/10/2021",
+    "notes": "Prova com 1 questão discursiva e 2 questões com imagem"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "code": "33449",
+      "type": "multiple-choice",
+      "difficulty": "Difícil",
+      "stem": "Em um episódio de House, M.D., pode ser observado a personagem Remy Hadley mais conhecida como Thirteen (Treze) que possuía a Doença de Huntington. Sendo esta uma patologia genética hereditária que afeta o sistema nervoso, causando alteração no gene da Huntingtina (HTT). A patologia desencadeia a produção de uma proteína mutante (mHTT). É uma doença caracterizada por interferências cognitivas, distúrbios motores e psiquiátricos. A nível celular, a mHTT promove disfunção e morte neuronal por vários mecanismos.\n\nConsiderando o texto base, avalie as afirmativas a seguir.\n\nI. A perda neuronal atinge importantes núcleos da base, como o caudado e o putâmen.\n\nII. Os núcleos envolvidos nesta doença participam do controle do equilíbrio e das emoções agindo de maneira desassociada aos núcleos caudais.\n\nIII. Pessoas com até 35 repetições CAG no gene HTT possivelmente não desenvolvem a doença de Huntington, mas à medida que o gene é transmitido nas gerações, há expansão da repetição CAG associando-se ao início dos sintomas.\n\nIV. Do ponto de vista neuroquímico, observa-se uma redução acentuada do GABA, principal neurotransmissor inibitório do sistema nervoso central.\n\nMarque abaixo alternativa correta.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "I, III e IV."
+        },
+        {
+          "letter": "B",
+          "text": "II e III."
+        },
+        {
+          "letter": "C",
+          "text": "I e IV."
+        },
+        {
+          "letter": "D",
+          "text": "II, III e IV."
+        }
+      ],
+      "correct": "A",
+      "explanation": "A Doença de Huntington resulta da expansão de repetições CAG no gene HTT, causando morte neuronal especialmente no putâmen e caudado. A perda neuronal provoca redução de GABA (neurotransmissor inibitório). Os núcleos da base funcionam de forma integrada, não desassociada. A penetrância incompleta ocorre com até 35 repetições CAG, e expansões maiores em gerações posteriores correlacionam com antecipação genética. Fonte: McColgan & Tabrizi (2018), Guyton & Hall."
+    },
+    {
+      "id": 2,
+      "code": "34008",
+      "type": "multiple-choice",
+      "difficulty": "Médio",
+      "stem": "A medula espinal possui formato cilíndrico e não uniforme, com dilatações conhecidas como intumescências (regiões com maior quantidade de neurônios que entram e saem dessas áreas) nas regiões cervical e lombar, onde os plexos braquial e lombossacro, responsáveis pela inervação dos membros superiores e inferiores. Além disso, macroscopicamente a superfície da medula apresenta sulcos longitudinais.\n\nMediante isso, assinale a alternativa que descreve a associação correta entre a formação dos nervos espinais e a estrutura da medula espinal:",
+      "options": [
+        {
+          "letter": "A",
+          "text": "os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos mediano posterior e lateral anterior da medula através de filamentos radiculares."
+        },
+        {
+          "letter": "B",
+          "text": "os nervos espinais são formados pela união das raízes dorsal (motora) e ventral (sensitiva), as quais se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares."
+        },
+        {
+          "letter": "C",
+          "text": "os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos lateral posterior e lateral anterior da medula através de filamentos radiculares."
+        },
+        {
+          "letter": "D",
+          "text": "os nervos espinais são formados pela união das raízes dorsal (sensitiva) e ventral (motora), as quais se ligam, respectivamente, aos sulcos posterior e anterior da medula através de filamentos radiculares."
+        }
+      ],
+      "correct": "C",
+      "explanation": "Os nervos espinais formam-se pela união das raízes dorsal (sensitiva) e ventral (motora). A raiz dorsal emerge ao longo do sulco lateral posterior enquanto a ventral sai do sulco lateral anterior. Ambas se unem extramedularmente através de filamentos radiculares para formar o nervo espinal misto. Fonte: Machado (2014), Neuroanatomia Funcional."
+    },
+    {
+      "id": 3,
+      "code": "33728",
+      "type": "multiple-choice",
+      "difficulty": "Médio",
+      "hasImage": true,
+      "imageDescription": "Tomografia computadorizada de crânio - comparação de crânio normal vs AVEI com alterações de território vascular",
+      "stem": "Homem, 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\n- Alterações de campo visual\n- Rebaixamento do nível de consciência\n- Déficit sensitivo\n\nSobre o caso acima, identifique qual artéria foi obstruída:",
+      "options": [
+        {
+          "letter": "A",
+          "text": "artéria cerebral posterior."
+        },
+        {
+          "letter": "B",
+          "text": "artéria cerebral anterior."
+        },
+        {
+          "letter": "C",
+          "text": "artéria basilar."
+        },
+        {
+          "letter": "D",
+          "text": "artéria vertebral."
+        }
+      ],
+      "correct": "A",
+      "explanation": "Os sintomas (alterações visuais, rebaixamento de consciência, déficit sensitivo) correlacionam com o território da artéria cerebral posterior (ACP), que irriga lobo occipital, parte do temporal e estruturas talâmicas. O Polígono de Willis oferece circulação colateral que torna a ACP mais vulnerável aos acidentes vasculares. A combinação de alteração visual (occipital) com alteração de consciência (tálamo) é característica de oclusão de ACP. Fonte: Martins et al. (2018)."
+    },
+    {
+      "id": 4,
+      "code": "34338",
+      "type": "multiple-choice",
+      "difficulty": "Fácil",
+      "stem": "Dona Josefa traz seu filho, João, criança com 8 meses de idade, com diagnóstico de hidrocefalia apresentando, segundo a genitora, náuseas e vômitos, irritabilidade e sonolência. Com o exame abaixo que compara uma tomografia computadorizada de crânio sem alterações com uma que demonstra a hidrocefalia e, em relação ao conhecimento sobre a morfologia macro e micro das cavidades do Sistema Nervoso Central (SNC), analise as afirmativas seguintes:\n\nI. O plexo coroide é uma estrutura localizada dentro dos ventrículos que produz o líquido cefalorraquidiano (LCR) com funções de nutrição e proteção.\n\nII. O aqueduto cerebral, também conhecido como ducto mesencefálico é um canal que conecta o terceiro ao quarto ventrículo e permite a passagem do LCR pelo mesencéfalo.\n\nIII. O LCR circula pelos seios venosos cerebrais e é absorvidos pelas granulações aracnóideas.\n\nÉ correto o que se afirma em:",
+      "options": [
+        {
+          "letter": "A",
+          "text": "II e III, apenas."
+        },
+        {
+          "letter": "B",
+          "text": "II, apenas."
+        },
+        {
+          "letter": "C",
+          "text": "I, apenas."
+        },
+        {
+          "letter": "D",
+          "text": "I, II e III."
+        }
+      ],
+      "correct": "D",
+      "explanation": "Todas as afirmativas estão corretas: I) O plexo coroide é estrutura intraventricular altamente vascularizada que produz LCR (~500mL/dia) com funções de nutrição, proteção e homeostase. II) O aqueduto cerebral (mesencefálico) conecta 3º ao 4º ventrículo permitindo circulação de LCR. III) O LCR circula pelo espaço subaracnoideo e é reabsorvido pelas granulações aracnóideas que fazem saliência nos seios venosos. Fonte: Junqueira & Carneiro (2013), Machado & Haertel (2014)."
+    },
+    {
+      "id": 5,
+      "code": "34338-DISC",
+      "type": "discursive",
+      "difficulty": "Difícil",
+      "hasImage": true,
+      "imageDescription": "Diagrama de sinapse com: (A) Terminal pré-sináptico com vesículas sinápticas e mitocôndrias; (B) Receptores pós-sinápticos; ilustração de chocolate e neurotransmissores",
+      "stem": "AS1-S1-UNIVAÇO - Ao comer um chocolate, por exemplo, sentimo-nos bem. E isso impacto significativo sobre a nossa motivação, produtividade e bem-estar. Nenhuma sã manifestaria oposição em ter níveis fisiológicos mais elevados de alguns produtos corpo, os quais podem minimizar os impactos dos desafios diários.\n\nA imagem abaixo pode ser utilizada para ilustrar parte desse complexo mecanismo. Assim sendo, correlacione as informações supracitadas à imagem apresentada e responda:\n\nA) (0,75 pts) Relacione quais áreas ou estruturas morfológicas (três) do encéfalo receberam essas informações e quais as sensações provocadas pelo chocolate nessas estruturas.\n\nB) (0,75 pts) Explique bioquimicamente o processo de resposta (sinapse – considere sobretudo o A da imagem), a partir da estimulação das células dessas áreas ou estruturas.\n\nC) (1,0 pts) Defenda quais são os principais produtos (dois) e as ações fisiológicas produzidas no organismo da pessoa que comeu o chocolate (considere sobretudo o C da imagem).",
+      "expectedAnswer": "A) Amigdala – emoção, saciedade; Hipocampo – memória de longa duração e emoção; Córtex pré-frontal – memória de curta duração e lembrança; Núcleo accumbens – sistema de recompensa; Insula posterior – área gustativa primária; Hipotálamo – centro da saciedade.\n\nB) Potencial de ação elétrico chega no terminal pré-sináptico separado do corpo do neurônio pós-sináptico pela fenda sináptica. O terminal pré contém vesículas sinápticas com neurotransmissores e mitocôndrias para ATP. Quando o potencial de ação chega, há despolarização e entrada de Ca2+, causando exocitose de vesículas que liberam neurotransmissores na fenda sináptica.\n\nC) Principais neurotransmissores: serotonina e dopamina. A dopamina atua no sistema de recompensa aumentando motivação. A serotonina regula humor, bem-estar e saciedade. Esses sistemas têm efeitos diferentes em várias partes do cérebro, excitando neurônios pós-sinápticos que expressam receptores excitatórios, levando a alterações de permeabilidade de membrana e potencial de ação.",
+      "explanation": "O chocolate estimula múltiplas áreas cerebrais simultaneamente através de sinais sensitivos (sabor) e cognitivos. A amigdala processa emoção, hipocampo consolida memória, córtex pré-frontal planeja, núcleo accumbens processa recompensa, insula processa sabor e hipotálamo regula homeostase. A sinapse envolve exocitose de vesículas mediada por Ca2+, liberação de neurotransmissores que se ligam a receptores pós-sinápticos gerando potenciais pós-sinápticos excitatórios. A dopamina e serotonina são principais responsáveis pela sensação de bem-estar e motivação. Fonte: Aires (2017), Guyton & Hall, Berne & Levy."
+    },
+    {
+      "id": 6,
+      "code": "33749",
+      "type": "multiple-choice",
+      "difficulty": "Fácil",
+      "stem": "O vírus herpes-zoster causa dor unilateral e aparecimento de vesículas sobre base eritematosa, seguindo o território de um dermátomo. Geralmente ocorre como resultado de reativação endógena do vírus, que persistiu de forma latente num gânglio sensorial após um episódio de varicela. Analisando o contexto acima, é possível afirmar que:",
+      "options": [
+        {
+          "letter": "A",
+          "text": "a multiplicação do microrganismo acontece no corpo celular do neurônio presente na pele."
+        },
+        {
+          "letter": "B",
+          "text": "é possível pela observação determinar os nervos espinais acometidos."
+        },
+        {
+          "letter": "C",
+          "text": "a infecção do gânglio sensorial pode interferir na resposta motora."
+        },
+        {
+          "letter": "D",
+          "text": "provavelmente o microrganismo ficou latente na raiz ventral da medula espinal."
+        }
+      ],
+      "correct": "B",
+      "explanation": "Os dermátomos são áreas de pele que fornecem influxo sensitivo específico para o SNC através de um par de nervos espinais. Como os gânglios sensitivos estão localizados na raiz dorsal (sensorial) da medula, e a infecção afeta apenas essas estruturas sensitivas, a distribuição dermatomal das vesículas permite determinar qual nervo espinal foi acometido. A latência viral ocorre no gânglio sensorial (dorsal), não na raiz ventral (motora). Fonte: Tortora & Derrickson (2019)."
+    },
+    {
+      "id": 7,
+      "code": "33760",
+      "type": "multiple-choice",
+      "difficulty": "Médio",
+      "stem": "Os neurotransmissores ou neuromoduladores atuam como sinais paracrinos, com as suas células-alvo localizadas perto do neurônio que as secreta. Eles são definidos como mensageiros químicos que transportam, estimulam e equilibram os sinais entre os neurônios, ou células nervosas e outras células do corpo. Sobre estes neurotransmissores analise e marque a alternativa correta.",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Os neurônios encefálicos que contêm o neurotransmissor GABA estão ativos durante respostas emocionais, comportamentos de adição e experiências agradáveis."
+        },
+        {
+          "letter": "B",
+          "text": "A glicina, neurotransmissor excitatório se liga a receptores ionotrópicos e abre canais de Cl–. Cerca de metade das sinapses excitatória na medula espinal utilizam a glicina."
+        },
+        {
+          "letter": "C",
+          "text": "O GABA é encontrado somente no SNC, onde é o neurotransmissor inibitório mais comum. Cerca de um terço de todas as sinapses encefálicas utiliza o GABA."
+        },
+        {
+          "letter": "D",
+          "text": "A Acetilcolina é um neurotransmissor inibitório em algumas sinapses e é excitatório em outras, como nas que se liga a receptores metabotrópicos acoplados a proteínas G."
+        }
+      ],
+      "correct": "C",
+      "explanation": "O GABA é o principal neurotransmissor inibitório do SNC, encontrado aproximadamente em 1/3 de todas as sinapses cerebrais. A glicina é inibitória (não excitatória) e predomina na medula espinal. A dopamina (não GABA) está ativa em comportamentos de recompensa e adição. A acetilcolina é excitatória na junção neuromuscular e pode ser inibitória em outras sinapses, não o contrário. Fonte: Tortora & Derrickson (2010)."
+    }
+  ]
+}
