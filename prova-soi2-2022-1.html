@@ -43,10 +43,11 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
 .q-tag-sep{color:rgba(255,255,255,0.12);}
 .q-tag-tema{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-.q-tag-disc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(155,0,232,0.15);color:#D4A8FF;border:1px solid rgba(155,0,232,0.3);}
+.q-tag-disc{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;background:rgba(155,0,232,0.15);color:#D4A8FF;border:1px solid rgba(155,0,232,0.3);margin-left:4px;}
 .q-body{padding:28px;}
-.q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
-.q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
+.q-context{font-size:16px;color:#F4EFFA;line-height:1.8;margin-bottom:20px;font-weight:500;white-space:pre-line;}
+.q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;white-space:pre-line;}
+.q-img{width:100%;max-width:560px;border-radius:10px;margin:0 auto 24px;display:block;border:1px solid rgba(255,255,255,0.1);background:#fff;padding:10px;}
 
 .q-opts{display:flex;flex-direction:column;gap:9px;}
 .q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
@@ -55,10 +56,16 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
 .q-opt.wrong{background:rgba(226,75,74,0.07);border-color:rgba(226,75,74,0.45);color:#F4B8B8;}
 .q-opt[disabled]{cursor:default;}
+.q-opt.eliminated{opacity:0.45;background:rgba(255,255,255,0.02)!important;border-color:rgba(255,255,255,0.05)!important;}
+.q-opt.eliminated .opt-text{text-decoration:line-through;color:var(--muted);}
 .opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);transition:all .2s;}
 .q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
 .q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
 .q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
+.opt-elim-btn{margin-left:auto;flex-shrink:0;width:26px;height:26px;border-radius:7px;border:1px solid rgba(255,255,255,0.12);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:all .2s;padding:0;line-height:1;}
+.opt-elim-btn:hover{border-color:rgba(226,75,74,0.6);color:#F09595;background:rgba(226,75,74,0.1);}
+.q-opt.eliminated .opt-elim-btn{border-color:rgba(226,75,74,0.6);background:rgba(226,75,74,0.15);color:#F09595;}
+.opt-elim-btn svg{pointer-events:none;}
 
 /* Discursiva */
 .disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;resize:vertical;line-height:1.7;transition:border-color .2s;}
@@ -72,10 +79,10 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .fb-err{background:rgba(226,75,74,0.06);border-color:rgba(226,75,74,0.3);color:#F4B8B8;}
 .fb-disc{background:rgba(155,0,232,0.07);border-color:rgba(155,0,232,0.25);color:#E8D8FF;}
 .fb-label{font-weight:700;display:block;margin-bottom:6px;font-size:14px;}
-.fb-exp{display:block;margin-bottom:14px;}
+.fb-exp{display:block;margin-bottom:14px;line-height:1.8;}
 
 .btn-aprofundar{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(155,0,232,0.15),rgba(214,0,110,0.1));border:1px solid rgba(155,0,232,0.35);color:#D4A8FF;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
-.btn-aprofundar:hover{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));}
+.btn-aprofundar:hover{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));border-color:rgba(155,0,232,0.5);}
 .btn-aprofundar.active{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));border-color:rgba(155,0,232,0.5);}
 
 .ai-box{margin:12px 28px 0;background:linear-gradient(135deg,rgba(155,0,232,0.07),rgba(214,0,110,0.03));border:1px solid rgba(155,0,232,0.2);border-radius:14px;overflow:hidden;display:none;}
@@ -116,10 +123,10 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .report-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;}
 .report-card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
 .report-section{margin-bottom:24px;}
-.report-section h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.report-section h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
 .tema-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
 .tema-name{font-size:13px;color:var(--light);min-width:180px;flex-shrink:0;}
-.tema-bar-bg{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.tema-bar-bg{flex:1;height:7px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
 .tema-bar-fill{height:100%;border-radius:99px;transition:width .8s ease;}
 .tema-bar-fill.green{background:linear-gradient(90deg,#1D9E75,#9FE1CB);}
 .tema-bar-fill.red{background:linear-gradient(90deg,#E24B4A,#F09595);}
@@ -130,7 +137,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .tema-pct.purple{color:#D4A8FF;}
 .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .insight-box{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:16px;}
-.insight-box .ib-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.insight-box .ib-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
 .insight-box .ib-val{font-size:15px;font-weight:700;color:#F4EFFA;line-height:1.4;}
 .insight-box .ib-sub{font-size:12px;color:var(--muted);margin-top:3px;}
 .q-review-list{display:flex;flex-direction:column;gap:6px;}
@@ -152,7 +159,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
   .q-text{font-size:15px;}
   .q-opt{font-size:14px;padding:12px 14px;}
   .insight-grid{grid-template-columns:1fr;}
-  .tema-name{min-width:110px;}
+  .tema-name{min-width:110px;font-size:12px;}
 }
 </style>
 </head>
@@ -173,7 +180,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
   <div class="sticky-inner">
     <div class="sticky-aviso">
       <svg width="13" height="13" fill="none" stroke="#FAAD3F" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-      <span>⚠ PDF incompleto — algumas questões da prova original podem estar ausentes.</span>
+      <span>PDF incompleto — algumas questões da prova original podem estar ausentes.</span>
     </div>
     <div class="sticky-top">
       <span class="sticky-title">N1 SOI II · 2022.1 &nbsp;·&nbsp; Prova e Gabarito</span>
@@ -249,57 +256,57 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <script>
 var QS = [
-  {n:1,tema:"Sistema Nervoso Autônomo e Nervos Cranianos",tipo:"mc",
-   context:"Homem, 55 anos, foi diagnosticado com lesão do nervo vago após apresentar disfonia (dificuldade para falar e rouquidão), afonia (perda da voz), disfagia (dificuldade para deglutir), queda do palato mole do lado afetado e desvio da úvula para o lado oposto à lesão, ausência de reflexo do vômito e estridor respiratório.\n\nSobre esse caso, são feitas as seguintes afirmações:\nI. Esse nervo está incluído na porção craniana do sistema nervoso autônomo parassimpático e, dentre os nervos cranianos, é o que possui maior área de inervação, chegando às cavidades torácica e abdominal.\nII. Ao contrário das fibras ganglionares do sistema nervoso simpático, o sistema parassimpático, que está associado ao nervo lesado, apresenta fibras pré-ganglionares curtas e pós-ganglionares longas.\nIII. A transmissão adrenérgica desse paciente vai ficar comprometida em consequência da lesão sofrida pelo paciente.\nIV. Na transmissão do impulso nervoso de uma fibra a outra, o principal neurotransmissor do nervo lesionado é a acetilcolina.",
+  {n:1,tema:"Sist. Nervoso Autônomo",tipo:"mc",
+   context:"Homem, 55 anos, foi diagnosticado com lesão do nervo vago após apresentar disfonia (dificuldade para falar e rouquidão), afonia (perda da voz), disfagia (dificuldade para deglutir), queda do palato mole do lado afetado e desvio da úvula para o lado oposto à lesão, ausência de reflexo do vômito e estridor respiratório.\n\nSobre esse caso, são feitas as seguintes afirmações:\n\nI. Esse nervo está incluído na porção craniana do sistema nervoso autônomo parassimpático e, dentre os nervos cranianos, é o que possui maior área de inervação, chegando às cavidades torácica e abdominal.\n\nII. Ao contrário das fibras ganglionares do sistema nervoso simpático, o sistema parassimpático, que está associado ao nervo lesado, apresenta fibras pré-ganglionares curtas e pós-ganglionares longas.\n\nIII. A transmissão adrenérgica desse paciente vai ficar comprometida em consequência da lesão sofrida pelo paciente.\n\nIV. Na transmissão do impulso nervoso de uma fibra a outra, o principal neurotransmissor do nervo lesionado é a acetilcolina.",
    text:"É correto o que se afirma em:",
    opts:["I, II e III, apenas.","I e IV, apenas.","III e IV, apenas.","I e II, apenas."],
    g:1},
   {n:2,tema:"Reflexos Espinais",tipo:"mc",
-   context:"Analise a figura a seguir:\n\n[[IMG_Q2]]\n\nNorris, TL (2021). Porth - Fisiopatologia (10ª edição). Grupo GEN.\nCom base na figura, analise as assertivas I e II:\n\nI. Na figura é demonstrado o reflexo de estiramento e os elementos essenciais para um arco reflexo espinal.\nII. É um reflexo ativado por um estímulo nociceptivo e envolve um neurônio sensorial, um centro de integração e um efetor. Além do mais, trata-se de um reflexo ipsolateral, no qual os impulsos aferentes e eferentes se propagam no mesmo lado da medula espinal.",
+   context:"Analise a figura a seguir:\n\n[[IMG_Q2]]\n\nNorris, TL (2021). Porth - Fisiopatologia (10ª edição). Grupo GEN.\n\nCom base na figura, analise as assertivas I e II:\n\nI. Na figura é demonstrado o reflexo de estiramento e os elementos essenciais para um arco reflexo espinal.\n\nII. É um reflexo ativado por um estímulo nociceptivo e envolve um neurônio sensorial, um centro de integração e um efetor. Além do mais, trata-se de um reflexo ipsolateral, no qual os impulsos aferentes e eferentes se propagam no mesmo lado da medula espinal.",
    text:"A respeito dessas assertivas, assinale a alternativa correta:",
    opts:["I é uma proposição falsa, e a II é uma proposição verdadeira.","I é uma proposição verdadeira, e a II é uma proposição falsa.","I e II são proposições falsas.","I e II são proposições verdadeiras."],
    g:0},
   {n:3,tema:"Tecido Ósseo e Reparo",tipo:"mc",
-   context:"Jogador de futebol, 22 anos, foi levado ao serviço de atendimento médico após grave pancada na perna durante um jogo. Foi realizado exame físico, sendo encaminhado para o hospital mais próximo, por possível perda da continuidade óssea provocada por traumatismo da tíbia. No hospital, a suspeita foi confirmada após análise de imagem, o que preocupou o atleta, pois ele não sabia quanto tempo teria que ficar fora dos gramados até se recuperar da lesão.\n\nConsiderando o caso, analise as assertivas a seguir:\nI. No caso da lesão do jogador, seu reparo envolve formação de um hematoma seguido da formação de calo fibrocartilaginoso e calo ósseo com posterior remodelação óssea.\nII. O processo de reparo desta lesão se inicia com a proliferação de osteócitos remanescentes, formando um colar ósseo em torno da fratura.\nIII. O tecido primário (imaturo ou não lamelar) é o primeiro tecido ósseo que se forma neste processo de reparo. É temporário e se dispõe irregularmente, sem orientação. Posteriormente, é substituído por tecido secundário.",
+   context:"Jogador de futebol, 22 anos, foi levado ao serviço de atendimento médico após grave pancada na perna durante um jogo. Foi realizado exame físico, sendo encaminhado para o hospital mais próximo, por possível perda da continuidade óssea provocada por traumatismo da tíbia. No hospital, a suspeita foi confirmada após análise de imagem, o que preocupou o atleta, pois ele não sabia quanto tempo teria que ficar fora dos gramados até se recuperar da lesão.\n\nConsiderando o caso, analise as assertivas a seguir:\n\nI. No caso da lesão do jogador, seu reparo envolve formação de um hematoma seguido da formação de calo fibrocartilaginoso e calo ósseo com posterior remodelação óssea.\n\nII. O processo de reparo desta lesão se inicia com a proliferação de osteócitos remanescentes, formando um colar ósseo em torno da fratura.\n\nIII. O tecido primário (imaturo ou não lamelar) é o primeiro tecido ósseo que se forma neste processo de reparo. É temporário e se dispõe irregularmente, sem orientação. Posteriormente, é substituído por tecido secundário.",
    text:"Estão corretas as assertivas:",
    opts:["I, II e III, apenas.","II e III, apenas.","I e II, apenas.","I e III, apenas."],
    g:3},
-  {n:4,tema:"Desenvolvimento do Sistema Nervoso",tipo:"mc",
-   context:"O sistema nervoso começa a se formar no embrião com o desenvolvimento do tubo neural. A parede dessa estrutura é responsável por originar todas as estruturas do sistema nervoso central, enquanto as cavidades correspondentes a essas estruturas derivam da luz do tubo.\n\nSobre os componentes do sistema nervoso e seu desenvolvimento, analise as assertivas a seguir:\nI. Na substância cinzenta da medula espinal, posicionada internamente, é possível distinguir os cornos anteriores sensitivos e os cornos posteriores motores. No centro da substância cinzenta localiza-se o canal central da medula, resquício da luz do tubo neural do embrião.\nII. A porção anterior do tubo neural desenvolve dilações denominadas vesículas encefálicas, responsáveis por formar o encéfalo. Caso não ocorra o fechamento dessa porção durante a neurulação, pode ser observada uma malformação grave, incompatível com a vida, denominada anencefalia.\nIII. O cerebelo, maior estrutura encefálica, localizado posteriormente ao tronco encefálico e logo abaixo do telencéfalo, estabelece associação com todas as regiões do sistema nervoso central e contém aproximadamente metade dos neurônios de todo o encéfalo.\nIV. O sistema nervoso periférico apresenta muitas estruturas derivadas das cristas neurais, sendo formado por dois elementos principais: os gânglios, agregados de corpos celulares de neurônios, e os nervos, conjuntos de axônios envolvidos por tecido conjuntivo.",
+  {n:4,tema:"Desenvolvimento do SN",tipo:"mc",
+   context:"O sistema nervoso começa a se formar no embrião com o desenvolvimento do tubo neural. A parede dessa estrutura é responsável por originar todas as estruturas do sistema nervoso central, enquanto as cavidades correspondentes a essas estruturas derivam da luz do tubo.\n\nSobre os componentes do sistema nervoso e seu desenvolvimento, analise as assertivas a seguir:\n\nI. Na substância cinzenta da medula espinal, posicionada internamente, é possível distinguir os cornos anteriores sensitivos e os cornos posteriores motores. No centro da substância cinzenta localiza-se o canal central da medula, resquício da luz do tubo neural do embrião.\n\nII. A porção anterior do tubo neural desenvolve dilações denominadas vesículas encefálicas, responsáveis por formar o encéfalo. Caso não ocorra o fechamento dessa porção durante a neurulação, pode ser observada uma malformação grave, incompatível com a vida, denominada anencefalia.\n\nIII. O cerebelo, maior estrutura encefálica, localizado posteriormente ao tronco encefálico e logo abaixo do telencéfalo, estabelece associação com todas as regiões do sistema nervoso central e contém aproximadamente metade dos neurônios de todo o encéfalo.\n\nIV. O sistema nervoso periférico apresenta muitas estruturas derivadas das cristas neurais, sendo formado por dois elementos principais: os gânglios, agregados de corpos celulares de neurônios, e os nervos, conjuntos de axônios envolvidos por tecido conjuntivo.",
    text:"É correto o que se afirma em:",
    opts:["III e IV, apenas.","II e IV, apenas.","I e II, apenas.","I, III e IV, apenas."],
    g:1},
   {n:5,tema:"Fisiologia Muscular",tipo:"disc",
-   context:"A imagem a seguir evidencia os eventos do potencial de ação muscular na junção neuromuscular:\n\n[[IMG_Q5]]\n\nFonte: TORTORA, 2019.\nCom base nessa imagem, e na progressão do mecanismo da excitação muscular, explique os processos e os componentes envolvidos, tendo como base as etapas 1, 2, 3, 4, e 5.",
+   context:"A imagem a seguir evidencia os eventos do potencial de ação muscular na junção neuromuscular:\n\n[[IMG_Q5]]\n\nFonte: TORTORA, 2019.\n\nCom base nessa imagem, e na progressão do mecanismo da excitação muscular, explique os processos e os componentes envolvidos, tendo como base as etapas 1, 2, 3, 4, e 5.\n\nPontuação total 1,5 pontos (0,3 por item: 1, 2, 3, 4, 5).",
    text:"Escreva sua resposta para as etapas do processo:",
-   resposta:"O processo envolve a chegada do impulso nervoso ao terminal axônico, entrada de cálcio, liberação de acetilcolina, ligação aos receptores na fibra muscular, despolarização e geração do potencial de ação, culminando na contração muscular pelo deslizamento dos filamentos."},
+   resposta:"A junção neuromuscular (JNM) é a sinapse entre um axônio de um neurônio motor e uma fibra muscular esquelética. A JNM inclui:\n\n1. Terminações axônicas — chegada do potencial de ação ao terminal do neurônio motor.\n2. Canais de cálcio — abertura dos canais de Ca²⁺ dependentes de voltagem, permitindo entrada de cálcio.\n3. Vesículas sinápticas com acetilcolina (ACh) — o cálcio promove a fusão das vesículas e liberação de ACh na fenda sináptica.\n4. Canais de sódio na placa motora — a ACh liga-se aos receptores, abrindo canais de Na⁺ e gerando o potencial de ação muscular.\n5. Deslizamento dos filamentos — a fibra muscular despolarizada aproxima as linhas Z, deslizando os filamentos de actina sobre os de miosina, resultando na contração."},
   {n:6,tema:"Via Auditiva",tipo:"mc",
-   context:"A audição é um sentido complexo que envolve várias transduções para o sinal sonoro em potencial de ação e, assim, envia-lo até o córtex cerebral.\nAlgumas etapas da via de sinalização auditiva estão representadas na figura a seguir:\n\n[[IMG_Q6]]\n\nCom base na figura, sobre a via de sinalização auditiva, analise as assertivas a seguir:\nI. A estrutura 1 é a célula pilosa, um receptor não neural, que devido a movimentação do líquido coclear, gera sinal elétrico que excita os neurônios do ramo coclear do VIII nervo craniano, representado em 2.\nII. A estrutura 4 representa os ramos vestibulococleares do VIII nervo craniano que conduz o sinal das células pilosas até núcleos bulbares (estrutura 5) e o sinal é direcionado ao córtex auditivo (estrutura 6).\nIII. A estrutura 6 representa os núcleos do tálamo, que recebem as aferências provenientes do tronco encefálico e enviam o sinal até o córtex auditivo, representado em 7.\nIV. A estrutura 1 é o mecanorreceptor neural, localizado na orelha média, cuja ativação ocorre pela movimentação do líquido coclear que excitar os neurônios do ramo vestibular do VIII nervo craniano, representado em 4.\nV. A estrutura 4 representa os ramos cocleares do VIII nervo craniano, que conduz o sinal das células pilosas até o tronco encefálico (estrutura 5) e o sinal é direcionado ao tálamo (estrutura 6) e depois ao córtex (estrutura 7).",
+   context:"A audição é um sentido complexo que envolve várias transduções para o sinal sonoro em potencial de ação e, assim, enviá-lo até o córtex cerebral. Algumas etapas da via de sinalização auditiva estão representadas na figura a seguir:\n\n[[IMG_Q6]]\n\nCom base na figura, sobre a via de sinalização auditiva, analise as assertivas a seguir:\n\nI. A estrutura 1 é a célula pilosa, um receptor não neural, que devido a movimentação do líquido coclear, gera sinal elétrico que excita os neurônios do ramo coclear do VIII nervo craniano, representado em 2.\n\nII. A estrutura 4 representa os ramos vestibulococleares do VIII nervo craniano que conduz o sinal das células pilosas até núcleos bulbares (estrutura 5) e o sinal é direcionado ao córtex auditivo (estrutura 6).\n\nIII. A estrutura 6 representa os núcleos do tálamo, que recebem as aferências provenientes do tronco encefálico e enviam o sinal até o córtex auditivo, representado em 7.\n\nIV. A estrutura 1 é o mecanorreceptor neural, localizado na orelha média, cuja ativação ocorre pela movimentação do líquido coclear que excitar os neurônios do ramo vestibular do VIII nervo craniano, representado em 4.\n\nV. A estrutura 4 representa os ramos cocleares do VIII nervo craniano, que conduz o sinal das células pilosas até o tronco encefálico (estrutura 5) e o sinal é direcionado ao tálamo (estrutura 6) e depois ao córtex (estrutura 7).",
    text:"Estão corretas as assertivas:",
    opts:["I, II e III, apenas.","II, III e IV, apenas.","I e IV, apenas.","III e V, apenas.","I e V, apenas."],
    g:4}
 ];
 
 var SHORT = [
-`O nervo vago faz parte do sistema nervoso parassimpático e possui ampla inervação torácica e abdominal, sendo a afirmativa I verdadeira. Além disso, seu principal neurotransmissor é a acetilcolina, tornando a afirmativa IV correta. Já a afirmativa II está errada porque o parassimpático possui fibras pré-ganglionares longas e pós-ganglionares curtas, e a III está incorreta porque não há comprometimento adrenérgico, mas sim colinérgico.`,
-`A afirmativa I está incorreta porque a figura representa um reflexo de retirada, e não um reflexo de estiramento. A afirmativa II está correta ao descrever um reflexo nociceptivo, ipsilateral e com arco reflexo completo.`,
-`Estão corretas as afirmativas I e III. O reparo ósseo ocorre com formação de hematoma, seguido de calo fibrocartilaginoso e calo ósseo, e o tecido primário é formado primeiro e depois substituído por tecido secundário.`,
-`As afirmativas corretas são II e IV. A II descreve corretamente as vesículas encefálicas e a anencefalia, enquanto a IV define corretamente o sistema nervoso periférico.`,
-null,
-`A via auditiva começa nas células ciliadas da cóclea, que convertem estímulos mecânicos em sinais elétricos e ativam o ramo coclear do nervo vestibulococlear. As informações seguem para o tronco encefálico, depois para o tálamo e, por fim, para o córtex auditivo. As afirmativas I e V estão corretas, pois descrevem corretamente esse trajeto.`
+  "O nervo vago faz parte do sistema nervoso parassimpático e possui ampla inervação torácica e abdominal, sendo a afirmativa I verdadeira. Além disso, seu principal neurotransmissor é a acetilcolina, tornando a afirmativa IV correta. Já a afirmativa II está errada porque o parassimpático possui fibras pré-ganglionares longas e pós-ganglionares curtas, e a III está incorreta porque não há comprometimento adrenérgico, mas sim colinérgico.",
+  "A afirmativa I está incorreta porque a figura representa um reflexo de retirada, e não um reflexo de estiramento. A afirmativa II está correta ao descrever um reflexo nociceptivo, ipsilateral e com arco reflexo completo.",
+  "Estão corretas as afirmativas I e III. O reparo ósseo ocorre com formação de hematoma, seguido de calo fibrocartilaginoso e calo ósseo, e o tecido primário é formado primeiro e depois substituído por tecido secundário. A afirmativa II está incorreta, pois descreve ossificação intramembranosa e não o reparo endocondral típico.",
+  "As afirmativas corretas são II e IV. A II descreve corretamente as vesículas encefálicas e a anencefalia. A IV define corretamente o sistema nervoso periférico. A I inverte os cornos (anterior = motor, posterior = sensitivo) e a III erra ao dizer que o cerebelo é a maior estrutura encefálica (é o telencéfalo).",
+  null,
+  "A via auditiva começa nas células ciliadas da cóclea (receptores não neurais) que ativam o ramo coclear do VIII nervo craniano. O sinal segue para o tronco encefálico, depois para o tálamo e finalmente para o córtex auditivo. As afirmativas I e V descrevem corretamente esse trajeto."
 ];
 
 var DEEP = [
-`O nervo vago é o principal representante da porção craniana do sistema nervoso parassimpático, destacando-se por sua extensa área de atuação, que inclui órgãos torácicos e abdominais. Essa característica torna a afirmativa I correta. Em relação à fisiologia autonômica, o sistema parassimpático apresenta fibras pré-ganglionares longas e pós-ganglionares curtas, o oposto do sistema simpático, o que torna a afirmativa II incorreta. A afirmativa III também está errada, pois a lesão do nervo vago compromete a transmissão colinérgica, e não a adrenérgica, já que o parassimpático utiliza acetilcolina como principal neurotransmissor. Isso é reforçado pela afirmativa IV, que está correta. Esse tipo de questão explora a comparação entre simpático e parassimpático, sendo essencial dominar essas diferenças para evitar confusão.`,
-`O reflexo de retirada é um mecanismo protetor ativado por estímulos nociceptivos, promovendo a retirada rápida do membro afetado. Ele envolve um neurônio sensorial, um centro integrador na medula espinhal e um neurônio motor, caracterizando um arco reflexo completo. Além disso, é ipsilateral, pois a resposta ocorre no mesmo lado do estímulo. A afirmativa I está incorreta porque descreve o reflexo de estiramento, que possui características diferentes, como resposta monossináptica. A afirmativa II está correta ao identificar corretamente o tipo de reflexo e seus componentes. Essa distinção entre reflexos é uma pegadinha clássica em provas.`,
-`O processo de reparo ósseo após fratura segue etapas bem definidas: formação de hematoma, desenvolvimento de calo fibrocartilaginoso, formação de calo ósseo e posterior remodelação. Esse processo envolve tanto ossificação endocondral quanto intramembranosa. A afirmativa I está correta ao descrever essa sequência. A afirmativa III também está correta ao explicar que o tecido ósseo primário (imaturo) é formado inicialmente, com disposição irregular, sendo posteriormente substituído por tecido secundário (lamelar). Já a afirmativa II está incorreta, pois descreve um processo mais relacionado à ossificação intramembranosa e não ao reparo típico de fraturas longas. Essa distinção histológica é frequentemente cobrada.`,
-`O sistema nervoso origina-se do tubo neural, cuja porção anterior forma o encéfalo por meio das vesículas encefálicas. A falha no fechamento dessa região leva à anencefalia, uma condição grave e incompatível com a vida, tornando a afirmativa II correta. A afirmativa IV também está correta ao descrever o sistema nervoso periférico como formado por nervos e gânglios, muitos derivados das cristas neurais. Já a afirmativa I está incorreta porque inverte as funções dos cornos da medula, sendo o anterior motor e o posterior sensitivo. A afirmativa III erra ao afirmar que o cerebelo é a maior estrutura encefálica, quando na verdade é o telencéfalo. Essas inversões são pegadinhas clássicas.`,
-`A junção neuromuscular é a sinapse entre o neurônio motor e a fibra muscular esquelética. O processo inicia-se com a chegada do potencial de ação ao terminal axônico, promovendo a abertura de canais de cálcio e entrada desse íon. Isso desencadeia a liberação de acetilcolina nas vesículas sinápticas, que difunde pela fenda sináptica e se liga aos receptores na placa motora. Essa ligação gera despolarização da membrana muscular por abertura de canais de sódio, iniciando o potencial de ação muscular. Esse sinal se propaga pela fibra, resultando no encurtamento do sarcômero pelo deslizamento dos filamentos de actina sobre a miosina. Esse mecanismo integra eventos elétricos e mecânicos, sendo fundamental para a contração muscular.`,
-`A audição é um processo que envolve múltiplas etapas de transdução e condução neural. As células ciliadas da cóclea são mecanorreceptores não neurais que transformam vibrações do líquido coclear em sinais elétricos, ativando neurônios do ramo coclear do nervo vestibulococlear, o que torna a afirmativa I correta. A partir daí, o sinal segue para os núcleos cocleares no tronco encefálico, depois ascende por vias auditivas até o tálamo, especificamente o corpo geniculado medial, e finalmente alcança o córtex auditivo. A afirmativa V descreve corretamente essa sequência. As demais alternativas apresentam erros comuns, como confundir estruturas vestibulares com auditivas, trocar o tálamo pelo córtex ou inverter a ordem do trajeto. Esse tipo de questão exige entender a sequência lógica da via, e não apenas decorar estruturas isoladas.`
+  "O nervo vago é o principal representante da porção craniana do sistema nervoso parassimpático, destacando-se por sua extensa área de atuação, que inclui órgãos torácicos e abdominais. Essa característica torna a afirmativa I correta.\n\nEm relação à fisiologia autonômica, o sistema parassimpático apresenta fibras pré-ganglionares longas e pós-ganglionares curtas, o oposto do sistema simpático, o que torna a afirmativa II incorreta.\n\nA afirmativa III também está errada, pois a lesão do nervo vago compromete a transmissão colinérgica, e não a adrenérgica, já que o parassimpático utiliza acetilcolina como principal neurotransmissor. Isso é reforçado pela afirmativa IV, que está correta.\n\n⚠️ Esse tipo de questão explora a comparação entre simpático e parassimpático — é essencial dominar essas diferenças para evitar confusão.",
+  "O reflexo de retirada é um mecanismo protetor ativado por estímulos nociceptivos, promovendo a retirada rápida do membro afetado. Ele envolve um neurônio sensorial, um centro integrador na medula espinhal e um neurônio motor, caracterizando um arco reflexo completo. Além disso, é ipsilateral, pois a resposta ocorre no mesmo lado do estímulo.\n\nA afirmativa I está incorreta porque descreve o reflexo de estiramento, que possui características diferentes, como resposta monossináptica.\n\nA afirmativa II está correta ao identificar corretamente o tipo de reflexo e seus componentes.\n\n⚠️ Pegadinha clássica: confundir reflexo de retirada com reflexo de estiramento. O de estiramento é monossináptico e envolve fusos musculares; o de retirada é polissináptico e envolve receptores de dor.",
+  "O processo de reparo ósseo após fratura segue etapas bem definidas: formação de hematoma, desenvolvimento de calo fibrocartilaginoso, formação de calo ósseo e posterior remodelação. Esse processo envolve tanto ossificação endocondral quanto intramembranosa.\n\nA afirmativa I está correta ao descrever essa sequência. A afirmativa III também está correta ao explicar que o tecido ósseo primário (imaturo) é formado inicialmente, com disposição irregular, sendo posteriormente substituído por tecido secundário (lamelar).\n\nJá a afirmativa II está incorreta, pois descreve um processo mais relacionado à ossificação intramembranosa e não ao reparo típico de fraturas longas.\n\n⚠️ Distinção histológica frequentemente cobrada: tecido primário = irregular e temporário; tecido secundário = lamelar e definitivo.",
+  "O sistema nervoso origina-se do tubo neural, cuja porção anterior forma o encéfalo por meio das vesículas encefálicas. A falha no fechamento dessa região leva à anencefalia, uma condição grave e incompatível com a vida, tornando a afirmativa II correta.\n\nA afirmativa IV também está correta ao descrever o sistema nervoso periférico como formado por nervos e gânglios, muitos derivados das cristas neurais.\n\nJá a afirmativa I está incorreta porque inverte as funções dos cornos da medula: o anterior é MOTOR e o posterior é SENSITIVO.\n\nA afirmativa III erra ao afirmar que o cerebelo é a maior estrutura encefálica — na verdade é o telencéfalo. O cerebelo é a segunda maior.\n\n⚠️ Pegadinhas clássicas: inversão de cornos medulares e tamanho relativo das estruturas encefálicas.",
+  "A junção neuromuscular é a sinapse entre o neurônio motor e a fibra muscular esquelética. O processo inicia-se com a chegada do potencial de ação ao terminal axônico (etapa 1), promovendo a abertura de canais de cálcio e entrada desse íon (etapa 2).\n\nIsso desencadeia a liberação de acetilcolina nas vesículas sinápticas (etapa 3), que difunde pela fenda sináptica e se liga aos receptores na placa motora.\n\nEssa ligação gera despolarização da membrana muscular por abertura de canais de sódio (etapa 4), iniciando o potencial de ação muscular.\n\nEsse sinal se propaga pela fibra, resultando no encurtamento do sarcômero pelo deslizamento dos filamentos de actina sobre a miosina (etapa 5).\n\n⚠️ Esse mecanismo integra eventos elétricos e mecânicos, sendo fundamental para a contração muscular. A sequência Ca²⁺ → ACh → Na⁺ → contração é a base do acoplamento excitação-contração.",
+  "A audição é um processo que envolve múltiplas etapas de transdução e condução neural.\n\nAs células ciliadas da cóclea são mecanorreceptores não neurais que transformam vibrações do líquido coclear em sinais elétricos, ativando neurônios do ramo coclear do nervo vestibulococlear (VIII), o que torna a afirmativa I correta.\n\nA partir daí, o sinal segue para os núcleos cocleares no tronco encefálico, depois ascende por vias auditivas até o tálamo (corpo geniculado medial) e finalmente alcança o córtex auditivo. A afirmativa V descreve corretamente essa sequência.\n\n❌ Erros das outras alternativas:\n• II erra ao dizer que o sinal vai direto ao córtex (pula o tálamo)\n• III erra ao confundir a numeração das estruturas\n• IV erra ao chamar de receptor neural e localizar na orelha média\n\n⚠️ A sequência correta da via: cóclea → nervo coclear → tronco encefálico → tálamo → córtex auditivo."
 ];
 
 var L = ['a','b','c','d','e'];
-var cur = 0, sel = null, answered = {}, discAnswered = {};
+var cur = 0, sel = null, answered = {}, discAnswered = {}, eliminated = {};
 
 function buildPills(){
   var w = document.getElementById('qPills'); w.innerHTML = '';
@@ -336,23 +343,25 @@ function renderQ(){
   var discTag = document.getElementById('qTagDisc');
   discTag.style.display = q.tipo==='disc' ? 'inline-flex' : 'none';
 
+  /* Context — plain text with inline image placeholders */
   var ctx=document.getElementById('qContext');
   if(q.context){
     ctx.style.display='block';
-    var ctxHtml=q.context.replace(/\n/g,'<br>');
+    var ctxHtml = q.context.replace(/\n/g,'<br>');
     
-    /* Substituição das Imagens */
+    /* Image replacements */
     ctxHtml = ctxHtml.replace('[[IMG_Q2]]', '<img src="image_6db46e.jpg" alt="Arco Reflexo Espinal" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
     ctxHtml = ctxHtml.replace('[[IMG_Q5]]', '<img src="image_6dacea.jpg" alt="Junção Neuromuscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto 8px; border:1px solid rgba(255,255,255,0.1);"><img src="image_6e21c7.png" alt="Detalhe Numérico JNM" style="max-width:100%; border-radius:8px; display:block; margin:8px auto 16px; border:1px solid rgba(255,255,255,0.1);">');
     ctxHtml = ctxHtml.replace('[[IMG_Q6]]', '<img src="image_6da67d.png" alt="Órgão de Corti" style="max-width:100%; border-radius:8px; display:block; margin:16px auto 8px; border:1px solid rgba(255,255,255,0.1);"><img src="image_6da944.jpg" alt="Via Auditiva" style="max-width:100%; border-radius:8px; display:block; margin:8px auto 16px; border:1px solid rgba(255,255,255,0.1);">');
     
-    ctx.innerHTML=ctxHtml;
+    ctx.innerHTML = ctxHtml;
   } else {
     ctx.style.display='none';
   }
 
   document.getElementById('qText').innerHTML = q.text ? q.text.replace(/\n/g,'<br>') : '';
-  
+
+  /* Options */
   var wrap=document.getElementById('qOpts'); wrap.innerHTML='';
   if(q.tipo==='disc'){
     var ta=document.createElement('textarea');
@@ -365,14 +374,50 @@ function renderQ(){
   } else {
     q.opts.forEach(function(o,i){
       var btn=document.createElement('button'); btn.className='q-opt';
-      if(done){btn.setAttribute('disabled','');if(i===q.g)btn.classList.add('correct');else if(i===sel&&i!==q.g)btn.classList.add('wrong');}
-      else if(sel===i){btn.classList.add('selected');}
-      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span>'+o+'</span>';
-      if(!done){(function(idx){btn.onclick=function(){selectOpt(idx);};})(i);}
+      var isElim = !done && eliminated[cur] && eliminated[cur].has(i);
+      if(done){
+        btn.setAttribute('disabled','');
+        if(i===q.g) btn.classList.add('correct');
+        else if(i===sel&&i!==q.g) btn.classList.add('wrong');
+      } else if(sel===i){
+        btn.classList.add('selected');
+      }
+      if(isElim) btn.classList.add('eliminated');
+
+      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span class="opt-text">'+o+'</span>'
+        +'<button class="opt-elim-btn" title="Eliminar alternativa" data-idx="'+i+'">'
+        +'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+        +'</button>';
+
+      if(!done){
+        (function(idx){
+          btn.onclick=function(e){
+            if(e.target.closest('.opt-elim-btn')) return;
+            if(eliminated[cur] && eliminated[cur].has(idx)) return;
+            selectOpt(idx);
+          };
+          var elimBtn=btn.querySelector('.opt-elim-btn');
+          elimBtn.onclick=function(e){
+            e.stopPropagation();
+            if(!eliminated[cur]) eliminated[cur]=new Set();
+            if(eliminated[cur].has(idx)){
+              eliminated[cur].delete(idx);
+              btn.classList.remove('eliminated');
+            } else {
+              eliminated[cur].add(idx);
+              btn.classList.add('eliminated');
+              if(sel===idx){sel=null;document.getElementById('btnRespond').disabled=true;}
+            }
+          };
+        })(i);
+      } else {
+        btn.querySelector('.opt-elim-btn').style.display='none';
+      }
       wrap.appendChild(btn);
     });
   }
 
+  /* Feedback */
   var fb=document.getElementById('qFeedback');
   var aiBox=document.getElementById('aiBox');
   if(done){
@@ -396,6 +441,7 @@ function renderQ(){
     aiBox.style.display='none'; aiBox.classList.remove('open');
   }
 
+  /* Nav */
   document.getElementById('btnPrev').disabled=(cur===0);
   var btnN=document.getElementById('btnNext');
   if(cur===QS.length-1){btnN.innerHTML='Ver resultado <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';}
@@ -431,7 +477,16 @@ function selectOpt(i){
   var opts=document.querySelectorAll('.q-opt');
   opts.forEach(function(o,idx){
     o.className='q-opt'+(idx===i?' selected':'');
-    if(!o.classList.contains('selected')){(function(ii){o.onclick=function(){selectOpt(ii);};})(idx);}
+    if(eliminated[cur] && eliminated[cur].has(idx)) o.classList.add('eliminated');
+    if(!o.classList.contains('selected')){
+      (function(ii){
+        o.onclick=function(e){
+          if(e.target.closest('.opt-elim-btn')) return;
+          if(eliminated[cur] && eliminated[cur].has(ii)) return;
+          selectOpt(ii);
+        };
+      })(idx);
+    }
   });
 }
 
@@ -456,14 +511,12 @@ function showResult(){
   document.getElementById('qCard').style.display='none';
   var rs=document.getElementById('resultScreen'); rs.classList.add('show');
   var mcQs=QS.filter(function(q){return q.tipo==='mc';});
-  var correct=mcQs.filter(function(q,i){
-    var idx=QS.indexOf(q);
-    return answered[idx]===q.g;
-  }).length;
-  var wrong=mcQs.filter(function(q){
-    var idx=QS.indexOf(q);
-    return answered[idx]!==undefined&&answered[idx]!==q.g;
-  }).length;
+  var correct=0, wrong=0;
+  QS.forEach(function(q,i){
+    if(q.tipo!=='mc') return;
+    if(answered[i]===q.g) correct++;
+    else if(answered[i]!==undefined) wrong++;
+  });
   var discCount=Object.keys(discAnswered).length;
   var pct=mcQs.length>0?Math.round((correct/mcQs.length)*100):0;
   var ring=document.getElementById('resRing');
@@ -496,43 +549,44 @@ function buildReport(correct,wrong){
         +'<div class="tema-bar-bg"><div class="tema-bar-fill purple" style="width:100%"></div></div>'
         +'<span class="tema-pct purple">Disc.</span></div>';
     } else {
-      var pct=s.total>0?Math.round((s.correct/s.total)*100):0;
+      var pct=(s.total-s.disc)>0?Math.round((s.correct/(s.total-s.disc))*100):0;
       var good=pct>=50;
       barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
         +'<div class="tema-bar-bg"><div class="tema-bar-fill '+(good?'green':'red')+'" style="width:'+pct+'%"></div></div>'
         +'<span class="tema-pct '+(good?'green':'red')+'">'+pct+'%</span></div>';
     }
   });
-  var mcWrong=QS.filter(function(q,i){return q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g;});
   var worstTema=sorted.find(function(t){return temaStats[t].wrong>0;})||sorted[0]||'—';
-  var wrongListHtml='';
+  var mcCount=QS.filter(function(q){return q.tipo==='mc';}).length;
+  var pct=mcCount>0?Math.round((correct/mcCount)*100):0;
+  var msg=pct>=70?'Ótimo domínio geral!':pct>=50?'Foque nos pontos fracos.':'Revise antes da prova.';
+
+  var reviewHtml='';
   QS.forEach(function(q,i){
     if(q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g){
-      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+      reviewHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
         +'<div class="rev-dot dot-err"></div>'
         +'<span>Q'+q.n+' — '+q.tema+'</span>'
         +'<small>Resp: '+L[answered[i]].toUpperCase()+' · Gabarito: '+L[q.g].toUpperCase()+'</small></div>';
     }
     if(q.tipo==='disc'&&discAnswered[i]){
-      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+      reviewHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
         +'<div class="rev-dot dot-disc"></div>'
         +'<span>Q'+q.n+' — '+q.tema+'</span>'
         +'<small>Discursiva — revisar gabarito</small></div>';
     }
   });
-  if(!wrongListHtml) wrongListHtml='<div style="font-size:13px;color:var(--muted);padding:8px 0;">Nenhum erro nas múltipla escolha! 🎉</div>';
-  var mcCount=QS.filter(function(q){return q.tipo==='mc';}).length;
-  var pct=mcCount>0?Math.round((correct/mcCount)*100):0;
-  var msg=pct>=70?'Ótimo domínio geral!':pct>=50?'Foque nos pontos fracos.':'Revise antes da prova.';
+  if(!reviewHtml) reviewHtml='<div style="font-size:13px;color:var(--muted);padding:8px 0;">Nenhum erro nas múltipla escolha! 🎉</div>';
+
   document.getElementById('reportContent').innerHTML=
     '<div class="report-section"><h4>Desempenho por tema</h4>'+barsHtml+'</div>'
     +'<div class="report-section"><h4>Insights</h4><div class="insight-grid">'
       +'<div class="insight-box"><div class="ib-label">Ponto mais fraco</div><div class="ib-val">'+worstTema+'</div><div class="ib-sub">Mais erros nesse tema</div></div>'
       +'<div class="insight-box"><div class="ib-label">MC acertadas</div><div class="ib-val">'+correct+'/'+mcCount+'</div><div class="ib-sub">'+msg+'</div></div>'
-      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class=\"ib-val\" style=\"color:#F09595;\">'+wrong+'</div><div class=\"ib-sub\">Múltipla escolha</div></div>'
-      +'<div class=\"insight-box\"><div class=\"ib-label\">Discursivas</div><div class=\"ib-val\" style=\"color:#D4A8FF;\">'+Object.keys(discAnswered).length+'</div><div class=\"ib-sub\">Questões abertas</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class="ib-val" style="color:#F09595;">'+wrong+'</div><div class="ib-sub">Múltipla escolha</div></div>'
+      +'<div class="insight-box"><div class="ib-label">Discursivas</div><div class="ib-val" style="color:#D4A8FF;">'+Object.keys(discAnswered).length+'</div><div class="ib-sub">Questões abertas</div></div>'
     +'</div></div>'
-    +'<div class=\"report-section\"><h4>Revisão por questão</h4><div class=\"q-review-list\">'+wrongListHtml+'</div></div>';
+    +'<div class="report-section"><h4>Revisão por questão</h4><div class="q-review-list">'+reviewHtml+'</div></div>';
 }
 
 function goToQ(i){
@@ -541,7 +595,7 @@ function goToQ(i){
   cur=i; renderQ(); window.scrollTo({top:0,behavior:'smooth'});
 }
 function resetAll(){
-  answered={}; discAnswered={}; sel=null; cur=0;
+  answered={}; discAnswered={}; sel=null; cur=0; eliminated={};
   document.getElementById('resultScreen').classList.remove('show');
   document.getElementById('qCard').style.display='block';
   renderQ(); window.scrollTo({top:0,behavior:'smooth'});
