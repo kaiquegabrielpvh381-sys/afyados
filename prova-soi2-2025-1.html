@@ -129,6 +129,7 @@ textarea.disc-answer:disabled{opacity:0.7;cursor:default;}
 .q-rev-row small{font-size:12px;color:var(--muted);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:640px){nav,.sticky-bar{padding-left:16px;padding-right:16px;}.main{padding:150px 14px 60px;}.q-body,.q-card-header,.q-nav-bar{padding-left:16px;padding-right:16px;}.q-feedback,.ai-box{margin-left:16px;margin-right:16px;}.q-text{font-size:15px;}.q-opt{font-size:14px;padding:12px 14px;}.insight-grid{grid-template-columns:1fr;}.tema-name{min-width:120px;font-size:12px;}}
+  .hl-toggle{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:20px;border:1px solid rgba(250,204,21,0.3);background:rgba(250,204,21,0.08);color:#FACC15;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;transition:all .2s;user-select:none;margin-left:auto;}.hl-toggle:hover{background:rgba(250,204,21,0.15);border-color:rgba(250,204,21,0.5);}.hl-toggle.active{background:rgba(250,204,21,0.22);border-color:#FACC15;box-shadow:0 0 12px rgba(250,204,21,0.15);}.hl-toggle svg{flex-shrink:0;}.q-body mark.hl{background:rgba(250,204,21,0.25);border-bottom:2px solid rgba(250,204,21,0.6);color:inherit;padding:1px 0;border-radius:2px;cursor:pointer;transition:background .15s;}.q-body mark.hl:hover{background:rgba(250,204,21,0.4);}.hl-active .q-body{cursor:crosshair;}.hl-active .q-body mark.hl{cursor:pointer;}.hl-active .q-body ::selection{background:rgba(250,204,21,0.35);}
 </style>
 </head>
 <body>
@@ -193,6 +194,7 @@ textarea.disc-answer:disabled{opacity:0.7;cursor:default;}
         <span class="q-tag-sep">·</span>
         <span class="q-tag-tema" id="qTagTema"></span>
       </div>
+      <button class="hl-toggle" id="hlToggle" onclick="toggleHL()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Marca-texto</button>
     </div>
     <div class="q-body">
       <div class="q-context" id="qContext" style="display:none;"></div>
@@ -724,7 +726,7 @@ function resetAll(){
 }
 buildPills();
 renderQ();
-
+var hlOn=false; function toggleHL(){hlOn=!hlOn;document.querySelectorAll('.hl-toggle').forEach(function(b){b.classList.toggle('active',hlOn);});document.body.classList.toggle('hl-active',hlOn);} document.addEventListener('mouseup',hlHandle);document.addEventListener('touchend',hlHandle); function hlHandle(e){if(!hlOn)return;var s=window.getSelection();if(!s||s.isCollapsed||!s.rangeCount)return;var r=s.getRangeAt(0);var p=r.commonAncestorContainer;if(p.nodeType===3)p=p.parentNode;var qb=p.closest?p.closest('.q-body'):null;if(!qb){var sc=r.startContainer;if(sc.nodeType===3)sc=sc.parentNode;qb=sc.closest?sc.closest('.q-body'):null;}if(!qb)return;if(e.target&&e.target.closest&&e.target.closest('mark.hl'))return;var t=s.toString().trim();if(!t||t.length<2)return;try{var m=document.createElement('mark');m.className='hl';m.title='Clique para remover';r.surroundContents(m);}catch(ex){try{var f=r.extractContents();var m2=document.createElement('mark');m2.className='hl';m2.title='Clique para remover';m2.appendChild(f);r.insertNode(m2);}catch(ex2){}}s.removeAllRanges();} document.addEventListener('click',function(e){if(!hlOn)return;var m=e.target.closest?e.target.closest('mark.hl'):null;if(!m)return;var p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});
 </script>
 </body>
 </html>
