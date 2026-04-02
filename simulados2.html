@@ -88,15 +88,38 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
   .provas-grid{grid-template-columns:1fr;}
 }
 </style>
+<style>
+.auth-loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+.auth-loading .spinner{width:32px;height:32px;border:3px solid rgba(214,0,110,0.2);border-top-color:var(--pink);border-radius:50%;animation:authSpin .7s linear infinite;}
+@keyframes authSpin{to{transform:rotate(360deg)}}
+.auth-loading p{color:var(--muted);font-size:14px;}
+.user-nav{display:flex;align-items:center;gap:14px;}
+.user-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:50px;padding:6px 14px 6px 10px;font-size:13px;color:var(--light);font-weight:500;}
+.user-pill .avatar{width:24px;height:24px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700;}
+.btn-logout{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-logout:hover{border-color:var(--border-pink);color:var(--pink-light);}
+</style>
 </head>
 <body>
+
+<div class="auth-loading" id="auth-loading">
+  <div class="spinner"></div>
+  <p>Verificando acesso...</p>
+</div>
 
 <nav>
   <a href="index.html" class="logo">
     <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABZklEQVR4nO2ayRaCMAxFg///z3UVDw5I08zw7sqNtHm5hUolAgAAAAC4KVvEIGOMsfK9bdvc5/fwHkDDanASQgLQdNI7hNIGMJ4hhAUQsZ5XaGEAkZ8FoQFUtKCNAUQ+FoQHUM2CVgYQ2VuQEkAlC9oZQGRrgVkA0klVscAkgIg9u9eYpkugowXqADK6bzm2+U0wM5AVVAFYFKtdBto5uDwGoy3QjLccgGWRmTdDt41QFwuWAvAoLssCcQCS4jtYUOq3QIYFogA6POOlc3Q3oPr2eDqADt1nJHMNuQdUtmAqgE7dZ2bnXOopsCfKgtMAOnafmZl76cPR9OPxzt1nzmpwN0DbRW8LDgO4QveZf7W4GmDVPYvrHIXwM4Ardf+MrwCsirdeu14WlN0IRfEWQNXuW173s0YYwB+qd9/y+vtaYQBRn+5bjsM1396AV5JaCzLe6LqeDksKyjrUqPD/AgAAAAD05QmqJdARPLlg+gAAAABJRU5ErkJggg==" alt="Afyados"></div>
     <span class="logo-name">AFYADOS</span>
   </a>
-  <a href="index.html" class="back-btn">Voltar ao site</a>
+  <div class="user-nav">
+    <div class="user-pill" id="user-pill" style="display:none;">
+      <div class="avatar" id="user-avatar"></div>
+      <span id="user-name"></span>
+    </div>
+    <button class="btn-logout" id="btn-logout" style="display:none;" onclick="handleLogout()">Sair</button>
+    <a href="index.html" class="back-btn">Voltar</a>
+  </div>
 </nav>
 
 <div class="hero">
@@ -453,6 +476,40 @@ function switchTab(id){
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('panel-'+id).classList.add('active');
   event.currentTarget.classList.add('active');
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const sb = supabase.createClient(
+  'https://mmqfqlbojsbuuodfbilh.supabase.co',
+  'sb_publishable_fZp0two05vv3IPxqNnFL_w_agbTPZYH'
+);
+
+(async () => {
+  const { data: { user } } = await sb.auth.getUser();
+  const loader = document.getElementById('auth-loading');
+
+  if (!user) {
+    window.location.href = 'login.html?redirect=simulados2.html';
+    return;
+  }
+
+  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-name').textContent = name.split(' ')[0];
+  document.getElementById('user-pill').style.display = 'flex';
+  document.getElementById('btn-logout').style.display = 'block';
+
+  loader.style.opacity = '0';
+  loader.style.transition = 'opacity .3s';
+  setTimeout(() => loader.remove(), 300);
+})();
+
+async function handleLogout() {
+  await sb.auth.signOut();
+  window.location.href = 'index.html';
 }
 </script>
 
