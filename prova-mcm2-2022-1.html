@@ -83,5 +83,56 @@ function hlHandle(e){if(!hlOn)return;var s=window.getSelection();if(!s||s.isColl
 document.addEventListener('click',function(e){if(!hlOn)return;var m=e.target.closest?e.target.closest('mark.hl'):null;if(!m)return;var p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});
 
 </script>
+  <script>
+const PROVA_ID = 'mcm2-2022-1';
+const STORAGE_KEY = 'afyados_prova_' + PROVA_ID;
+
+function saveLocal() {
+  const state = { answered: answered, cur: cur, eliminated: {} };
+  for (const k in eliminated) {
+    state.eliminated[k] = Array.from(eliminated[k]);
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadLocal() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const state = JSON.parse(raw);
+    if (state.answered && Object.keys(state.answered).length > 0) {
+      answered = state.answered;
+      cur = state.cur || 0;
+      eliminated = {};
+      if (state.eliminated) {
+        for (const k in state.eliminated) {
+          eliminated[k] = new Set(state.eliminated[k]);
+        }
+      }
+      return true;
+    }
+  } catch (e) {}
+  return false;
+}
+
+const _origSubmit = submitAnswer;
+submitAnswer = function() {
+  _origSubmit();
+  saveLocal();
+};
+
+const _origReset = resetAll;
+resetAll = function() {
+  localStorage.removeItem(STORAGE_KEY);
+  _origReset();
+};
+
+if (loadLocal()) {
+  renderQ();
+  if (Object.keys(answered).length === QS.length) {
+    setTimeout(showResult, 100);
+  }
+}
+</script>
 </body>
 </html>
