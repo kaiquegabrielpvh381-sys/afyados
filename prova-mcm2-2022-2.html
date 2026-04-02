@@ -81,18 +81,18 @@ function hlHandle(e){if(!hlOn)return;var s=window.getSelection();if(!s||s.isColl
 document.addEventListener('click',function(e){if(!hlOn)return;var m=e.target.closest?e.target.closest('mark.hl'):null;if(!m)return;var p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});
 
 </script>
-  <script>
+ <script>
 const PROVA_ID = 'mcm2-2022-2';
+const PERIODO = 2;
+const CONTENT_TYPE = 'prova_antiga';
 const STORAGE_KEY = 'afyados_prova_' + PROVA_ID;
 
+// ── localStorage ──
 function saveLocal() {
   const state = { answered: answered, cur: cur, eliminated: {} };
-  for (const k in eliminated) {
-    state.eliminated[k] = Array.from(eliminated[k]);
-  }
+  for (const k in eliminated) state.eliminated[k] = Array.from(eliminated[k]);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
-
 function loadLocal() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -103,9 +103,7 @@ function loadLocal() {
       cur = state.cur || 0;
       eliminated = {};
       if (state.eliminated) {
-        for (const k in state.eliminated) {
-          eliminated[k] = new Set(state.eliminated[k]);
-        }
+        for (const k in state.eliminated) eliminated[k] = new Set(state.eliminated[k]);
       }
       return true;
     }
@@ -113,10 +111,67 @@ function loadLocal() {
   return false;
 }
 
+// ── Supabase ──
+const _sbScript = document.createElement('script');
+_sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+_sbScript.onload = function() {
+  window.sb = supabase.createClient(
+    'https://mmqfqlbojsbuuodfbilh.supabase.co',
+    'sb_publishable_fZp0two05vv3IPxqNnFL_w_agbTPZYH'
+  );
+};
+document.head.appendChild(_sbScript);
+
+async function saveToSupabase(i) {
+  try {
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) return;
+    const q = QS[i];
+    const isDisc = q.disc;
+    const userAns = isDisc ? (answered[i] || '').substring(0, 500) : L[answered[i]];
+    const correctAns = isDisc ? 'discursiva' : L[q.g];
+    const isCorrect = isDisc ? null : (answered[i] === q.g);
+    await sb.from('question_responses').upsert({
+      user_id: user.id,
+      question_id: PROVA_ID + '-q' + String(q.n).padStart(2, '0'),
+      periodo: PERIODO, content_type: CONTENT_TYPE,
+      user_answer: userAns, correct_answer: correctAns,
+      is_correct: isCorrect, time_spent_seconds: 0,
+      topic: q.tema, difficulty: 'media'
+    }, { onConflict: 'user_id,question_id' });
+    if (!isDisc && isCorrect !== null) {
+      const { data: row } = await sb.from('user_progress')
+        .select('*').eq('user_id', user.id).eq('periodo', PERIODO).single();
+      if (row) {
+        const t = row.total_questions_solved + 1;
+        const c = row.correct_answers + (isCorrect ? 1 : 0);
+        const topics = row.topics_studied || [];
+        if (q.tema && !topics.includes(q.tema)) topics.push(q.tema);
+        await sb.from('user_progress').update({
+          total_questions_solved: t, correct_answers: c,
+          accuracy_percentage: parseFloat(((c / t) * 100).toFixed(1)),
+          last_studied: new Date().toISOString(), topics_studied: topics
+        }).eq('user_id', user.id).eq('periodo', PERIODO);
+      } else {
+        await sb.from('user_progress').insert({
+          user_id: user.id, periodo: PERIODO,
+          total_questions_solved: 1, correct_answers: isCorrect ? 1 : 0,
+          accuracy_percentage: isCorrect ? 100 : 0,
+          last_studied: new Date().toISOString(),
+          topics_studied: q.tema ? [q.tema] : []
+        });
+      }
+    }
+  } catch (e) { console.warn('Supabase:', e); }
+}
+
+// ── Interceptar uma vez só ──
 const _origSubmit = submitAnswer;
 submitAnswer = function() {
+  const idx = cur;
   _origSubmit();
   saveLocal();
+  if (answered[idx] !== undefined && window.sb) saveToSupabase(idx);
 };
 
 const _origReset = resetAll;
@@ -125,11 +180,10 @@ resetAll = function() {
   _origReset();
 };
 
+// ── Restaurar estado ──
 if (loadLocal()) {
   renderQ();
-  if (Object.keys(answered).length === QS.length) {
-    setTimeout(showResult, 100);
-  }
+  if (Object.keys(answered).length === QS.length) setTimeout(showResult, 100);
 }
 </script>
 </body>
