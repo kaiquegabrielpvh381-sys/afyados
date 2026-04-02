@@ -268,7 +268,7 @@ const sb = supabase.createClient(
 let currentUser = null;
 let allResponses = [];
 let evolutionChart = null;
-let activePeriodo = 'todos';
+let activeFilter = 'todos';
 
 // ── Auth (herda sessão, sem tela de login) ──
 (async () => {
@@ -315,33 +315,35 @@ async function loadData() {
 }
 
 function buildFilters() {
-  const periodos = [...new Set(allResponses.map(r => r.periodo).filter(Boolean))].sort();
+  const types = [...new Set(allResponses.map(r => r.content_type).filter(Boolean))].sort();
   const bar = document.getElementById('filterBar');
   bar.innerHTML = '';
 
   const allChip = document.createElement('button');
   allChip.className = 'filter-chip active';
   allChip.textContent = 'Todos';
-  allChip.onclick = () => { activePeriodo = 'todos'; updateChips(); renderAll(); };
+  allChip.onclick = () => { activeFilter = 'todos'; updateChips(); renderAll(); };
   bar.appendChild(allChip);
 
-  periodos.forEach(p => {
+  types.forEach(t => {
     const chip = document.createElement('button');
     chip.className = 'filter-chip';
-    chip.textContent = p;
-    chip.onclick = () => { activePeriodo = p; updateChips(); renderAll(); };
+    chip.textContent = t.toUpperCase();
+    chip.dataset.value = t;
+    chip.onclick = () => { activeFilter = t; updateChips(); renderAll(); };
     bar.appendChild(chip);
   });
 }
 
 function updateChips() {
   document.querySelectorAll('.filter-chip').forEach(c => {
-    c.classList.toggle('active', c.textContent === (activePeriodo === 'todos' ? 'Todos' : activePeriodo));
+    const val = c.dataset.value || 'todos';
+    c.classList.toggle('active', val === activeFilter);
   });
 }
 
 function filtered() {
-  return activePeriodo === 'todos' ? allResponses : allResponses.filter(r => r.periodo === activePeriodo);
+  return activeFilter === 'todos' ? allResponses : allResponses.filter(r => r.content_type === activeFilter);
 }
 
 function renderAll() {
