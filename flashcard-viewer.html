@@ -43,18 +43,19 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .start-btn:disabled{opacity:.4;cursor:not-allowed;}
 
 /* Basic card */
-.card-container{perspective:1200px;margin-bottom:20px;min-height:300px;}
-.card{position:relative;width:100%;min-height:300px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);}
-.card.flipped{transform:rotateY(180deg);}
-.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
-.card-face.back{transform:rotateY(180deg);}
+.card-container{margin-bottom:20px;}
+.card{width:100%;cursor:pointer;}
+.card-face{border-radius:20px;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.card-face.back{display:none;}
+.card.flipped .card-face.front{display:none;}
+.card.flipped .card-face.back{display:flex;}
 .card-label{padding:14px 20px 0;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--muted);}
 .card-label.answer{color:var(--pink);}
 .card-body{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 24px;text-align:center;}
 .card-body h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;line-height:1.5;}
 .card-body .ans{font-size:15px;line-height:1.7;color:var(--light);max-width:560px;}
 .card-body .ans strong{color:#F4EFFA;}
-.card-body img{max-width:100%;max-height:260px;object-fit:contain;border-radius:8px;margin:8px 0;}
+.card-body img{max-width:100%;border-radius:8px;margin:8px 0;}
 .card-footer{padding:10px 20px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
 .card-tag{background:rgba(214,0,110,0.10);color:var(--pink);padding:3px 10px;border-radius:100px;font-weight:600;font-size:10px;}
 
@@ -276,7 +277,8 @@ function flipCard(){
     document.querySelector(".io-card-header").classList.add("answer");
     document.getElementById("mask").innerHTML='<img src="'+(card.amask_url?STORAGE_URL+card.amask_url:"")+'">';
   } else {
-    document.getElementById("flipCard").classList.add("flipped");
+    var fc=document.getElementById("flipCard");
+    if(fc)fc.classList.add("flipped");
   }
   document.getElementById("showBtn").classList.add("hidden");
   document.getElementById("ansBtn").classList.remove("hidden");
