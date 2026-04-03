@@ -278,24 +278,17 @@ function renderCard(){
 
 function renderIO(baseUrl, maskUrl) {
   var wrap = document.getElementById("ioWrap");
-  // Masks in this deck are opaque PNGs (contain the full image + mask)
-  // So just show the mask directly. If no mask, show base image.
-  var url = maskUrl ? storageUrl(maskUrl) : (baseUrl ? storageUrl(baseUrl) : "");
-  if (!url) { wrap.innerHTML = '<div class="loading-img">Sem imagem</div>'; return; }
-  var img = new Image();
-  img.onload = function() { wrap.innerHTML = ""; img.style.maxWidth = "100%"; img.style.borderRadius = "8px"; wrap.appendChild(img); };
-  img.onerror = function() {
-    // Fallback: try base image
-    if (baseUrl && maskUrl) {
-      var img2 = new Image();
-      img2.onload = function() { wrap.innerHTML = ""; img2.style.maxWidth = "100%"; img2.style.borderRadius = "8px"; wrap.appendChild(img2); };
-      img2.onerror = function() { wrap.innerHTML = '<div class="loading-img">Erro ao carregar</div>'; };
-      img2.src = storageUrl(baseUrl);
-    } else {
-      wrap.innerHTML = '<div class="loading-img">Erro ao carregar</div>';
-    }
-  };
-  img.src = url;
+  if (!baseUrl && !maskUrl) { wrap.innerHTML = '<div class="loading-img">Sem imagem</div>'; return; }
+
+  var bSrc = baseUrl ? storageUrl(baseUrl) : "";
+  var mSrc = maskUrl ? storageUrl(maskUrl) : "";
+
+  // Always show base image with mask overlaid on top
+  var h = '<div style="position:relative;display:inline-block;width:100%">';
+  if (bSrc) h += '<img src="' + bSrc + '" style="width:100%;display:block;border-radius:8px;" onerror="this.style.display=\'none\'">';
+  if (mSrc) h += '<img src="' + mSrc + '" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:8px;" onerror="this.style.display=\'none\'">';
+  h += '</div>';
+  wrap.innerHTML = h;
 }
 
 function flipCard(){
