@@ -63,10 +63,9 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .io-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:20px;cursor:pointer;}
 .io-card-header{padding:14px 20px 0;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--muted);}
 .io-card-header.answer{color:var(--pink);}
-.io-wrapper{position:relative;width:100%;padding:16px;}
-.io-wrapper img.base-img{width:100%;display:block;border-radius:8px;}
-.io-wrapper .mask-overlay{position:absolute;top:16px;left:16px;right:16px;bottom:16px;}
-.io-wrapper .mask-overlay img{width:100%;height:100%;object-fit:contain;}
+.io-wrapper{padding:16px;text-align:center;}
+.io-wrapper canvas{max-width:100%;border-radius:8px;display:block;margin:0 auto;}
+.io-wrapper .loading-img{color:var(--muted);font-size:13px;padding:40px;}
 .io-footer{padding:10px 20px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
 
 /* Buttons */
@@ -120,6 +119,15 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 <script>
 var API_BASE = "https://afyados-backend.onrender.com";
 var STORAGE_URL = "https://mmqfqlbojsbuuodfbilh.supabase.co/storage/v1/object/public/flashcard-media/";
+
+function storageUrl(path) {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  // Encode each path segment separately to handle special chars
+  var parts = path.split("/");
+  var encoded = parts.map(function(p) { return encodeURIComponent(p); }).join("/");
+  return STORAGE_URL + encoded;
+}
 
 function getToken() {
   try { var r = localStorage.getItem("sb-mmqfqlbojsbuuodfbilh-auth-token"); if (r) { return JSON.parse(r).access_token; } } catch(e) {} return null;
@@ -215,8 +223,8 @@ function startStudy(){
 
   // Rewrite image src paths to full public URLs
   cards.forEach(function(c){
-    if(c.front)c.front=c.front.replace(/src="([^"]+)"/g,function(m,p){return p.startsWith("http")?m:'src="'+STORAGE_URL+p+'"';});
-    if(c.back)c.back=c.back.replace(/src="([^"]+)"/g,function(m,p){return p.startsWith("http")?m:'src="'+STORAGE_URL+p+'"';});
+    if(c.front)c.front=c.front.replace(/src="([^"]+)"/g,function(m,p){return p.startsWith("http")?m:'src="'+storageUrl(p)+'"';});
+    if(c.back)c.back=c.back.replace(/src="([^"]+)"/g,function(m,p){return p.startsWith("http")?m:'src="'+storageUrl(p)+'"';});
   });
 
   var h='<div class="deck-info"><strong id="dn">'+deckData.name+'</strong> · Card <strong id="cn">1</strong>/<strong id="tn">'+queue.length+'</strong></div>';
@@ -241,11 +249,10 @@ function renderCard(){
 
   var area=document.getElementById("cardArea");
   if(deckData.type==="io"){
-    var h='<div class="io-card" onclick="flipCard()"><div class="io-card-header" id="cLabel">Pergunta</div><div class="io-wrapper">';
-    h+='<img class="base-img" id="bImg" src="'+(card.image_url?STORAGE_URL+card.image_url:"")+'">';
-    h+='<div class="mask-overlay" id="mask"><img src="'+(card.qmask_url?STORAGE_URL+card.qmask_url:"")+'"></div>';
-    h+='</div><div class="io-footer"><span class="card-tag" id="cTag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
+    var h='<div class="io-card" onclick="flipCard()"><div class="io-card-header" id="cLabel">Pergunta</div><div class="io-wrapper" id="ioWrap"><div class="loading-img">Carregando...</div></div><div class="io-footer"><span class="card-tag" id="cTag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
     area.innerHTML=h;
+    // Render with canvas
+    renderIO(card.image_url, card.qmask_url);
   } else {
     var h='<div class="card-container"><div class="card" id="flipCard" onclick="flipCard()">';
     h+='<div class="card-face front"><div class="card-label">Pergunta</div><div class="card-body"><h2>'+card.front+'</h2></div><div class="card-footer"><span class="card-tag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
@@ -266,7 +273,43 @@ function renderCard(){
   document.getElementById("i1").textContent=ivs[1];document.getElementById("i2").textContent=ivs[2];document.getElementById("i3").textContent=ivs[3];document.getElementById("i4").textContent=ivs[4];
 
   // Preload next image
-  if(curIdx+1<queue.length){var nx=cards[queue[curIdx+1]];if(nx.image_url)new Image().src=STORAGE_URL+nx.image_url;}
+  if(curIdx+1<queue.length){var nx=cards[queue[curIdx+1]];if(nx.image_url)new Image().src=storageUrl(nx.image_url);}
+}
+
+function renderIO(baseUrl, maskUrl) {
+  var wrap = document.getElementById("ioWrap");
+  if (!baseUrl) { wrap.innerHTML = '<div class="loading-img">Sem imagem</div>'; return; }
+
+  var baseImg = new Image();
+  baseImg.crossOrigin = "anonymous";
+  baseImg.onload = function() {
+    var maskImg = new Image();
+    maskImg.crossOrigin = "anonymous";
+    maskImg.onload = function() {
+      var canvas = document.createElement("canvas");
+      canvas.width = baseImg.naturalWidth;
+      canvas.height = baseImg.naturalHeight;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(baseImg, 0, 0);
+      ctx.drawImage(maskImg, 0, 0, canvas.width, canvas.height);
+      wrap.innerHTML = "";
+      wrap.appendChild(canvas);
+    };
+    maskImg.onerror = function() {
+      // No mask, just show base
+      var canvas = document.createElement("canvas");
+      canvas.width = baseImg.naturalWidth;
+      canvas.height = baseImg.naturalHeight;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(baseImg, 0, 0);
+      wrap.innerHTML = "";
+      wrap.appendChild(canvas);
+    };
+    maskImg.src = maskUrl ? storageUrl(maskUrl) : "";
+    if (!maskUrl) maskImg.onerror();
+  };
+  baseImg.onerror = function() { wrap.innerHTML = '<div class="loading-img">Erro ao carregar imagem</div>'; };
+  baseImg.src = storageUrl(baseUrl);
 }
 
 function flipCard(){
@@ -275,7 +318,7 @@ function flipCard(){
   if(deckData.type==="io"){
     document.querySelector(".io-card-header").textContent="Resposta";
     document.querySelector(".io-card-header").classList.add("answer");
-    document.getElementById("mask").innerHTML='<img src="'+(card.amask_url?STORAGE_URL+card.amask_url:"")+'">';
+    renderIO(card.image_url, card.amask_url);
   } else {
     var fc=document.getElementById("flipCard");
     if(fc)fc.classList.add("flipped");
