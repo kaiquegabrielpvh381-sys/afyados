@@ -22,7 +22,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .page-sub{color:var(--muted);font-size:14px;margin-bottom:32px;}
 
 .deck-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
-.deck-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.deck-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
 .deck-card:hover{border-color:rgba(214,0,110,0.3);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
 .deck-card.locked{opacity:0.6;cursor:not-allowed;}
 .deck-card.locked:hover{transform:none;border-color:var(--border);}
@@ -38,7 +38,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .deck-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px;}
 .deck-tag{font-size:10px;padding:3px 8px;border-radius:100px;background:rgba(214,0,110,0.08);color:var(--pink-light);font-weight:600;}
 
-.deck-card .deck-btn{margin-top:auto;}
+.deck-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
 .deck-btn.primary{background:var(--pink);color:#fff;box-shadow:0 4px 16px var(--pink-glow);}
 .deck-btn.primary:hover{background:var(--pink-bright);}
 .deck-btn.locked-btn{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--border);cursor:not-allowed;}
@@ -91,24 +91,49 @@ function getToken() {
 async function loadDecks() {
   var token = getToken();
   if (!token) {
-    document.getElementById("content").innerHTML = '<div class="error-msg">Faça login para acessar os flashcards.</div>';
+    // Não logado — redirecionar pra login
+    window.location.href = 'login.html?redirect=flashcards.html';
     return;
   }
 
   try {
+    // 1. Verificar se tem acesso (comprou na Kiwify)
+    var accessRes = await fetch(API_BASE + "/api/access/check", {
+      headers: { "Authorization": "Bearer " + token }
+    });
+
+    if (accessRes.status === 401) {
+      window.location.href = 'login.html?redirect=flashcards.html';
+      return;
+    }
+
+    var accessData = await accessRes.json();
+
+    if (!accessData.has_access) {
+      // Sem assinatura — mostrar tela de bloqueio
+      document.getElementById("content").innerHTML = '<div style="text-align:center;padding:60px 20px;">'
+        + '<div style="font-size:48px;margin-bottom:16px;">🔒</div>'
+        + '<h2 style="font-family:Playfair Display,serif;font-size:24px;margin-bottom:8px;">Acesso Restrito</h2>'
+        + '<p style="color:#9080A8;font-size:14px;max-width:400px;margin:0 auto 24px;">Os Flashcards estão inclusos no combo <strong style="color:#FF6EB4;">Multi N1 — 2º Período</strong>. Adquira para ter acesso completo.</p>'
+        + '<a href="https://pay.kiwify.com.br/xZUbBUv" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#D6006E,#FF1A7E);color:#fff;font-size:15px;font-weight:700;padding:16px 32px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(214,0,110,0.22);">Garantir meu acesso</a>'
+        + '</div>';
+      return;
+    }
+
+    // 2. Tem acesso — carregar decks
     var res = await fetch(API_BASE + "/api/decks", {
       headers: { "Authorization": "Bearer " + token }
     });
 
     if (res.status === 401) {
-      document.getElementById("content").innerHTML = '<div class="error-msg">Sessão expirada. Faça login novamente.</div>';
+      window.location.href = 'login.html?redirect=flashcards.html';
       return;
     }
 
     var decks = await res.json();
     renderDecks(decks);
   } catch(e) {
-    document.getElementById("content").innerHTML = '<div class="error-msg">Erro ao carregar decks. Tente novamente.</div>';
+    document.getElementById("content").innerHTML = '<div class="error-msg">Erro ao carregar. Tente novamente.</div>';
   }
 }
 
