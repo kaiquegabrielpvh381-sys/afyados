@@ -53,6 +53,20 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .rodape-breve h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--light);}
 .rodape-breve p{color:var(--muted);font-size:14px;}
 
+.provas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-bottom:40px;}
+.prova-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:8px;transition:all .2s;}
+.prova-card:hover{border-color:var(--border-pink);transform:translateY(-2px);box-shadow:0 8px 30px rgba(214,0,110,0.1);}
+.pc-top{display:flex;align-items:center;justify-content:space-between;}
+.pc-icon{font-size:20px;}
+.pc-badge{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5DCAA5;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.3);padding:2px 8px;border-radius:100px;}
+.pc-title{font-weight:700;font-size:15px;line-height:1.3;}
+.pc-sub{font-size:12px;color:var(--muted);}
+.pc-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.pc-tag{font-size:10px;font-weight:600;color:var(--light);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:2px 7px;border-radius:5px;}
+.pc-tag.adaptada{color:#FAAD3F;background:rgba(250,173,63,0.1);border-color:rgba(250,173,63,0.3);}
+.pc-tag.incompleto{color:#F09595;background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.3);}
+.pc-arrow{font-size:12px;color:var(--pink);font-weight:600;margin-top:4px;}
+
 @media(max-width:768px){
   nav{padding:0 20px;}
   .hero{padding:100px 20px 40px;}
@@ -124,6 +138,19 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
       <div class="sim-period">pagamento único</div>
       <a href="https://pay.kiwify.com.br/y6E8qIC" target="_blank" class="btn-pink">Comprar agora</a>
     </div>
+  </div>
+
+  <div class="section-label" style="margin-top:40px;">Provas anteriores — SOI I</div>
+  <div class="provas-grid">
+
+    <a href="prova-soi1-2025-1.html" class="prova-card">
+      <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+      <div class="pc-title">N1 SOI I — 2025.1</div>
+      <div class="pc-sub">Afya · 1º semestre 2025</div>
+      <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+      <div class="pc-arrow">Acessar →</div>
+    </a>
+
   </div>
 
   <div class="rodape-breve">
