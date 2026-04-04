@@ -119,8 +119,12 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 @media(max-width:480px){.wpp-banner{padding:16px 18px;gap:14px;}.wpp-banner-icon{width:42px;height:42px;}.wpp-banner-title{font-size:14px;}.wpp-banner-sub{font-size:12px;}}
 
 /* Cupom de desconto */
-.cupom-tag{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(90deg,#E07B00,#F5A623);padding:5px 12px;border-radius:8px;letter-spacing:0.05em;margin-bottom:8px;box-shadow:0 2px 10px rgba(245,166,35,0.35);}
-.sim-price-old{font-size:16px;font-weight:600;color:var(--muted);text-decoration:line-through;margin-bottom:2px;}
+.cupom-box{background:linear-gradient(135deg,rgba(245,166,35,0.10),rgba(224,123,0,0.07));border:1.5px dashed rgba(245,166,35,0.5);border-radius:12px;padding:10px 14px;margin-bottom:12px;text-align:center;}
+.cupom-label{display:block;font-size:10px;font-weight:700;color:#F5A623;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.cupom-code{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:900;color:#fff;letter-spacing:0.08em;}
+.cupom-emoji{font-size:16px;}
+.cupom-desconto{display:block;font-size:11px;font-weight:600;color:#F5A623;margin-top:3px;}
+.sim-price-old{font-size:15px;font-weight:600;color:var(--muted);text-decoration:line-through;margin-bottom:2px;}
 </style>
 <style>
 .auth-loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
@@ -212,10 +216,14 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
         </div>
       </div>
       <div class="sim-price-box">
-        <div class="cupom-tag">🐣 FELIZPASCOA</div>
+        <div class="cupom-box">
+          <span class="cupom-label">🎁 Cupom de Páscoa</span>
+          <span class="cupom-code"><span class="cupom-emoji">🐣</span> FELIZPASCOA</span>
+          <span class="cupom-desconto">15% de desconto aplicado!</span>
+        </div>
         <div class="sim-price-old">R$&nbsp;79,90</div>
         <div class="sim-price">R$&nbsp;67<sub>,91</sub></div>
-        <div class="sim-period">pagamento único · 15% off</div>
+        <div class="sim-period">pagamento único</div>
         <a href="https://pay.kiwify.com.br/ZtqnuTa" target="_blank" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
       </div>
     </div>
@@ -233,7 +241,13 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
         </div>
       </div>
       <div class="sim-price-box">
-        <div class="sim-price">R$&nbsp;65<sub>,00</sub></div>
+        <div class="cupom-box">
+          <span class="cupom-label">🎁 Cupom de Páscoa</span>
+          <span class="cupom-code"><span class="cupom-emoji">🐣</span> FELIZPASCOA</span>
+          <span class="cupom-desconto">15% de desconto aplicado!</span>
+        </div>
+        <div class="sim-price-old">R$&nbsp;65,00</div>
+        <div class="sim-price">R$&nbsp;55<sub>,25</sub></div>
         <div class="sim-period">pagamento único</div>
         <a href="https://pay.kiwify.com.br/y6E8qIC" target="_blank" class="btn-pink">Comprar agora</a>
       </div>
@@ -242,7 +256,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
     <div class="sim-card promo-special">
       <div>
         <span class="sim-badge" style="background: linear-gradient(90deg, var(--pink), #9B00E8);">🔥 Lançamento</span>
-        <h3 style="color: #fff; font-size: 24px; margin-top: 8px;">Simulado Multi N1 — 2º Período</h3>
+        <h3 style="color: #fff; font-size: 24px; margin-top: 8px;">Afyando a Multi N1 — 2º Período</h3>
         <p>Simulado completo cobrindo <strong>todo o conteúdo da N1 do 2º período</strong>. Questões estratégicas com resoluções comentadas para você chegar preparado na prova.</p>
         <div class="sim-features" style="margin-bottom: 16px;">
           <div class="sim-feat">Cobertura completa do 2º período</div>
@@ -251,10 +265,14 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
         </div>
       </div>
       <div class="sim-price-box" id="multi-n1-box">
-        <div class="cupom-tag">🐣 FELIZPASCOA</div>
+        <div class="cupom-box">
+          <span class="cupom-label">🎁 Cupom de Páscoa</span>
+          <span class="cupom-code"><span class="cupom-emoji">🐣</span> FELIZPASCOA</span>
+          <span class="cupom-desconto">15% de desconto aplicado!</span>
+        </div>
         <div class="sim-price-old">R$&nbsp;79,90</div>
         <div class="sim-price">R$&nbsp;67<sub>,91</sub></div>
-        <div class="sim-period">pagamento único · 15% off</div>
+        <div class="sim-period">pagamento único</div>
         <a href="https://pay.kiwify.com.br/xZUbBUv" target="_blank" id="multi-n1-btn" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
       </div>
     </div>
