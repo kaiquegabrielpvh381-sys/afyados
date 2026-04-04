@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Afyados</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0C0810;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;min-height:100vh;padding:40px 20px;}
+:root{--pink:#D6006E;--card:#1A1226;--border:rgba(255,255,255,0.07);--muted:#9080A8;}
+.container{max-width:600px;margin:0 auto;}
+h1{font-size:24px;font-weight:800;margin-bottom:8px;}
+.sub{color:var(--muted);font-size:14px;margin-bottom:32px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;}
+.card h2{font-size:16px;font-weight:700;margin-bottom:16px;}
+.input-row{display:flex;gap:8px;margin-bottom:12px;}
+input{flex:1;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;outline:none;}
+input:focus{border-color:var(--pink);}
+button{padding:12px 24px;border-radius:10px;border:none;background:var(--pink);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;}
+button:hover{opacity:.85;}
+button:disabled{opacity:.4;cursor:not-allowed;}
+.btn-danger{background:#E24B4A;}
+.msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;display:none;}
+.msg.success{display:block;background:rgba(29,158,117,0.12);color:#1D9E75;border:1px solid rgba(29,158,117,0.3);}
+.msg.error{display:block;background:rgba(226,75,74,0.10);color:#E24B4A;border:1px solid rgba(226,75,74,0.3);}
+.list{margin-top:16px;}
+.list-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);margin-bottom:6px;}
+.list-item .email{font-size:13px;font-weight:600;}
+.list-item .status{font-size:11px;color:#1D9E75;font-weight:700;}
+.list-item button{padding:6px 14px;font-size:11px;border-radius:6px;}
+.loading{color:var(--muted);font-size:13px;}
+.admin-only{display:none;text-align:center;padding:60px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="admin-only" id="denied">
+    <p style="font-size:48px;margin-bottom:16px;">🔒</p>
+    <h2>Acesso negado</h2>
+    <p>Apenas administradores podem acessar esta página.</p>
+  </div>
+
+  <div id="admin-panel" style="display:none;">
+    <h1>Painel Admin</h1>
+    <p class="sub">Gerencie o acesso aos flashcards e materiais pagos</p>
+
+    <div class="card">
+      <h2>Liberar acesso</h2>
+      <div class="input-row">
+        <input type="email" id="emailInput" placeholder="Email do aluno">
+        <button onclick="liberarAcesso()" id="btnLiberar">Liberar</button>
+      </div>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="card">
+      <h2>Assinantes ativos</h2>
+      <div id="lista" class="list"><div class="loading">Carregando...</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var API_BASE = "https://afyados-backend.onrender.com";
+
+// Admins autorizados (emails)
+var ADMINS = ["kaiquegabrielpvh381@gmail.com", "afyados18@gmail.com", "analuiza28464@gmail.com"];
+
+function getToken() {
+  try {
+    var raw = localStorage.getItem("sb-mmqfqlbojsbuuodfbilh-auth-token");
+    if (raw) return JSON.parse(raw).access_token;
+  } catch(e) {}
+  return null;
+}
+
+function getUserEmail() {
+  try {
+    var raw = localStorage.getItem("sb-mmqfqlbojsbuuodfbilh-auth-token");
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      if (parsed.user) return parsed.user.email;
+    }
+  } catch(e) {}
+  return null;
+}
+
+async function init() {
+  var token = getToken();
+  var email = getUserEmail();
+
+  if (!token || !email || ADMINS.indexOf(email) === -1) {
+    document.getElementById("denied").style.display = "block";
+    return;
+  }
+
+  document.getElementById("admin-panel").style.display = "block";
+  carregarLista();
+}
+
+async function liberarAcesso() {
+  var email = document.getElementById("emailInput").value.trim().toLowerCase();
+  var msg = document.getElementById("msg");
+  var btn = document.getElementById("btnLiberar");
+
+  if (!email || !email.includes("@")) {
+    msg.className = "msg error";
+    msg.textContent = "Digite um email válido.";
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = "Liberando...";
+  msg.className = "msg";
+  msg.style.display = "none";
+
+  try {
+    var token = getToken();
+    var res = await fetch(API_BASE + "/api/admin/grant-access", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+      body: JSON.stringify({ email: email })
+    });
+
+    var data = await res.json();
+
+    if (res.ok) {
+      msg.className = "msg success";
+      msg.textContent = "Acesso liberado para " + email;
+      document.getElementById("emailInput").value = "";
+      carregarLista();
+    } else {
+      msg.className = "msg error";
+      msg.textContent = data.error || "Erro ao liberar acesso.";
+    }
+  } catch(e) {
+    msg.className = "msg error";
+    msg.textContent = "Erro de conexão. Tente novamente.";
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Liberar";
+}
+
+async function revogarAcesso(email) {
+  if (!confirm("Remover acesso de " + email + "?")) return;
+
+  try {
+    var token = getToken();
+    var res = await fetch(API_BASE + "/api/admin/revoke-access", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+      body: JSON.stringify({ email: email })
+    });
+
+    if (res.ok) carregarLista();
+  } catch(e) {}
+}
+
+async function carregarLista() {
+  var lista = document.getElementById("lista");
+  lista.innerHTML = '<div class="loading">Carregando...</div>';
+
+  try {
+    var token = getToken();
+    var res = await fetch(API_BASE + "/api/admin/subscriptions", {
+      headers: { "Authorization": "Bearer " + token }
+    });
+    var data = await res.json();
+
+    if (!data.subscriptions || data.subscriptions.length === 0) {
+      lista.innerHTML = '<div class="loading">Nenhum assinante.</div>';
+      return;
+    }
+
+    var html = "";
+    data.subscriptions.forEach(function(s) {
+      html += '<div class="list-item">';
+      html += '<div><div class="email">' + s.email + '</div><div class="status">● ' + s.status + '</div></div>';
+      html += '<button class="btn-danger" onclick="revogarAcesso(\'' + s.email + '\')">Remover</button>';
+      html += '</div>';
+    });
+    lista.innerHTML = html;
+  } catch(e) {
+    lista.innerHTML = '<div class="loading">Erro ao carregar.</div>';
+  }
+}
+
+document.getElementById("emailInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") liberarAcesso();
+});
+
+init();
+</script>
+
+</body>
+</html>
