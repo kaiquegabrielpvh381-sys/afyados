@@ -254,8 +254,13 @@ async function handleForgot() {
   const email = document.getElementById('login-email').value.trim();
   if (!email) return showMsg('Digite seu e-mail acima primeiro.', 'error');
 
+  // Passa o destino original (?redirect=...) adiante, pra aluna
+  // voltar pra mesma página depois de redefinir a senha.
+  const resetUrl = window.location.origin + '/reset-password.html'
+    + '?redirect=' + encodeURIComponent(redirectTo);
+
   const { error } = await sb.auth.resetPasswordForEmail(email, {
-    redirectTo: window.location.origin + '/reset-password.html'
+    redirectTo: resetUrl
   });
 
   if (error) return showMsg(error.message, 'error');
