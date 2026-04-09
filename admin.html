@@ -21,6 +21,9 @@ button{padding:12px 24px;border-radius:10px;border:none;background:var(--pink);c
 button:hover{opacity:.85;}
 button:disabled{opacity:.4;cursor:not-allowed;}
 .btn-danger{background:#E24B4A;}
+.btn-secondary{background:rgba(255,255,255,0.08);color:#F4EFFA;}
+.btn-secondary:hover{background:rgba(255,255,255,0.14);opacity:1;}
+.list-item .actions{display:flex;gap:6px;}
 .msg{padding:10px 14px;border-radius:8px;font-size:13px;margin-bottom:12px;display:none;}
 .msg.success{display:block;background:rgba(29,158,117,0.12);color:#1D9E75;border:1px solid rgba(29,158,117,0.3);}
 .msg.error{display:block;background:rgba(226,75,74,0.10);color:#E24B4A;border:1px solid rgba(226,75,74,0.3);}
@@ -53,6 +56,16 @@ button:disabled{opacity:.4;cursor:not-allowed;}
         <button onclick="liberarAcesso()" id="btnLiberar">Liberar</button>
       </div>
       <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="card">
+      <h2>Desbloquear em massa</h2>
+      <p style="color:var(--muted);font-size:13px;margin-bottom:14px;line-height:1.5;">
+        Envia um email de "defina sua senha" pra <strong>todas as assinantes ativas</strong>. 
+        Use pra desbloquear quem tá travada e não consegue logar.
+      </p>
+      <button onclick="enviarResetTodos()" id="btnBulk">Enviar reset pra todos</button>
+      <div class="msg" id="msgBulk"></div>
     </div>
 
     <div class="card">
@@ -159,6 +172,76 @@ async function revogarAcesso(email) {
   } catch(e) {}
 }
 
+async function enviarReset(email, btn) {
+  var originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "...";
+
+  try {
+    var token = getToken();
+    var res = await fetch(API_BASE + "/api/admin/send-reset", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+      body: JSON.stringify({ email: email })
+    });
+
+    var data = await res.json();
+    if (res.ok) {
+      btn.textContent = "✓ Enviado";
+      setTimeout(function() { btn.textContent = originalText; btn.disabled = false; }, 2500);
+    } else {
+      btn.textContent = "Erro";
+      alert("Erro ao enviar reset: " + (data.error || "desconhecido"));
+      setTimeout(function() { btn.textContent = originalText; btn.disabled = false; }, 2500);
+    }
+  } catch(e) {
+    btn.textContent = "Erro";
+    alert("Erro de conexão.");
+    setTimeout(function() { btn.textContent = originalText; btn.disabled = false; }, 2500);
+  }
+}
+
+async function enviarResetTodos() {
+  var msg = document.getElementById("msgBulk");
+  var btn = document.getElementById("btnBulk");
+
+  if (!confirm("Isso vai enviar um email de 'defina sua senha' pra TODAS as assinantes ativas. Confirma?")) return;
+
+  btn.disabled = true;
+  btn.textContent = "Enviando... (pode levar alguns segundos)";
+  msg.className = "msg";
+  msg.style.display = "none";
+
+  try {
+    var token = getToken();
+    var res = await fetch(API_BASE + "/api/admin/send-reset-bulk", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token }
+    });
+
+    var data = await res.json();
+
+    if (res.ok) {
+      msg.className = "msg success";
+      var txt = "✅ " + data.sent + " de " + data.total + " emails enviados.";
+      if (data.errors && data.errors.length > 0) {
+        txt += " " + data.errors.length + " falharam (veja console).";
+        console.warn("Falhas no reset bulk:", data.errors);
+      }
+      msg.textContent = txt;
+    } else {
+      msg.className = "msg error";
+      msg.textContent = data.error || "Erro ao enviar.";
+    }
+  } catch(e) {
+    msg.className = "msg error";
+    msg.textContent = "Erro de conexão.";
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Enviar reset pra todos";
+}
+
 async function carregarLista() {
   var lista = document.getElementById("lista");
   lista.innerHTML = '<div class="loading">Carregando...</div>';
@@ -177,9 +260,13 @@ async function carregarLista() {
 
     var html = "";
     data.subscriptions.forEach(function(s) {
+      var safeEmail = s.email.replace(/'/g, "\\'");
       html += '<div class="list-item">';
       html += '<div><div class="email">' + s.email + '</div><div class="status">● ' + s.status + '</div></div>';
-      html += '<button class="btn-danger" onclick="revogarAcesso(\'' + s.email + '\')">Remover</button>';
+      html += '<div class="actions">';
+      html += '<button class="btn-secondary" onclick="enviarReset(\'' + safeEmail + '\', this)">Reset</button>';
+      html += '<button class="btn-danger" onclick="revogarAcesso(\'' + safeEmail + '\')">Remover</button>';
+      html += '</div>';
       html += '</div>';
     });
     lista.innerHTML = html;
