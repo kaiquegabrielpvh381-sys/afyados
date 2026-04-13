@@ -83,6 +83,7 @@ body{background:var(--bg);color:var(--text);display:flex;}
 .msg-name{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;}
 .msg.user .msg-name{display:none;}
 .msg-text{font-size:15.5px;line-height:1.85;color:#e8e0f5;}
+.msg-text.streaming{white-space:pre-wrap;}
 .msg.user .msg-text{background:var(--pink);padding:13px 18px;border-radius:18px 18px 3px 18px;box-shadow:0 5px 20px var(--glow);color:white;display:inline-block;}
 
 /* Markdown */
@@ -407,14 +408,15 @@ function send(){
       var botRow=renderMsg('bot','');
       var bubble=botRow.querySelector('.msg-text');
       bubble.classList.add('stream-cursor');
+      bubble.classList.add('streaming');
       var full='', buf='';
       var reader=r.body.getReader();
       var decoder=new TextDecoder('utf-8');
       function read(){
         reader.read().then(function(result){
           if(result.done){
-            if(bubble._renderTimer){clearTimeout(bubble._renderTimer);bubble._renderTimer=null;}
             bubble.classList.remove('stream-cursor');
+            bubble.classList.remove('streaming');
             bubble.innerHTML=md(full);
             if(full.trim()){convs[curId].messages.push({role:'bot',content:full});save();}
             busy=false; document.getElementById('sendBtn').disabled=false;
@@ -432,19 +434,21 @@ function send(){
               var parsed=JSON.parse(data);
               if(parsed.text){
                 full+=parsed.text;
-                // Render com debounce: só atualiza o DOM quando o stream
-                // pausa por 90ms, evitando tremedeira durante tabelas/listas
-                if(bubble._renderTimer) clearTimeout(bubble._renderTimer);
-                bubble._renderTimer=setTimeout(function(){
-                  bubble.innerHTML=md(full);
-                  document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
-                },90);
+                // Durante o streaming: mostra texto puro com quebras de
+                // linha preservadas (sem processar markdown). Isso deixa
+                // a "digitação" fluida sem tremedeira, porque não há
+                // re-render de tabelas/listas a cada chunk.
+                // O markdown completo (negritos, tabelas, imagens) é
+                // aplicado só no final, quando o stream termina.
+                bubble.textContent=full;
+                document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
               }
             }catch(e){}
           });
           read();
         }).catch(function(e){
           bubble.classList.remove('stream-cursor');
+          bubble.classList.remove('streaming');
           if(full.trim()){
             // Save what we got even if connection dropped
             convs[curId].messages.push({role:'bot',content:full});
