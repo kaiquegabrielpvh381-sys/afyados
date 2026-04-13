@@ -83,7 +83,6 @@ body{background:var(--bg);color:var(--text);display:flex;}
 .msg-name{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;}
 .msg.user .msg-name{display:none;}
 .msg-text{font-size:15.5px;line-height:1.85;color:#e8e0f5;}
-.msg-text.streaming{white-space:pre-wrap;}
 .msg.user .msg-text{background:var(--pink);padding:13px 18px;border-radius:18px 18px 3px 18px;box-shadow:0 5px 20px var(--glow);color:white;display:inline-block;}
 
 /* Markdown */
@@ -147,6 +146,7 @@ body{background:var(--bg);color:var(--text);display:flex;}
   .status-bar{left:5%;right:5%;}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
 </head>
 <body>
 
@@ -235,58 +235,34 @@ var convs = {}, curId = null, busy = false;
 function load(){ try{ convs = JSON.parse(localStorage.getItem("afy_c")||"{}"); }catch(e){ convs={}; } }
 function save(){ try{ localStorage.setItem("afy_c",JSON.stringify(convs)); }catch(e){} }
 
+// Configuração do marked.js: quebras de linha simples viram <br>,
+// e imagens vêm envoltas em <figure> com legenda (pra manter o design).
+(function(){
+  if(typeof marked==='undefined') return;
+  var renderer=new marked.Renderer();
+  renderer.image=function(href,title,text){
+    var src=typeof href==='object'?href.href:href;
+    var alt=typeof href==='object'?href.text:text;
+    return '<figure><img src="'+src+'" alt="'+(alt||'')+'" onerror="this.parentNode.style.display=\'none\'"><figcaption>'+(alt||'')+'</figcaption></figure>';
+  };
+  marked.setOptions({
+    renderer:renderer,
+    breaks:true,
+    gfm:true
+  });
+})();
+
 function md(raw){
   if(!raw) return "";
-  var s=raw, blocks=[];
-  // Save code blocks first
-  s=s.replace(/```(\w*)\n?([\s\S]*?)```/g,function(_,l,c){
-    var i=blocks.length;
-    blocks.push('<pre><code>'+c.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</code></pre>');
-    return '\x00B'+i+'\x00';
-  });
-  // Process headers BEFORE escaping HTML
-  s=s.replace(/^#{4} (.+)$/gm,'\x00H4$1\x00');
-  s=s.replace(/^#{3} (.+)$/gm,'\x00H3$1\x00');
-  s=s.replace(/^#{2} (.+)$/gm,'\x00H2$1\x00');
-  s=s.replace(/^#{1} (.+)$/gm,'\x00H1$1\x00');
-  // Now escape HTML
-  s=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  // Restore headers
-  s=s.replace(/\x00H4(.*?)\x00/g,'<h4>$1</h4>');
-  s=s.replace(/\x00H3(.*?)\x00/g,'<h3>$1</h3>');
-  s=s.replace(/\x00H2(.*?)\x00/g,'<h2>$1</h2>');
-  s=s.replace(/\x00H1(.*?)\x00/g,'<h1>$1</h1>');
-  s=s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
-  s=s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<figure><img src="$2" alt="$1" onerror="this.style.display=\'none\'"><figcaption>$1</figcaption></figure>');
-  s=s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-  s=s.replace(/(?<![="'])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
-  s=s.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
-  s=s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  s=s.replace(/\*(.+?)\*/g,'<em>$1</em>');
-  s=s.replace(/^[-*]{3,}$/gm,'<hr>');
-  s=s.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
-  s=s.replace(/^\|(.+)\|$/gm,function(row){
-    var cells=row.split('|').filter(function(c){return c.trim();});
-    return '<tr>'+cells.map(function(c){return '<td>'+c.trim()+'</td>';}).join('')+'</tr>';
-  });
-  s=s.replace(/(<tr>.*?<\/tr>\n?)+/gs,function(m){
-    var rows=m.trim().split('\n'),first=rows[0],rest=rows.slice(1);
-    if(rest[0]&&/^[\|\s\-:]+$/.test(rest[0].replace(/<[^>]+>/g,''))){
-      var header=first.replace(/<td>/g,'<th>').replace(/<\/td>/g,'</th>');
-      return '<table><thead>'+header+'</thead><tbody>'+rest.slice(1).join('\n')+'</tbody></table>';
-    }
-    return '<table><tbody>'+m+'</tbody></table>';
-  });
-  s=s.replace(/^[\*\-\+] (.+)$/gm,'<li>$1</li>');
-  s=s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g,function(m){return '<ul>'+m+'</ul>';});
-  s=s.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
-  s=s.split('\n\n').map(function(p){
-    p=p.trim(); if(!p) return '';
-    if(/^<(h[1-4]|ul|ol|pre|blockquote|hr|figure|table)/.test(p)) return p;
-    return '<p>'+p.replace(/\n/g,'<br>')+'</p>';
-  }).join('\n');
-  s=s.replace(/\x00B(\d+)\x00/g,function(_,i){return blocks[parseInt(i)];});
-  return s;
+  if(typeof marked==='undefined'){
+    // Fallback simples se o CDN falhar
+    return raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  }
+  try{
+    return marked.parse(raw);
+  }catch(e){
+    return raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  }
 }
 
 function renderHist(){
@@ -408,7 +384,6 @@ function send(){
       var botRow=renderMsg('bot','');
       var bubble=botRow.querySelector('.msg-text');
       bubble.classList.add('stream-cursor');
-      bubble.classList.add('streaming');
       var full='', buf='';
       var reader=r.body.getReader();
       var decoder=new TextDecoder('utf-8');
@@ -416,7 +391,6 @@ function send(){
         reader.read().then(function(result){
           if(result.done){
             bubble.classList.remove('stream-cursor');
-            bubble.classList.remove('streaming');
             bubble.innerHTML=md(full);
             if(full.trim()){convs[curId].messages.push({role:'bot',content:full});save();}
             busy=false; document.getElementById('sendBtn').disabled=false;
@@ -434,21 +408,23 @@ function send(){
               var parsed=JSON.parse(data);
               if(parsed.text){
                 full+=parsed.text;
-                // Durante o streaming: mostra texto puro com quebras de
-                // linha preservadas (sem processar markdown). Isso deixa
-                // a "digitação" fluida sem tremedeira, porque não há
-                // re-render de tabelas/listas a cada chunk.
-                // O markdown completo (negritos, tabelas, imagens) é
-                // aplicado só no final, quando o stream termina.
-                bubble.textContent=full;
-                document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
+                // Renderiza markdown em tempo real com throttling via rAF.
+                // O navegador faz diff interno do innerHTML, reaproveitando
+                // nós iguais — resultado fluido sem tremedeira.
+                if(!bubble._rafPending){
+                  bubble._rafPending=true;
+                  requestAnimationFrame(function(){
+                    bubble._rafPending=false;
+                    bubble.innerHTML=md(full);
+                    document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
+                  });
+                }
               }
             }catch(e){}
           });
           read();
         }).catch(function(e){
           bubble.classList.remove('stream-cursor');
-          bubble.classList.remove('streaming');
           if(full.trim()){
             // Save what we got even if connection dropped
             convs[curId].messages.push({role:'bot',content:full});
