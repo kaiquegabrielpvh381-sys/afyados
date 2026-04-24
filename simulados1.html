@@ -49,6 +49,25 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .btn-pink{display:inline-flex;align-items:center;justify-content:center;background:var(--pink);color:white;padding:13px 24px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px var(--pink-glow);width:100%;}
 .btn-pink:hover{background:var(--pink-bright);transform:translateY(-2px);}
 
+
+/* Card de destaque (Material Multi) */
+.sim-card.promo-special{background:linear-gradient(135deg,rgba(214,0,110,0.15),rgba(155,0,232,0.08));border:1.5px solid rgba(214,0,110,0.5);box-shadow:0 0 40px rgba(214,0,110,0.1);}
+.sim-card.promo-special h3{color:#fff;}
+
+/* Preços em 3 níveis (normal / cupom / clube) */
+.tiered-prices{display:flex;flex-direction:column;gap:8px;margin:14px 0 16px;}
+.tier{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.tier.highlight{background:rgba(245,166,35,0.08);border-color:rgba(245,166,35,0.35);}
+.tier.club{background:rgba(214,0,110,0.1);border-color:rgba(214,0,110,0.4);}
+.tier-label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);}
+.tier.highlight .tier-label{color:#F5A623;}
+.tier.club .tier-label{color:var(--pink-light);}
+.tier-price{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--text);}
+.tier-price.strike{text-decoration:line-through;color:var(--muted);font-weight:700;font-size:15px;}
+.clube-hint{font-size:11px;color:var(--muted);text-align:center;margin-top:-4px;margin-bottom:14px;font-style:italic;}
+.clube-hint a{color:var(--pink-light);text-decoration:none;font-weight:600;}
+.clube-hint a:hover{text-decoration:underline;}
+
 /* Rodapé em breve */
 .rodape-breve{background:var(--card);border:2px dashed rgba(255,255,255,0.07);border-radius:22px;padding:40px;text-align:center;}
 .rodape-breve h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--light);}
@@ -130,7 +149,42 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 
 <div class="content">
 
-  <div class="section-label">Simulados pagos</div>
+  <div class="section-label">🔪 Lançamento</div>
+  <div class="sim-card promo-special">
+    <div>
+      <span class="sim-badge" style="background:linear-gradient(90deg,var(--pink),#9B00E8);">🔥 Lançamento</span>
+      <h3>Material Multi Estações N1P1</h3>
+      <p>Pacote completo para estudo da primeira Multi, com <strong>Anatomia, Histologia e Fisiologia</strong>, materiais escritos e vídeo aulas explicativas.</p>
+      <div class="sim-features">
+        <div class="sim-feat">🫀 Estrutura, vascularização e histologia cardíaca</div>
+        <div class="sim-feat">🦵💪 Vascularização dos membros inferiores e superiores</div>
+        <div class="sim-feat">🧬 Síntese proteica + embriogênese cardíaca</div>
+        <div class="sim-feat">⚡ Potencial de ação, ciclo cardíaco e diagrama de Wiggers</div>
+        <div class="sim-feat">🩸 Regulação da pressão arterial + hemoglobina</div>
+        <div class="sim-feat">📚 Peças anatômicas e aulas integradas</div>
+      </div>
+    </div>
+    <div class="sim-price-box">
+      <div class="tiered-prices">
+        <div class="tier">
+          <span class="tier-label">Normal</span>
+          <span class="tier-price strike">R$ 64,90</span>
+        </div>
+        <div class="tier highlight">
+          <span class="tier-label">🎁 Cupom AFYADOS</span>
+          <span class="tier-price">R$ 58,40</span>
+        </div>
+        <div class="tier club">
+          <span class="tier-label">💎 Clube Afiados</span>
+          <span class="tier-price">R$ 51,90</span>
+        </div>
+      </div>
+      <div class="clube-hint">Membros do Clube: <a href="https://wa.me/5515996791864" target="_blank">chamar no privado</a></div>
+      <a href="https://pay.kiwify.com.br/pdIz51a" target="_blank" class="btn-pink">Garantir meu acesso</a>
+    </div>
+  </div>
+
+    <div class="section-label">Simulados pagos</div>
   <div class="sim-card">
     <div>
       <span class="sim-badge">🔥 Oferta especial</span>
@@ -188,7 +242,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
     <a href="prova-soi1-2025-1.html" class="prova-card">
       <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
       <div class="pc-title">N1 SOI I — 2025.1</div>
-  <div class="pc-sub">PBL · 1º semestre 2025</div>div>
+      <div class="pc-sub">PBL · 1º semestre 2025</div>
       <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
       <div class="pc-arrow">Acessar →</div>
     </a>
@@ -196,14 +250,15 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
     <a href="prova-soi1-2025-1-prouni.html" class="prova-card">
       <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
       <div class="pc-title">N1 SOI I — 2025.1 (PROUNI/FIES)</div>
-   <div class="pc-sub">Faculdade · 1º semestre 2025</div>iv>
+      <div class="pc-sub">Faculdade · 1º semestre 2025</div>
       <div class="pc-tags"><span class="pc-tag">Múltipla Escolha</span></div>
       <div class="pc-arrow">Acessar →</div>
     </a>
 
     <a href="prova-soi1-2024-2.html" class="prova-card">
       <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
-      <div class="pc-title">N1 SOI I — 2024.2</div<div class="pc-sub">Medicina · 2º semestre 2024</div>24</div>
+      <div class="pc-title">N1 SOI I — 2024.2</div>
+      <div class="pc-sub">Medicina · 2º semestre 2024</div>
       <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
       <div class="pc-arrow">Acessar →</div>
     </a>
